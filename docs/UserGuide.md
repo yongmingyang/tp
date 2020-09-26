@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Medmoriser is a **desktop** app to help medical students memorise and revise their content. It is optimized for
+ CLI users so that frequent revisions can be done faster by typing in commands.
 
 * Table of Contents
 {:toc}
@@ -67,23 +68,24 @@ Shows a message explaning how to access the help page.
 Format: `help`
 
 
-### Adding a person: `add`
+### Adding a set of Question & Answer: `add`
 
-Adds a person to the address book.
+Adds a question and answer pair to the database.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
+Format: `add q/some question a/some answer`
 
 <div markdown="span" class="alert alert-primary">:bulb: **Tip:**
 A person can have any number of tags (including 0)
 </div>
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add q/what organ system is the lungs part of? a/respiratory system`
+* `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood
+ around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
-### Listing all persons : `list`
+### Listing all Questions & Answers : `list`
 
-Shows a list of all persons in the address book.
+Shows the entire database of question and answer pairs in the database.
 
 Format: `list`
 
@@ -122,19 +124,16 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a set of Question & Answer : `delete`
 
-Deletes the specified person from the address book.
+Deletes a question and answer pair from the database.
 
-Format: `delete INDEX`
+Format: `delete Q&A#`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the Question & Answer set number '#'
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 3` deletes the 3rd question & answer set in the data bank.
 
 ### Clearing all entries : `clear`
 
