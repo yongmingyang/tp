@@ -380,9 +380,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-Use case: UC06 - Find a Q&A
+**Use case: UC06 - Find a Q&A**
 
-MSS
+**MSS**
 
 1. User searches for a key word or phrase
 
@@ -390,7 +390,7 @@ MSS
 
    Use case ends
 
-Extensions
+**Extensions**
 
 - 2a. There are no Q&As that contain the specified word or phrase
 
