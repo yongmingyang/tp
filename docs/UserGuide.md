@@ -3,7 +3,8 @@ layout: page
 title: User Guide
 ---
 
-AddressBook Level 3 (AB3) is a **desktop app for managing contacts, optimized for use via a Command Line Interface** (CLI) while still having the benefits of a Graphical User Interface (GUI). If you can type fast, AB3 can get your contact management tasks done faster than traditional GUI apps.
+Medmoriser is a **desktop** app to help medical students memorise and revise their content. It is optimized for
+ CLI users so that frequent revisions can be done faster by typing in commands.
 
 * Table of Contents
 {:toc}
@@ -73,14 +74,13 @@ Adds a question and answer pair to the database.
 
 Format: `add q/QUESTION a/ANSWER`
 
-
 Examples:
 * `add q/what organ system is the lungs part of? a/respiratory system`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
-### Listing all persons : `list`
+### Listing all Questions & Answers : `list`
 
-Shows a list of all persons in the address book.
+Shows the entire database of question and answer pairs in the database.
 
 Format: `list`
 
@@ -119,19 +119,16 @@ Examples:
 * `find alex david` returns `Alex Yeoh`, `David Li`<br>
   ![result for 'find alex david'](images/findAlexDavidResult.png)
 
-### Deleting a person : `delete`
+### Deleting a set of Question & Answer : `delete`
 
-Deletes the specified person from the address book.
+Deletes a question and answer pair from the database.
 
-Format: `delete INDEX`
+Format: `delete Q&A#`
 
-* Deletes the person at the specified `INDEX`.
-* The index refers to the index number shown in the displayed person list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* Deletes the Question & Answer set number '#'
 
 Examples:
-* `list` followed by `delete 2` deletes the 2nd person in the address book.
-* `find Betsy` followed by `delete 1` deletes the 1st person in the results of the `find` command.
+* `list` followed by `delete 3` deletes the 3rd question & answer set in the data bank.
 
 ### Clearing all entries : `clear`
 
