@@ -266,38 +266,151 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Use cases
 
-(For all use cases below, the **System** is the `AddressBook` and the **Actor** is the `user`, unless specified otherwise)
+(For all use cases below, the **System** is the `Medmoriser` and the **Actor** is the `user`, unless specified otherwise. Q&A stands for a question and answer pair)
 
-**Use case: Delete a person**
+**Use case: UC01 - Add a question and answer pair**
 
 **MSS**
 
-1.  User requests to list persons
-2.  AddressBook shows a list of persons
-3.  User requests to delete a specific person in the list
-4.  AddressBook deletes the person
-
-    Use case ends.
+1. User adds a new Q&A into the database
+2. Medmoriser adds the new Q&A and displays a success message
 
 **Extensions**
 
-* 2a. The list is empty.
+- 1a. The entered data is invalid
+
+  - 1a1. Medmoriser displays an error message
+
+    Use case ends.
+
+
+
+**Use case: UC02 - View all Q&As**
+
+**MSS**
+
+1. User requests to view all Q&As
+2. Medmoriser shows a list of Q&As in the database
+
+
+
+**Use case: UC03 - Delete a Q&A**
+
+**MSS**
+
+1. User requests to view all Q&As
+
+2. Medmoriser shows a list of Q&As in the database
+
+3. User requests to delete a Q&A at a specific index on the list
+
+4. Medmoriser deletes the Q&A and displays success message 
+
+   Use case ends
+
+**Extensions**
+
+- 2a. The list is empty.
 
   Use case ends.
 
-* 3a. The given index is invalid.
+- 3a. The given index is invalid.
 
-    * 3a1. AddressBook shows an error message.
+  - 3a1. Medmoriser shows an error message.
 
-      Use case resumes at step 2.
+    Use case resumes at step 2.
+
+**Use case: UC04 - Add a tag to a Q&A**
+
+**MSS**
+
+1. User requests to view all Q&As
+
+2. Medmoriser shows a list of Q&As in the database
+
+3. User requests to add a tag to a Q&A at a specific index on the list
+
+4. Medmoriser adds the specified tag to the Q&A and displays success message
+
+   Use case ends.
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 3a. The given index is invalid.
+
+  - 3a1. Medmoriser shows an error message.
+
+    Use case resumes at step 2.
+
+- 3b. The given tag is invalid.
+
+  - 3b1. Medmoriser shows an error message.
+
+    Use case resumes at step 2.
+
+**Use case: UC05 - Edit a Q&A**
+
+**MSS**
+
+1. User requests to view all Q&As
+
+2. Medmoriser shows a list of Q&As in the database
+
+3. User requests to edit a Q&A at a specific index on the list
+
+4. Medmoriser edits the Q&A at the specified index according to the user's new input and displays success message
+
+   Use case ends
+
+**Extensions**
+
+- 2a. The list is empty.
+
+  Use case ends.
+
+- 3a. The given index is invalid.
+
+  - 3a1. Medmoriser shows an error message.
+
+    Use case resumes at step 2.
+
+- 3b. The edit request is invalid
+
+  - 3b1. Medmoriser shows an error message
+
+    Use case resumes at step 2.
+
+**Use case: UC06 - Find a Q&A**
+
+**MSS**
+
+1. User searches for a key word or phrase
+
+2. Medmoriser shows a list of Q&As with that specified word or phrase
+
+   Use case ends
+
+**Extensions**
+
+- 2a. There are no Q&As that contain the specified word or phrase
+
+  - 2a1. Medmoriser displays message that no Q&As found
+
+    Use case ends
 
 *{More to be added}*
 
 ### Non-Functional Requirements
 
-1.  Should work on any _mainstream OS_ as long as it has Java `11` or above installed.
-2.  Should be able to hold up to 1000 persons without a noticeable sluggishness in performance for typical usage.
-3.  A user with above average typing speed for regular English text (i.e. not code, not system admin commands) should be able to accomplish most of the tasks faster using commands than using the mouse.
+1.  Data bank should be able to hold large number (500+) pairs of question and answers without any sluggish performance 
+    for typical usage.
+2.  Users should be able to retrieve answers to a question with a single command
+3.  User should be able to add a set of question and answers easily and efficiently through a user-friendly GUI
+4.  Have a clean user interface when it comes to reviewing questions and answers
 
 *{More to be added}*
 
