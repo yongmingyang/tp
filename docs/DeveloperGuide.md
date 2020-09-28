@@ -236,27 +236,31 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* has a need to manage a significant number of contacts
+* medical students with heavy content to memorise 
+* has a need to manage a significant number of questions and answers
 * prefer desktop apps over other types
 * can type fast
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: manage contacts faster than a typical mouse/GUI driven app
+**Value proposition**: Students have too many things to memorise, our quiz application can continuously test
+them. This way they can practice active recall. It is also a place to aggregate all their questions.
 
 
 ### User stories
 
 Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unlikely to have) - `*`
 
-| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                        |
-| -------- | ------------------------------------------ | ------------------------------ | ---------------------------------------------------------------------- |
-| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                 |
-| `* * *`  | user                                       | add a new person               |                                                                        |
-| `* * *`  | user                                       | delete a person                | remove entries that I no longer need                                   |
-| `* * *`  | user                                       | find a person by name          | locate details of persons without having to go through the entire list |
-| `* *`    | user                                       | hide private contact details   | minimize chance of someone else seeing them by accident                |
-| `*`      | user with many persons in the address book | sort persons by name           | locate a person easily                                                 |
+| Priority | As a …​                                    | I want to …​                     | So that I can…​                                                           |
+| -------- | ------------------------------------------ | ------------------------------ | -------------------------------------------------------------------------|
+| `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                   |
+| `* * *`  | user                                       | key in questions and answers   | revise on the questions I keyed in                                       |
+| `* * *`  | user                                       | delete a Q&A                   | remove entries that I no longer need                                     |
+| `* * *`  | user                                       | find questions by keywords     | locate the Q&A without having to go through the entire list of questions |
+| `* * *`  | user                                       | edit existing questions and answers   | make changes to the questions and answers                         |
+| `* * *`  | user                                       | see all the questions          | have an overview of all the Q&As I have                                  |
+| `* * `   | user                                       | tag questions to its topics    | organise the questions properly by topic                                 |
+| `* * `   | organised user                             | archive questions I no longer need | keep my question book organised and updated                          |
 
 *{More to be added}*
 
