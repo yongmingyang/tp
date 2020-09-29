@@ -44,7 +44,10 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd Q&A in the question book.
 * `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
->>>>>>> master
+
+### Viewing help : `help` [Coming soon]
+
+=======
 
 ### Viewing help : `help` [Coming soon]
 
@@ -78,7 +81,7 @@ Medmoriser data are saved in the hard disk automatically after any command that 
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
 
 --------------------------------------------------------------------------------------------------------------------
->>>>>>> master
+
 
 ## Command summary
 
@@ -89,6 +92,6 @@ Action | Format, Examples
 
 **Edit** | Coming Soon
 **Find** | Coming Soon
->>>>>>> master
+
 **List** | `list`
 
