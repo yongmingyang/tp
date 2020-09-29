@@ -236,7 +236,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* medical students with heavy content to memorise 
+* medical students with heavy content to memorise
 * has a need to manage a significant number of questions and answers
 * prefer desktop apps over other types
 * can type fast
@@ -268,12 +268,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Medmoriser` and the **Actor** is the `user`, unless specified otherwise. Q&A stands for a question and answer pair)
 
-**Use case: UC01 - Add a question and answer pair**
+**Use case: UC01 - Add a Q&A**
 
 **MSS**
 
 1. User adds a new Q&A into the database
+
 2. Medmoriser adds the new Q&A and displays a success message
+
+   Use case ends.
 
 **Extensions**
 
@@ -290,7 +293,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view all Q&As
+
 2. Medmoriser shows a list of Q&As in the database
+
+   Use case ends.
 
 
 
@@ -304,7 +310,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 3. User requests to delete a Q&A at a specific index on the list
 
-4. Medmoriser deletes the Q&A and displays success message 
+4. Medmoriser deletes the Q&A and displays success message
 
    Use case ends
 
@@ -406,7 +412,7 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Data bank should be able to hold large number (500+) pairs of question and answers without any sluggish performance 
+1.  Data bank should be able to hold large number (500+) pairs of question and answers without any sluggish performance
     for typical usage.
 2.  Users should be able to retrieve answers to a question with a single command
 3.  User should be able to add a set of question and answers easily and efficiently through a user-friendly GUI
@@ -416,8 +422,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Glossary
 
-* **Mainstream OS**: Windows, Linux, Unix, OS-X
-* **Private contact detail**: A contact detail that is not meant to be shared with others
+* **Question Set**: A set containing a question and answer(s)
+* **Question**: A question, which may have one or more answers
+* **Answer**: An answer to a question
 
 --------------------------------------------------------------------------------------------------------------------
 
