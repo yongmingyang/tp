@@ -268,12 +268,15 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 (For all use cases below, the **System** is the `Medmoriser` and the **Actor** is the `user`, unless specified otherwise. Q&A stands for a question and answer pair)
 
-**Use case: UC01 - Add a question and answer pair**
+**Use case: UC01 - Add a Q&A**
 
 **MSS**
 
 1. User adds a new Q&A into the database
+
 2. Medmoriser adds the new Q&A and displays a success message
+
+   Use case ends.
 
 **Extensions**
 
@@ -290,7 +293,10 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 **MSS**
 
 1. User requests to view all Q&As
+
 2. Medmoriser shows a list of Q&As in the database
+
+   Use case ends.
 
 
 
