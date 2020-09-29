@@ -237,14 +237,16 @@ _{Explain here how the data archiving feature will be implemented}_
 **Target user profile**:
 
 * medical students with heavy content to memorise 
-* has a need to manage a significant number of questions and answers
+* has a need to manage and frequently revisit a significant number of questions and answers
+* has a need to refer to images and diagrams
 * prefer desktop apps over other types
-* can type fast
+* finds typing with a keyboard faster than typing with smartphones or handwriting.
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: Students have too many things to memorise, our quiz application can continuously test
-them. This way they can practice active recall. It is also a place to aggregate all their questions.
+**Value proposition**: 
+* Aggregate and organises contents and much faster than traditional methods.
+* Allows students to memorise contents more efficiently by continuously testing them. This way they can practice active recall. 
 
 
 ### User stories
@@ -256,11 +258,11 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 | `* * *`  | new user                                   | see usage instructions         | refer to instructions when I forget how to use the App                   |
 | `* * *`  | user                                       | key in questions and answers   | revise on the questions I keyed in                                       |
 | `* * *`  | user                                       | delete a Q&A                   | remove entries that I no longer need                                     |
-| `* * *`  | user                                       | find questions by keywords     | locate the Q&A without having to go through the entire list of questions |
 | `* * *`  | user                                       | edit existing questions and answers   | make changes to the questions and answers                         |
 | `* * *`  | user                                       | see all the questions          | have an overview of all the Q&As I have                                  |
+| `* *`  | user                                       | find questions by keywords     | locate the Q&A without having to go through the entire list of questions |
 | `* * `   | user                                       | tag questions to its topics    | organise the questions properly by topic                                 |
-| `* * `   | organised user                             | archive questions I no longer need | keep my question book organised and updated                          |
+| `*`   | organised user                             | archive questions I no longer need | keep my question book organised and updated                          |
 
 *{More to be added}*
 
