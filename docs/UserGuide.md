@@ -22,15 +22,6 @@ Shows the entire database of question and answer pairs in the database.
 
 Format: `list`
 
-
-### Editing a Q&A : `edit` [Coming Soon]
-
-Edits an existing Q&A in the Medmoriser application.
-
-### Locating questions by keywords: `find` [Coming Soon]
-
-Finds Q&A whose questions contain any of the given keywords.
-
 ### Deleting a Q&A : `delete`
 
 Deletes the specified Q&A from the question book.
@@ -44,16 +35,6 @@ Format: `delete INDEX`
 Examples:
 * `list` followed by `delete 2` deletes the 2nd Q&A in the question book.
 * `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
-
-### Viewing help : `help` [Coming soon]
-
-=======
-
-### Viewing help : `help` [Coming soon]
-
-Shows a message explaning how to access the help page.
-
-Format: `help`
 
 ### Clearing all entries : `clear`
 
@@ -71,7 +52,23 @@ Format: `exit`
 
 Medmoriser data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
 
+### Viewing help : `help` [Coming soon]
+
+Shows a message explaning how to access the help page.
+
+Format: `help`
+
+### Editing a Q&A : `edit` [Coming Soon]
+
+Edits an existing Q&A in the Medmoriser application.
+
+### Locating questions by keywords: `find` [Coming Soon]
+
+Finds Q&A whose questions contain any of the given keywords.
+
 ### Archiving data files [Coming Soon]
+
+Archive questions that the user does not need anymore.
 
 --------------------------------------------------------------------------------------------------------------------
 
