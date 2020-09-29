@@ -1,28 +1,24 @@
 ## User Guide
 
-Medmoriser helps medical students memorise and revise their content. It is optimized for CLI users so that frequent 
-revisions can be done faster by typing in commands.
+Medmoriser is a **desktop** app to help medical students memorise and revise their content. It is optimized for
+ CLI users so that frequent revisions can be done faster by typing in commands.
 
 
 ## Features
 
 ### Adding a person: `add`
 
-Adds a person to the address book.
+Adds a question and answer pair to the database.
 
-Format: `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​`
-
-<div markdown="span" class="alert alert-primary">:bulb: **Tip:**
-A person can have any number of tags (including 0)
-</div>
+Format: `add q/QUESTION a/ANSWER`
 
 Examples:
-* `add n/John Doe p/98765432 e/johnd@example.com a/John street, block 123, #01-01`
-* `add n/Betsy Crowe t/friend e/betsycrowe@example.com a/Newgate Prison p/1234567 t/criminal`
+* `add q/what organ system is the lungs part of? a/respiratory system`
+* `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
-### Listing all persons : `list`
+### Listing all Questions & Answers : `list`
 
-Shows a list of all persons in the address book.
+Shows the entire database of question and answer pairs in the database.
 
 Format: `list`
 
@@ -42,7 +38,7 @@ Format: `delete INDEX`
 
 * Deletes the Q&A at the specified `INDEX`.
 * The index refers to the index number shown in the displayed question list.
-* The index **must be a positive integer** 1, 2, 3, …​
+* The index **must be a positive integer** 1, 2, 3, …
 
 Examples:
 * `list` followed by `delete 2` deletes the 2nd Q&A in the question book.
