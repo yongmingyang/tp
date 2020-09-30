@@ -10,24 +10,24 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 
 import seedu.medmoriser.commons.exceptions.IllegalValueException;
 import seedu.medmoriser.model.Medmoriser;
-import seedu.medmoriser.model.ReadOnlyAddressBook;
+import seedu.medmoriser.model.ReadOnlyMedmoriser;
 import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
- * An Immutable AddressBook that is serializable to JSON format.
+ * An Immutable Medmoriser that is serializable to JSON format.
  */
-@JsonRootName(value = "addressbook")
-class JsonSerializableAddressBook {
+@JsonRootName(value = "medmoriser")
+class JsonSerializableMedmoriser {
 
     public static final String MESSAGE_DUPLICATE_QUESTIONSET = "QuestionSets list contains duplicate questionSet(s).";
 
     private final List<JsonAdaptedQuestionSet> questionSets = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given questionSets.
+     * Constructs a {@code JsonSerializableMedmoriser} with the given questionSets.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("questionSets") List<JsonAdaptedQuestionSet> questionSets) {
+    public JsonSerializableMedmoriser(@JsonProperty("questionSets") List<JsonAdaptedQuestionSet> questionSets) {
         this.questionSets.addAll(questionSets);
     }
 
@@ -36,13 +36,13 @@ class JsonSerializableAddressBook {
      *
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
-    public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
+    public JsonSerializableMedmoriser(ReadOnlyMedmoriser source) {
         questionSets.addAll(source.getQuestionSetList().stream().map(JsonAdaptedQuestionSet::new)
                 .collect(Collectors.toList()));
     }
 
     /**
-     * Converts this address book into the model's {@code AddressBook} object.
+     * Converts this medmoriser into the model's {@code Medmoriser} object.
      *
      * @throws IllegalValueException if there were any data constraints violated.
      */

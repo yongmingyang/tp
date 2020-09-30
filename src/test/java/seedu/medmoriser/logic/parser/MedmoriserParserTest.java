@@ -31,7 +31,7 @@ import seedu.medmoriser.testutil.QuestionSetUtil;
 
 public class MedmoriserParserTest {
 
-    private final AddressBookParser parser = new AddressBookParser();
+    private final MedmoriserParser parser = new MedmoriserParser();
 
     @Test
     public void parseCommand_add() throws Exception {

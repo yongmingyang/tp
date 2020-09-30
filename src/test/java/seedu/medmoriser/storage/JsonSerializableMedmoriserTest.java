@@ -18,33 +18,33 @@ public class JsonSerializableMedmoriserTest {
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
             "JsonSerializableAddressBookTest");
     private static final Path TYPICAL_QUESTIONSETS_FILE = TEST_DATA_FOLDER
-            .resolve("typicalQuestionSetsAddressBook.json");
+            .resolve("typicalQuestionSetsMedmoriser.json");
     private static final Path INVALID_QUESTIONSET_FILE = TEST_DATA_FOLDER
-            .resolve("invalidQuestionSetAddressBook.json");
+            .resolve("invalidQuestionSetMedmoriser.json");
     private static final Path DUPLICATE_QUESTIONSET_FILE = TEST_DATA_FOLDER
-            .resolve("duplicateQuestionSetAddressBook.json");
+            .resolve("duplicateQuestionSetMedmoriser.json");
 
     @Test
     public void toModelType_typicalQuestionSetsFile_success() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(TYPICAL_QUESTIONSETS_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableMedmoriser dataFromFile = JsonUtil.readJsonFile(TYPICAL_QUESTIONSETS_FILE,
+                JsonSerializableMedmoriser.class).get();
         Medmoriser medmoriserFromFile = dataFromFile.toModelType();
-        Medmoriser typicalQuestionSetsMedmoriser = TypicalQuestionSet.getTypicalAddressBook();
+        Medmoriser typicalQuestionSetsMedmoriser = TypicalQuestionSet.getTypicalMedmoriser();
         assertEquals(medmoriserFromFile, typicalQuestionSetsMedmoriser);
     }
 
     @Test
     public void toModelType_invalidQuestionSetFile_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(INVALID_QUESTIONSET_FILE,
-                JsonSerializableAddressBook.class).get();
+        JsonSerializableMedmoriser dataFromFile = JsonUtil.readJsonFile(INVALID_QUESTIONSET_FILE,
+                JsonSerializableMedmoriser.class).get();
         assertThrows(IllegalValueException.class, dataFromFile::toModelType);
     }
 
     @Test
     public void toModelType_duplicateQuestionSets_throwsIllegalValueException() throws Exception {
-        JsonSerializableAddressBook dataFromFile = JsonUtil.readJsonFile(DUPLICATE_QUESTIONSET_FILE,
-                JsonSerializableAddressBook.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableAddressBook.MESSAGE_DUPLICATE_QUESTIONSET,
+        JsonSerializableMedmoriser dataFromFile = JsonUtil.readJsonFile(DUPLICATE_QUESTIONSET_FILE,
+                JsonSerializableMedmoriser.class).get();
+        assertThrows(IllegalValueException.class, JsonSerializableMedmoriser.MESSAGE_DUPLICATE_QUESTIONSET,
                 dataFromFile::toModelType);
     }
 

@@ -10,10 +10,10 @@ import seedu.medmoriser.commons.core.LogsCenter;
 import seedu.medmoriser.logic.commands.Command;
 import seedu.medmoriser.logic.commands.CommandResult;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
-import seedu.medmoriser.logic.parser.AddressBookParser;
+import seedu.medmoriser.logic.parser.MedmoriserParser;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.ReadOnlyAddressBook;
+import seedu.medmoriser.model.ReadOnlyMedmoriser;
 import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.storage.Storage;
 
@@ -26,7 +26,7 @@ public class LogicManager implements Logic {
 
     private final Model model;
     private final Storage storage;
-    private final AddressBookParser addressBookParser;
+    private final MedmoriserParser medmoriserParser;
 
     /**
      * Constructs a {@code LogicManager} with the given {@code Model} and {@code Storage}.
@@ -34,7 +34,7 @@ public class LogicManager implements Logic {
     public LogicManager(Model model, Storage storage) {
         this.model = model;
         this.storage = storage;
-        addressBookParser = new AddressBookParser();
+        medmoriserParser = new MedmoriserParser();
     }
 
     @Override
@@ -42,11 +42,11 @@ public class LogicManager implements Logic {
         logger.info("----------------[USER COMMAND][" + commandText + "]");
 
         CommandResult commandResult;
-        Command command = addressBookParser.parseCommand(commandText);
+        Command command = medmoriserParser.parseCommand(commandText);
         commandResult = command.execute(model);
 
         try {
-            storage.saveAddressBook(model.getAddressBook());
+            storage.saveMedmoriser(model.getMedmoriser());
         } catch (IOException ioe) {
             throw new CommandException(FILE_OPS_ERROR_MESSAGE + ioe, ioe);
         }
@@ -55,8 +55,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
-        return model.getAddressBook();
+    public ReadOnlyMedmoriser getMedmoriser() {
+        return model.getMedmoriser();
     }
 
     @Override
@@ -65,8 +65,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return model.getAddressBookFilePath();
+    public Path getMedmoriserFilePath() {
+        return model.getMedmoriserFilePath();
     }
 
     @Override

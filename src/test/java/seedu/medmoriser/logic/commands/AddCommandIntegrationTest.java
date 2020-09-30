@@ -2,7 +2,7 @@ package seedu.medmoriser.logic.commands;
 
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalAddressBook;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,14 +22,14 @@ public class AddCommandIntegrationTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalMedmoriser(), new UserPrefs());
     }
 
     @Test
     public void execute_newQuestionSet_success() {
         QuestionSet validQuestionSet = new QuestionSetBuilder().build();
 
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMedmoriser(), new UserPrefs());
         expectedModel.addQuestionSet(validQuestionSet);
 
         assertCommandSuccess(new AddCommand(validQuestionSet), model,
@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateQuestionSet_throwsCommandException() {
-        QuestionSet questionSetInList = model.getAddressBook().getQuestionSetList().get(0);
+        QuestionSet questionSetInList = model.getMedmoriser().getQuestionSetList().get(0);
         assertCommandFailure(new AddCommand(questionSetInList), model, AddCommand.MESSAGE_DUPLICATE_QUESTIONSET);
     }
 

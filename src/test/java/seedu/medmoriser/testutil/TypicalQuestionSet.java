@@ -61,9 +61,9 @@ public class TypicalQuestionSet {
     private TypicalQuestionSet() {} // prevents instantiation
 
     /**
-     * Returns an {@code AddressBook} with all the typical questionSets.
+     * Returns a {@code Medmoriser} with all the typical questionSets.
      */
-    public static Medmoriser getTypicalAddressBook() {
+    public static Medmoriser getTypicalMedmoriser() {
         Medmoriser ab = new Medmoriser();
         for (QuestionSet questionSet : getTypicalQuestionSets()) {
             ab.addQuestionSet(questionSet);

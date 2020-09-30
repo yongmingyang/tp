@@ -12,7 +12,7 @@ import seedu.medmoriser.model.questionset.UniqueQuestionSetList;
  * Wraps all data at the address-book level
  * Duplicates are not allowed (by .isSameQuestionSet comparison)
  */
-public class Medmoriser implements ReadOnlyAddressBook {
+public class Medmoriser implements ReadOnlyMedmoriser {
 
     private final UniqueQuestionSetList questionSets;
 
@@ -32,7 +32,7 @@ public class Medmoriser implements ReadOnlyAddressBook {
     /**
      * Creates an AddressBook using the QuestionSets in the {@code toBeCopied}
      */
-    public Medmoriser(ReadOnlyAddressBook toBeCopied) {
+    public Medmoriser(ReadOnlyMedmoriser toBeCopied) {
         this();
         resetData(toBeCopied);
     }
@@ -50,7 +50,7 @@ public class Medmoriser implements ReadOnlyAddressBook {
     /**
      * Resets the existing data of this {@code AddressBook} with {@code newData}.
      */
-    public void resetData(ReadOnlyAddressBook newData) {
+    public void resetData(ReadOnlyMedmoriser newData) {
         requireNonNull(newData);
 
         setQuestionSets(newData.getQuestionSetList());

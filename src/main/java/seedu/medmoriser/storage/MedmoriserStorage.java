@@ -6,41 +6,41 @@ import java.util.Optional;
 
 import seedu.medmoriser.commons.exceptions.DataConversionException;
 import seedu.medmoriser.model.Medmoriser;
-import seedu.medmoriser.model.ReadOnlyAddressBook;
+import seedu.medmoriser.model.ReadOnlyMedmoriser;
 
 /**
  * Represents a storage for {@link Medmoriser}.
  */
-public interface AddressBookStorage {
+public interface MedmoriserStorage {
 
     /**
      * Returns the file path of the data file.
      */
-    Path getAddressBookFilePath();
+    Path getMedmoriserFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyAddressBook}.
+     * Returns AddressBook data as a {@link ReadOnlyMedmoriser}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
      */
-    Optional<ReadOnlyAddressBook> readAddressBook() throws DataConversionException, IOException;
+    Optional<ReadOnlyMedmoriser> readMedmoriser() throws DataConversionException, IOException;
 
     /**
-     * @see #getAddressBookFilePath()
+     * @see #getMedmoriserFilePath()
      */
-    Optional<ReadOnlyAddressBook> readAddressBook(Path filePath) throws DataConversionException, IOException;
+    Optional<ReadOnlyMedmoriser> readMedmoriser(Path filePath) throws DataConversionException, IOException;
 
     /**
-     * Saves the given {@link ReadOnlyAddressBook} to the storage.
+     * Saves the given {@link ReadOnlyMedmoriser} to the storage.
      * @param addressBook cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook) throws IOException;
+    void saveMedmoriser(ReadOnlyMedmoriser addressBook) throws IOException;
 
     /**
-     * @see #saveAddressBook(ReadOnlyAddressBook)
+     * @see #saveMedmoriser(ReadOnlyMedmoriser)
      */
-    void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException;
+    void saveMedmoriser(ReadOnlyMedmoriser addressBook, Path filePath) throws IOException;
 
 }
