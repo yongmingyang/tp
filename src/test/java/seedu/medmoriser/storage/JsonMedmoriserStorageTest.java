@@ -20,7 +20,7 @@ import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.ReadOnlyMedmoriser;
 
 public class JsonMedmoriserStorageTest {
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonAddressBookStorageTest");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonMedmoriserStorageTest");
 
     @TempDir
     public Path testFolder;

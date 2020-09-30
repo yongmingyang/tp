@@ -16,7 +16,7 @@ import seedu.medmoriser.testutil.TypicalQuestionSet;
 public class JsonSerializableMedmoriserTest {
 
     private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
-            "JsonSerializableAddressBookTest");
+            "JsonSerializableMedmoriserTest");
     private static final Path TYPICAL_QUESTIONSETS_FILE = TEST_DATA_FOLDER
             .resolve("typicalQuestionSetsMedmoriser.json");
     private static final Path INVALID_QUESTIONSET_FILE = TEST_DATA_FOLDER
