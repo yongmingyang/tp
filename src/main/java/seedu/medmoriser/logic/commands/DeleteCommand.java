@@ -11,18 +11,18 @@ import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
- * Deletes a question set identified using it's displayed index from the address book.
+ * Deletes a questionSet identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the question set identified by the index number used in the displayed question set list.\n"
+            + ": Deletes the questionSet identified by the index number used in the displayed questionSet list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_QUESTIONSET_SUCCESS = "Deleted Question Set: %1$s";
+    public static final String MESSAGE_DELETE_QUESTIONSET_SUCCESS = "Deleted questionSet: %1$s";
 
     private final Index targetIndex;
 

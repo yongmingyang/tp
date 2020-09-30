@@ -30,8 +30,8 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the question set identified "
-            + "by the index number used in the displayed question set list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the questionSet identified "
+            + "by the index number used in the displayed questionSet list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -43,16 +43,16 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_QUESTIONSET_SUCCESS = "Edited question set: %1$s";
+    public static final String MESSAGE_EDIT_QUESTIONSET_SUCCESS = "Edited questionSet: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "This question set already exists in the question bank.";
+    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "This questionSet already exists in the question bank.";
 
     private final Index index;
     private final EditQuestionSetDescriptor editQuestionSetDescriptor;
 
     /**
-     * @param index of the question set in the filtered question set list to edit
-     * @param editQuestionSetDescriptor details to edit the question set with
+     * @param index of the questionSet in the filtered questionSet list to edit
+     * @param editQuestionSetDescriptor details to edit the questionSet with
      */
     public EditCommand(Index index, EditQuestionSetDescriptor editQuestionSetDescriptor) {
         requireNonNull(index);
@@ -118,8 +118,8 @@ public class EditCommand extends Command {
     }
 
     /**
-     * Stores the details to edit the question set with. Each non-empty field value will replace the
-     * corresponding field value of the question set.
+     * Stores the details to edit the questionSet with. Each non-empty field value will replace the
+     * corresponding field value of the questionSet.
      */
     public static class EditQuestionSetDescriptor {
         private Name name;

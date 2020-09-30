@@ -53,34 +53,34 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a question set with the same identity as {@code question set} exists in the address book.
+     * Returns true if a questionSet with the same identity as {@code questionSet} exists in the address book.
      */
     boolean hasQuestionSet(QuestionSet questionSet);
 
     /**
-     * Deletes the given question set.
-     * The question set must exist in the address book.
+     * Deletes the given questionSet.
+     * The questionSet must exist in the address book.
      */
     void deleteQuestionSet(QuestionSet target);
 
     /**
-     * Adds the given question set.
-     * {@code question set} must not already exist in the address book.
+     * Adds the given questionSet.
+     * {@code questionSet} must not already exist in the address book.
      */
     void addQuestionSet(QuestionSet questionSet);
 
     /**
-     * Replaces the given question set {@code target} with {@code editedquestion set}.
+     * Replaces the given questionSet {@code target} with {@code editedquestionSet}.
      * {@code target} must exist in the address book.
-     * The question set identity of {@code editedquestion set} must not be the same as another existing question set in the address book.
+     * The questionSet identity of {@code editedquestionSet} must not be the same as another existing questionSet in the address book.
      */
     void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet);
 
-    /** Returns an unmodifiable view of the filtered question set list */
+    /** Returns an unmodifiable view of the filtered questionSet list */
     ObservableList<QuestionSet> getFilteredQuestionSetList();
 
     /**
-     * Updates the filter of the filtered question set list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered questionSet list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredQuestionSetList(Predicate<QuestionSet> predicate);

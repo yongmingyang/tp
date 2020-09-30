@@ -19,12 +19,12 @@ import seedu.medmoriser.model.questionset.QuestionSet;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "QuestionSets list contains duplicate question set(s).";
+    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "QuestionSets list contains duplicate questionSet(s).";
 
     private final List<JsonAdaptedQuestionSet> questionSets = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given question sets.
+     * Constructs a {@code JsonSerializableAddressBook} with the given questionSets.
      */
     @JsonCreator
     public JsonSerializableAddressBook(@JsonProperty("questionSets") List<JsonAdaptedQuestionSet> questionSets) {

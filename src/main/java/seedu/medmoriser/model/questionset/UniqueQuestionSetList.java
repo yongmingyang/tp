@@ -12,11 +12,11 @@ import seedu.medmoriser.model.questionset.exceptions.DuplicateQuestionSetExcepti
 import seedu.medmoriser.model.questionset.exceptions.QuestionSetNotFoundException;
 
 /**
- * A list of question sets that enforces uniqueness between its elements and does not allow nulls.
- * A question set is considered unique by comparing using {@code QuestionSet#isSameQuestionSet(QuestionSet)}. As such, adding and updating of
- * question sets uses QuestionSet#isSameQuestionSet(QuestionSet) for equality so as to ensure that the question set being added or updated is
- * unique in terms of identity in the UniqueQuestionSetList. However, the removal of a question set uses QuestionSet#equals(Object) so
- * as to ensure that the question set with exactly the same fields will be removed.
+ * A list of questionSets that enforces uniqueness between its elements and does not allow nulls.
+ * A questionSet is considered unique by comparing using {@code QuestionSet#isSameQuestionSet(QuestionSet)}. As such, adding and updating of
+ * questionSets uses QuestionSet#isSameQuestionSet(QuestionSet) for equality so as to ensure that the questionSet being added or updated is
+ * unique in terms of identity in the UniqueQuestionSetList. However, the removal of a questionSet uses QuestionSet#equals(Object) so
+ * as to ensure that the questionSet with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -29,7 +29,7 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent question set as the given argument.
+     * Returns true if the list contains an equivalent questionSet as the given argument.
      */
     public boolean contains(QuestionSet toCheck) {
         requireNonNull(toCheck);
@@ -37,8 +37,8 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
     }
 
     /**
-     * Adds a question set to the list.
-     * The question set must not already exist in the list.
+     * Adds a questionSet to the list.
+     * The questionSet must not already exist in the list.
      */
     public void add(QuestionSet toAdd) {
         requireNonNull(toAdd);
@@ -49,9 +49,9 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
     }
 
     /**
-     * Replaces the question set {@code target} in the list with {@code editedQuestionSet}.
+     * Replaces the questionSet {@code target} in the list with {@code editedQuestionSet}.
      * {@code target} must exist in the list.
-     * The question set identity of {@code editedQuestionSet} must not be the same as another existing question set in the list.
+     * The questionSet identity of {@code editedQuestionSet} must not be the same as another existing questionSet in the list.
      */
     public void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet) {
         requireAllNonNull(target, editedQuestionSet);
@@ -69,8 +69,8 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
     }
 
     /**
-     * Removes the equivalent question set from the list.
-     * The question set must exist in the list.
+     * Removes the equivalent questionSet from the list.
+     * The questionSet must exist in the list.
      */
     public void remove(QuestionSet toRemove) {
         requireNonNull(toRemove);
@@ -85,8 +85,8 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
     }
 
     /**
-     * Replaces the contents of this list with {@code question sets}.
-     * {@code question sets} must not contain duplicate question sets.
+     * Replaces the contents of this list with {@code questionSets}.
+     * {@code questionSets} must not contain duplicate questionSets.
      */
     public void setQuestionSets(List<QuestionSet> questionSets) {
         requireAllNonNull(questionSets);
@@ -122,7 +122,7 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
     }
 
     /**
-     * Returns true if {@code question sets} contains only unique question set.
+     * Returns true if {@code questionSets} contains only unique questionSet.
      */
     private boolean questionSetsAreUnique(List<QuestionSet> questionSets) {
         for (int i = 0; i < questionSets.size() - 1; i++) {

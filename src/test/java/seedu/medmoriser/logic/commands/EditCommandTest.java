@@ -111,7 +111,7 @@ public class EditCommandTest {
     public void execute_duplicateQuestionSetFilteredList_failure() {
         showQuestionSetAtIndex(model, INDEX_FIRST_QUESTIONSET);
 
-        // edit question set in filtered list into a duplicate in address book
+        // edit questionSet in filtered list into a duplicate in address book
         QuestionSet questionSetInList = model.getAddressBook().getQuestionSetList().get(INDEX_SECOND_QUESTIONSET.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_QUESTIONSET,
                 new EditQuestionSetDescriptorBuilder(questionSetInList).build());

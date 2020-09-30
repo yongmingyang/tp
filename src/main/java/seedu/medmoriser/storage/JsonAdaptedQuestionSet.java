@@ -28,7 +28,7 @@ class JsonAdaptedQuestionSet {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedQuestionSet} with the given question set details.
+     * Constructs a {@code JsonAdaptedQuestionSet} with the given questionSet details.
      */
     @JsonCreator
     public JsonAdaptedQuestionSet(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
@@ -57,9 +57,9 @@ class JsonAdaptedQuestionSet {
     }
 
     /**
-     * Converts this Jackson-friendly adapted question set object into the model's {@code QuestionSet} object.
+     * Converts this Jackson-friendly adapted questionSet object into the model's {@code QuestionSet} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted question set.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted questionSet.
      */
     public QuestionSet toModelType() throws IllegalValueException {
         final List<Tag> questionSetTags = new ArrayList<>();

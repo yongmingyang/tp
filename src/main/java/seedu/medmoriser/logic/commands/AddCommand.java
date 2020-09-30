@@ -33,8 +33,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New question set added: %1$s";
-    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "This question set already exists in the answer book";
+    public static final String MESSAGE_SUCCESS = "New questionSet added: %1$s";
+    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "This questionSet already exists in the answer book";
 
     private final QuestionSet toAdd;
 

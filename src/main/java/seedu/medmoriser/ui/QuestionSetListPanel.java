@@ -11,7 +11,7 @@ import seedu.medmoriser.commons.core.LogsCenter;
 import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
- * Panel containing the list of question set.
+ * Panel containing the list of questionSet.
  */
 public class QuestionSetListPanel extends UiPart<Region> {
     private static final String FXML = "QuestionSetListPanel.fxml";

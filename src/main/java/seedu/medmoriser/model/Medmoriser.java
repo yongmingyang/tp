@@ -40,8 +40,8 @@ public class Medmoriser implements ReadOnlyAddressBook {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the question set list with {@code question sets}.
-     * {@code question sets} must not contain duplicate question sets.
+     * Replaces the contents of the questionSet list with {@code questionSets}.
+     * {@code questionSets} must not contain duplicate questionSets.
      */
     public void setQuestionSets(List<QuestionSet> questionSets) {
         this.questionSets.setQuestionSets(questionSets);

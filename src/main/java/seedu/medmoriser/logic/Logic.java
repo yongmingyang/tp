@@ -30,7 +30,7 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of question sets */
+    /** Returns an unmodifiable view of the filtered list of questionSets */
     ObservableList<QuestionSet> getFilteredQuestionSetList();
 
     /**

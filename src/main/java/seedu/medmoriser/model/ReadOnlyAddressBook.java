@@ -9,8 +9,8 @@ import seedu.medmoriser.model.questionset.QuestionSet;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the question sets list.
-     * This list will not contain any duplicate question sets.
+     * Returns an unmodifiable view of the questionSets list.
+     * This list will not contain any duplicate questionSets.
      */
     ObservableList<QuestionSet> getQuestionSetList();
 

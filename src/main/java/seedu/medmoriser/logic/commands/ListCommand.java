@@ -6,13 +6,13 @@ import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
 import seedu.medmoriser.model.Model;
 
 /**
- * Lists all question sets in the address book to the user.
+ * Lists all questionSets in the address book to the user.
  */
 public class ListCommand extends Command {
 
     public static final String COMMAND_WORD = "list";
 
-    public static final String MESSAGE_SUCCESS = "Listed all question sets";
+    public static final String MESSAGE_SUCCESS = "Listed all questionSets";
 
 
     @Override
