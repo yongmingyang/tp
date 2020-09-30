@@ -14,7 +14,7 @@ import seedu.medmoriser.commons.core.LogsCenter;
 import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the medmoriser data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,15 +24,15 @@ public class ModelManager implements Model {
     private final FilteredList<QuestionSet> filteredQuestionSets;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given medmoriser and userPrefs.
      */
-    public ModelManager(ReadOnlyMedmoriser addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMedmoriser medmoriser, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(medmoriser, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with medmoriser: " + medmoriser + " and user prefs " + userPrefs);
 
-        this.medmoriser = new Medmoriser(addressBook);
+        this.medmoriser = new Medmoriser(medmoriser);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredQuestionSets = new FilteredList<>(this.medmoriser.getQuestionSetList());
     }

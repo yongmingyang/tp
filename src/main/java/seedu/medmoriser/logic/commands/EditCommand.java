@@ -37,7 +37,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed questionSet list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_QUESTION + "NAME] "
+            + "[" + PREFIX_QUESTION + "QUESTION] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ANSWER + "ANSWER] "

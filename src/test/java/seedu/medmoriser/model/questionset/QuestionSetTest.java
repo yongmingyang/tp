@@ -73,7 +73,7 @@ public class QuestionSetTest {
         // different questionSet -> returns false
         assertFalse(ALICE.equals(BOB));
 
-        // different name -> returns false
+        // different question -> returns false
         QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withQuestion(VALID_QUESTION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
@@ -85,7 +85,7 @@ public class QuestionSetTest {
         editedAlice = new QuestionSetBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+        // different answer -> returns false
         editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

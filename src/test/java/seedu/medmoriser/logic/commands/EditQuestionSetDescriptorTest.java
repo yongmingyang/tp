@@ -35,7 +35,7 @@ public class EditQuestionSetDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
-        // different name -> returns false
+        // different question -> returns false
         EditCommand.EditQuestionSetDescriptor editedAmy = new EditQuestionSetDescriptorBuilder(DESC_AMY)
                 .withQuestion(VALID_QUESTION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));

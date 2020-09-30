@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonMedmoriserStorage addressBookStorage =
-                new JsonMedmoriserStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonMedmoriserStorage medmoriserStorage =
+                new JsonMedmoriserStorage(temporaryFolder.resolve("medmoriser.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(medmoriserStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,11 +71,11 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonMedmoriserStorage addressBookStorage =
-                new JsonMedmoriserIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonMedmoriserStorage medmoriserStorage =
+                new JsonMedmoriserIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMedmoriser.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(medmoriserStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
@@ -155,7 +155,7 @@ public class LogicManagerTest {
         }
 
         @Override
-        public void saveMedmoriser(ReadOnlyMedmoriser addressBook, Path filePath) throws IOException {
+        public void saveMedmoriser(ReadOnlyMedmoriser medmoriser, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

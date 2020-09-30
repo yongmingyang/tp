@@ -20,7 +20,7 @@ public class AddCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a QuestionSet to the question bank "
             + "Parameters: "
-            + PREFIX_QUESTION + "NAME "
+            + PREFIX_QUESTION + "QUESTION "
             + PREFIX_PHONE + "PHONE "
             + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ANSWER + "ANSWER "

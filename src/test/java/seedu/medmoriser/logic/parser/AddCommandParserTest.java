@@ -51,7 +51,7 @@ public class AddCommandParserTest {
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSet));
 
-        // multiple names - last name accepted
+        // multiple questions - last question accepted
         assertParseSuccess(parser, QUESTION_DESC_AMY + QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
                 + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSet));
 
@@ -110,7 +110,7 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_invalidValue_failure() {
-        // invalid name
+        // invalid question
         assertParseFailure(parser, INVALID_QUESTION_DESC + PHONE_DESC_BOB + EMAIL_DESC_BOB + ANSWER_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, Question.MESSAGE_CONSTRAINTS);
 

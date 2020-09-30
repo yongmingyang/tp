@@ -47,7 +47,7 @@ public class StorageManager implements Storage {
     }
 
 
-    // ================ AddressBook methods ==============================
+    // ================ Medmoriser methods ==============================
 
     @Override
     public Path getMedmoriserFilePath() {
@@ -66,14 +66,14 @@ public class StorageManager implements Storage {
     }
 
     @Override
-    public void saveMedmoriser(ReadOnlyMedmoriser addressBook) throws IOException {
-        saveMedmoriser(addressBook, medmoriserStorage.getMedmoriserFilePath());
+    public void saveMedmoriser(ReadOnlyMedmoriser medmoriser) throws IOException {
+        saveMedmoriser(medmoriser, medmoriserStorage.getMedmoriserFilePath());
     }
 
     @Override
-    public void saveMedmoriser(ReadOnlyMedmoriser addressBook, Path filePath) throws IOException {
+    public void saveMedmoriser(ReadOnlyMedmoriser medmoriser, Path filePath) throws IOException {
         logger.fine("Attempting to write to data file: " + filePath);
-        medmoriserStorage.saveMedmoriser(addressBook, filePath);
+        medmoriserStorage.saveMedmoriser(medmoriser, filePath);
     }
 
 }
