@@ -3,7 +3,10 @@ package seedu.medmoriser.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.medmoriser.model.questionset.*;
+import seedu.medmoriser.model.questionset.Answer;
+import seedu.medmoriser.model.questionset.Email;
+import seedu.medmoriser.model.questionset.Name;
+import seedu.medmoriser.model.questionset.Phone;
 import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.model.tag.Tag;
 import seedu.medmoriser.model.util.SampleDataUtil;

@@ -32,7 +32,10 @@ import static seedu.medmoriser.testutil.TypicalQuestionSet.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.logic.commands.AddCommand;
-import seedu.medmoriser.model.questionset.*;
+import seedu.medmoriser.model.questionset.Answer;
+import seedu.medmoriser.model.questionset.Email;
+import seedu.medmoriser.model.questionset.Name;
+import seedu.medmoriser.model.questionset.Phone;
 import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.model.tag.Tag;
 import seedu.medmoriser.testutil.QuestionSetBuilder;
@@ -65,7 +68,8 @@ public class AddCommandParserTest {
                 + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSet));
 
         // multiple tags - all accepted
-        QuestionSet expectedQuestionSetMultipleTags = new QuestionSetBuilder(BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        QuestionSet expectedQuestionSetMultipleTags = new QuestionSetBuilder(BOB).withTags(VALID_TAG_FRIEND,
+                VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, NAME_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ANSWER_DESC_BOB
                 + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSetMultipleTags));

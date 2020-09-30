@@ -5,8 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.medmoriser.logic.commands.EditCommand.EditQuestionSetDescriptor;
-import seedu.medmoriser.model.questionset.*;
 import seedu.medmoriser.model.questionset.Answer;
+import seedu.medmoriser.model.questionset.Email;
+import seedu.medmoriser.model.questionset.Name;
+import seedu.medmoriser.model.questionset.Phone;
+import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -61,10 +64,10 @@ public class EditQuestionSetDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Answer} of the {@code EditQuestionSetDescriptor} that we are building.
+     * Sets the {@code answer} of the {@code EditQuestionSetDescriptor} that we are building.
      */
-    public EditQuestionSetDescriptorBuilder withAnswer(String Answer) {
-        descriptor.setAnswer(new Answer(Answer));
+    public EditQuestionSetDescriptorBuilder withAnswer(String answer) {
+        descriptor.setAnswer(new Answer(answer));
         return this;
     }
 

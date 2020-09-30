@@ -57,7 +57,8 @@ public class EditCommandTest {
         QuestionSet editedQuestionSet = questionSetInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditCommand.EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withName(VALID_NAME_BOB)
+        EditCommand.EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder()
+                .withName(VALID_NAME_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastQuestionSet, descriptor);
 
@@ -85,8 +86,10 @@ public class EditCommandTest {
     public void execute_filteredList_success() {
         showQuestionSetAtIndex(model, INDEX_FIRST_QUESTIONSET);
 
-        QuestionSet questionSetInFilteredList = model.getFilteredQuestionSetList().get(INDEX_FIRST_QUESTIONSET.getZeroBased());
-        QuestionSet editedQuestionSet = new QuestionSetBuilder(questionSetInFilteredList).withName(VALID_NAME_BOB).build();
+        QuestionSet questionSetInFilteredList = model.getFilteredQuestionSetList()
+                .get(INDEX_FIRST_QUESTIONSET.getZeroBased());
+        QuestionSet editedQuestionSet = new QuestionSetBuilder(questionSetInFilteredList)
+                .withName(VALID_NAME_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_QUESTIONSET,
                 new EditQuestionSetDescriptorBuilder().withName(VALID_NAME_BOB).build());
 
@@ -112,7 +115,8 @@ public class EditCommandTest {
         showQuestionSetAtIndex(model, INDEX_FIRST_QUESTIONSET);
 
         // edit questionSet in filtered list into a duplicate in address book
-        QuestionSet questionSetInList = model.getAddressBook().getQuestionSetList().get(INDEX_SECOND_QUESTIONSET.getZeroBased());
+        QuestionSet questionSetInList = model.getAddressBook().getQuestionSetList()
+                .get(INDEX_SECOND_QUESTIONSET.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_QUESTIONSET,
                 new EditQuestionSetDescriptorBuilder(questionSetInList).build());
 

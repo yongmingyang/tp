@@ -15,10 +15,14 @@ import seedu.medmoriser.testutil.TypicalQuestionSet;
 
 public class JsonSerializableMedmoriserTest {
 
-    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data", "JsonSerializableAddressBookTest");
-    private static final Path TYPICAL_QUESTIONSETS_FILE = TEST_DATA_FOLDER.resolve("typicalQuestionSetsAddressBook.json");
-    private static final Path INVALID_QUESTIONSET_FILE = TEST_DATA_FOLDER.resolve("invalidQuestionSetAddressBook.json");
-    private static final Path DUPLICATE_QUESTIONSET_FILE = TEST_DATA_FOLDER.resolve("duplicateQuestionSetAddressBook.json");
+    private static final Path TEST_DATA_FOLDER = Paths.get("src", "test", "data",
+            "JsonSerializableAddressBookTest");
+    private static final Path TYPICAL_QUESTIONSETS_FILE = TEST_DATA_FOLDER
+            .resolve("typicalQuestionSetsAddressBook.json");
+    private static final Path INVALID_QUESTIONSET_FILE = TEST_DATA_FOLDER
+            .resolve("invalidQuestionSetAddressBook.json");
+    private static final Path DUPLICATE_QUESTIONSET_FILE = TEST_DATA_FOLDER
+            .resolve("duplicateQuestionSetAddressBook.json");
 
     @Test
     public void toModelType_typicalQuestionSetsFile_success() throws Exception {

@@ -48,7 +48,8 @@ public class JsonAdaptedQuestionSetTest {
 
     @Test
     public void toModelType_nullName_throwsIllegalValueException() {
-        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(null, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(null, VALID_PHONE, VALID_EMAIL,
+                VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
     }
@@ -63,7 +64,8 @@ public class JsonAdaptedQuestionSetTest {
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(VALID_NAME, null, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(VALID_NAME, null, VALID_EMAIL,
+                VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
     }
@@ -78,7 +80,8 @@ public class JsonAdaptedQuestionSetTest {
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(VALID_NAME, VALID_PHONE, null, VALID_ADDRESS, VALID_TAGS);
+        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(VALID_NAME, VALID_PHONE, null,
+                VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
     }
@@ -93,7 +96,8 @@ public class JsonAdaptedQuestionSetTest {
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedQuestionSet questionSize = new JsonAdaptedQuestionSet(VALID_NAME, VALID_PHONE, VALID_EMAIL, null, VALID_TAGS);
+        JsonAdaptedQuestionSet questionSize = new JsonAdaptedQuestionSet(VALID_NAME, VALID_PHONE,
+                VALID_EMAIL, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, questionSize::toModelType);
     }

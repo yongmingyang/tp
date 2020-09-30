@@ -47,7 +47,9 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validQuestionSet);
         ModelStub modelStub = new ModelStubWithQuestionSet(validQuestionSet);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_QUESTIONSET, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_QUESTIONSET, () ->
+            addCommand.execute(modelStub)
+        );
     }
 
     @Test
@@ -85,12 +87,14 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyUserPrefs getUserPrefs() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method"
+                    + " should not be called.");
         }
 
         @Override
         public GuiSettings getGuiSettings() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
@@ -100,7 +104,8 @@ public class AddCommandTest {
 
         @Override
         public Path getAddressBookFilePath() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method "
+                    + "should not be called.");
         }
 
         @Override
@@ -120,7 +125,8 @@ public class AddCommandTest {
 
         @Override
         public ReadOnlyAddressBook getAddressBook() {
-            throw new AssertionError("This method should not be called.");
+            throw new AssertionError("This method should"
+                    + " not be called.");
         }
 
         @Override

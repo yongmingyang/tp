@@ -58,7 +58,8 @@ public class MedmoriserParserTest {
         QuestionSet questionSet = new QuestionSetBuilder().build();
         EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder(questionSet).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
-                + INDEX_FIRST_QUESTIONSET.getOneBased() + " " + QuestionSetUtil.getEditQuestionSetDescriptorDetails(descriptor));
+                + INDEX_FIRST_QUESTIONSET.getOneBased() + " "
+                + QuestionSetUtil.getEditQuestionSetDescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_QUESTIONSET, descriptor), command);
     }
 
@@ -96,6 +97,7 @@ public class MedmoriserParserTest {
 
     @Test
     public void parseCommand_unknownCommand_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () -> parser.parseCommand("unknownCommand"));
+        assertThrows(ParseException.class, MESSAGE_UNKNOWN_COMMAND, () ->
+            parser.parseCommand("unknownCommand"));
     }
 }

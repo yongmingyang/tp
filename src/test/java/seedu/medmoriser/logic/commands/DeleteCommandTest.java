@@ -28,7 +28,8 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        QuestionSet questionSetToDelete = model.getFilteredQuestionSetList().get(INDEX_FIRST_QUESTIONSET.getZeroBased());
+        QuestionSet questionSetToDelete = model.getFilteredQuestionSetList()
+                .get(INDEX_FIRST_QUESTIONSET.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_QUESTIONSET);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_QUESTIONSET_SUCCESS, questionSetToDelete);
@@ -51,7 +52,8 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showQuestionSetAtIndex(model, INDEX_FIRST_QUESTIONSET);
 
-        QuestionSet questionSetToDelete = model.getFilteredQuestionSetList().get(INDEX_FIRST_QUESTIONSET.getZeroBased());
+        QuestionSet questionSetToDelete = model.getFilteredQuestionSetList()
+                .get(INDEX_FIRST_QUESTIONSET.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_QUESTIONSET);
 
         String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_QUESTIONSET_SUCCESS, questionSetToDelete);

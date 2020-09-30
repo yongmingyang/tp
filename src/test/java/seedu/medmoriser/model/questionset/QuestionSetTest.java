@@ -32,7 +32,8 @@ public class QuestionSetTest {
         assertFalse(ALICE.isSameQuestionSet(null));
 
         // different phone and email -> returns false
-        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).build();
+        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+                .withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSameQuestionSet(editedAlice));
 
         // different name -> returns false

@@ -65,7 +65,8 @@ public class UniqueQuestionSetListTest {
 
     @Test
     public void setQuestionSet_nullEditedQuestionSet_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueQuestionSetList.setQuestionSet(ALICE, null));
+        assertThrows(NullPointerException.class, () ->
+            uniqueQuestionSetList.setQuestionSet(ALICE, null));
     }
 
     @Test
@@ -85,7 +86,8 @@ public class UniqueQuestionSetListTest {
     @Test
     public void setQuestionSet_editedQuestionSetHasSameIdentity_success() {
         uniqueQuestionSetList.add(ALICE);
-        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB)
+                .withTags(VALID_TAG_HUSBAND)
                 .build();
         uniqueQuestionSetList.setQuestionSet(ALICE, editedAlice);
         UniqueQuestionSetList expectedUniqueQuestionSetList = new UniqueQuestionSetList();
@@ -129,7 +131,8 @@ public class UniqueQuestionSetListTest {
 
     @Test
     public void setQuestionSets_nullUniqueQuestionSetList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueQuestionSetList.setQuestionSets((UniqueQuestionSetList) null));
+        assertThrows(NullPointerException.class, () ->
+            uniqueQuestionSetList.setQuestionSets((UniqueQuestionSetList) null));
     }
 
     @Test
@@ -143,7 +146,8 @@ public class UniqueQuestionSetListTest {
 
     @Test
     public void setQuestionSets_nullList_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueQuestionSetList.setQuestionSets((List<QuestionSet>) null));
+        assertThrows(NullPointerException.class, () ->
+            uniqueQuestionSetList.setQuestionSets((List<QuestionSet>) null));
     }
 
     @Test
@@ -159,12 +163,13 @@ public class UniqueQuestionSetListTest {
     @Test
     public void setQuestionSets_listWithDuplicateQuestions_throwsDuplicateQuestionSetException() {
         List<QuestionSet> listWithDuplicateQuestionSets = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateQuestionSetException.class, () -> uniqueQuestionSetList.setQuestionSets(listWithDuplicateQuestionSets));
+        assertThrows(DuplicateQuestionSetException.class, () ->
+            uniqueQuestionSetList.setQuestionSets(listWithDuplicateQuestionSets));
     }
 
     @Test
     public void asUnmodifiableObservableList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, ()
-            -> uniqueQuestionSetList.asUnmodifiableObservableList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () ->
+            uniqueQuestionSetList.asUnmodifiableObservableList().remove(0));
     }
 }
