@@ -12,8 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.medmoriser.logic.commands.AddCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.questionset.*;
 import seedu.medmoriser.model.questionset.Answer;
+import seedu.medmoriser.model.questionset.Email;
+import seedu.medmoriser.model.questionset.Name;
+import seedu.medmoriser.model.questionset.Phone;
+import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.model.tag.Tag;
 
 /**

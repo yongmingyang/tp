@@ -77,7 +77,8 @@ public class Medmoriser implements ReadOnlyAddressBook {
     /**
      * Replaces the given questionSet {@code target} in the list with {@code editedQuestionSet}.
      * {@code target} must exist in the address book.
-     * The questionSet identity of {@code editedQuestionSet} must not be the same as another existing questionSet in the address book.
+     * The questionSet identity of {@code editedQuestionSet} must
+     * not be the same as another existing questionSet in the address book.
      */
     public void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet) {
         requireNonNull(editedQuestionSet);

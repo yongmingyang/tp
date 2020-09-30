@@ -6,8 +6,11 @@ import java.util.stream.Collectors;
 
 import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.ReadOnlyAddressBook;
-import seedu.medmoriser.model.questionset.*;
 import seedu.medmoriser.model.questionset.Answer;
+import seedu.medmoriser.model.questionset.Email;
+import seedu.medmoriser.model.questionset.Name;
+import seedu.medmoriser.model.questionset.Phone;
+import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.model.tag.Tag;
 
 /**

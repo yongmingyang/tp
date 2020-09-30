@@ -72,7 +72,8 @@ public interface Model {
     /**
      * Replaces the given questionSet {@code target} with {@code editedquestionSet}.
      * {@code target} must exist in the address book.
-     * The questionSet identity of {@code editedquestionSet} must not be the same as another existing questionSet in the address book.
+     * The questionSet identity of {@code editedquestionSet} must not be the same as another
+     * existing questionSet in the address book.
      */
     void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet);
 

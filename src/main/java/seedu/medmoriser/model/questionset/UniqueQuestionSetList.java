@@ -13,10 +13,12 @@ import seedu.medmoriser.model.questionset.exceptions.QuestionSetNotFoundExceptio
 
 /**
  * A list of questionSets that enforces uniqueness between its elements and does not allow nulls.
- * A questionSet is considered unique by comparing using {@code QuestionSet#isSameQuestionSet(QuestionSet)}. As such, adding and updating of
- * questionSets uses QuestionSet#isSameQuestionSet(QuestionSet) for equality so as to ensure that the questionSet being added or updated is
- * unique in terms of identity in the UniqueQuestionSetList. However, the removal of a questionSet uses QuestionSet#equals(Object) so
- * as to ensure that the questionSet with exactly the same fields will be removed.
+ * A questionSet is considered unique by comparing using {@code QuestionSet#isSameQuestionSet(QuestionSet)}.
+ * As such, adding and updating of questionSets uses QuestionSet#isSameQuestionSet(QuestionSet)
+ * for equality so as to ensure that the questionSet being added or updated is
+ * unique in terms of identity in the UniqueQuestionSetList. However, the removal
+ * of a questionSet uses QuestionSet#equals(Object) so as to ensure that the questionSet
+ * with exactly the same fields will be removed.
  *
  * Supports a minimal set of list operations.
  *
@@ -51,7 +53,8 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
     /**
      * Replaces the questionSet {@code target} in the list with {@code editedQuestionSet}.
      * {@code target} must exist in the list.
-     * The questionSet identity of {@code editedQuestionSet} must not be the same as another existing questionSet in the list.
+     * The questionSet identity of {@code editedQuestionSet} must not be the same as another existing
+     * questionSet in the list.
      */
     public void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet) {
         requireAllNonNull(target, editedQuestionSet);

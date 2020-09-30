@@ -19,8 +19,11 @@ import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.commons.util.CollectionUtil;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.questionset.*;
 import seedu.medmoriser.model.questionset.Answer;
+import seedu.medmoriser.model.questionset.Email;
+import seedu.medmoriser.model.questionset.Name;
+import seedu.medmoriser.model.questionset.Phone;
+import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -87,7 +90,8 @@ public class EditCommand extends Command {
      * Creates and returns a {@code QuestionSet} with the details of {@code questionSetToEdit}
      * edited with {@code editQuestionSetDescriptor}.
      */
-    private static QuestionSet createEditedQuestionSet(QuestionSet questionSetToEdit, EditQuestionSetDescriptor editQuestionSetDescriptor) {
+    private static QuestionSet createEditedQuestionSet(QuestionSet questionSetToEdit,
+                                                       EditQuestionSetDescriptor editQuestionSetDescriptor) {
         assert questionSetToEdit != null;
 
         Name updatedName = editQuestionSetDescriptor.getName().orElse(questionSetToEdit.getName());

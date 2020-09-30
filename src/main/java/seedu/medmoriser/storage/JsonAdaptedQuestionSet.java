@@ -10,8 +10,11 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.medmoriser.commons.exceptions.IllegalValueException;
-import seedu.medmoriser.model.questionset.*;
 import seedu.medmoriser.model.questionset.Answer;
+import seedu.medmoriser.model.questionset.Email;
+import seedu.medmoriser.model.questionset.Name;
+import seedu.medmoriser.model.questionset.Phone;
+import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
