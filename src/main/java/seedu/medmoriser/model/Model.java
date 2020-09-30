@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.medmoriser.commons.core.GuiSettings;
-import seedu.medmoriser.model.person.Person;
+import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<Person> PREDICATE_SHOW_ALL_PERSONS = unused -> true;
+    Predicate<QuestionSet> PREDICATE_SHOW_ALL_QUESTIONSETS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +53,35 @@ public interface Model {
     ReadOnlyAddressBook getAddressBook();
 
     /**
-     * Returns true if a person with the same identity as {@code person} exists in the address book.
+     * Returns true if a question set with the same identity as {@code question set} exists in the address book.
      */
-    boolean hasPerson(Person person);
+    boolean hasQuestionSet(QuestionSet questionSet);
 
     /**
-     * Deletes the given person.
-     * The person must exist in the address book.
+     * Deletes the given question set.
+     * The question set must exist in the address book.
      */
-    void deletePerson(Person target);
+    void deleteQuestionSet(QuestionSet target);
 
     /**
-     * Adds the given person.
-     * {@code person} must not already exist in the address book.
+     * Adds the given question set.
+     * {@code question set} must not already exist in the address book.
      */
-    void addPerson(Person person);
+    void addQuestionSet(QuestionSet questionSet);
 
     /**
-     * Replaces the given person {@code target} with {@code editedPerson}.
+     * Replaces the given question set {@code target} with {@code editedquestion set}.
      * {@code target} must exist in the address book.
-     * The person identity of {@code editedPerson} must not be the same as another existing person in the address book.
+     * The question set identity of {@code editedquestion set} must not be the same as another existing question set in the address book.
      */
-    void setPerson(Person target, Person editedPerson);
+    void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet);
 
-    /** Returns an unmodifiable view of the filtered person list */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered question set list */
+    ObservableList<QuestionSet> getFilteredQuestionSetList();
 
     /**
-     * Updates the filter of the filtered person list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered question set list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredPersonList(Predicate<Person> predicate);
+    void updateFilteredQuestionSetList(Predicate<QuestionSet> predicate);
 }

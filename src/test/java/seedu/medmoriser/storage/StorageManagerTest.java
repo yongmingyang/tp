@@ -2,7 +2,7 @@ package seedu.medmoriser.storage;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static seedu.medmoriser.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalAddressBook;
 
 import java.nio.file.Path;
 

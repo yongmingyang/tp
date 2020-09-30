@@ -8,7 +8,7 @@ import seedu.medmoriser.logic.commands.CommandResult;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.ReadOnlyAddressBook;
-import seedu.medmoriser.model.person.Person;
+import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
  * API of the Logic component
@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyAddressBook getAddressBook();
 
-    /** Returns an unmodifiable view of the filtered list of persons */
-    ObservableList<Person> getFilteredPersonList();
+    /** Returns an unmodifiable view of the filtered list of question sets */
+    ObservableList<QuestionSet> getFilteredQuestionSetList();
 
     /**
      * Returns the user prefs' address book file path.

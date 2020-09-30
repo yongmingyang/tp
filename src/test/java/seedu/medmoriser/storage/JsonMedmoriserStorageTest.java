@@ -3,10 +3,10 @@ package seedu.medmoriser.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalPersons.ALICE;
-import static seedu.medmoriser.testutil.TypicalPersons.HOON;
-import static seedu.medmoriser.testutil.TypicalPersons.IDA;
-import static seedu.medmoriser.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.HOON;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.IDA;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalAddressBook;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,13 +51,13 @@ public class JsonMedmoriserStorageTest {
     }
 
     @Test
-    public void readAddressBook_invalidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidPersonAddressBook.json"));
+    public void readAddressBook_invalidQuestionSetAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidQuestionSetAddressBook.json"));
     }
 
     @Test
-    public void readAddressBook_invalidAndValidPersonAddressBook_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidPersonAddressBook.json"));
+    public void readAddressBook_invalidAndValidQuestionSetAddressBook_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readAddressBook("invalidAndValidQuestionSetAddressBook.json"));
     }
 
     @Test
@@ -72,14 +72,14 @@ public class JsonMedmoriserStorageTest {
         assertEquals(original, new Medmoriser(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addPerson(HOON);
-        original.removePerson(ALICE);
+        original.addQuestionSet(HOON);
+        original.removeQuestionSet(ALICE);
         jsonAddressBookStorage.saveAddressBook(original, filePath);
         readBack = jsonAddressBookStorage.readAddressBook(filePath).get();
         assertEquals(original, new Medmoriser(readBack));
 
         // Save and read without specifying file path
-        original.addPerson(IDA);
+        original.addQuestionSet(IDA);
         jsonAddressBookStorage.saveAddressBook(original); // file path not specified
         readBack = jsonAddressBookStorage.readAddressBook().get(); // file path not specified
         assertEquals(original, new Medmoriser(readBack));

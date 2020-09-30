@@ -8,21 +8,21 @@ import seedu.medmoriser.commons.core.Messages;
 import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.person.Person;
+import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
- * Deletes a person identified using it's displayed index from the address book.
+ * Deletes a question set identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the person identified by the index number used in the displayed person list.\n"
+            + ": Deletes the question set identified by the index number used in the displayed question set list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_PERSON_SUCCESS = "Deleted Person: %1$s";
+    public static final String MESSAGE_DELETE_QUESTIONSET_SUCCESS = "Deleted Question Set: %1$s";
 
     private final Index targetIndex;
 
@@ -33,15 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<QuestionSet> lastShownList = model.getFilteredQuestionSetList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX);
         }
 
-        Person personToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deletePerson(personToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_PERSON_SUCCESS, personToDelete));
+        QuestionSet questionSetToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteQuestionSet(questionSetToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_QUESTIONSET_SUCCESS, questionSetToDelete));
     }
 
     @Override

@@ -14,7 +14,7 @@ import seedu.medmoriser.logic.parser.AddressBookParser;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ReadOnlyAddressBook;
-import seedu.medmoriser.model.person.Person;
+import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.storage.Storage;
 
 /**
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return model.getFilteredPersonList();
+    public ObservableList<QuestionSet> getFilteredQuestionSetList() {
+        return model.getFilteredQuestionSetList();
     }
 
     @Override

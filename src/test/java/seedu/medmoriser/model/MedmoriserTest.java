@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalPersons.ALICE;
-import static seedu.medmoriser.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -18,9 +18,9 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.medmoriser.model.person.Person;
-import seedu.medmoriser.model.person.exceptions.DuplicatePersonException;
-import seedu.medmoriser.testutil.PersonBuilder;
+import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.questionset.exceptions.DuplicateQuestionSetException;
+import seedu.medmoriser.testutil.QuestionSetBuilder;
 
 public class MedmoriserTest {
 
@@ -28,7 +28,7 @@ public class MedmoriserTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), medmoriser.getPersonList());
+        assertEquals(Collections.emptyList(), medmoriser.getQuestionSetList());
     }
 
     @Test
@@ -44,58 +44,59 @@ public class MedmoriserTest {
     }
 
     @Test
-    public void resetData_withDuplicatePersons_throwsDuplicatePersonException() {
-        // Two persons with the same identity fields
-        Person editedAlice = new PersonBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateQuestionSets_throwsDuplicateQuestionSetException() {
+        // Two questionSets with the same identity fields
+        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<Person> newPersons = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newPersons);
+        List<QuestionSet> newQuestionSets = Arrays.asList(ALICE, editedAlice);
+        AddressBookStub newData = new AddressBookStub(newQuestionSets);
 
-        assertThrows(DuplicatePersonException.class, () -> medmoriser.resetData(newData));
+        assertThrows(DuplicateQuestionSetException.class, () -> medmoriser.resetData(newData));
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> medmoriser.hasPerson(null));
+    public void hasQuestionSet_nullQuestionSet_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> medmoriser.hasQuestionSet(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(medmoriser.hasPerson(ALICE));
+    public void hasQuestionSet_questionSetNotInAddressBook_returnsFalse() {
+        assertFalse(medmoriser.hasQuestionSet(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        medmoriser.addPerson(ALICE);
-        assertTrue(medmoriser.hasPerson(ALICE));
+    public void hasQuestionSet_questionSetInAddressBook_returnsTrue() {
+        medmoriser.addQuestionSet(ALICE);
+        assertTrue(medmoriser.hasQuestionSet(ALICE));
     }
 
     @Test
-    public void hasPerson_personWithSameIdentityFieldsInAddressBook_returnsTrue() {
-        medmoriser.addPerson(ALICE);
-        Person editedAlice = new PersonBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+    public void hasQuestionSet_questionSetWithSameIdentityFieldsInAddressBook_returnsTrue() {
+        medmoriser.addQuestionSet(ALICE);
+        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        assertTrue(medmoriser.hasPerson(editedAlice));
+        assertTrue(medmoriser.hasQuestionSet(editedAlice));
     }
 
     @Test
-    public void getPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> medmoriser.getPersonList().remove(0));
+    public void getQuestionSetList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> medmoriser.getQuestionSetList().remove(0));
     }
+
 
     /**
-     * A stub ReadOnlyAddressBook whose persons list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose questionSets list can violate interface constraints.
      */
     private static class AddressBookStub implements ReadOnlyAddressBook {
-        private final ObservableList<Person> persons = FXCollections.observableArrayList();
+        private final ObservableList<QuestionSet> questionSets = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<Person> persons) {
-            this.persons.setAll(persons);
+        AddressBookStub(Collection<QuestionSet> questionSets) {
+            this.questionSets.setAll(questionSets);
         }
 
         @Override
-        public ObservableList<Person> getPersonList() {
-            return persons;
+        public ObservableList<QuestionSet> getQuestionSetList() {
+            return questionSets;
         }
     }
 

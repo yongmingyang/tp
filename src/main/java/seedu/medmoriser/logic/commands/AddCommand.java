@@ -9,7 +9,7 @@ import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.person.Person;
+import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
  * Adds a QuestionSet to the question bank.
@@ -33,28 +33,28 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New person added: %1$s";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This person already exists in the answer book";
+    public static final String MESSAGE_SUCCESS = "New question set added: %1$s";
+    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "This question set already exists in the answer book";
 
-    private final Person toAdd;
+    private final QuestionSet toAdd;
 
     /**
-     * Creates an AddCommand to add the specified {@code Person}
+     * Creates an AddCommand to add the specified {@code QuestionSet}
      */
-    public AddCommand(Person person) {
-        requireNonNull(person);
-        toAdd = person;
+    public AddCommand(QuestionSet questionSet) {
+        requireNonNull(questionSet);
+        toAdd = questionSet;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasPerson(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (model.hasQuestionSet(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_QUESTIONSET);
         }
 
-        model.addPerson(toAdd);
+        model.addQuestionSet(toAdd);
         return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
     }
 

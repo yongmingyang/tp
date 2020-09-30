@@ -6,7 +6,7 @@ import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_EMAIL;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -19,8 +19,8 @@ import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.commons.util.CollectionUtil;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.person.*;
-import seedu.medmoriser.model.person.Answer;
+import seedu.medmoriser.model.questionset.*;
+import seedu.medmoriser.model.questionset.Answer;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -30,8 +30,8 @@ public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the person identified "
-            + "by the index number used in the displayed person list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the question set identified "
+            + "by the index number used in the displayed question set list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_NAME + "NAME] "
@@ -43,60 +43,60 @@ public class EditCommand extends Command {
             + PREFIX_PHONE + "91234567 "
             + PREFIX_EMAIL + "johndoe@example.com";
 
-    public static final String MESSAGE_EDIT_PERSON_SUCCESS = "Edited Person: %1$s";
+    public static final String MESSAGE_EDIT_QUESTIONSET_SUCCESS = "Edited question set: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_PERSON = "This question set already exists in the question bank.";
+    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "This question set already exists in the question bank.";
 
     private final Index index;
-    private final EditPersonDescriptor editPersonDescriptor;
+    private final EditQuestionSetDescriptor editQuestionSetDescriptor;
 
     /**
-     * @param index of the person in the filtered person list to edit
-     * @param editPersonDescriptor details to edit the person with
+     * @param index of the question set in the filtered question set list to edit
+     * @param editQuestionSetDescriptor details to edit the question set with
      */
-    public EditCommand(Index index, EditPersonDescriptor editPersonDescriptor) {
+    public EditCommand(Index index, EditQuestionSetDescriptor editQuestionSetDescriptor) {
         requireNonNull(index);
-        requireNonNull(editPersonDescriptor);
+        requireNonNull(editQuestionSetDescriptor);
 
         this.index = index;
-        this.editPersonDescriptor = new EditPersonDescriptor(editPersonDescriptor);
+        this.editQuestionSetDescriptor = new EditQuestionSetDescriptor(editQuestionSetDescriptor);
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<Person> lastShownList = model.getFilteredPersonList();
+        List<QuestionSet> lastShownList = model.getFilteredQuestionSetList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX);
         }
 
-        Person personToEdit = lastShownList.get(index.getZeroBased());
-        Person editedPerson = createEditedPerson(personToEdit, editPersonDescriptor);
+        QuestionSet questionSetToEdit = lastShownList.get(index.getZeroBased());
+        QuestionSet editedQuestionSet = createEditedQuestionSet(questionSetToEdit, editQuestionSetDescriptor);
 
-        if (!personToEdit.isSamePerson(editedPerson) && model.hasPerson(editedPerson)) {
-            throw new CommandException(MESSAGE_DUPLICATE_PERSON);
+        if (!questionSetToEdit.isSameQuestionSet(editedQuestionSet) && model.hasQuestionSet(editedQuestionSet)) {
+            throw new CommandException(MESSAGE_DUPLICATE_QUESTIONSET);
         }
 
-        model.setPerson(personToEdit, editedPerson);
-        model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
-        return new CommandResult(String.format(MESSAGE_EDIT_PERSON_SUCCESS, editedPerson));
+        model.setQuestionSet(questionSetToEdit, editedQuestionSet);
+        model.updateFilteredQuestionSetList(PREDICATE_SHOW_ALL_QUESTIONSETS);
+        return new CommandResult(String.format(MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQuestionSet));
     }
 
     /**
-     * Creates and returns a {@code Person} with the details of {@code personToEdit}
-     * edited with {@code editPersonDescriptor}.
+     * Creates and returns a {@code QuestionSet} with the details of {@code questionSetToEdit}
+     * edited with {@code editQuestionSetDescriptor}.
      */
-    private static Person createEditedPerson(Person personToEdit, EditPersonDescriptor editPersonDescriptor) {
-        assert personToEdit != null;
+    private static QuestionSet createEditedQuestionSet(QuestionSet questionSetToEdit, EditQuestionSetDescriptor editQuestionSetDescriptor) {
+        assert questionSetToEdit != null;
 
-        Name updatedName = editPersonDescriptor.getName().orElse(personToEdit.getName());
-        Phone updatedPhone = editPersonDescriptor.getPhone().orElse(personToEdit.getPhone());
-        Email updatedEmail = editPersonDescriptor.getEmail().orElse(personToEdit.getEmail());
-        Answer updatedAnswer = editPersonDescriptor.getAnswer().orElse(personToEdit.getAnswer());
-        Set<Tag> updatedTags = editPersonDescriptor.getTags().orElse(personToEdit.getTags());
+        Name updatedName = editQuestionSetDescriptor.getName().orElse(questionSetToEdit.getName());
+        Phone updatedPhone = editQuestionSetDescriptor.getPhone().orElse(questionSetToEdit.getPhone());
+        Email updatedEmail = editQuestionSetDescriptor.getEmail().orElse(questionSetToEdit.getEmail());
+        Answer updatedAnswer = editQuestionSetDescriptor.getAnswer().orElse(questionSetToEdit.getAnswer());
+        Set<Tag> updatedTags = editQuestionSetDescriptor.getTags().orElse(questionSetToEdit.getTags());
 
-        return new Person(updatedName, updatedPhone, updatedEmail, updatedAnswer, updatedTags);
+        return new QuestionSet(updatedName, updatedPhone, updatedEmail, updatedAnswer, updatedTags);
     }
 
     @Override
@@ -114,27 +114,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editPersonDescriptor.equals(e.editPersonDescriptor);
+                && editQuestionSetDescriptor.equals(e.editQuestionSetDescriptor);
     }
 
     /**
-     * Stores the details to edit the person with. Each non-empty field value will replace the
-     * corresponding field value of the person.
+     * Stores the details to edit the question set with. Each non-empty field value will replace the
+     * corresponding field value of the question set.
      */
-    public static class EditPersonDescriptor {
+    public static class EditQuestionSetDescriptor {
         private Name name;
         private Phone phone;
         private Email email;
         private Answer answer;
         private Set<Tag> tags;
 
-        public EditPersonDescriptor() {}
+        public EditQuestionSetDescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditPersonDescriptor(EditPersonDescriptor toCopy) {
+        public EditQuestionSetDescriptor(EditQuestionSetDescriptor toCopy) {
             setName(toCopy.name);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -206,12 +206,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditPersonDescriptor)) {
+            if (!(other instanceof EditQuestionSetDescriptor)) {
                 return false;
             }
 
             // state check
-            EditPersonDescriptor e = (EditPersonDescriptor) other;
+            EditQuestionSetDescriptor e = (EditQuestionSetDescriptor) other;
 
             return getName().equals(e.getName())
                     && getPhone().equals(e.getPhone())

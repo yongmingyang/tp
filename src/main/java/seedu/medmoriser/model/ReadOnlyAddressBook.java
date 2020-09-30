@@ -1,7 +1,7 @@
 package seedu.medmoriser.model;
 
 import javafx.collections.ObservableList;
-import seedu.medmoriser.model.person.Person;
+import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
  * Unmodifiable view of an address book
@@ -9,9 +9,9 @@ import seedu.medmoriser.model.person.Person;
 public interface ReadOnlyAddressBook {
 
     /**
-     * Returns an unmodifiable view of the persons list.
-     * This list will not contain any duplicate persons.
+     * Returns an unmodifiable view of the question sets list.
+     * This list will not contain any duplicate question sets.
      */
-    ObservableList<Person> getPersonList();
+    ObservableList<QuestionSet> getQuestionSetList();
 
 }

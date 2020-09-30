@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 
 import seedu.medmoriser.logic.commands.AddCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.person.*;
-import seedu.medmoriser.model.person.Answer;
+import seedu.medmoriser.model.questionset.*;
+import seedu.medmoriser.model.questionset.Answer;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -41,9 +41,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        Person person = new Person(name, phone, email, answer, tagList);
+        QuestionSet questionSet = new QuestionSet(name, phone, email, answer, tagList);
 
-        return new AddCommand(person);
+        return new AddCommand(questionSet);
     }
 
     /**

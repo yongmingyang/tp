@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.medmoriser.commons.core.GuiSettings;
 import seedu.medmoriser.commons.core.LogsCenter;
-import seedu.medmoriser.model.person.Person;
+import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
  * Represents the in-memory model of the address book data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final Medmoriser medmoriser;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private final FilteredList<QuestionSet> filteredQuestionSets;
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.medmoriser = new Medmoriser(addressBook);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredPersons = new FilteredList<>(this.medmoriser.getPersonList());
+        filteredQuestionSets = new FilteredList<>(this.medmoriser.getQuestionSetList());
     }
 
     public ModelManager() {
@@ -89,44 +89,44 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasPerson(Person person) {
-        requireNonNull(person);
-        return medmoriser.hasPerson(person);
+    public boolean hasQuestionSet(QuestionSet questionSet) {
+        requireNonNull(questionSet);
+        return medmoriser.hasQuestionSet(questionSet);
     }
 
     @Override
-    public void deletePerson(Person target) {
-        medmoriser.removePerson(target);
+    public void deleteQuestionSet(QuestionSet target) {
+        medmoriser.removeQuestionSet(target);
     }
 
     @Override
-    public void addPerson(Person person) {
-        medmoriser.addPerson(person);
-        updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+    public void addQuestionSet(QuestionSet questionSet) {
+        medmoriser.addQuestionSet(questionSet);
+        updateFilteredQuestionSetList(PREDICATE_SHOW_ALL_QUESTIONSETS);
     }
 
     @Override
-    public void setPerson(Person target, Person editedPerson) {
-        requireAllNonNull(target, editedPerson);
+    public void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet) {
+        requireAllNonNull(target, editedQuestionSet);
 
-        medmoriser.setPerson(target, editedPerson);
+        medmoriser.setQuestionSet(target, editedQuestionSet);
     }
 
-    //=========== Filtered Person List Accessors =============================================================
+    //=========== Filtered QuestionSet List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code Person} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code QuestionSet} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<Person> getFilteredPersonList() {
-        return filteredPersons;
+    public ObservableList<QuestionSet> getFilteredQuestionSetList() {
+        return filteredQuestionSets;
     }
 
     @Override
-    public void updateFilteredPersonList(Predicate<Person> predicate) {
+    public void updateFilteredQuestionSetList(Predicate<QuestionSet> predicate) {
         requireNonNull(predicate);
-        filteredPersons.setPredicate(predicate);
+        filteredQuestionSets.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return medmoriser.equals(other.medmoriser)
                 && userPrefs.equals(other.userPrefs)
-                && filteredPersons.equals(other.filteredPersons);
+                && filteredQuestionSets.equals(other.filteredQuestionSets);
     }
 
 }

@@ -20,40 +20,40 @@ import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ReadOnlyAddressBook;
 import seedu.medmoriser.model.ReadOnlyUserPrefs;
-import seedu.medmoriser.model.person.Person;
-import seedu.medmoriser.testutil.PersonBuilder;
+import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.testutil.QuestionSetBuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullPerson_throwsNullPointerException() {
+    public void constructor_nullQuestionSet_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_personAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingPersonAdded modelStub = new ModelStubAcceptingPersonAdded();
-        Person validPerson = new PersonBuilder().build();
+    public void execute_questionSetAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingQuestionSetAdded modelStub = new ModelStubAcceptingQuestionSetAdded();
+        QuestionSet validQuestionSet = new QuestionSetBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validPerson).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validQuestionSet).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validPerson), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validPerson), modelStub.personsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validQuestionSet), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validQuestionSet), modelStub.questionSetsAdded);
     }
 
     @Test
-    public void execute_duplicatePerson_throwsCommandException() {
-        Person validPerson = new PersonBuilder().build();
-        AddCommand addCommand = new AddCommand(validPerson);
-        ModelStub modelStub = new ModelStubWithPerson(validPerson);
+    public void execute_duplicateQuestionSet_throwsCommandException() {
+        QuestionSet validQuestionSet = new QuestionSetBuilder().build();
+        AddCommand addCommand = new AddCommand(validQuestionSet);
+        ModelStub modelStub = new ModelStubWithQuestionSet(validQuestionSet);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_PERSON, () -> addCommand.execute(modelStub));
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_QUESTIONSET, () -> addCommand.execute(modelStub));
     }
 
     @Test
     public void equals() {
-        Person alice = new PersonBuilder().withName("Alice").build();
-        Person bob = new PersonBuilder().withName("Bob").build();
+        QuestionSet alice = new QuestionSetBuilder().withName("Alice").build();
+        QuestionSet bob = new QuestionSetBuilder().withName("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -70,7 +70,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different person -> returns false
+        // different questionSet -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -109,7 +109,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addPerson(Person person) {
+        public void addQuestionSet(QuestionSet questionSet) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -124,65 +124,65 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasPerson(Person person) {
+        public boolean hasQuestionSet(QuestionSet questionSet) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deletePerson(Person target) {
+        public void deleteQuestionSet(QuestionSet target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setPerson(Person target, Person editedPerson) {
+        public void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<Person> getFilteredPersonList() {
+        public ObservableList<QuestionSet> getFilteredQuestionSetList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredPersonList(Predicate<Person> predicate) {
+        public void updateFilteredQuestionSetList(Predicate<QuestionSet> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
 
     /**
-     * A Model stub that contains a single person.
+     * A Model stub that contains a single questionSet.
      */
-    private class ModelStubWithPerson extends ModelStub {
-        private final Person person;
+    private class ModelStubWithQuestionSet extends ModelStub {
+        private final QuestionSet questionSet;
 
-        ModelStubWithPerson(Person person) {
-            requireNonNull(person);
-            this.person = person;
+        ModelStubWithQuestionSet(QuestionSet questionSet) {
+            requireNonNull(questionSet);
+            this.questionSet = questionSet;
         }
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return this.person.isSamePerson(person);
+        public boolean hasQuestionSet(QuestionSet questionSet) {
+            requireNonNull(questionSet);
+            return this.questionSet.isSameQuestionSet(questionSet);
         }
     }
 
     /**
-     * A Model stub that always accept the person being added.
+     * A Model stub that always accept the questionSet being added.
      */
-    private class ModelStubAcceptingPersonAdded extends ModelStub {
-        final ArrayList<Person> personsAdded = new ArrayList<>();
+    private class ModelStubAcceptingQuestionSetAdded extends ModelStub {
+        final ArrayList<QuestionSet> questionSetsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasPerson(Person person) {
-            requireNonNull(person);
-            return personsAdded.stream().anyMatch(person::isSamePerson);
+        public boolean hasQuestionSet(QuestionSet questionSet) {
+            requireNonNull(questionSet);
+            return questionSetsAdded.stream().anyMatch(questionSet::isSameQuestionSet);
         }
 
         @Override
-        public void addPerson(Person person) {
-            requireNonNull(person);
-            personsAdded.add(person);
+        public void addQuestionSet(QuestionSet questionSet) {
+            requireNonNull(questionSet);
+            questionSetsAdded.add(questionSet);
         }
 
         @Override

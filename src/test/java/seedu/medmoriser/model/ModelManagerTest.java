@@ -3,10 +3,10 @@ package seedu.medmoriser.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalPersons.ALICE;
-import static seedu.medmoriser.testutil.TypicalPersons.BENSON;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.BENSON;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.commons.core.GuiSettings;
-import seedu.medmoriser.model.person.NameContainsKeywordsPredicate;
+import seedu.medmoriser.model.questionset.NameContainsKeywordsPredicate;
 import seedu.medmoriser.testutil.AddressBookBuilder;
 
 public class ModelManagerTest {
@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasPerson_nullPerson_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasPerson(null));
+    public void hasQuestionSet_nullQuestionSet_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasQuestionSet(null));
     }
 
     @Test
-    public void hasPerson_personNotInAddressBook_returnsFalse() {
-        assertFalse(modelManager.hasPerson(ALICE));
+    public void hasQuestionSet_questionSetNotInAddressBook_returnsFalse() {
+        assertFalse(modelManager.hasQuestionSet(ALICE));
     }
 
     @Test
-    public void hasPerson_personInAddressBook_returnsTrue() {
-        modelManager.addPerson(ALICE);
-        assertTrue(modelManager.hasPerson(ALICE));
+    public void hasQuestionSet_questionSetInAddressBook_returnsTrue() {
+        modelManager.addQuestionSet(ALICE);
+        assertTrue(modelManager.hasQuestionSet(ALICE));
     }
 
     @Test
-    public void getFilteredPersonList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredPersonList().remove(0));
+    public void getFilteredQuestionSetList_modifyList_throwsUnsupportedOperationException() {
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredQuestionSetList().remove(0));
     }
 
     @Test
     public void equals() {
-        Medmoriser medmoriser = new AddressBookBuilder().withPerson(ALICE).withPerson(BENSON).build();
+        Medmoriser medmoriser = new AddressBookBuilder().withQuestionSet(ALICE).withQuestionSet(BENSON).build();
         Medmoriser differentMedmoriser = new Medmoriser();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -118,11 +118,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getName().fullName.split("\\s+");
-        modelManager.updateFilteredPersonList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredQuestionSetList(new NameContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(medmoriser, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
+        modelManager.updateFilteredQuestionSetList(PREDICATE_SHOW_ALL_QUESTIONSETS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

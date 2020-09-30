@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.medmoriser.commons.exceptions.IllegalValueException;
 import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.ReadOnlyAddressBook;
-import seedu.medmoriser.model.person.Person;
+import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
  * An Immutable AddressBook that is serializable to JSON format.
@@ -19,16 +19,16 @@ import seedu.medmoriser.model.person.Person;
 @JsonRootName(value = "addressbook")
 class JsonSerializableAddressBook {
 
-    public static final String MESSAGE_DUPLICATE_PERSON = "Persons list contains duplicate person(s).";
+    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "QuestionSets list contains duplicate question set(s).";
 
-    private final List<JsonAdaptedPerson> persons = new ArrayList<>();
+    private final List<JsonAdaptedQuestionSet> questionSets = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableAddressBook} with the given persons.
+     * Constructs a {@code JsonSerializableAddressBook} with the given question sets.
      */
     @JsonCreator
-    public JsonSerializableAddressBook(@JsonProperty("persons") List<JsonAdaptedPerson> persons) {
-        this.persons.addAll(persons);
+    public JsonSerializableAddressBook(@JsonProperty("questionSets") List<JsonAdaptedQuestionSet> questionSets) {
+        this.questionSets.addAll(questionSets);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableAddressBook {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableAddressBook(ReadOnlyAddressBook source) {
-        persons.addAll(source.getPersonList().stream().map(JsonAdaptedPerson::new).collect(Collectors.toList()));
+        questionSets.addAll(source.getQuestionSetList().stream().map(JsonAdaptedQuestionSet::new).collect(Collectors.toList()));
     }
 
     /**
@@ -47,12 +47,12 @@ class JsonSerializableAddressBook {
      */
     public Medmoriser toModelType() throws IllegalValueException {
         Medmoriser medmoriser = new Medmoriser();
-        for (JsonAdaptedPerson jsonAdaptedPerson : persons) {
-            Person person = jsonAdaptedPerson.toModelType();
-            if (medmoriser.hasPerson(person)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_PERSON);
+        for (JsonAdaptedQuestionSet jsonAdaptedQuestionSet : questionSets) {
+            QuestionSet questionSet = jsonAdaptedQuestionSet.toModelType();
+            if (medmoriser.hasQuestionSet(questionSet)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_QUESTIONSET);
             }
-            medmoriser.addPerson(person);
+            medmoriser.addQuestionSet(questionSet);
         }
         return medmoriser;
     }

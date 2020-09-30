@@ -9,10 +9,10 @@ import java.util.Set;
 import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.commons.util.StringUtil;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.person.Answer;
-import seedu.medmoriser.model.person.Email;
-import seedu.medmoriser.model.person.Name;
-import seedu.medmoriser.model.person.Phone;
+import seedu.medmoriser.model.questionset.Answer;
+import seedu.medmoriser.model.questionset.Email;
+import seedu.medmoriser.model.questionset.Name;
+import seedu.medmoriser.model.questionset.Phone;
 import seedu.medmoriser.model.tag.Tag;
 
 /**

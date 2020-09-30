@@ -1,7 +1,7 @@
 package seedu.medmoriser.logic.commands;
 
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.medmoriser.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalAddressBook;
 
 import org.junit.jupiter.api.Test;
 

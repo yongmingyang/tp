@@ -3,12 +3,12 @@ package seedu.medmoriser.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medmoriser.commons.core.Messages.MESSAGE_PERSONS_LISTED_OVERVIEW;
+import static seedu.medmoriser.commons.core.Messages.MESSAGE_QUESTIONSETS_LISTED_OVERVIEW;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.medmoriser.testutil.TypicalPersons.CARL;
-import static seedu.medmoriser.testutil.TypicalPersons.ELLE;
-import static seedu.medmoriser.testutil.TypicalPersons.FIONA;
-import static seedu.medmoriser.testutil.TypicalPersons.getTypicalAddressBook;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.CARL;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.ELLE;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.FIONA;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalAddressBook;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.UserPrefs;
-import seedu.medmoriser.model.person.NameContainsKeywordsPredicate;
+import seedu.medmoriser.model.questionset.NameContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.
@@ -50,28 +50,28 @@ public class FindCommandTest {
         // null -> returns false
         assertFalse(findFirstCommand.equals(null));
 
-        // different person -> returns false
+        // different questionSet -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
     }
 
     @Test
-    public void execute_zeroKeywords_noPersonFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 0);
+    public void execute_zeroKeywords_noQuestionSetFound() {
+        String expectedMessage = String.format(MESSAGE_QUESTIONSETS_LISTED_OVERVIEW, 0);
         NameContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredQuestionSetList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredPersonList());
+        assertEquals(Collections.emptyList(), model.getFilteredQuestionSetList());
     }
 
     @Test
-    public void execute_multipleKeywords_multiplePersonsFound() {
-        String expectedMessage = String.format(MESSAGE_PERSONS_LISTED_OVERVIEW, 3);
+    public void execute_multipleKeywords_multipleQuestionSetsFound() {
+        String expectedMessage = String.format(MESSAGE_QUESTIONSETS_LISTED_OVERVIEW, 3);
         NameContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredPersonList(predicate);
+        expectedModel.updateFilteredQuestionSetList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredPersonList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredQuestionSetList());
     }
 
     /**
