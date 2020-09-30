@@ -9,7 +9,7 @@ import java.util.Set;
 import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.commons.util.StringUtil;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.person.Address;
+import seedu.medmoriser.model.person.Answer;
 import seedu.medmoriser.model.person.Email;
 import seedu.medmoriser.model.person.Name;
 import seedu.medmoriser.model.person.Phone;
@@ -66,18 +66,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String address} into an {@code Address}.
+     * Parses a {@code String answer} into an {@code answer}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code address} is invalid.
+     * @throws ParseException if the given {@code answer} is invalid.
      */
-    public static Address parseAddress(String address) throws ParseException {
-        requireNonNull(address);
-        String trimmedAddress = address.trim();
-        if (!Address.isValidAddress(trimmedAddress)) {
-            throw new ParseException(Address.MESSAGE_CONSTRAINTS);
+    public static Answer parseAnswer(String answer) throws ParseException {
+        requireNonNull(answer);
+        String trimmedAnswer = answer.trim();
+        if (!Answer.isValidAnswer(trimmedAnswer)) {
+            throw new ParseException(Answer.MESSAGE_CONSTRAINTS);
         }
-        return new Address(trimmedAddress);
+        return new Answer(trimmedAnswer);
     }
 
     /**

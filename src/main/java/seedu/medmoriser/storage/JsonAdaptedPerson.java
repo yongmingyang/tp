@@ -10,11 +10,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.medmoriser.commons.exceptions.IllegalValueException;
-import seedu.medmoriser.model.person.Address;
-import seedu.medmoriser.model.person.Email;
-import seedu.medmoriser.model.person.Name;
-import seedu.medmoriser.model.person.Person;
-import seedu.medmoriser.model.person.Phone;
+import seedu.medmoriser.model.person.*;
+import seedu.medmoriser.model.person.Answer;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -95,15 +92,15 @@ class JsonAdaptedPerson {
         final Email modelEmail = new Email(email);
 
         if (address == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Address.class.getSimpleName()));
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
         }
-        if (!Address.isValidAddress(address)) {
-            throw new IllegalValueException(Address.MESSAGE_CONSTRAINTS);
+        if (!Answer.isValidAddress(address)) {
+            throw new IllegalValueException(Answer.MESSAGE_CONSTRAINTS);
         }
-        final Address modelAddress = new Address(address);
+        final Answer modelAnswer = new Answer(address);
 
         final Set<Tag> modelTags = new HashSet<>(personTags);
-        return new Person(modelName, modelPhone, modelEmail, modelAddress, modelTags);
+        return new Person(modelName, modelPhone, modelEmail, modelAnswer, modelTags);
     }
 
 }

@@ -5,11 +5,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.medmoriser.logic.commands.EditCommand.EditPersonDescriptor;
-import seedu.medmoriser.model.person.Address;
-import seedu.medmoriser.model.person.Email;
-import seedu.medmoriser.model.person.Name;
-import seedu.medmoriser.model.person.Person;
-import seedu.medmoriser.model.person.Phone;
+import seedu.medmoriser.model.person.*;
+import seedu.medmoriser.model.person.Answer;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -35,7 +32,7 @@ public class EditPersonDescriptorBuilder {
         descriptor.setName(person.getName());
         descriptor.setPhone(person.getPhone());
         descriptor.setEmail(person.getEmail());
-        descriptor.setAddress(person.getAddress());
+        descriptor.setAnswer(person.getAnswer());
         descriptor.setTags(person.getTags());
     }
 
@@ -64,10 +61,10 @@ public class EditPersonDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Address} of the {@code EditPersonDescriptor} that we are building.
+     * Sets the {@code Answer} of the {@code EditPersonDescriptor} that we are building.
      */
-    public EditPersonDescriptorBuilder withAddress(String address) {
-        descriptor.setAddress(new Address(address));
+    public EditPersonDescriptorBuilder withAnswer(String Answer) {
+        descriptor.setAnswer(new Answer(Answer));
         return this;
     }
 
