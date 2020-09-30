@@ -54,8 +54,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        QuestionSet alice = new QuestionSetBuilder().withName("Alice").build();
-        QuestionSet bob = new QuestionSetBuilder().withName("Bob").build();
+        QuestionSet alice = new QuestionSetBuilder().withQuestion("Alice").build();
+        QuestionSet bob = new QuestionSetBuilder().withQuestion("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 

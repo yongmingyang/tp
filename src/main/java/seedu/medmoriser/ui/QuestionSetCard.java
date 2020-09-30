@@ -29,7 +29,7 @@ public class QuestionSetCard extends UiPart<Region> {
     @FXML
     private HBox cardPane;
     @FXML
-    private Label name;
+    private Label question;
     @FXML
     private Label id;
     @FXML
@@ -48,7 +48,7 @@ public class QuestionSetCard extends UiPart<Region> {
         super(FXML);
         this.questionSet = questionSet;
         id.setText(displayedIndex + ". ");
-        name.setText(questionSet.getName().fullName);
+        question.setText(questionSet.getQuestion().question);
         phone.setText(questionSet.getPhone().value);
         address.setText(questionSet.getAnswer().value);
         email.setText(questionSet.getEmail().value);

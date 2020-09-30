@@ -11,8 +11,8 @@ import seedu.medmoriser.commons.util.StringUtil;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.questionset.Answer;
 import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Name;
 import seedu.medmoriser.model.questionset.Phone;
+import seedu.medmoriser.model.questionset.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -36,18 +36,18 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String name} into a {@code Name}.
+     * Parses a {@code String question} into a {@code Question}.
      * Leading and trailing whitespaces will be trimmed.
      *
-     * @throws ParseException if the given {@code name} is invalid.
+     * @throws ParseException if the given {@code question} is invalid.
      */
-    public static Name parseName(String name) throws ParseException {
-        requireNonNull(name);
-        String trimmedName = name.trim();
-        if (!Name.isValidName(trimmedName)) {
-            throw new ParseException(Name.MESSAGE_CONSTRAINTS);
+    public static Question parseQuestion(String question) throws ParseException {
+        requireNonNull(question);
+        String trimmedName = question.trim();
+        if (!Question.isValidQuestion(trimmedName)) {
+            throw new ParseException(Question.MESSAGE_CONSTRAINTS);
         }
-        return new Name(trimmedName);
+        return new Question(trimmedName);
     }
 
     /**

@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
 
@@ -17,7 +17,7 @@ import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.questionset.NameContainsKeywordsPredicate;
+import seedu.medmoriser.model.questionset.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
 
@@ -26,8 +26,8 @@ import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
  */
 public class CommandTestUtil {
 
-    public static final String VALID_NAME_AMY = "Amy Bee";
-    public static final String VALID_NAME_BOB = "Bob Choo";
+    public static final String VALID_QUESTION_AMY = "Amy Bee";
+    public static final String VALID_QUESTION_BOB = "Bob Choo";
     public static final String VALID_PHONE_AMY = "11111111";
     public static final String VALID_PHONE_BOB = "22222222";
     public static final String VALID_EMAIL_AMY = "amy@example.com";
@@ -37,8 +37,8 @@ public class CommandTestUtil {
     public static final String VALID_TAG_HUSBAND = "husband";
     public static final String VALID_TAG_FRIEND = "friend";
 
-    public static final String NAME_DESC_AMY = " " + PREFIX_NAME + VALID_NAME_AMY;
-    public static final String NAME_DESC_BOB = " " + PREFIX_NAME + VALID_NAME_BOB;
+    public static final String QUESTION_DESC_AMY = " " + PREFIX_QUESTION + VALID_QUESTION_AMY;
+    public static final String QUESTION_DESC_BOB = " " + PREFIX_QUESTION + VALID_QUESTION_BOB;
     public static final String PHONE_DESC_AMY = " " + PREFIX_PHONE + VALID_PHONE_AMY;
     public static final String PHONE_DESC_BOB = " " + PREFIX_PHONE + VALID_PHONE_BOB;
     public static final String EMAIL_DESC_AMY = " " + PREFIX_EMAIL + VALID_EMAIL_AMY;
@@ -48,7 +48,7 @@ public class CommandTestUtil {
     public static final String TAG_DESC_FRIEND = " " + PREFIX_TAG + VALID_TAG_FRIEND;
     public static final String TAG_DESC_HUSBAND = " " + PREFIX_TAG + VALID_TAG_HUSBAND;
 
-    public static final String INVALID_NAME_DESC = " " + PREFIX_NAME + "James&"; // '&' not allowed in names
+    public static final String INVALID_QUESTION_DESC = " " + PREFIX_QUESTION + "James&"; // '&' not allowed in questions
     public static final String INVALID_PHONE_DESC = " " + PREFIX_PHONE + "911a"; // 'a' not allowed in phones
     public static final String INVALID_EMAIL_DESC = " " + PREFIX_EMAIL + "bob!yahoo"; // missing '@' symbol
     public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for addresses
@@ -61,10 +61,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditQuestionSetDescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditQuestionSetDescriptorBuilder().withName(VALID_NAME_AMY)
+        DESC_AMY = new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAnswer(VALID_ANSWER_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditQuestionSetDescriptorBuilder().withName(VALID_NAME_BOB)
+        DESC_BOB = new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAnswer(VALID_ANSWER_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
@@ -119,8 +119,8 @@ public class CommandTestUtil {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredQuestionSetList().size());
 
         QuestionSet questionSet = model.getFilteredQuestionSetList().get(targetIndex.getZeroBased());
-        final String[] splitName = questionSet.getName().fullName.split("\\s+");
-        model.updateFilteredQuestionSetList(new NameContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        final String[] splitName = questionSet.getQuestion().question.split("\\s+");
+        model.updateFilteredQuestionSetList(new QuestionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredQuestionSetList().size());
     }

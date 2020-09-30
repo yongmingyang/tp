@@ -14,17 +14,17 @@ import org.junit.jupiter.api.Test;
 import seedu.medmoriser.commons.exceptions.IllegalValueException;
 import seedu.medmoriser.model.questionset.Answer;
 import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Name;
 import seedu.medmoriser.model.questionset.Phone;
+import seedu.medmoriser.model.questionset.Question;
 
 public class JsonAdaptedQuestionSetTest {
-    private static final String INVALID_NAME = "R@chel";
+    private static final String INVALID_QUESTION = "R@chel";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
     private static final String INVALID_TAG = "#friend";
 
-    private static final String VALID_NAME = BENSON.getName().toString();
+    private static final String VALID_QUESTION = BENSON.getQuestion().toString();
     private static final String VALID_PHONE = BENSON.getPhone().toString();
     private static final String VALID_EMAIL = BENSON.getEmail().toString();
     private static final String VALID_ADDRESS = BENSON.getAnswer().toString();
@@ -39,32 +39,32 @@ public class JsonAdaptedQuestionSetTest {
     }
 
     @Test
-    public void toModelType_invalidName_throwsIllegalValueException() {
+    public void toModelType_invalidQuestion_throwsIllegalValueException() {
         JsonAdaptedQuestionSet questionSet =
-                new JsonAdaptedQuestionSet(INVALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = Name.MESSAGE_CONSTRAINTS;
+                new JsonAdaptedQuestionSet(INVALID_QUESTION, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+        String expectedMessage = Question.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
     }
 
     @Test
-    public void toModelType_nullName_throwsIllegalValueException() {
+    public void toModelType_nullQuestion_throwsIllegalValueException() {
         JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(null, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS);
-        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName());
+        String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
     }
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
         JsonAdaptedQuestionSet questionSet =
-                new JsonAdaptedQuestionSet(VALID_NAME, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedQuestionSet(VALID_QUESTION, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(VALID_NAME, null, VALID_EMAIL,
+        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(VALID_QUESTION, null, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
@@ -73,14 +73,14 @@ public class JsonAdaptedQuestionSetTest {
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
         JsonAdaptedQuestionSet questionSet =
-                new JsonAdaptedQuestionSet(VALID_NAME, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedQuestionSet(VALID_QUESTION, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(VALID_NAME, VALID_PHONE, null,
+        JsonAdaptedQuestionSet questionSet = new JsonAdaptedQuestionSet(VALID_QUESTION, VALID_PHONE, null,
                 VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
@@ -89,14 +89,14 @@ public class JsonAdaptedQuestionSetTest {
     @Test
     public void toModelType_invalidAddress_throwsIllegalValueException() {
         JsonAdaptedQuestionSet questionSize =
-                new JsonAdaptedQuestionSet(VALID_NAME, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);
+                new JsonAdaptedQuestionSet(VALID_QUESTION, VALID_PHONE, VALID_EMAIL, INVALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Answer.MESSAGE_CONSTRAINTS;
         assertThrows(IllegalValueException.class, expectedMessage, questionSize::toModelType);
     }
 
     @Test
     public void toModelType_nullAddress_throwsIllegalValueException() {
-        JsonAdaptedQuestionSet questionSize = new JsonAdaptedQuestionSet(VALID_NAME, VALID_PHONE,
+        JsonAdaptedQuestionSet questionSize = new JsonAdaptedQuestionSet(VALID_QUESTION, VALID_PHONE,
                 VALID_EMAIL, null, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName());
         assertThrows(IllegalValueException.class, expectedMessage, questionSize::toModelType);
@@ -107,7 +107,7 @@ public class JsonAdaptedQuestionSetTest {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
         JsonAdaptedQuestionSet questionSet =
-                new JsonAdaptedQuestionSet(VALID_NAME, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
+                new JsonAdaptedQuestionSet(VALID_QUESTION, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
         assertThrows(IllegalValueException.class, questionSet::toModelType);
     }
 

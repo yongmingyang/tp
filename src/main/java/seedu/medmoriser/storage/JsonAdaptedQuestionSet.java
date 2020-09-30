@@ -12,8 +12,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import seedu.medmoriser.commons.exceptions.IllegalValueException;
 import seedu.medmoriser.model.questionset.Answer;
 import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Name;
 import seedu.medmoriser.model.questionset.Phone;
+import seedu.medmoriser.model.questionset.Question;
 import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.model.tag.Tag;
 
@@ -24,7 +24,7 @@ class JsonAdaptedQuestionSet {
 
     public static final String MISSING_FIELD_MESSAGE_FORMAT = "QuestionSet's %s field is missing!";
 
-    private final String name;
+    private final String question;
     private final String phone;
     private final String email;
     private final String answer;
@@ -34,10 +34,10 @@ class JsonAdaptedQuestionSet {
      * Constructs a {@code JsonAdaptedQuestionSet} with the given questionSet details.
      */
     @JsonCreator
-    public JsonAdaptedQuestionSet(@JsonProperty("name") String name, @JsonProperty("phone") String phone,
+    public JsonAdaptedQuestionSet(@JsonProperty("name") String question, @JsonProperty("phone") String phone,
                                   @JsonProperty("email") String email, @JsonProperty("address") String address,
                                   @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
-        this.name = name;
+        this.question = question;
         this.phone = phone;
         this.email = email;
         this.answer = address;
@@ -50,7 +50,7 @@ class JsonAdaptedQuestionSet {
      * Converts a given {@code QuestionSet} into this class for Jackson use.
      */
     public JsonAdaptedQuestionSet(QuestionSet source) {
-        name = source.getName().fullName;
+        question = source.getQuestion().question;
         phone = source.getPhone().value;
         email = source.getEmail().value;
         answer = source.getAnswer().value;
@@ -70,13 +70,14 @@ class JsonAdaptedQuestionSet {
             questionSetTags.add(tag.toModelType());
         }
 
-        if (name == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Name.class.getSimpleName()));
+        if (question == null) {
+            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT,
+                    Question.class.getSimpleName()));
         }
-        if (!Name.isValidName(name)) {
-            throw new IllegalValueException(Name.MESSAGE_CONSTRAINTS);
+        if (!Question.isValidQuestion(question)) {
+            throw new IllegalValueException(Question.MESSAGE_CONSTRAINTS);
         }
-        final Name modelName = new Name(name);
+        final Question modelQuestion = new Question(question);
 
         if (phone == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
@@ -103,7 +104,7 @@ class JsonAdaptedQuestionSet {
         final Answer modelAnswer = new Answer(answer);
 
         final Set<Tag> modelTags = new HashSet<>(questionSetTags);
-        return new QuestionSet(modelName, modelPhone, modelEmail, modelAnswer, modelTags);
+        return new QuestionSet(modelQuestion, modelPhone, modelEmail, modelAnswer, modelTags);
     }
 
 }
