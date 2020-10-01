@@ -37,20 +37,20 @@ public interface Model {
     /**
      * Returns the user prefs' address book file path.
      */
-    Path getAddressBookFilePath();
+    Path getMedmoriserFilePath();
 
     /**
-     * Sets the user prefs' address book file path.
+     * Sets the user prefs' medmoriser file path.
      */
-    void setAddressBookFilePath(Path addressBookFilePath);
+    void setMedmoriserFilePath(Path medmoriserFilePath);
 
     /**
-     * Replaces address book data with the data in {@code addressBook}.
+     * Replaces Medmoriser data with the data in {@code Medmoriser}.
      */
-    void setAddressBook(ReadOnlyAddressBook addressBook);
+    void setMedmoriser(ReadOnlyMedmoriser medmoriser);
 
-    /** Returns the AddressBook */
-    ReadOnlyAddressBook getAddressBook();
+    /** Returns the Medmoriser */
+    ReadOnlyMedmoriser getMedmoriser();
 
     /**
      * Returns true if a questionSet with the same identity as {@code questionSet} exists in the address book.

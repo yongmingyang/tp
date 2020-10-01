@@ -4,26 +4,26 @@ import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
- * A utility class to help with building Addressbook objects.
+ * A utility class to help with building Medmoriser objects.
  * Example usage: <br>
- *     {@code AddressBook ab = new AddressBookBuilder().withQuestionSet("John", "Doe").build();}
+ *     {@code Medmoriser md = new MedmoriserBuilder().withQuestionSet("John", "Doe").build();}
  */
-public class AddressBookBuilder {
+public class MedmoriserBuilder {
 
     private Medmoriser medmoriser;
 
-    public AddressBookBuilder() {
+    public MedmoriserBuilder() {
         medmoriser = new Medmoriser();
     }
 
-    public AddressBookBuilder(Medmoriser medmoriser) {
+    public MedmoriserBuilder(Medmoriser medmoriser) {
         this.medmoriser = medmoriser;
     }
 
     /**
-     * Adds a new {@code QuestionSet} to the {@code AddressBook} that we are building.
+     * Adds a new {@code QuestionSet} to the {@code Medmoriser} that we are building.
      */
-    public AddressBookBuilder withQuestionSet(QuestionSet questionSet) {
+    public MedmoriserBuilder withQuestionSet(QuestionSet questionSet) {
         medmoriser.addQuestionSet(questionSet);
         return this;
     }

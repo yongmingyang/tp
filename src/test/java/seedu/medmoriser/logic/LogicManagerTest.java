@@ -5,8 +5,8 @@ import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_QUESTIONSET
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.ANSWER_DESC_AMY;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.NAME_DESC_AMY;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.QUESTION_DESC_AMY;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
 import static seedu.medmoriser.testutil.TypicalQuestionSet.AMY;
 
@@ -24,10 +24,10 @@ import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
-import seedu.medmoriser.model.ReadOnlyAddressBook;
+import seedu.medmoriser.model.ReadOnlyMedmoriser;
 import seedu.medmoriser.model.UserPrefs;
 import seedu.medmoriser.model.questionset.QuestionSet;
-import seedu.medmoriser.storage.JsonAddressBookStorage;
+import seedu.medmoriser.storage.JsonMedmoriserStorage;
 import seedu.medmoriser.storage.JsonUserPrefsStorage;
 import seedu.medmoriser.storage.StorageManager;
 import seedu.medmoriser.testutil.QuestionSetBuilder;
@@ -43,10 +43,10 @@ public class LogicManagerTest {
 
     @BeforeEach
     public void setUp() {
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookStorage(temporaryFolder.resolve("addressBook.json"));
+        JsonMedmoriserStorage medmoriserStorage =
+                new JsonMedmoriserStorage(temporaryFolder.resolve("medmoriser.json"));
         JsonUserPrefsStorage userPrefsStorage = new JsonUserPrefsStorage(temporaryFolder.resolve("userPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(medmoriserStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
     }
 
@@ -71,15 +71,15 @@ public class LogicManagerTest {
     @Test
     public void execute_storageThrowsIoException_throwsCommandException() {
         // Setup LogicManager with JsonAddressBookIoExceptionThrowingStub
-        JsonAddressBookStorage addressBookStorage =
-                new JsonAddressBookIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionAddressBook.json"));
+        JsonMedmoriserStorage medmoriserStorage =
+                new JsonMedmoriserIoExceptionThrowingStub(temporaryFolder.resolve("ioExceptionMedmoriser.json"));
         JsonUserPrefsStorage userPrefsStorage =
                 new JsonUserPrefsStorage(temporaryFolder.resolve("ioExceptionUserPrefs.json"));
-        StorageManager storage = new StorageManager(addressBookStorage, userPrefsStorage);
+        StorageManager storage = new StorageManager(medmoriserStorage, userPrefsStorage);
         logic = new LogicManager(model, storage);
 
         // Execute add command
-        String addCommand = AddCommand.COMMAND_WORD + NAME_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
+        String addCommand = AddCommand.COMMAND_WORD + QUESTION_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ANSWER_DESC_AMY;
         QuestionSet expectedQuestionSet = new QuestionSetBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
@@ -129,7 +129,7 @@ public class LogicManagerTest {
      */
     private void assertCommandFailure(String inputCommand, Class<? extends Throwable> expectedException,
             String expectedMessage) {
-        Model expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        Model expectedModel = new ModelManager(model.getMedmoriser(), new UserPrefs());
         assertCommandFailure(inputCommand, expectedException, expectedMessage, expectedModel);
     }
 
@@ -149,13 +149,13 @@ public class LogicManagerTest {
     /**
      * A stub class to throw an {@code IOException} when the save method is called.
      */
-    private static class JsonAddressBookIoExceptionThrowingStub extends JsonAddressBookStorage {
-        private JsonAddressBookIoExceptionThrowingStub(Path filePath) {
+    private static class JsonMedmoriserIoExceptionThrowingStub extends JsonMedmoriserStorage {
+        private JsonMedmoriserIoExceptionThrowingStub(Path filePath) {
             super(filePath);
         }
 
         @Override
-        public void saveAddressBook(ReadOnlyAddressBook addressBook, Path filePath) throws IOException {
+        public void saveMedmoriser(ReadOnlyMedmoriser medmoriser, Path filePath) throws IOException {
             throw DUMMY_IO_EXCEPTION;
         }
     }

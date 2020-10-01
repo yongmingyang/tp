@@ -3,7 +3,7 @@ package seedu.medmoriser.logic.commands;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.showQuestionSetAtIndex;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QUESTIONSET;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalAddressBook;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -22,8 +22,8 @@ public class ListCommandTest {
 
     @BeforeEach
     public void setUp() {
-        model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
-        expectedModel = new ModelManager(model.getAddressBook(), new UserPrefs());
+        model = new ModelManager(getTypicalMedmoriser(), new UserPrefs());
+        expectedModel = new ModelManager(model.getMedmoriser(), new UserPrefs());
     }
 
     @Test

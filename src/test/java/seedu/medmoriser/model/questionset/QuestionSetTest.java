@@ -4,8 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
 import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
@@ -37,7 +37,7 @@ public class QuestionSetTest {
         assertFalse(ALICE.isSameQuestionSet(editedAlice));
 
         // different name -> returns false
-        editedAlice = new QuestionSetBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        editedAlice = new QuestionSetBuilder(ALICE).withQuestion(VALID_QUESTION_BOB).build();
         assertFalse(ALICE.isSameQuestionSet(editedAlice));
 
         // same name, same phone, different attributes -> returns true
@@ -73,8 +73,8 @@ public class QuestionSetTest {
         // different questionSet -> returns false
         assertFalse(ALICE.equals(BOB));
 
-        // different name -> returns false
-        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withName(VALID_NAME_BOB).build();
+        // different question -> returns false
+        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withQuestion(VALID_QUESTION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false
@@ -85,7 +85,7 @@ public class QuestionSetTest {
         editedAlice = new QuestionSetBuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
-        // different address -> returns false
+        // different answer -> returns false
         editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 

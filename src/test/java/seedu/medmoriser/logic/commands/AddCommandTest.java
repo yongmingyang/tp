@@ -18,7 +18,7 @@ import seedu.medmoriser.commons.core.GuiSettings;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.ReadOnlyAddressBook;
+import seedu.medmoriser.model.ReadOnlyMedmoriser;
 import seedu.medmoriser.model.ReadOnlyUserPrefs;
 import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.testutil.QuestionSetBuilder;
@@ -54,8 +54,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        QuestionSet alice = new QuestionSetBuilder().withName("Alice").build();
-        QuestionSet bob = new QuestionSetBuilder().withName("Bob").build();
+        QuestionSet alice = new QuestionSetBuilder().withQuestion("Alice").build();
+        QuestionSet bob = new QuestionSetBuilder().withQuestion("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -103,13 +103,13 @@ public class AddCommandTest {
         }
 
         @Override
-        public Path getAddressBookFilePath() {
+        public Path getMedmoriserFilePath() {
             throw new AssertionError("This method "
                     + "should not be called.");
         }
 
         @Override
-        public void setAddressBookFilePath(Path addressBookFilePath) {
+        public void setMedmoriserFilePath(Path medmoriserFilePath) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -119,12 +119,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setAddressBook(ReadOnlyAddressBook newData) {
+        public void setMedmoriser(ReadOnlyMedmoriser medmoriser) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyMedmoriser getMedmoriser() {
             throw new AssertionError("This method should"
                     + " not be called.");
         }
@@ -192,7 +192,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public ReadOnlyAddressBook getAddressBook() {
+        public ReadOnlyMedmoriser getMedmoriser() {
             return new Medmoriser();
         }
     }

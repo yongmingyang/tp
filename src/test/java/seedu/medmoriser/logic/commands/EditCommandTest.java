@@ -4,15 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.showQuestionSetAtIndex;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QUESTIONSET;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_SECOND_QUESTIONSET;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalAddressBook;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,7 +32,7 @@ import seedu.medmoriser.testutil.QuestionSetBuilder;
  */
 public class EditCommandTest {
 
-    private Model model = new ModelManager(getTypicalAddressBook(), new UserPrefs());
+    private Model model = new ModelManager(getTypicalMedmoriser(), new UserPrefs());
 
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
@@ -42,7 +42,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQuestionSet);
 
-        Model expectedModel = new ModelManager(new Medmoriser(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Medmoriser(model.getMedmoriser()), new UserPrefs());
         expectedModel.setQuestionSet(model.getFilteredQuestionSetList().get(0), editedQuestionSet);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -54,17 +54,17 @@ public class EditCommandTest {
         QuestionSet lastQuestionSet = model.getFilteredQuestionSetList().get(indexLastQuestionSet.getZeroBased());
 
         QuestionSetBuilder questionSetInList = new QuestionSetBuilder(lastQuestionSet);
-        QuestionSet editedQuestionSet = questionSetInList.withName(VALID_NAME_BOB).withPhone(VALID_PHONE_BOB)
+        QuestionSet editedQuestionSet = questionSetInList.withQuestion(VALID_QUESTION_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
         EditCommand.EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder()
-                .withName(VALID_NAME_BOB)
+                .withQuestion(VALID_QUESTION_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastQuestionSet, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQuestionSet);
 
-        Model expectedModel = new ModelManager(new Medmoriser(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Medmoriser(model.getMedmoriser()), new UserPrefs());
         expectedModel.setQuestionSet(lastQuestionSet, editedQuestionSet);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -77,7 +77,7 @@ public class EditCommandTest {
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQuestionSet);
 
-        Model expectedModel = new ModelManager(new Medmoriser(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Medmoriser(model.getMedmoriser()), new UserPrefs());
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -89,13 +89,13 @@ public class EditCommandTest {
         QuestionSet questionSetInFilteredList = model.getFilteredQuestionSetList()
                 .get(INDEX_FIRST_QUESTIONSET.getZeroBased());
         QuestionSet editedQuestionSet = new QuestionSetBuilder(questionSetInFilteredList)
-                .withName(VALID_NAME_BOB).build();
+                .withQuestion(VALID_QUESTION_BOB).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_QUESTIONSET,
-                new EditQuestionSetDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_BOB).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQuestionSet);
 
-        Model expectedModel = new ModelManager(new Medmoriser(model.getAddressBook()), new UserPrefs());
+        Model expectedModel = new ModelManager(new Medmoriser(model.getMedmoriser()), new UserPrefs());
         expectedModel.setQuestionSet(model.getFilteredQuestionSetList().get(0), editedQuestionSet);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
@@ -114,8 +114,8 @@ public class EditCommandTest {
     public void execute_duplicateQuestionSetFilteredList_failure() {
         showQuestionSetAtIndex(model, INDEX_FIRST_QUESTIONSET);
 
-        // edit questionSet in filtered list into a duplicate in address book
-        QuestionSet questionSetInList = model.getAddressBook().getQuestionSetList()
+        // edit questionSet in filtered list into a duplicate in medmoriser
+        QuestionSet questionSetInList = model.getMedmoriser().getQuestionSetList()
                 .get(INDEX_SECOND_QUESTIONSET.getZeroBased());
         EditCommand editCommand = new EditCommand(INDEX_FIRST_QUESTIONSET,
                 new EditQuestionSetDescriptorBuilder(questionSetInList).build());
@@ -126,7 +126,8 @@ public class EditCommandTest {
     @Test
     public void execute_invalidQuestionSetIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredQuestionSetList().size() + 1);
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withName(VALID_NAME_BOB).build();
+        EditQuestionSetDescriptor descriptor =
+                new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX);
@@ -134,17 +135,17 @@ public class EditCommandTest {
 
     /**
      * Edit filtered list where index is larger than size of filtered list,
-     * but smaller than size of address book
+     * but smaller than size of medmoriser
      */
     @Test
     public void execute_invalidQuestionSetIndexFilteredList_failure() {
         showQuestionSetAtIndex(model, INDEX_FIRST_QUESTIONSET);
         Index outOfBoundIndex = INDEX_SECOND_QUESTIONSET;
-        // ensures that outOfBoundIndex is still in bounds of address book list
-        assertTrue(outOfBoundIndex.getZeroBased() < model.getAddressBook().getQuestionSetList().size());
+        // ensures that outOfBoundIndex is still in bounds of medmoriser list
+        assertTrue(outOfBoundIndex.getZeroBased() < model.getMedmoriser().getQuestionSetList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditQuestionSetDescriptorBuilder().withName(VALID_NAME_BOB).build());
+                new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_BOB).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX);
     }

@@ -7,7 +7,7 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
 import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalAddressBook;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -37,8 +37,8 @@ public class MedmoriserTest {
     }
 
     @Test
-    public void resetData_withValidReadOnlyAddressBook_replacesData() {
-        Medmoriser newData = getTypicalAddressBook();
+    public void resetData_withValidReadOnlyMedmoriser_replacesData() {
+        Medmoriser newData = getTypicalMedmoriser();
         medmoriser.resetData(newData);
         assertEquals(newData, medmoriser);
     }
@@ -49,7 +49,7 @@ public class MedmoriserTest {
         QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<QuestionSet> newQuestionSets = Arrays.asList(ALICE, editedAlice);
-        AddressBookStub newData = new AddressBookStub(newQuestionSets);
+        MedmoriserStub newData = new MedmoriserStub(newQuestionSets);
 
         assertThrows(DuplicateQuestionSetException.class, () -> medmoriser.resetData(newData));
     }
@@ -60,18 +60,18 @@ public class MedmoriserTest {
     }
 
     @Test
-    public void hasQuestionSet_questionSetNotInAddressBook_returnsFalse() {
+    public void hasQuestionSet_questionSetNotInMedmoriser_returnsFalse() {
         assertFalse(medmoriser.hasQuestionSet(ALICE));
     }
 
     @Test
-    public void hasQuestionSet_questionSetInAddressBook_returnsTrue() {
+    public void hasQuestionSet_questionSetInMedmoriser_returnsTrue() {
         medmoriser.addQuestionSet(ALICE);
         assertTrue(medmoriser.hasQuestionSet(ALICE));
     }
 
     @Test
-    public void hasQuestionSet_questionSetWithSameIdentityFieldsInAddressBook_returnsTrue() {
+    public void hasQuestionSet_questionSetWithSameIdentityFieldsInMedmoriser_returnsTrue() {
         medmoriser.addQuestionSet(ALICE);
         QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
@@ -87,10 +87,10 @@ public class MedmoriserTest {
     /**
      * A stub ReadOnlyAddressBook whose questionSets list can violate interface constraints.
      */
-    private static class AddressBookStub implements ReadOnlyAddressBook {
+    private static class MedmoriserStub implements ReadOnlyMedmoriser {
         private final ObservableList<QuestionSet> questionSets = FXCollections.observableArrayList();
 
-        AddressBookStub(Collection<QuestionSet> questionSets) {
+        MedmoriserStub(Collection<QuestionSet> questionSets) {
             this.questionSets.setAll(questionSets);
         }
 

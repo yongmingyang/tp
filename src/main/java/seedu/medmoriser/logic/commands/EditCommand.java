@@ -3,8 +3,8 @@ package seedu.medmoriser.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_NAME;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_PHONE;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
 
@@ -21,8 +21,8 @@ import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.questionset.Answer;
 import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Name;
 import seedu.medmoriser.model.questionset.Phone;
+import seedu.medmoriser.model.questionset.Question;
 import seedu.medmoriser.model.questionset.QuestionSet;
 import seedu.medmoriser.model.tag.Tag;
 
@@ -37,7 +37,7 @@ public class EditCommand extends Command {
             + "by the index number used in the displayed questionSet list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_NAME + "NAME] "
+            + "[" + PREFIX_QUESTION + "QUESTION] "
             + "[" + PREFIX_PHONE + "PHONE] "
             + "[" + PREFIX_EMAIL + "EMAIL] "
             + "[" + PREFIX_ANSWER + "ANSWER] "
@@ -94,13 +94,13 @@ public class EditCommand extends Command {
                                                        EditQuestionSetDescriptor editQuestionSetDescriptor) {
         assert questionSetToEdit != null;
 
-        Name updatedName = editQuestionSetDescriptor.getName().orElse(questionSetToEdit.getName());
+        Question updatedQuestion = editQuestionSetDescriptor.getQuestion().orElse(questionSetToEdit.getQuestion());
         Phone updatedPhone = editQuestionSetDescriptor.getPhone().orElse(questionSetToEdit.getPhone());
         Email updatedEmail = editQuestionSetDescriptor.getEmail().orElse(questionSetToEdit.getEmail());
         Answer updatedAnswer = editQuestionSetDescriptor.getAnswer().orElse(questionSetToEdit.getAnswer());
         Set<Tag> updatedTags = editQuestionSetDescriptor.getTags().orElse(questionSetToEdit.getTags());
 
-        return new QuestionSet(updatedName, updatedPhone, updatedEmail, updatedAnswer, updatedTags);
+        return new QuestionSet(updatedQuestion, updatedPhone, updatedEmail, updatedAnswer, updatedTags);
     }
 
     @Override
@@ -126,7 +126,7 @@ public class EditCommand extends Command {
      * corresponding field value of the questionSet.
      */
     public static class EditQuestionSetDescriptor {
-        private Name name;
+        private Question question;
         private Phone phone;
         private Email email;
         private Answer answer;
@@ -139,7 +139,7 @@ public class EditCommand extends Command {
          * A defensive copy of {@code tags} is used internally.
          */
         public EditQuestionSetDescriptor(EditQuestionSetDescriptor toCopy) {
-            setName(toCopy.name);
+            setQuestion(toCopy.question);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
             setAnswer(toCopy.answer);
@@ -150,15 +150,15 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(name, phone, email, answer, tags);
+            return CollectionUtil.isAnyNonNull(question, phone, email, answer, tags);
         }
 
-        public void setName(Name name) {
-            this.name = name;
+        public void setQuestion(Question question) {
+            this.question = question;
         }
 
-        public Optional<Name> getName() {
-            return Optional.ofNullable(name);
+        public Optional<Question> getQuestion() {
+            return Optional.ofNullable(question);
         }
 
         public void setPhone(Phone phone) {
@@ -217,7 +217,7 @@ public class EditCommand extends Command {
             // state check
             EditQuestionSetDescriptor e = (EditQuestionSetDescriptor) other;
 
-            return getName().equals(e.getName())
+            return getQuestion().equals(e.getQuestion())
                     && getPhone().equals(e.getPhone())
                     && getEmail().equals(e.getEmail())
                     && getAnswer().equals(e.getAnswer())

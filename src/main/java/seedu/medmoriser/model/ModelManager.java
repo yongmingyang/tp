@@ -14,7 +14,7 @@ import seedu.medmoriser.commons.core.LogsCenter;
 import seedu.medmoriser.model.questionset.QuestionSet;
 
 /**
- * Represents the in-memory model of the address book data.
+ * Represents the in-memory model of the medmoriser data.
  */
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
@@ -24,15 +24,15 @@ public class ModelManager implements Model {
     private final FilteredList<QuestionSet> filteredQuestionSets;
 
     /**
-     * Initializes a ModelManager with the given addressBook and userPrefs.
+     * Initializes a ModelManager with the given medmoriser and userPrefs.
      */
-    public ModelManager(ReadOnlyAddressBook addressBook, ReadOnlyUserPrefs userPrefs) {
+    public ModelManager(ReadOnlyMedmoriser medmoriser, ReadOnlyUserPrefs userPrefs) {
         super();
-        requireAllNonNull(addressBook, userPrefs);
+        requireAllNonNull(medmoriser, userPrefs);
 
-        logger.fine("Initializing with address book: " + addressBook + " and user prefs " + userPrefs);
+        logger.fine("Initializing with medmoriser: " + medmoriser + " and user prefs " + userPrefs);
 
-        this.medmoriser = new Medmoriser(addressBook);
+        this.medmoriser = new Medmoriser(medmoriser);
         this.userPrefs = new UserPrefs(userPrefs);
         filteredQuestionSets = new FilteredList<>(this.medmoriser.getQuestionSetList());
     }
@@ -66,25 +66,25 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public Path getAddressBookFilePath() {
-        return userPrefs.getAddressBookFilePath();
+    public Path getMedmoriserFilePath() {
+        return userPrefs.getMedmoriserFilePath();
     }
 
     @Override
-    public void setAddressBookFilePath(Path addressBookFilePath) {
-        requireNonNull(addressBookFilePath);
-        userPrefs.setAddressBookFilePath(addressBookFilePath);
+    public void setMedmoriserFilePath(Path medmoriserFilePath) {
+        requireNonNull(medmoriserFilePath);
+        userPrefs.setMedmoriserFilePath(medmoriserFilePath);
     }
 
     //=========== AddressBook ================================================================================
 
     @Override
-    public void setAddressBook(ReadOnlyAddressBook addressBook) {
-        this.medmoriser.resetData(addressBook);
+    public void setMedmoriser(ReadOnlyMedmoriser medmoriser) {
+        this.medmoriser.resetData(medmoriser);
     }
 
     @Override
-    public ReadOnlyAddressBook getAddressBook() {
+    public ReadOnlyMedmoriser getMedmoriser() {
         return medmoriser;
     }
 

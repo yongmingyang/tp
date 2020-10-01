@@ -6,8 +6,8 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.DESC_AMY;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.DESC_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_NAME_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
@@ -35,9 +35,9 @@ public class EditQuestionSetDescriptorTest {
         // different values -> returns false
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
-        // different name -> returns false
+        // different question -> returns false
         EditCommand.EditQuestionSetDescriptor editedAmy = new EditQuestionSetDescriptorBuilder(DESC_AMY)
-                .withName(VALID_NAME_BOB).build();
+                .withQuestion(VALID_QUESTION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
