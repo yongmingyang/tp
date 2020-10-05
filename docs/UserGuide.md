@@ -6,7 +6,7 @@ Medmoriser is a **desktop** app to help medical students memorise and revise the
 
 ## Features
 
-### Adding a person: `add`
+### Adding a questionSet: `add`
 
 Adds a question and answer pair to the database.
 
