@@ -33,11 +33,7 @@ public class QuestionSetCard extends UiPart<Region> {
     @FXML
     private Label id;
     @FXML
-    private Label phone;
-    @FXML
-    private Label address;
-    @FXML
-    private Label email;
+    private Label answer;
     @FXML
     private FlowPane tags;
 
@@ -49,9 +45,7 @@ public class QuestionSetCard extends UiPart<Region> {
         this.questionSet = questionSet;
         id.setText(displayedIndex + ". ");
         question.setText(questionSet.getQuestion().question);
-        phone.setText(questionSet.getPhone().value);
-        address.setText(questionSet.getAnswer().value);
-        email.setText(questionSet.getEmail().value);
+        answer.setText(questionSet.getAnswer().value);
         questionSet.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
