@@ -21,7 +21,7 @@ public class ListCommandTest {
     private Model expectedModel;
 
     @BeforeEach
-    public void setUp() {
+    public void setUpModels() {
         model = new ModelManager(getTypicalMedmoriser(), new UserPrefs());
         expectedModel = new ModelManager(model.getMedmoriser(), new UserPrefs());
     }
