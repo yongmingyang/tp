@@ -14,7 +14,7 @@ import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
 
-public class EditQuestionSetDescriptorTest {
+public class EditQAndADescriptorTest {
 
     @Test
     public void equals() {

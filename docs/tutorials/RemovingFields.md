@@ -20,7 +20,7 @@ Fortunately, IntelliJ IDEA provides a robust refactoring tool that can identify 
 
 ### Assisted refactoring
 
-The `answer` field in `Person` is actually an instance of the `seedu.medmoriser.model.questionset.Answer` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
+The `answer` field in `Person` is actually an instance of the `seedu.medmoriser.model.qanda.Answer` class. Since removing the `Address` class will break the application, we start by identifying `Address`'s usages. This allows us to see code that depends on `Address` to function properly and edit them on a case-by-case basis. Right-click the `Address` class and select `Refactor` \> `Safe Delete` through the menu.
 
 ![Usages detected](../images/remove/UnsafeDelete.png)
 
@@ -91,7 +91,7 @@ In `src/test/data/`, data meant for testing purposes are stored. While keeping t
 
 ```json
 {
-  "questionSets": [ {
+  "qAndAs": [ {
     "name": "Person with invalid name field: Ha!ns Mu@ster",
     "phone": "9482424",
     "email": "hans@example.com",

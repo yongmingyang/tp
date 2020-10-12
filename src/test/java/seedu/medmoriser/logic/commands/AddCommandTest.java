@@ -20,7 +20,7 @@ import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ReadOnlyMedmoriser;
 import seedu.medmoriser.model.ReadOnlyUserPrefs;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.testutil.QuestionSetBuilder;
 
 public class AddCommandTest {
@@ -33,19 +33,19 @@ public class AddCommandTest {
     @Test
     public void execute_questionSetAcceptedByModel_addSuccessful() throws Exception {
         ModelStubAcceptingQuestionSetAdded modelStub = new ModelStubAcceptingQuestionSetAdded();
-        QuestionSet validQuestionSet = new QuestionSetBuilder().build();
+        QAndA validQAndA = new QuestionSetBuilder().build();
 
-        CommandResult commandResult = new AddCommand(validQuestionSet).execute(modelStub);
+        CommandResult commandResult = new AddCommand(validQAndA).execute(modelStub);
 
-        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validQuestionSet), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validQuestionSet), modelStub.questionSetsAdded);
+        assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validQAndA), commandResult.getFeedbackToUser());
+        assertEquals(Arrays.asList(validQAndA), modelStub.questionSetsAdded);
     }
 
     @Test
     public void execute_duplicateQuestionSet_throwsCommandException() {
-        QuestionSet validQuestionSet = new QuestionSetBuilder().build();
-        AddCommand addCommand = new AddCommand(validQuestionSet);
-        ModelStub modelStub = new ModelStubWithQuestionSet(validQuestionSet);
+        QAndA validQAndA = new QuestionSetBuilder().build();
+        AddCommand addCommand = new AddCommand(validQAndA);
+        ModelStub modelStub = new ModelStubWithQuestionSet(validQAndA);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_QUESTIONSET, () ->
             addCommand.execute(modelStub)
@@ -54,8 +54,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        QuestionSet alice = new QuestionSetBuilder().withQuestion("Alice").build();
-        QuestionSet bob = new QuestionSetBuilder().withQuestion("Bob").build();
+        QAndA alice = new QuestionSetBuilder().withQuestion("Alice").build();
+        QAndA bob = new QuestionSetBuilder().withQuestion("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -114,7 +114,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addQuestionSet(QuestionSet questionSet) {
+        public void addQuestionSet(QAndA qAndA) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -130,27 +130,27 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasQuestionSet(QuestionSet questionSet) {
+        public boolean hasQuestionSet(QAndA qAndA) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void deleteQuestionSet(QuestionSet target) {
+        public void deleteQuestionSet(QAndA target) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet) {
+        public void setQuestionSet(QAndA target, QAndA editedQAndA) {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public ObservableList<QuestionSet> getFilteredQuestionSetList() {
+        public ObservableList<QAndA> getFilteredQuestionSetList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredQuestionSetList(Predicate<QuestionSet> predicate) {
+        public void updateFilteredQuestionSetList(Predicate<QAndA> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }
@@ -159,17 +159,17 @@ public class AddCommandTest {
      * A Model stub that contains a single questionSet.
      */
     private class ModelStubWithQuestionSet extends ModelStub {
-        private final QuestionSet questionSet;
+        private final QAndA qAndA;
 
-        ModelStubWithQuestionSet(QuestionSet questionSet) {
-            requireNonNull(questionSet);
-            this.questionSet = questionSet;
+        ModelStubWithQuestionSet(QAndA qAndA) {
+            requireNonNull(qAndA);
+            this.qAndA = qAndA;
         }
 
         @Override
-        public boolean hasQuestionSet(QuestionSet questionSet) {
-            requireNonNull(questionSet);
-            return this.questionSet.isSameQuestionSet(questionSet);
+        public boolean hasQuestionSet(QAndA qAndA) {
+            requireNonNull(qAndA);
+            return this.qAndA.isSameQuestionSet(qAndA);
         }
     }
 
@@ -177,18 +177,18 @@ public class AddCommandTest {
      * A Model stub that always accept the questionSet being added.
      */
     private class ModelStubAcceptingQuestionSetAdded extends ModelStub {
-        final ArrayList<QuestionSet> questionSetsAdded = new ArrayList<>();
+        final ArrayList<QAndA> questionSetsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasQuestionSet(QuestionSet questionSet) {
-            requireNonNull(questionSet);
-            return questionSetsAdded.stream().anyMatch(questionSet::isSameQuestionSet);
+        public boolean hasQuestionSet(QAndA qAndA) {
+            requireNonNull(qAndA);
+            return questionSetsAdded.stream().anyMatch(qAndA::isSameQuestionSet);
         }
 
         @Override
-        public void addQuestionSet(QuestionSet questionSet) {
-            requireNonNull(questionSet);
-            questionSetsAdded.add(questionSet);
+        public void addQuestionSet(QAndA qAndA) {
+            requireNonNull(qAndA);
+            questionSetsAdded.add(qAndA);
         }
 
         @Override

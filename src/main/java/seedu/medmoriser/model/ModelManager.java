@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import seedu.medmoriser.commons.core.GuiSettings;
 import seedu.medmoriser.commons.core.LogsCenter;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * Represents the in-memory model of the medmoriser data.
@@ -21,7 +21,7 @@ public class ModelManager implements Model {
 
     private final Medmoriser medmoriser;
     private final UserPrefs userPrefs;
-    private final FilteredList<QuestionSet> filteredQuestionSets;
+    private final FilteredList<QAndA> filteredQAndAS;
 
     /**
      * Initializes a ModelManager with the given medmoriser and userPrefs.
@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.medmoriser = new Medmoriser(medmoriser);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredQuestionSets = new FilteredList<>(this.medmoriser.getQuestionSetList());
+        filteredQAndAS = new FilteredList<>(this.medmoriser.getQuestionSetList());
     }
 
     public ModelManager() {
@@ -89,27 +89,27 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasQuestionSet(QuestionSet questionSet) {
-        requireNonNull(questionSet);
-        return medmoriser.hasQuestionSet(questionSet);
+    public boolean hasQuestionSet(QAndA qAndA) {
+        requireNonNull(qAndA);
+        return medmoriser.hasQuestionSet(qAndA);
     }
 
     @Override
-    public void deleteQuestionSet(QuestionSet target) {
+    public void deleteQuestionSet(QAndA target) {
         medmoriser.removeQuestionSet(target);
     }
 
     @Override
-    public void addQuestionSet(QuestionSet questionSet) {
-        medmoriser.addQuestionSet(questionSet);
+    public void addQuestionSet(QAndA qAndA) {
+        medmoriser.addQuestionSet(qAndA);
         updateFilteredQuestionSetList(PREDICATE_SHOW_ALL_QUESTIONSETS);
     }
 
     @Override
-    public void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet) {
-        requireAllNonNull(target, editedQuestionSet);
+    public void setQuestionSet(QAndA target, QAndA editedQAndA) {
+        requireAllNonNull(target, editedQAndA);
 
-        medmoriser.setQuestionSet(target, editedQuestionSet);
+        medmoriser.setQuestionSet(target, editedQAndA);
     }
 
     //=========== Filtered QuestionSet List Accessors =============================================================
@@ -119,14 +119,14 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<QuestionSet> getFilteredQuestionSetList() {
-        return filteredQuestionSets;
+    public ObservableList<QAndA> getFilteredQuestionSetList() {
+        return filteredQAndAS;
     }
 
     @Override
-    public void updateFilteredQuestionSetList(Predicate<QuestionSet> predicate) {
+    public void updateFilteredQuestionSetList(Predicate<QAndA> predicate) {
         requireNonNull(predicate);
-        filteredQuestionSets.setPredicate(predicate);
+        filteredQAndAS.setPredicate(predicate);
     }
 
     @Override
@@ -145,7 +145,7 @@ public class ModelManager implements Model {
         ModelManager other = (ModelManager) obj;
         return medmoriser.equals(other.medmoriser)
                 && userPrefs.equals(other.userPrefs)
-                && filteredQuestionSets.equals(other.filteredQuestionSets);
+                && filteredQAndAS.equals(other.filteredQAndAS);
     }
 
 }

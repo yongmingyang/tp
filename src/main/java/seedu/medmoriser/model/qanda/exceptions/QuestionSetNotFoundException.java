@@ -1,4 +1,4 @@
-package seedu.medmoriser.model.questionset.exceptions;
+package seedu.medmoriser.model.qanda.exceptions;
 
 /**
  * Signals that the operation is unable to find the specified questionSet.

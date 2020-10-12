@@ -9,7 +9,7 @@ import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * Adds a QuestionSet to the question bank.
@@ -36,14 +36,14 @@ public class AddCommand extends Command {
     public static final String MESSAGE_SUCCESS = "New questionSet added: %1$s";
     public static final String MESSAGE_DUPLICATE_QUESTIONSET = "This questionSet already exists in the answer book";
 
-    private final QuestionSet toAdd;
+    private final QAndA toAdd;
 
     /**
      * Creates an AddCommand to add the specified {@code QuestionSet}
      */
-    public AddCommand(QuestionSet questionSet) {
-        requireNonNull(questionSet);
-        toAdd = questionSet;
+    public AddCommand(QAndA qAndA) {
+        requireNonNull(qAndA);
+        toAdd = qAndA;
     }
 
     @Override

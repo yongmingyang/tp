@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.medmoriser.logic.commands.AddCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.questionset.Answer;
-import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Phone;
-import seedu.medmoriser.model.questionset.Question;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.Answer;
+import seedu.medmoriser.model.qanda.Email;
+import seedu.medmoriser.model.qanda.Phone;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -44,9 +44,9 @@ public class AddCommandParser implements Parser<AddCommand> {
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
 
-        QuestionSet questionSet = new QuestionSet(question, phone, email, answer, tagList);
+        QAndA qAndA = new QAndA(question, phone, email, answer, tagList);
 
-        return new AddCommand(questionSet);
+        return new AddCommand(qAndA);
     }
 
     /**

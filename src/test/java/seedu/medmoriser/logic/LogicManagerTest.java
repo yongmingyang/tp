@@ -26,7 +26,7 @@ import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.ReadOnlyMedmoriser;
 import seedu.medmoriser.model.UserPrefs;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.storage.JsonMedmoriserStorage;
 import seedu.medmoriser.storage.JsonUserPrefsStorage;
 import seedu.medmoriser.storage.StorageManager;
@@ -81,9 +81,9 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + QUESTION_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ANSWER_DESC_AMY;
-        QuestionSet expectedQuestionSet = new QuestionSetBuilder(AMY).withTags().build();
+        QAndA expectedQAndA = new QuestionSetBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addQuestionSet(expectedQuestionSet);
+        expectedModel.addQuestionSet(expectedQAndA);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

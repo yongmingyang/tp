@@ -5,11 +5,11 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import seedu.medmoriser.logic.commands.EditCommand.EditQuestionSetDescriptor;
-import seedu.medmoriser.model.questionset.Answer;
-import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Phone;
-import seedu.medmoriser.model.questionset.Question;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.Answer;
+import seedu.medmoriser.model.qanda.Email;
+import seedu.medmoriser.model.qanda.Phone;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -30,13 +30,13 @@ public class EditQuestionSetDescriptorBuilder {
     /**
      * Returns an {@code EditQuestionSetDescriptor} with fields containing {@code questionSet}'s details
      */
-    public EditQuestionSetDescriptorBuilder(QuestionSet questionSet) {
+    public EditQuestionSetDescriptorBuilder(QAndA qAndA) {
         descriptor = new EditQuestionSetDescriptor();
-        descriptor.setQuestion(questionSet.getQuestion());
-        descriptor.setPhone(questionSet.getPhone());
-        descriptor.setEmail(questionSet.getEmail());
-        descriptor.setAnswer(questionSet.getAnswer());
-        descriptor.setTags(questionSet.getTags());
+        descriptor.setQuestion(qAndA.getQuestion());
+        descriptor.setPhone(qAndA.getPhone());
+        descriptor.setEmail(qAndA.getEmail());
+        descriptor.setAnswer(qAndA.getAnswer());
+        descriptor.setTags(qAndA.getTags());
     }
 
     /**
