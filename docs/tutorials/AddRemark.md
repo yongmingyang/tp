@@ -28,7 +28,7 @@ package seedu.medmoriser.logic.commands;
 import seedu.medmoriser.model.Model;
 
 /**
- * Changes the remark of an existing questionSet in the answer book.
+ * Changes the remark of an existing qAndA in the answer book.
  */
 public class RemarkCommand extends Command {
 
@@ -64,8 +64,8 @@ Following the convention in other commands, we add relevant messages as constant
 **`RemarkCommand.java`:**
 
 ``` java
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the questionSet identified "
-            + "by the index number used in the last questionSet listing. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the remark of the qAndA identified "
+            + "by the index number used in the last qAndA listing. "
             + "Existing remark will be overwritten by the input.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "r/ [REMARK]\n"
@@ -99,8 +99,8 @@ public class RemarkCommand extends Command {
     private final String remark;
 
     /**
-     * @param index of the questionSet in the filtered questionSet list to edit the remark
-     * @param remark of the questionSet to be updated to
+     * @param index of the qAndA in the filtered qAndA list to edit the remark
+     * @param remark of the qAndA to be updated to
      */
     public RemarkCommand(Index index, String remark) {
         requireAllNonNull(index, remark);
@@ -222,11 +222,11 @@ If you are stuck, check out the sample
 
 ## Add `Remark` to the model
 
-Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of questionSet data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the questionSet’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a questionSet.
+Now that we have all the information that we need, let’s lay the groundwork for propagating the remarks added into the in-memory storage of qAndA data. We achieve that by working with the `Person` model. Each field in a Person is implemented as a separate class (e.g. a `Name` object represents the qAndA’s name). That means we should add a `Remark` class so that we can use a `Remark` object to represent a remark given to a qAndA.
 
 ### Add a new `Remark` class
 
-Create a new `Remark` in `seedu.medmoriser.model.questionset`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
+Create a new `Remark` in `seedu.medmoriser.model.qanda`. Since a `Remark` is a field that is similar to `Address`, we can reuse a significant bit of code.
 
 A copy-paste and search-replace later, you should have something like [this](https://github.com/se-edu/addressbook-level3/commit/4516e099699baa9e2d51801bd26f016d812dedcc#diff-af2f075d24dfcd333876f0fbce321f25). Note how `Remark` has no constrains and thus does not require input
 validation.
@@ -237,7 +237,7 @@ Let’s change `RemarkCommand` and `RemarkCommandParser` to use the new `Remark`
 
 ## Add a placeholder element for remark to the UI
 
-Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each questionSet.
+Without getting too deep into `fxml`, let’s go on a 5 minute adventure to get some placeholder text to show up for each qAndA.
 
 Simply add the following to [`seedu.medmoriser.ui.QuestionSetCard`](https://github.com/se-edu/addressbook-level3/commit/850b78879582f38accb05dd20c245963c65ea599#diff-0c6b6abcfac8c205e075294f25e851fe).
 
@@ -308,9 +308,9 @@ Just add [this one line of code!](https://github.com/se-edu/addressbook-level3/c
 **`PersonCard.java`:**
 
 ``` java
-public PersonCard(Person questionSet, int displayedIndex) {
+public PersonCard(Person qAndA, int displayedIndex) {
     //...
-    remark.setText(questionSet.getRemark().value);
+    remark.setText(qAndA.getRemark().value);
 }
 ```
 
@@ -340,23 +340,23 @@ save it with `Model#setPerson()`.
             throw new CommandException(Messages.MESSAGE_INVALID_PERSON_DISPLAYED_INDEX);
         }
 
-        Person questionSetToEdit = lastShownList.get(index.getZeroBased());
-        Person editedQuestionSet = new Person(questionSetToEdit.getName(), questionSetToEdit.getPhone(), questionSetToEdit.getEmail(),
-                questionSetToEdit.getAddress(), remark, questionSetToEdit.getTags());
+        Person qAndAToEdit = lastShownList.get(index.getZeroBased());
+        Person editedQAndA = new Person(qAndAToEdit.getName(), qAndAToEdit.getPhone(), qAndAToEdit.getEmail(),
+                qAndAToEdit.getAddress(), remark, qAndAToEdit.getTags());
 
-        model.setPerson(questionSetToEdit, editedQuestionSet);
+        model.setPerson(qAndAToEdit, editedQAndA);
         model.updateFilteredPersonList(PREDICATE_SHOW_ALL_PERSONS);
 
-        return new CommandResult(generateSuccessMessage(editedQuestionSet));
+        return new CommandResult(generateSuccessMessage(editedQAndA));
     }
 
     /**
      * Generates a command execution success message based on whether the remark is added to or removed from
-     * {@code questionSetToEdit}.
+     * {@code qAndAToEdit}.
      */
-    private String generateSuccessMessage(Person questionSetToEdit) {
+    private String generateSuccessMessage(Person qAndAToEdit) {
         String message = !remark.value.isEmpty() ? MESSAGE_ADD_REMARK_SUCCESS : MESSAGE_DELETE_REMARK_SUCCESS;
-        return String.format(message, questionSetToEdit);
+        return String.format(message, qAndAToEdit);
     }
 ```
 

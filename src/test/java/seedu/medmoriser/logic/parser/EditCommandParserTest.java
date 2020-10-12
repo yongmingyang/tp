@@ -36,10 +36,10 @@ import org.junit.jupiter.api.Test;
 import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.logic.commands.EditCommand;
 import seedu.medmoriser.logic.commands.EditCommand.EditQuestionSetDescriptor;
-import seedu.medmoriser.model.questionset.Answer;
-import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Phone;
-import seedu.medmoriser.model.questionset.Question;
+import seedu.medmoriser.model.qanda.Answer;
+import seedu.medmoriser.model.qanda.Email;
+import seedu.medmoriser.model.qanda.Phone;
+import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
 

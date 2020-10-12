@@ -1,4 +1,4 @@
-package seedu.medmoriser.model.questionset;
+package seedu.medmoriser.model.qanda;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.commons.util.CollectionUtil.requireAllNonNull;
@@ -8,8 +8,8 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.medmoriser.model.questionset.exceptions.DuplicateQuestionSetException;
-import seedu.medmoriser.model.questionset.exceptions.QuestionSetNotFoundException;
+import seedu.medmoriser.model.qanda.exceptions.DuplicateQuestionSetException;
+import seedu.medmoriser.model.qanda.exceptions.QuestionSetNotFoundException;
 
 /**
  * A list of questionSets that enforces uniqueness between its elements and does not allow nulls.
@@ -22,18 +22,18 @@ import seedu.medmoriser.model.questionset.exceptions.QuestionSetNotFoundExceptio
  *
  * Supports a minimal set of list operations.
  *
- * @see QuestionSet#isSameQuestionSet(QuestionSet)
+ * @see QAndA#isSameQuestionSet(QAndA)
  */
-public class UniqueQuestionSetList implements Iterable<QuestionSet> {
+public class UniqueQAndAList implements Iterable<QAndA> {
 
-    private final ObservableList<QuestionSet> internalList = FXCollections.observableArrayList();
-    private final ObservableList<QuestionSet> internalUnmodifiableList =
+    private final ObservableList<QAndA> internalList = FXCollections.observableArrayList();
+    private final ObservableList<QAndA> internalUnmodifiableList =
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
      * Returns true if the list contains an equivalent questionSet as the given argument.
      */
-    public boolean contains(QuestionSet toCheck) {
+    public boolean contains(QAndA toCheck) {
         requireNonNull(toCheck);
         return internalList.stream().anyMatch(toCheck::isSameQuestionSet);
     }
@@ -42,7 +42,7 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
      * Adds a questionSet to the list.
      * The questionSet must not already exist in the list.
      */
-    public void add(QuestionSet toAdd) {
+    public void add(QAndA toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
             throw new DuplicateQuestionSetException();
@@ -56,33 +56,33 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
      * The questionSet identity of {@code editedQuestionSet} must not be the same as another existing
      * questionSet in the list.
      */
-    public void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet) {
-        requireAllNonNull(target, editedQuestionSet);
+    public void setQuestionSet(QAndA target, QAndA editedQAndA) {
+        requireAllNonNull(target, editedQAndA);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
             throw new QuestionSetNotFoundException();
         }
 
-        if (!target.isSameQuestionSet(editedQuestionSet) && contains(editedQuestionSet)) {
+        if (!target.isSameQuestionSet(editedQAndA) && contains(editedQAndA)) {
             throw new DuplicateQuestionSetException();
         }
 
-        internalList.set(index, editedQuestionSet);
+        internalList.set(index, editedQAndA);
     }
 
     /**
      * Removes the equivalent questionSet from the list.
      * The questionSet must exist in the list.
      */
-    public void remove(QuestionSet toRemove) {
+    public void remove(QAndA toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
             throw new QuestionSetNotFoundException();
         }
     }
 
-    public void setQuestionSets(UniqueQuestionSetList replacement) {
+    public void setQuestionSets(UniqueQAndAList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -91,32 +91,32 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
      * Replaces the contents of this list with {@code questionSets}.
      * {@code questionSets} must not contain duplicate questionSets.
      */
-    public void setQuestionSets(List<QuestionSet> questionSets) {
-        requireAllNonNull(questionSets);
-        if (!questionSetsAreUnique(questionSets)) {
+    public void setQuestionSets(List<QAndA> qAndAs) {
+        requireAllNonNull(qAndAs);
+        if (!questionSetsAreUnique(qAndAs)) {
             throw new DuplicateQuestionSetException();
         }
 
-        internalList.setAll(questionSets);
+        internalList.setAll(qAndAs);
     }
 
     /**
      * Returns the backing list as an unmodifiable {@code ObservableList}.
      */
-    public ObservableList<QuestionSet> asUnmodifiableObservableList() {
+    public ObservableList<QAndA> asUnmodifiableObservableList() {
         return internalUnmodifiableList;
     }
 
     @Override
-    public Iterator<QuestionSet> iterator() {
+    public Iterator<QAndA> iterator() {
         return internalList.iterator();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
-                || (other instanceof UniqueQuestionSetList // instanceof handles nulls
-                        && internalList.equals(((UniqueQuestionSetList) other).internalList));
+                || (other instanceof UniqueQAndAList // instanceof handles nulls
+                        && internalList.equals(((UniqueQAndAList) other).internalList));
     }
 
     @Override
@@ -127,10 +127,10 @@ public class UniqueQuestionSetList implements Iterable<QuestionSet> {
     /**
      * Returns true if {@code questionSets} contains only unique questionSet.
      */
-    private boolean questionSetsAreUnique(List<QuestionSet> questionSets) {
-        for (int i = 0; i < questionSets.size() - 1; i++) {
-            for (int j = i + 1; j < questionSets.size(); j++) {
-                if (questionSets.get(i).isSameQuestionSet(questionSets.get(j))) {
+    private boolean questionSetsAreUnique(List<QAndA> qAndAs) {
+        for (int i = 0; i < qAndAs.size() - 1; i++) {
+            for (int j = i + 1; j < qAndAs.size(); j++) {
+                if (qAndAs.get(i).isSameQuestionSet(qAndAs.get(j))) {
                     return false;
                 }
             }

@@ -1,4 +1,4 @@
-package seedu.medmoriser.model.questionset;
+package seedu.medmoriser.model.qanda;
 
 import static seedu.medmoriser.commons.util.CollectionUtil.requireAllNonNull;
 
@@ -13,7 +13,7 @@ import seedu.medmoriser.model.tag.Tag;
  * Represents a QuestionSet in the Question bank.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class QuestionSet {
+public class QAndA {
 
     // Identity fields
     private final Question question;
@@ -27,7 +27,7 @@ public class QuestionSet {
     /**
      * Every field must be present and not null.
      */
-    public QuestionSet(Question question, Phone phone, Email email, Answer answer, Set<Tag> tags) {
+    public QAndA(Question question, Phone phone, Email email, Answer answer, Set<Tag> tags) {
         requireAllNonNull(question, phone, email, answer, tags);
         this.question = question;
         this.phone = phone;
@@ -64,14 +64,14 @@ public class QuestionSet {
      * Returns true if both QuestionSets of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two QuestionSets.
      */
-    public boolean isSameQuestionSet(QuestionSet otherQuestionSet) {
-        if (otherQuestionSet == this) {
+    public boolean isSameQuestionSet(QAndA otherQAndA) {
+        if (otherQAndA == this) {
             return true;
         }
 
-        return otherQuestionSet != null
-                && otherQuestionSet.getQuestion().equals(getQuestion())
-                && (otherQuestionSet.getPhone().equals(getPhone()) || otherQuestionSet.getEmail().equals(getEmail()));
+        return otherQAndA != null
+                && otherQAndA.getQuestion().equals(getQuestion())
+                && (otherQAndA.getPhone().equals(getPhone()) || otherQAndA.getEmail().equals(getEmail()));
     }
 
     /**
@@ -84,16 +84,16 @@ public class QuestionSet {
             return true;
         }
 
-        if (!(other instanceof QuestionSet)) {
+        if (!(other instanceof QAndA)) {
             return false;
         }
 
-        QuestionSet otherQuestionSet = (QuestionSet) other;
-        return otherQuestionSet.getQuestion().equals(getQuestion())
-                && otherQuestionSet.getPhone().equals(getPhone())
-                && otherQuestionSet.getEmail().equals(getEmail())
-                && otherQuestionSet.getAnswer().equals(getAnswer())
-                && otherQuestionSet.getTags().equals(getTags());
+        QAndA otherQAndA = (QAndA) other;
+        return otherQAndA.getQuestion().equals(getQuestion())
+                && otherQAndA.getPhone().equals(getPhone())
+                && otherQAndA.getEmail().equals(getEmail())
+                && otherQAndA.getAnswer().equals(getAnswer())
+                && otherQAndA.getTags().equals(getTags());
     }
 
     @Override

@@ -23,8 +23,8 @@ import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.commands.HelpCommand;
 import seedu.medmoriser.logic.commands.ListCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.questionset.QuestionContainsKeywordsPredicate;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
 import seedu.medmoriser.testutil.QuestionSetBuilder;
 import seedu.medmoriser.testutil.QuestionSetUtil;
@@ -35,9 +35,9 @@ public class MedmoriserParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        QuestionSet questionSet = new QuestionSetBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(QuestionSetUtil.getAddCommand(questionSet));
-        assertEquals(new AddCommand(questionSet), command);
+        QAndA qAndA = new QuestionSetBuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(QuestionSetUtil.getAddCommand(qAndA));
+        assertEquals(new AddCommand(qAndA), command);
     }
 
     @Test
@@ -55,8 +55,8 @@ public class MedmoriserParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        QuestionSet questionSet = new QuestionSetBuilder().build();
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder(questionSet).build();
+        QAndA qAndA = new QuestionSetBuilder().build();
+        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder(qAndA).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_QUESTIONSET.getOneBased() + " "
                 + QuestionSetUtil.getEditQuestionSetDescriptorDetails(descriptor));

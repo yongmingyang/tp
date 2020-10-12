@@ -16,7 +16,7 @@ import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.UserPrefs;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * Contains integration tests (interaction with the Model, UndoCommand and RedoCommand) and unit tests for
@@ -28,14 +28,14 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexUnfilteredList_success() {
-        QuestionSet questionSetToDelete = model.getFilteredQuestionSetList()
+        QAndA qAndAToDelete = model.getFilteredQuestionSetList()
                 .get(INDEX_FIRST_QUESTIONSET.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_QUESTIONSET);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_QUESTIONSET_SUCCESS, questionSetToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_QUESTIONSET_SUCCESS, qAndAToDelete);
 
         ModelManager expectedModel = new ModelManager(model.getMedmoriser(), new UserPrefs());
-        expectedModel.deleteQuestionSet(questionSetToDelete);
+        expectedModel.deleteQuestionSet(qAndAToDelete);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
@@ -52,14 +52,14 @@ public class DeleteCommandTest {
     public void execute_validIndexFilteredList_success() {
         showQuestionSetAtIndex(model, INDEX_FIRST_QUESTIONSET);
 
-        QuestionSet questionSetToDelete = model.getFilteredQuestionSetList()
+        QAndA qAndAToDelete = model.getFilteredQuestionSetList()
                 .get(INDEX_FIRST_QUESTIONSET.getZeroBased());
         DeleteCommand deleteCommand = new DeleteCommand(INDEX_FIRST_QUESTIONSET);
 
-        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_QUESTIONSET_SUCCESS, questionSetToDelete);
+        String expectedMessage = String.format(DeleteCommand.MESSAGE_DELETE_QUESTIONSET_SUCCESS, qAndAToDelete);
 
         Model expectedModel = new ModelManager(model.getMedmoriser(), new UserPrefs());
-        expectedModel.deleteQuestionSet(questionSetToDelete);
+        expectedModel.deleteQuestionSet(qAndAToDelete);
         showNoQuestionSet(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);

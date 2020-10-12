@@ -1,7 +1,7 @@
 package seedu.medmoriser.testutil;
 
 import seedu.medmoriser.model.Medmoriser;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * A utility class to help with building Medmoriser objects.
@@ -23,8 +23,8 @@ public class MedmoriserBuilder {
     /**
      * Adds a new {@code QuestionSet} to the {@code Medmoriser} that we are building.
      */
-    public MedmoriserBuilder withQuestionSet(QuestionSet questionSet) {
-        medmoriser.addQuestionSet(questionSet);
+    public MedmoriserBuilder withQuestionSet(QAndA qAndA) {
+        medmoriser.addQuestionSet(qAndA);
         return this;
     }
 
