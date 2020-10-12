@@ -32,11 +32,11 @@ import static seedu.medmoriser.testutil.TypicalQuestionSet.BOB;
 import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.logic.commands.AddCommand;
-import seedu.medmoriser.model.questionset.Answer;
-import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Phone;
-import seedu.medmoriser.model.questionset.Question;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.Answer;
+import seedu.medmoriser.model.qanda.Email;
+import seedu.medmoriser.model.qanda.Phone;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 import seedu.medmoriser.testutil.QuestionSetBuilder;
 
@@ -45,42 +45,42 @@ public class AddCommandParserTest {
 
     @Test
     public void parse_allFieldsPresent_success() {
-        QuestionSet expectedQuestionSet = new QuestionSetBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        QAndA expectedQAndA = new QuestionSetBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSet));
+                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQAndA));
 
         // multiple questions - last question accepted
         assertParseSuccess(parser, QUESTION_DESC_AMY + QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSet));
+                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQAndA));
 
         // multiple phones - last phone accepted
         assertParseSuccess(parser, QUESTION_DESC_BOB + PHONE_DESC_AMY + PHONE_DESC_BOB + EMAIL_DESC_BOB
-                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSet));
+                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQAndA));
 
         // multiple emails - last email accepted
         assertParseSuccess(parser, QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_AMY + EMAIL_DESC_BOB
-                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSet));
+                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQAndA));
 
         // multiple answers - last answer accepted
         assertParseSuccess(parser, QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ANSWER_DESC_AMY
-                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSet));
+                + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQAndA));
 
         // multiple tags - all accepted
-        QuestionSet expectedQuestionSetMultipleTags = new QuestionSetBuilder(BOB).withTags(VALID_TAG_FRIEND,
+        QAndA expectedQAndAMultipleTags = new QuestionSetBuilder(BOB).withTags(VALID_TAG_FRIEND,
                 VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ANSWER_DESC_BOB
-                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedQuestionSetMultipleTags));
+                + TAG_DESC_HUSBAND + TAG_DESC_FRIEND, new AddCommand(expectedQAndAMultipleTags));
     }
 
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        QuestionSet expectedQuestionSet = new QuestionSetBuilder(AMY).withTags().build();
+        QAndA expectedQAndA = new QuestionSetBuilder(AMY).withTags().build();
         assertParseSuccess(parser, QUESTION_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ANSWER_DESC_AMY,
-                new AddCommand(expectedQuestionSet));
+                new AddCommand(expectedQAndA));
     }
 
     @Test

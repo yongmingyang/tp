@@ -8,7 +8,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.Region;
 import seedu.medmoriser.commons.core.LogsCenter;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * Panel containing the list of questionSet.
@@ -18,30 +18,30 @@ public class QuestionSetListPanel extends UiPart<Region> {
     private final Logger logger = LogsCenter.getLogger(QuestionSetListPanel.class);
 
     @FXML
-    private ListView<QuestionSet> questionSetListView;
+    private ListView<QAndA> questionSetListView;
 
     /**
      * Creates a {@code QuestionSetListPanel} with the given {@code ObservableList}.
      */
-    public QuestionSetListPanel(ObservableList<QuestionSet> questionSetList) {
+    public QuestionSetListPanel(ObservableList<QAndA> qAndAList) {
         super(FXML);
-        questionSetListView.setItems(questionSetList);
+        questionSetListView.setItems(qAndAList);
         questionSetListView.setCellFactory(listView -> new QuestionSetListViewCell());
     }
 
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code QuestionSet} using a {@code QuestionSetCard}.
      */
-    class QuestionSetListViewCell extends ListCell<QuestionSet> {
+    class QuestionSetListViewCell extends ListCell<QAndA> {
         @Override
-        protected void updateItem(QuestionSet questionSet, boolean empty) {
-            super.updateItem(questionSet, empty);
+        protected void updateItem(QAndA qAndA, boolean empty) {
+            super.updateItem(qAndA, empty);
 
-            if (empty || questionSet == null) {
+            if (empty || qAndA == null) {
                 setGraphic(null);
                 setText(null);
             } else {
-                setGraphic(new QuestionSetCard(questionSet, getIndex() + 1).getRoot());
+                setGraphic(new QuestionSetCard(qAndA, getIndex() + 1).getRoot());
             }
         }
     }

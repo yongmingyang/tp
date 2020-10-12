@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.commons.core.GuiSettings;
-import seedu.medmoriser.model.questionset.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.testutil.MedmoriserBuilder;
 
 public class ModelManagerTest {

@@ -1,4 +1,4 @@
-package seedu.medmoriser.model.questionset;
+package seedu.medmoriser.model.qanda;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -15,12 +15,12 @@ import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.testutil.QuestionSetBuilder;
 
-public class QuestionSetTest {
+public class QAndATest {
 
     @Test
     public void asObservableList_modifyList_throwsUnsupportedOperationException() {
-        QuestionSet questionSet = new QuestionSetBuilder().build();
-        assertThrows(UnsupportedOperationException.class, () -> questionSet.getTags().remove(0));
+        QAndA qAndA = new QuestionSetBuilder().build();
+        assertThrows(UnsupportedOperationException.class, () -> qAndA.getTags().remove(0));
     }
 
     @Test
@@ -32,7 +32,7 @@ public class QuestionSetTest {
         assertFalse(ALICE.isSameQuestionSet(null));
 
         // different phone and email -> returns false
-        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withPhone(VALID_PHONE_BOB)
+        QAndA editedAlice = new QuestionSetBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).build();
         assertFalse(ALICE.isSameQuestionSet(editedAlice));
 
@@ -58,7 +58,7 @@ public class QuestionSetTest {
     @Test
     public void equals() {
         // same values -> returns true
-        QuestionSet aliceCopy = new QuestionSetBuilder(ALICE).build();
+        QAndA aliceCopy = new QuestionSetBuilder(ALICE).build();
         assertTrue(ALICE.equals(aliceCopy));
 
         // same object -> returns true
@@ -74,7 +74,7 @@ public class QuestionSetTest {
         assertFalse(ALICE.equals(BOB));
 
         // different question -> returns false
-        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withQuestion(VALID_QUESTION_BOB).build();
+        QAndA editedAlice = new QuestionSetBuilder(ALICE).withQuestion(VALID_QUESTION_BOB).build();
         assertFalse(ALICE.equals(editedAlice));
 
         // different phone -> returns false

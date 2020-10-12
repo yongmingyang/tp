@@ -8,7 +8,7 @@ import seedu.medmoriser.commons.core.Messages;
 import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * Deletes a questionSet identified using it's displayed index from the address book.
@@ -33,15 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<QuestionSet> lastShownList = model.getFilteredQuestionSetList();
+        List<QAndA> lastShownList = model.getFilteredQuestionSetList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX);
         }
 
-        QuestionSet questionSetToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteQuestionSet(questionSetToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_QUESTIONSET_SUCCESS, questionSetToDelete));
+        QAndA qAndAToDelete = lastShownList.get(targetIndex.getZeroBased());
+        model.deleteQuestionSet(qAndAToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_QUESTIONSET_SUCCESS, qAndAToDelete));
     }
 
     @Override

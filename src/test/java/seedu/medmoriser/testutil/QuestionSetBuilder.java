@@ -3,11 +3,11 @@ package seedu.medmoriser.testutil;
 import java.util.HashSet;
 import java.util.Set;
 
-import seedu.medmoriser.model.questionset.Answer;
-import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Phone;
-import seedu.medmoriser.model.questionset.Question;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.Answer;
+import seedu.medmoriser.model.qanda.Email;
+import seedu.medmoriser.model.qanda.Phone;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 import seedu.medmoriser.model.util.SampleDataUtil;
 
@@ -41,12 +41,12 @@ public class QuestionSetBuilder {
     /**
      * Initializes the QuestionSetBuilder with the data of {@code questionSetToCopy}.
      */
-    public QuestionSetBuilder(QuestionSet questionSetToCopy) {
-        question = questionSetToCopy.getQuestion();
-        phone = questionSetToCopy.getPhone();
-        email = questionSetToCopy.getEmail();
-        answer = questionSetToCopy.getAnswer();
-        tags = new HashSet<>(questionSetToCopy.getTags());
+    public QuestionSetBuilder(QAndA qAndAToCopy) {
+        question = qAndAToCopy.getQuestion();
+        phone = qAndAToCopy.getPhone();
+        email = qAndAToCopy.getEmail();
+        answer = qAndAToCopy.getAnswer();
+        tags = new HashSet<>(qAndAToCopy.getTags());
     }
 
     /**
@@ -89,8 +89,8 @@ public class QuestionSetBuilder {
         return this;
     }
 
-    public QuestionSet build() {
-        return new QuestionSet(question, phone, email, answer, tags);
+    public QAndA build() {
+        return new QAndA(question, phone, email, answer, tags);
     }
 
 }

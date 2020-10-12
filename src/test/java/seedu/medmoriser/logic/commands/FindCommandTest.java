@@ -18,7 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.UserPrefs;
-import seedu.medmoriser.model.questionset.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 
 /**
  * Contains integration tests (interaction with the Model) for {@code FindCommand}.

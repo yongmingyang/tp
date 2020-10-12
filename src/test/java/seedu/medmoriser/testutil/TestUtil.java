@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * A utility class for test cases.
@@ -49,7 +49,7 @@ public class TestUtil {
     /**
      * Returns the questionSet in the {@code model}'s questionSet list at {@code index}.
      */
-    public static QuestionSet getQuestionSet(Model model, Index index) {
+    public static QAndA getQuestionSet(Model model, Index index) {
         return model.getFilteredQuestionSetList().get(index.getZeroBased());
     }
 }

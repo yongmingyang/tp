@@ -1,4 +1,4 @@
-package seedu.medmoriser.model.questionset;
+package seedu.medmoriser.model.qanda;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.commons.util.AppUtil.checkArgument;

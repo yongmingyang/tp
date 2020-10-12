@@ -1,4 +1,4 @@
-package seedu.medmoriser.model.questionset;
+package seedu.medmoriser.model.qanda;
 
 import java.util.List;
 import java.util.function.Predicate;
@@ -8,7 +8,7 @@ import seedu.medmoriser.commons.util.StringUtil;
 /**
  * Tests that a {@code QuestionSet}'s {@code Question} matches any of the keywords given.
  */
-public class QuestionContainsKeywordsPredicate implements Predicate<QuestionSet> {
+public class QuestionContainsKeywordsPredicate implements Predicate<QAndA> {
     private final List<String> keywords;
 
     public QuestionContainsKeywordsPredicate(List<String> keywords) {
@@ -16,9 +16,9 @@ public class QuestionContainsKeywordsPredicate implements Predicate<QuestionSet>
     }
 
     @Override
-    public boolean test(QuestionSet questionSet) {
+    public boolean test(QAndA qAndA) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(questionSet.getQuestion().question, keyword));
+                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(qAndA.getQuestion().question, keyword));
     }
 
     @Override

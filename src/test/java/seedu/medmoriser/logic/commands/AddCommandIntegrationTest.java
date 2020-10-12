@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.UserPrefs;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.testutil.QuestionSetBuilder;
 
 /**
@@ -27,19 +27,19 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_newQuestionSet_success() {
-        QuestionSet validQuestionSet = new QuestionSetBuilder().build();
+        QAndA validQAndA = new QuestionSetBuilder().build();
 
         Model expectedModel = new ModelManager(model.getMedmoriser(), new UserPrefs());
-        expectedModel.addQuestionSet(validQuestionSet);
+        expectedModel.addQuestionSet(validQAndA);
 
-        assertCommandSuccess(new AddCommand(validQuestionSet), model,
-                String.format(AddCommand.MESSAGE_SUCCESS, validQuestionSet), expectedModel);
+        assertCommandSuccess(new AddCommand(validQAndA), model,
+                String.format(AddCommand.MESSAGE_SUCCESS, validQAndA), expectedModel);
     }
 
     @Test
     public void execute_duplicateQuestionSet_throwsCommandException() {
-        QuestionSet questionSetInList = model.getMedmoriser().getQuestionSetList().get(0);
-        assertCommandFailure(new AddCommand(questionSetInList), model, AddCommand.MESSAGE_DUPLICATE_QUESTIONSET);
+        QAndA qAndAInList = model.getMedmoriser().getQuestionSetList().get(0);
+        assertCommandFailure(new AddCommand(qAndAInList), model, AddCommand.MESSAGE_DUPLICATE_QUESTIONSET);
     }
 
 }

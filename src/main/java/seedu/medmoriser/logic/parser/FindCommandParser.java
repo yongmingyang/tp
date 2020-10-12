@@ -6,7 +6,7 @@ import java.util.Arrays;
 
 import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.questionset.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object

@@ -17,11 +17,11 @@ import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.commons.util.CollectionUtil;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.questionset.Answer;
-import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Phone;
-import seedu.medmoriser.model.questionset.Question;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.Answer;
+import seedu.medmoriser.model.qanda.Email;
+import seedu.medmoriser.model.qanda.Phone;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -64,39 +64,39 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<QuestionSet> lastShownList = model.getFilteredQuestionSetList();
+        List<QAndA> lastShownList = model.getFilteredQuestionSetList();
 
         if (index.getZeroBased() >= lastShownList.size()) {
             throw new CommandException(Messages.MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX);
         }
 
-        QuestionSet questionSetToEdit = lastShownList.get(index.getZeroBased());
-        QuestionSet editedQuestionSet = createEditedQuestionSet(questionSetToEdit, editQuestionSetDescriptor);
+        QAndA qAndAToEdit = lastShownList.get(index.getZeroBased());
+        QAndA editedQAndA = createEditedQuestionSet(qAndAToEdit, editQuestionSetDescriptor);
 
-        if (!questionSetToEdit.isSameQuestionSet(editedQuestionSet) && model.hasQuestionSet(editedQuestionSet)) {
+        if (!qAndAToEdit.isSameQuestionSet(editedQAndA) && model.hasQuestionSet(editedQAndA)) {
             throw new CommandException(MESSAGE_DUPLICATE_QUESTIONSET);
         }
 
-        model.setQuestionSet(questionSetToEdit, editedQuestionSet);
+        model.setQuestionSet(qAndAToEdit, editedQAndA);
         model.updateFilteredQuestionSetList(PREDICATE_SHOW_ALL_QUESTIONSETS);
-        return new CommandResult(String.format(MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQuestionSet));
+        return new CommandResult(String.format(MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQAndA));
     }
 
     /**
      * Creates and returns a {@code QuestionSet} with the details of {@code questionSetToEdit}
      * edited with {@code editQuestionSetDescriptor}.
      */
-    private static QuestionSet createEditedQuestionSet(QuestionSet questionSetToEdit,
-                                                       EditQuestionSetDescriptor editQuestionSetDescriptor) {
-        assert questionSetToEdit != null;
+    private static QAndA createEditedQuestionSet(QAndA qAndAToEdit,
+                                                 EditQuestionSetDescriptor editQuestionSetDescriptor) {
+        assert qAndAToEdit != null;
 
-        Question updatedQuestion = editQuestionSetDescriptor.getQuestion().orElse(questionSetToEdit.getQuestion());
-        Phone updatedPhone = editQuestionSetDescriptor.getPhone().orElse(questionSetToEdit.getPhone());
-        Email updatedEmail = editQuestionSetDescriptor.getEmail().orElse(questionSetToEdit.getEmail());
-        Answer updatedAnswer = editQuestionSetDescriptor.getAnswer().orElse(questionSetToEdit.getAnswer());
-        Set<Tag> updatedTags = editQuestionSetDescriptor.getTags().orElse(questionSetToEdit.getTags());
+        Question updatedQuestion = editQuestionSetDescriptor.getQuestion().orElse(qAndAToEdit.getQuestion());
+        Phone updatedPhone = editQuestionSetDescriptor.getPhone().orElse(qAndAToEdit.getPhone());
+        Email updatedEmail = editQuestionSetDescriptor.getEmail().orElse(qAndAToEdit.getEmail());
+        Answer updatedAnswer = editQuestionSetDescriptor.getAnswer().orElse(qAndAToEdit.getAnswer());
+        Set<Tag> updatedTags = editQuestionSetDescriptor.getTags().orElse(qAndAToEdit.getTags());
 
-        return new QuestionSet(updatedQuestion, updatedPhone, updatedEmail, updatedAnswer, updatedTags);
+        return new QAndA(updatedQuestion, updatedPhone, updatedEmail, updatedAnswer, updatedTags);
     }
 
     @Override

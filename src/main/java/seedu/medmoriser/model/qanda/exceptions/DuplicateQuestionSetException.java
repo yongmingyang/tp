@@ -1,4 +1,4 @@
-package seedu.medmoriser.model.questionset.exceptions;
+package seedu.medmoriser.model.qanda.exceptions;
 
 /**
  * Signals that the operation will result in duplicate QuestionSets (QuestionSets are considered

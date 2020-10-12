@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 
 import seedu.medmoriser.commons.core.Messages;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.questionset.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 
 /**
  * Finds and lists all questionSets in address book whose name contains any of the argument keywords.

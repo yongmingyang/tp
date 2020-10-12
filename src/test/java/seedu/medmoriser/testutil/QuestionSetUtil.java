@@ -10,7 +10,7 @@ import java.util.Set;
 
 import seedu.medmoriser.logic.commands.AddCommand;
 import seedu.medmoriser.logic.commands.EditCommand;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -21,20 +21,20 @@ public class QuestionSetUtil {
     /**
      * Returns an add command string for adding the {@code questionSet}.
      */
-    public static String getAddCommand(QuestionSet questionSet) {
-        return AddCommand.COMMAND_WORD + " " + getQuestionSetDetails(questionSet);
+    public static String getAddCommand(QAndA qAndA) {
+        return AddCommand.COMMAND_WORD + " " + getQuestionSetDetails(qAndA);
     }
 
     /**
      * Returns the part of command string for the given {@code questionSet}'s details.
      */
-    public static String getQuestionSetDetails(QuestionSet questionSet) {
+    public static String getQuestionSetDetails(QAndA qAndA) {
         StringBuilder sb = new StringBuilder();
-        sb.append(PREFIX_QUESTION + questionSet.getQuestion().question + " ");
-        sb.append(PREFIX_PHONE + questionSet.getPhone().value + " ");
-        sb.append(PREFIX_EMAIL + questionSet.getEmail().value + " ");
-        sb.append(PREFIX_ANSWER + questionSet.getAnswer().value + " ");
-        questionSet.getTags().stream().forEach(
+        sb.append(PREFIX_QUESTION + qAndA.getQuestion().question + " ");
+        sb.append(PREFIX_PHONE + qAndA.getPhone().value + " ");
+        sb.append(PREFIX_EMAIL + qAndA.getEmail().value + " ");
+        sb.append(PREFIX_ANSWER + qAndA.getAnswer().value + " ");
+        qAndA.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
         return sb.toString();

@@ -17,8 +17,8 @@ import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.questionset.QuestionContainsKeywordsPredicate;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
 
 /**
@@ -105,7 +105,7 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         Medmoriser expectedMedmoriser = new Medmoriser(actualModel.getMedmoriser());
-        List<QuestionSet> expectedFilteredList = new ArrayList<>(actualModel.getFilteredQuestionSetList());
+        List<QAndA> expectedFilteredList = new ArrayList<>(actualModel.getFilteredQuestionSetList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedMedmoriser, actualModel.getMedmoriser());
@@ -118,8 +118,8 @@ public class CommandTestUtil {
     public static void showQuestionSetAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredQuestionSetList().size());
 
-        QuestionSet questionSet = model.getFilteredQuestionSetList().get(targetIndex.getZeroBased());
-        final String[] splitName = questionSet.getQuestion().question.split("\\s+");
+        QAndA qAndA = model.getFilteredQuestionSetList().get(targetIndex.getZeroBased());
+        final String[] splitName = qAndA.getQuestion().question.split("\\s+");
         model.updateFilteredQuestionSetList(new QuestionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
         assertEquals(1, model.getFilteredQuestionSetList().size());
