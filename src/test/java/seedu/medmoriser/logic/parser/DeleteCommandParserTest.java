@@ -3,7 +3,7 @@ package seedu.medmoriser.logic.parser;
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QUESTIONSET;
+import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QANDA;
 
 import org.junit.jupiter.api.Test;
 
@@ -22,7 +22,7 @@ public class DeleteCommandParserTest {
 
     @Test
     public void parse_validArgs_returnsDeleteCommand() {
-        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_QUESTIONSET));
+        assertParseSuccess(parser, "1", new DeleteCommand(INDEX_FIRST_QANDA));
     }
 
     @Test

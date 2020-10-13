@@ -12,6 +12,6 @@ public interface ReadOnlyMedmoriser {
      * Returns an unmodifiable view of the questionSets list.
      * This list will not contain any duplicate questionSets.
      */
-    ObservableList<QAndA> getQuestionSetList();
+    ObservableList<QAndA> getQAndAList();
 
 }

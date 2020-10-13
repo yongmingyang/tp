@@ -105,24 +105,24 @@ public class CommandTestUtil {
         // we are unable to defensively copy the model for comparison later, so we can
         // only do so by copying its components.
         Medmoriser expectedMedmoriser = new Medmoriser(actualModel.getMedmoriser());
-        List<QAndA> expectedFilteredList = new ArrayList<>(actualModel.getFilteredQuestionSetList());
+        List<QAndA> expectedFilteredList = new ArrayList<>(actualModel.getFilteredQAndAList());
 
         assertThrows(CommandException.class, expectedMessage, () -> command.execute(actualModel));
         assertEquals(expectedMedmoriser, actualModel.getMedmoriser());
-        assertEquals(expectedFilteredList, actualModel.getFilteredQuestionSetList());
+        assertEquals(expectedFilteredList, actualModel.getFilteredQAndAList());
     }
     /**
      * Updates {@code model}'s filtered list to show only the questionSet at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
     public static void showQuestionSetAtIndex(Model model, Index targetIndex) {
-        assertTrue(targetIndex.getZeroBased() < model.getFilteredQuestionSetList().size());
+        assertTrue(targetIndex.getZeroBased() < model.getFilteredQAndAList().size());
 
-        QAndA qAndA = model.getFilteredQuestionSetList().get(targetIndex.getZeroBased());
+        QAndA qAndA = model.getFilteredQAndAList().get(targetIndex.getZeroBased());
         final String[] splitName = qAndA.getQuestion().question.split("\\s+");
-        model.updateFilteredQuestionSetList(new QuestionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
+        model.updateFilteredQAndAList(new QuestionContainsKeywordsPredicate(Arrays.asList(splitName[0])));
 
-        assertEquals(1, model.getFilteredQuestionSetList().size());
+        assertEquals(1, model.getFilteredQAndAList().size());
     }
 
 }

@@ -7,8 +7,8 @@ public class Messages {
 
     public static final String MESSAGE_UNKNOWN_COMMAND = "Unknown command";
     public static final String MESSAGE_INVALID_COMMAND_FORMAT = "Invalid command format! \n%1$s";
-    public static final String MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX = "The questionSet index "
+    public static final String MESSAGE_INVALID_QANDA_DISPLAYED_INDEX = "The qAndA index "
             + "provided is invalid";
-    public static final String MESSAGE_QUESTIONSETS_LISTED_OVERVIEW = "%1$d questionSets listed!";
+    public static final String MESSAGE_QANDA_LISTED_OVERVIEW = "%1$d qAndA listed!";
 
 }

@@ -61,7 +61,7 @@ public interface Model {
      * Deletes the given questionSet.
      * The questionSet must exist in the address book.
      */
-    void deleteQuestionSet(QAndA target);
+    void deleteQAndA(QAndA target);
 
     /**
      * Adds the given questionSet.
@@ -78,11 +78,11 @@ public interface Model {
     void setQuestionSet(QAndA target, QAndA editedQAndA);
 
     /** Returns an unmodifiable view of the filtered questionSet list */
-    ObservableList<QAndA> getFilteredQuestionSetList();
+    ObservableList<QAndA> getFilteredQAndAList();
 
     /**
      * Updates the filter of the filtered questionSet list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredQuestionSetList(Predicate<QAndA> predicate);
+    void updateFilteredQAndAList(Predicate<QAndA> predicate);
 }
