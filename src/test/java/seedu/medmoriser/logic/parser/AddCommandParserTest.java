@@ -83,6 +83,9 @@ public class AddCommandParserTest {
                 new AddCommand(expectedQAndA));
     }
 
+    /*
+    modified: phone and email no longer required
+     */
     @Test
     public void parse_compulsoryFieldMissing_failure() {
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE);
@@ -92,12 +95,12 @@ public class AddCommandParserTest {
                 expectedMessage);
 
         // missing phone prefix
-        assertParseFailure(parser, QUESTION_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ANSWER_DESC_BOB,
-                expectedMessage);
+        //assertParseFailure(parser, QUESTION_DESC_BOB + VALID_PHONE_BOB + EMAIL_DESC_BOB + ANSWER_DESC_BOB,
+        //        expectedMessage);
 
         // missing email prefix
-        assertParseFailure(parser, QUESTION_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ANSWER_DESC_BOB,
-                expectedMessage);
+        //assertParseFailure(parser, QUESTION_DESC_BOB + PHONE_DESC_BOB + VALID_EMAIL_BOB + ANSWER_DESC_BOB,
+        //        expectedMessage);
 
         // missing answer prefix
         assertParseFailure(parser, QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + VALID_ANSWER_BOB,

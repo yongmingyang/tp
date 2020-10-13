@@ -36,6 +36,15 @@ public class QAndA {
         this.tags.addAll(tags);
     }
 
+    public QAndA(Question question, Answer answer, Set<Tag> tags) {
+        requireAllNonNull(question, answer, tags);
+        this.question = question;
+        this.phone = new Phone("00000000");
+        this.email = new Email("toBeIgnoredNow@email.com");
+        this.answer = answer;
+        this.tags.addAll(tags);
+    }
+
     public Question getQuestion() {
         return question;
     }
