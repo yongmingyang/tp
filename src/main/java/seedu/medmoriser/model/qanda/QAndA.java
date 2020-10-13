@@ -25,6 +25,7 @@ public class QAndA {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
+     * If all fiels are present:
      * Every field must be present and not null.
      */
     public QAndA(Question question, Phone phone, Email email, Answer answer, Set<Tag> tags) {
@@ -36,6 +37,9 @@ public class QAndA {
         this.tags.addAll(tags);
     }
 
+    /**
+     * Phone and email field can be omitted.
+     */
     public QAndA(Question question, Answer answer, Set<Tag> tags) {
         requireAllNonNull(question, answer, tags);
         this.question = question;
