@@ -3,7 +3,7 @@ package seedu.medmoriser.logic.commands;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medmoriser.commons.core.Messages.MESSAGE_QUESTIONSETS_LISTED_OVERVIEW;
+import static seedu.medmoriser.commons.core.Messages.MESSAGE_QANDA_LISTED_OVERVIEW;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.medmoriser.testutil.TypicalQuestionSet.CARL;
 import static seedu.medmoriser.testutil.TypicalQuestionSet.ELLE;
@@ -56,22 +56,22 @@ public class FindCommandTest {
 
     @Test
     public void execute_zeroKeywords_noQuestionSetFound() {
-        String expectedMessage = String.format(MESSAGE_QUESTIONSETS_LISTED_OVERVIEW, 0);
+        String expectedMessage = String.format(MESSAGE_QANDA_LISTED_OVERVIEW, 0);
         QuestionContainsKeywordsPredicate predicate = preparePredicate(" ");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredQuestionSetList(predicate);
+        expectedModel.updateFilteredQAndAList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Collections.emptyList(), model.getFilteredQuestionSetList());
+        assertEquals(Collections.emptyList(), model.getFilteredQAndAList());
     }
 
     @Test
     public void execute_multipleKeywords_multipleQuestionSetsFound() {
-        String expectedMessage = String.format(MESSAGE_QUESTIONSETS_LISTED_OVERVIEW, 3);
+        String expectedMessage = String.format(MESSAGE_QANDA_LISTED_OVERVIEW, 3);
         QuestionContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
         FindCommand command = new FindCommand(predicate);
-        expectedModel.updateFilteredQuestionSetList(predicate);
+        expectedModel.updateFilteredQAndAList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredQuestionSetList());
+        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredQAndAList());
     }
 
     /**

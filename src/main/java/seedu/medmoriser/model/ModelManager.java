@@ -34,7 +34,7 @@ public class ModelManager implements Model {
 
         this.medmoriser = new Medmoriser(medmoriser);
         this.userPrefs = new UserPrefs(userPrefs);
-        filteredQAndAS = new FilteredList<>(this.medmoriser.getQuestionSetList());
+        filteredQAndAS = new FilteredList<>(this.medmoriser.getQAndAList());
     }
 
     public ModelManager() {
@@ -95,14 +95,14 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public void deleteQuestionSet(QAndA target) {
+    public void deleteQAndA(QAndA target) {
         medmoriser.removeQuestionSet(target);
     }
 
     @Override
     public void addQuestionSet(QAndA qAndA) {
         medmoriser.addQuestionSet(qAndA);
-        updateFilteredQuestionSetList(PREDICATE_SHOW_ALL_QUESTIONSETS);
+        updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
     }
 
     @Override
@@ -119,12 +119,12 @@ public class ModelManager implements Model {
      * {@code versionedAddressBook}
      */
     @Override
-    public ObservableList<QAndA> getFilteredQuestionSetList() {
+    public ObservableList<QAndA> getFilteredQAndAList() {
         return filteredQAndAS;
     }
 
     @Override
-    public void updateFilteredQuestionSetList(Predicate<QAndA> predicate) {
+    public void updateFilteredQAndAList(Predicate<QAndA> predicate) {
         requireNonNull(predicate);
         filteredQAndAS.setPredicate(predicate);
     }

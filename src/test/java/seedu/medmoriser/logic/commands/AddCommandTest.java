@@ -135,7 +135,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void deleteQuestionSet(QAndA target) {
+        public void deleteQAndA(QAndA target) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -145,12 +145,12 @@ public class AddCommandTest {
         }
 
         @Override
-        public ObservableList<QAndA> getFilteredQuestionSetList() {
+        public ObservableList<QAndA> getFilteredQAndAList() {
             throw new AssertionError("This method should not be called.");
         }
 
         @Override
-        public void updateFilteredQuestionSetList(Predicate<QAndA> predicate) {
+        public void updateFilteredQAndAList(Predicate<QAndA> predicate) {
             throw new AssertionError("This method should not be called.");
         }
     }

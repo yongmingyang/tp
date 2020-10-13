@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the questionSet in the {@code model}'s questionSet list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredQuestionSetList().size() / 2);
+        return Index.fromOneBased(model.getFilteredQAndAList().size() / 2);
     }
 
     /**
      * Returns the last index of the questionSet in the {@code model}'s questionSet list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredQuestionSetList().size());
+        return Index.fromOneBased(model.getFilteredQAndAList().size());
     }
 
     /**
      * Returns the questionSet in the {@code model}'s questionSet list at {@code index}.
      */
     public static QAndA getQuestionSet(Model model, Index index) {
-        return model.getFilteredQuestionSetList().get(index.getZeroBased());
+        return model.getFilteredQAndAList().get(index.getZeroBased());
     }
 }

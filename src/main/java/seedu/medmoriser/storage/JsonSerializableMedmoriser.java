@@ -37,7 +37,7 @@ class JsonSerializableMedmoriser {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableMedmoriser(ReadOnlyMedmoriser source) {
-        questionSets.addAll(source.getQuestionSetList().stream().map(JsonAdaptedQAndA::new)
+        questionSets.addAll(source.getQAndAList().stream().map(JsonAdaptedQAndA::new)
                 .collect(Collectors.toList()));
     }
 

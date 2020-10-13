@@ -53,7 +53,7 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     public void resetData(ReadOnlyMedmoriser newData) {
         requireNonNull(newData);
 
-        setQuestionSets(newData.getQuestionSetList());
+        setQuestionSets(newData.getQAndAList());
     }
 
     //// questionSet-level operations
@@ -103,7 +103,7 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     }
 
     @Override
-    public ObservableList<QAndA> getQuestionSetList() {
+    public ObservableList<QAndA> getQAndAList() {
         return questionSets.asUnmodifiableObservableList();
     }
 
