@@ -14,7 +14,7 @@ import seedu.medmoriser.logic.parser.MedmoriserParser;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ReadOnlyMedmoriser;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.storage.Storage;
 
 /**
@@ -60,8 +60,8 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<QuestionSet> getFilteredQuestionSetList() {
-        return model.getFilteredQuestionSetList();
+    public ObservableList<QAndA> getFilteredQuestionSetList() {
+        return model.getFilteredQAndAList();
     }
 
     @Override

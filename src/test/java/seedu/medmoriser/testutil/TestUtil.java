@@ -7,7 +7,7 @@ import java.nio.file.Paths;
 
 import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * A utility class for test cases.
@@ -36,20 +36,20 @@ public class TestUtil {
      * Returns the middle index of the questionSet in the {@code model}'s questionSet list.
      */
     public static Index getMidIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredQuestionSetList().size() / 2);
+        return Index.fromOneBased(model.getFilteredQAndAList().size() / 2);
     }
 
     /**
      * Returns the last index of the questionSet in the {@code model}'s questionSet list.
      */
     public static Index getLastIndex(Model model) {
-        return Index.fromOneBased(model.getFilteredQuestionSetList().size());
+        return Index.fromOneBased(model.getFilteredQAndAList().size());
     }
 
     /**
      * Returns the questionSet in the {@code model}'s questionSet list at {@code index}.
      */
-    public static QuestionSet getQuestionSet(Model model, Index index) {
-        return model.getFilteredQuestionSetList().get(index.getZeroBased());
+    public static QAndA getQuestionSet(Model model, Index index) {
+        return model.getFilteredQAndAList().get(index.getZeroBased());
     }
 }

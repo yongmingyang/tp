@@ -7,7 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * An UI component that displays information of a {@code QuestionSet}.
@@ -24,7 +24,7 @@ public class QuestionSetCard extends UiPart<Region> {
      * @see <a href="https://github.com/se-edu/addressbook-level4/issues/336">The issue on AddressBook level 4</a>
      */
 
-    public final QuestionSet questionSet;
+    public final QAndA qAndA;
 
     @FXML
     private HBox cardPane;
@@ -40,13 +40,13 @@ public class QuestionSetCard extends UiPart<Region> {
     /**
      * Creates a {@code QuestionSetCode} with the given {@code QuestionSet} and index to display.
      */
-    public QuestionSetCard(QuestionSet questionSet, int displayedIndex) {
+    public QuestionSetCard(QAndA qAndA, int displayedIndex) {
         super(FXML);
-        this.questionSet = questionSet;
+        this.qAndA = qAndA;
         id.setText(displayedIndex + ". ");
-        question.setText(questionSet.getQuestion().question);
-        answer.setText(questionSet.getAnswer().value);
-        questionSet.getTags().stream()
+        question.setText(qAndA.getQuestion().question);
+        answer.setText(qAndA.getAnswer().value);
+        qAndA.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
     }
@@ -66,6 +66,6 @@ public class QuestionSetCard extends UiPart<Region> {
         // state check
         QuestionSetCard card = (QuestionSetCard) other;
         return id.getText().equals(card.id.getText())
-                && questionSet.equals(card.questionSet);
+                && qAndA.equals(card.qAndA);
     }
 }

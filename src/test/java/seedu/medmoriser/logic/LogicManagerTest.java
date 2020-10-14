@@ -1,7 +1,7 @@
 package seedu.medmoriser.logic;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX;
+import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX;
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.ANSWER_DESC_AMY;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
@@ -26,7 +26,7 @@ import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.ReadOnlyMedmoriser;
 import seedu.medmoriser.model.UserPrefs;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.storage.JsonMedmoriserStorage;
 import seedu.medmoriser.storage.JsonUserPrefsStorage;
 import seedu.medmoriser.storage.StorageManager;
@@ -59,7 +59,7 @@ public class LogicManagerTest {
     @Test
     public void execute_commandExecutionError_throwsCommandException() {
         String deleteCommand = "delete 9";
-        assertCommandException(deleteCommand, MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX);
+        assertCommandException(deleteCommand, MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
     }
 
     @Test
@@ -81,9 +81,9 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + QUESTION_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ANSWER_DESC_AMY;
-        QuestionSet expectedQuestionSet = new QuestionSetBuilder(AMY).withTags().build();
+        QAndA expectedQAndA = new QuestionSetBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addQuestionSet(expectedQuestionSet);
+        expectedModel.addQuestionSet(expectedQAndA);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }

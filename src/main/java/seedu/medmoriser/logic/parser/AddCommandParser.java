@@ -12,11 +12,11 @@ import java.util.stream.Stream;
 
 import seedu.medmoriser.logic.commands.AddCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.questionset.Answer;
-import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Phone;
-import seedu.medmoriser.model.questionset.Question;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.Answer;
+import seedu.medmoriser.model.qanda.Email;
+import seedu.medmoriser.model.qanda.Phone;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
@@ -33,20 +33,31 @@ public class AddCommandParser implements Parser<AddCommand> {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUESTION,
                 PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ANSWER, PREFIX_TAG);
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_PHONE, PREFIX_EMAIL)
+        if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_ANSWER)
                 || !argMultimap.getPreamble().isEmpty()) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
         Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
-        Phone phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-        Email email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+        Phone phone;
+        Email email;
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
+        QAndA qAndA;
 
-        QuestionSet questionSet = new QuestionSet(question, phone, email, answer, tagList);
+        if (!arePrefixesPresent(argMultimap, PREFIX_PHONE, PREFIX_EMAIL)) {
+            qAndA = new QAndA(question, answer, tagList);
+        } else {
+            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
+            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
+            qAndA = new QAndA(question, phone, email, answer, tagList);
+        }
 
-        return new AddCommand(questionSet);
+
+
+
+
+        return new AddCommand(qAndA);
     }
 
     /**

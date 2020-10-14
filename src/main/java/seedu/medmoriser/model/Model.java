@@ -5,14 +5,14 @@ import java.util.function.Predicate;
 
 import javafx.collections.ObservableList;
 import seedu.medmoriser.commons.core.GuiSettings;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * The API of the Model component.
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<QuestionSet> PREDICATE_SHOW_ALL_QUESTIONSETS = unused -> true;
+    Predicate<QAndA> PREDICATE_SHOW_ALL_QUESTIONSETS = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -55,19 +55,19 @@ public interface Model {
     /**
      * Returns true if a questionSet with the same identity as {@code questionSet} exists in the address book.
      */
-    boolean hasQuestionSet(QuestionSet questionSet);
+    boolean hasQuestionSet(QAndA qAndA);
 
     /**
      * Deletes the given questionSet.
      * The questionSet must exist in the address book.
      */
-    void deleteQuestionSet(QuestionSet target);
+    void deleteQAndA(QAndA target);
 
     /**
      * Adds the given questionSet.
      * {@code questionSet} must not already exist in the address book.
      */
-    void addQuestionSet(QuestionSet questionSet);
+    void addQuestionSet(QAndA qAndA);
 
     /**
      * Replaces the given questionSet {@code target} with {@code editedquestionSet}.
@@ -75,14 +75,14 @@ public interface Model {
      * The questionSet identity of {@code editedquestionSet} must not be the same as another
      * existing questionSet in the address book.
      */
-    void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet);
+    void setQuestionSet(QAndA target, QAndA editedQAndA);
 
     /** Returns an unmodifiable view of the filtered questionSet list */
-    ObservableList<QuestionSet> getFilteredQuestionSetList();
+    ObservableList<QAndA> getFilteredQAndAList();
 
     /**
      * Updates the filter of the filtered questionSet list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
-    void updateFilteredQuestionSetList(Predicate<QuestionSet> predicate);
+    void updateFilteredQAndAList(Predicate<QAndA> predicate);
 }

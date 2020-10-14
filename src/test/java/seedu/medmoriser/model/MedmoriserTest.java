@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Test;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.medmoriser.model.questionset.QuestionSet;
-import seedu.medmoriser.model.questionset.exceptions.DuplicateQuestionSetException;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.exceptions.DuplicateQuestionSetException;
 import seedu.medmoriser.testutil.QuestionSetBuilder;
 
 public class MedmoriserTest {
@@ -28,7 +28,7 @@ public class MedmoriserTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), medmoriser.getQuestionSetList());
+        assertEquals(Collections.emptyList(), medmoriser.getQAndAList());
     }
 
     @Test
@@ -46,10 +46,10 @@ public class MedmoriserTest {
     @Test
     public void resetData_withDuplicateQuestionSets_throwsDuplicateQuestionSetException() {
         // Two questionSets with the same identity fields
-        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+        QAndA editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
-        List<QuestionSet> newQuestionSets = Arrays.asList(ALICE, editedAlice);
-        MedmoriserStub newData = new MedmoriserStub(newQuestionSets);
+        List<QAndA> newQAndAs = Arrays.asList(ALICE, editedAlice);
+        MedmoriserStub newData = new MedmoriserStub(newQAndAs);
 
         assertThrows(DuplicateQuestionSetException.class, () -> medmoriser.resetData(newData));
     }
@@ -73,14 +73,14 @@ public class MedmoriserTest {
     @Test
     public void hasQuestionSet_questionSetWithSameIdentityFieldsInMedmoriser_returnsTrue() {
         medmoriser.addQuestionSet(ALICE);
-        QuestionSet editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+        QAndA editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(medmoriser.hasQuestionSet(editedAlice));
     }
 
     @Test
     public void getQuestionSetList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> medmoriser.getQuestionSetList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> medmoriser.getQAndAList().remove(0));
     }
 
 
@@ -88,15 +88,15 @@ public class MedmoriserTest {
      * A stub ReadOnlyAddressBook whose questionSets list can violate interface constraints.
      */
     private static class MedmoriserStub implements ReadOnlyMedmoriser {
-        private final ObservableList<QuestionSet> questionSets = FXCollections.observableArrayList();
+        private final ObservableList<QAndA> qAndAs = FXCollections.observableArrayList();
 
-        MedmoriserStub(Collection<QuestionSet> questionSets) {
-            this.questionSets.setAll(questionSets);
+        MedmoriserStub(Collection<QAndA> qAndAs) {
+            this.qAndAs.setAll(qAndAs);
         }
 
         @Override
-        public ObservableList<QuestionSet> getQuestionSetList() {
-            return questionSets;
+        public ObservableList<QAndA> getQAndAList() {
+            return qAndAs;
         }
     }
 

@@ -15,7 +15,7 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.commons.core.GuiSettings;
-import seedu.medmoriser.model.questionset.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.testutil.MedmoriserBuilder;
 
 public class ModelManagerTest {
@@ -90,7 +90,7 @@ public class ModelManagerTest {
 
     @Test
     public void getFilteredQuestionSetList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredQuestionSetList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredQAndAList().remove(0));
     }
 
     @Test
@@ -118,11 +118,11 @@ public class ModelManagerTest {
 
         // different filteredList -> returns false
         String[] keywords = ALICE.getQuestion().question.split("\\s+");
-        modelManager.updateFilteredQuestionSetList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
+        modelManager.updateFilteredQAndAList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
         assertFalse(modelManager.equals(new ModelManager(medmoriser, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredQuestionSetList(PREDICATE_SHOW_ALL_QUESTIONSETS);
+        modelManager.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

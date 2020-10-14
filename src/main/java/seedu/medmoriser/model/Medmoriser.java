@@ -5,8 +5,8 @@ import static java.util.Objects.requireNonNull;
 import java.util.List;
 
 import javafx.collections.ObservableList;
-import seedu.medmoriser.model.questionset.QuestionSet;
-import seedu.medmoriser.model.questionset.UniqueQuestionSetList;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.UniqueQAndAList;
 
 /**
  * Wraps all data at the address-book level
@@ -14,7 +14,7 @@ import seedu.medmoriser.model.questionset.UniqueQuestionSetList;
  */
 public class Medmoriser implements ReadOnlyMedmoriser {
 
-    private final UniqueQuestionSetList questionSets;
+    private final UniqueQAndAList questionSets;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,7 +24,7 @@ public class Medmoriser implements ReadOnlyMedmoriser {
      *   among constructors.
      */
     {
-        questionSets = new UniqueQuestionSetList();
+        questionSets = new UniqueQAndAList();
     }
 
     public Medmoriser() {}
@@ -43,8 +43,8 @@ public class Medmoriser implements ReadOnlyMedmoriser {
      * Replaces the contents of the questionSet list with {@code questionSets}.
      * {@code questionSets} must not contain duplicate questionSets.
      */
-    public void setQuestionSets(List<QuestionSet> questionSets) {
-        this.questionSets.setQuestionSets(questionSets);
+    public void setQuestionSets(List<QAndA> qAndAs) {
+        this.questionSets.setQuestionSets(qAndAs);
     }
 
     /**
@@ -53,7 +53,7 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     public void resetData(ReadOnlyMedmoriser newData) {
         requireNonNull(newData);
 
-        setQuestionSets(newData.getQuestionSetList());
+        setQuestionSets(newData.getQAndAList());
     }
 
     //// questionSet-level operations
@@ -61,16 +61,16 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     /**
      * Returns true if a questionSet with the same identity as {@code questionSet} exists in the address book.
      */
-    public boolean hasQuestionSet(QuestionSet questionSet) {
-        requireNonNull(questionSet);
-        return questionSets.contains(questionSet);
+    public boolean hasQuestionSet(QAndA qAndA) {
+        requireNonNull(qAndA);
+        return questionSets.contains(qAndA);
     }
 
     /**
      * Adds a questionSet to the address book.
      * The questionSet must not already exist in the address book.
      */
-    public void addQuestionSet(QuestionSet p) {
+    public void addQuestionSet(QAndA p) {
         questionSets.add(p);
     }
 
@@ -80,17 +80,17 @@ public class Medmoriser implements ReadOnlyMedmoriser {
      * The questionSet identity of {@code editedQuestionSet} must
      * not be the same as another existing questionSet in the address book.
      */
-    public void setQuestionSet(QuestionSet target, QuestionSet editedQuestionSet) {
-        requireNonNull(editedQuestionSet);
+    public void setQuestionSet(QAndA target, QAndA editedQAndA) {
+        requireNonNull(editedQAndA);
 
-        questionSets.setQuestionSet(target, editedQuestionSet);
+        questionSets.setQuestionSet(target, editedQAndA);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeQuestionSet(QuestionSet key) {
+    public void removeQuestionSet(QAndA key) {
         questionSets.remove(key);
     }
 
@@ -103,7 +103,7 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     }
 
     @Override
-    public ObservableList<QuestionSet> getQuestionSetList() {
+    public ObservableList<QAndA> getQAndAList() {
         return questionSets.asUnmodifiableObservableList();
     }
 

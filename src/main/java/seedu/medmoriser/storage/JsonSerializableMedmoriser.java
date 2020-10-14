@@ -11,7 +11,7 @@ import com.fasterxml.jackson.annotation.JsonRootName;
 import seedu.medmoriser.commons.exceptions.IllegalValueException;
 import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.ReadOnlyMedmoriser;
-import seedu.medmoriser.model.questionset.QuestionSet;
+import seedu.medmoriser.model.qanda.QAndA;
 
 /**
  * An Immutable Medmoriser that is serializable to JSON format.
@@ -21,13 +21,13 @@ class JsonSerializableMedmoriser {
 
     public static final String MESSAGE_DUPLICATE_QUESTIONSET = "QuestionSets list contains duplicate questionSet(s).";
 
-    private final List<JsonAdaptedQuestionSet> questionSets = new ArrayList<>();
+    private final List<JsonAdaptedQAndA> questionSets = new ArrayList<>();
 
     /**
      * Constructs a {@code JsonSerializableMedmoriser} with the given questionSets.
      */
     @JsonCreator
-    public JsonSerializableMedmoriser(@JsonProperty("questionSets") List<JsonAdaptedQuestionSet> questionSets) {
+    public JsonSerializableMedmoriser(@JsonProperty("questionSets") List<JsonAdaptedQAndA> questionSets) {
         this.questionSets.addAll(questionSets);
     }
 
@@ -37,7 +37,7 @@ class JsonSerializableMedmoriser {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableMedmoriser(ReadOnlyMedmoriser source) {
-        questionSets.addAll(source.getQuestionSetList().stream().map(JsonAdaptedQuestionSet::new)
+        questionSets.addAll(source.getQAndAList().stream().map(JsonAdaptedQAndA::new)
                 .collect(Collectors.toList()));
     }
 
@@ -48,12 +48,12 @@ class JsonSerializableMedmoriser {
      */
     public Medmoriser toModelType() throws IllegalValueException {
         Medmoriser medmoriser = new Medmoriser();
-        for (JsonAdaptedQuestionSet jsonAdaptedQuestionSet : questionSets) {
-            QuestionSet questionSet = jsonAdaptedQuestionSet.toModelType();
-            if (medmoriser.hasQuestionSet(questionSet)) {
+        for (JsonAdaptedQAndA jsonAdaptedQAndA : questionSets) {
+            QAndA qAndA = jsonAdaptedQAndA.toModelType();
+            if (medmoriser.hasQuestionSet(qAndA)) {
                 throw new IllegalValueException(MESSAGE_DUPLICATE_QUESTIONSET);
             }
-            medmoriser.addQuestionSet(questionSet);
+            medmoriser.addQuestionSet(qAndA);
         }
         return medmoriser;
     }

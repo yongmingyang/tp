@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QUESTIONSET;
+import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QANDA;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -14,10 +14,10 @@ import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.questionset.Answer;
-import seedu.medmoriser.model.questionset.Email;
-import seedu.medmoriser.model.questionset.Phone;
-import seedu.medmoriser.model.questionset.Question;
+import seedu.medmoriser.model.qanda.Answer;
+import seedu.medmoriser.model.qanda.Email;
+import seedu.medmoriser.model.qanda.Phone;
+import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 public class ParserUtilTest {
@@ -50,10 +50,10 @@ public class ParserUtilTest {
     @Test
     public void parseIndex_validInput_success() throws Exception {
         // No whitespaces
-        assertEquals(INDEX_FIRST_QUESTIONSET, ParserUtil.parseIndex("1"));
+        assertEquals(INDEX_FIRST_QANDA, ParserUtil.parseIndex("1"));
 
         // Leading and trailing whitespaces
-        assertEquals(INDEX_FIRST_QUESTIONSET, ParserUtil.parseIndex("  1  "));
+        assertEquals(INDEX_FIRST_QANDA, ParserUtil.parseIndex("  1  "));
     }
 
     @Test
