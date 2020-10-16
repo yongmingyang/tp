@@ -28,7 +28,7 @@ public class MedmoriserTest {
 
     @Test
     public void constructor() {
-        assertEquals(Collections.emptyList(), medmoriser.getQuestionSetList());
+        assertEquals(Collections.emptyList(), medmoriser.getQAndAList());
     }
 
     @Test
@@ -80,7 +80,7 @@ public class MedmoriserTest {
 
     @Test
     public void getQuestionSetList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> medmoriser.getQuestionSetList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> medmoriser.getQAndAList().remove(0));
     }
 
 
@@ -95,7 +95,7 @@ public class MedmoriserTest {
         }
 
         @Override
-        public ObservableList<QAndA> getQuestionSetList() {
+        public ObservableList<QAndA> getQAndAList() {
             return qAndAs;
         }
     }

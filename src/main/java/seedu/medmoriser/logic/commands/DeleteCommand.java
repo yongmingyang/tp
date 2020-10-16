@@ -18,11 +18,11 @@ public class DeleteCommand extends Command {
     public static final String COMMAND_WORD = "delete";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD
-            + ": Deletes the questionSet identified by the index number used in the displayed questionSet list.\n"
+            + ": Deletes the QAndA identified by the index number used in the displayed QAndA list.\n"
             + "Parameters: INDEX (must be a positive integer)\n"
             + "Example: " + COMMAND_WORD + " 1";
 
-    public static final String MESSAGE_DELETE_QUESTIONSET_SUCCESS = "Deleted questionSet: %1$s";
+    public static final String MESSAGE_DELETE_QANDA_SUCCESS = "Deleted QAndA: %1$s";
 
     private final Index targetIndex;
 
@@ -33,15 +33,15 @@ public class DeleteCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<QAndA> lastShownList = model.getFilteredQuestionSetList();
+        List<QAndA> lastShownList = model.getFilteredQAndAList();
 
         if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_QUESTIONSET_DISPLAYED_INDEX);
+            throw new CommandException(Messages.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
         }
 
         QAndA qAndAToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteQuestionSet(qAndAToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_QUESTIONSET_SUCCESS, qAndAToDelete));
+        model.deleteQAndA(qAndAToDelete);
+        return new CommandResult(String.format(MESSAGE_DELETE_QANDA_SUCCESS, qAndAToDelete));
     }
 
     @Override

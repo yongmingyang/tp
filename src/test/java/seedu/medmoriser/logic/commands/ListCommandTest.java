@@ -2,7 +2,7 @@ package seedu.medmoriser.logic.commands;
 
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.showQuestionSetAtIndex;
-import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QUESTIONSET;
+import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QANDA;
 import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -33,7 +33,7 @@ public class ListCommandTest {
 
     @Test
     public void execute_listIsFiltered_showsEverything() {
-        showQuestionSetAtIndex(model, INDEX_FIRST_QUESTIONSET);
+        showQuestionSetAtIndex(model, INDEX_FIRST_QANDA);
         assertCommandSuccess(new ListCommand(), model, ListCommand.MESSAGE_SUCCESS, expectedModel);
     }
 }

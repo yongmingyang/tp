@@ -27,8 +27,8 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QUESTIONSET;
-import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_SECOND_QUESTIONSET;
+import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QANDA;
+import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_SECOND_QANDA;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_THIRD_QUESTIONSET;
 
 import org.junit.jupiter.api.Test;
@@ -110,7 +110,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_allFieldsSpecified_success() {
-        Index targetIndex = INDEX_SECOND_QUESTIONSET;
+        Index targetIndex = INDEX_SECOND_QANDA;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ANSWER_DESC_AMY + QUESTION_DESC_AMY + TAG_DESC_FRIEND;
 
@@ -124,7 +124,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_QUESTIONSET;
+        Index targetIndex = INDEX_FIRST_QANDA;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
         EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
@@ -171,7 +171,7 @@ public class EditCommandParserTest {
 
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_QUESTIONSET;
+        Index targetIndex = INDEX_FIRST_QANDA;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ANSWER_DESC_AMY + EMAIL_DESC_AMY
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ANSWER_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ANSWER_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
@@ -187,7 +187,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValueFollowedByValidValue_success() {
         // no other valid values specified
-        Index targetIndex = INDEX_FIRST_QUESTIONSET;
+        Index targetIndex = INDEX_FIRST_QANDA;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
         EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .build();

@@ -38,7 +38,7 @@ public class AddCommandIntegrationTest {
 
     @Test
     public void execute_duplicateQuestionSet_throwsCommandException() {
-        QAndA qAndAInList = model.getMedmoriser().getQuestionSetList().get(0);
+        QAndA qAndAInList = model.getMedmoriser().getQAndAList().get(0);
         assertCommandFailure(new AddCommand(qAndAInList), model, AddCommand.MESSAGE_DUPLICATE_QUESTIONSET);
     }
 
