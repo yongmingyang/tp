@@ -45,7 +45,7 @@ public class QuestionSetCard extends UiPart<Region> {
         this.qAndA = qAndA;
         id.setText(displayedIndex + ". ");
         question.setText(qAndA.getQuestion().question);
-        answer.setText(qAndA.getAnswer().value);
+        answer.setText(qAndA.getAnswer().answer);
         qAndA.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
