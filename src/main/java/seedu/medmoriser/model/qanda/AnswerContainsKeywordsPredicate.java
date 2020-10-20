@@ -1,9 +1,9 @@
 package seedu.medmoriser.model.qanda;
 
-import seedu.medmoriser.commons.util.StringUtil;
-
 import java.util.List;
 import java.util.function.Predicate;
+
+import seedu.medmoriser.commons.util.StringUtil;
 
 public class AnswerContainsKeywordsPredicate implements Predicate<QAndA> {
     private final List<String> keywords;

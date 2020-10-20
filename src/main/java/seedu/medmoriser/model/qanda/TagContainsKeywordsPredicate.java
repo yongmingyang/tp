@@ -1,11 +1,11 @@
 package seedu.medmoriser.model.qanda;
 
-import seedu.medmoriser.commons.util.StringUtil;
-import seedu.medmoriser.model.tag.Tag;
-
 import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
+
+import seedu.medmoriser.commons.util.StringUtil;
+import seedu.medmoriser.model.tag.Tag;
 
 public class TagContainsKeywordsPredicate implements Predicate<QAndA> {
     private final List<String> keywords;
