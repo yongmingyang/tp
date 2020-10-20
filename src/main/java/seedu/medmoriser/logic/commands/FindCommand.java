@@ -7,6 +7,7 @@ import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.qanda.AnswerContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
 import java.util.function.Predicate;
 
@@ -35,7 +36,9 @@ public class FindCommand extends Command {
         this.predicate = predicate;
     }
 
-    @Override
+    public FindCommand(TagContainsKeywordsPredicate predicate) { this.predicate = predicate; }
+
+                       @Override
     public CommandResult execute(Model model) {
         requireNonNull(model);
         model.updateFilteredQAndAList(predicate);

@@ -9,6 +9,7 @@ import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.qanda.AnswerContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new FindCommand object
@@ -29,13 +30,10 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-//        for (int i = 0; i < nameKeywords.length; i++) {
-//            System.out.println(nameKeywords[i]);
-//        }
         String findType = nameKeywords[0];
         switch (findType) {
             case "/t":
-
+                return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
             case "/q":
                 return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
             case "/a":
