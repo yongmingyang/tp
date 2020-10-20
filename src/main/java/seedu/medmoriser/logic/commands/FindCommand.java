@@ -12,9 +12,6 @@ import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
-
-
-
 /**
  * Finds and lists all questionSets in address book whose name contains any of the argument keywords.
  * Keyword matching is case insensitive.
