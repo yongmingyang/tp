@@ -2,10 +2,12 @@ package seedu.medmoriser.logic.parser;
 
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
+import seedu.medmoriser.model.qanda.AnswerContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 
 /**
@@ -27,7 +29,20 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String[] nameKeywords = trimmedArgs.split("\\s+");
 
-        return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+//        for (int i = 0; i < nameKeywords.length; i++) {
+//            System.out.println(nameKeywords[i]);
+//        }
+        String findType = nameKeywords[0];
+        switch (findType) {
+            case "/t":
+
+            case "/q":
+                return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            case "/a":
+                return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            default:
+                return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        }
     }
 
 }
