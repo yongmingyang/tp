@@ -18,9 +18,16 @@ Examples:
 
 ### Listing all Questions & Answers : `list`
 
-Shows the entire database of question and answer pairs in the database.
+Shows the entire database of questions and answers in the database.
 
-Format: `list`
+Format: `list <questions>`
+
+* Just typing list will list all questions and answers
+* Adding the `questions` parameter will only list the questions (i.e. hide the answers) 
+
+Examples:
+* `list` will show all questions and answers
+* `list questions` will only show all questions
 
 ### Deleting a Q&A : `delete`
 

@@ -136,6 +136,14 @@ public class MainWindow extends UiPart<Stage> {
     }
 
     /**
+     * Shows/hides the answers.
+     */
+    @FXML
+    public void handleList(boolean isAnswerDisplayed) {
+        questionSetListPanel.setAnswerView(isAnswerDisplayed);
+    }
+
+    /**
      * Opens the help window or focuses on it if it's already opened.
      */
     @FXML
@@ -175,6 +183,7 @@ public class MainWindow extends UiPart<Stage> {
     private CommandResult executeCommand(String commandText) throws CommandException, ParseException {
         try {
             CommandResult commandResult = logic.execute(commandText);
+            handleList(commandResult.isAnswerDisplayed());
             logger.info("Result: " + commandResult.getFeedbackToUser());
             resultDisplay.setFeedbackToUser(commandResult.getFeedbackToUser());
 
