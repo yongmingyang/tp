@@ -42,6 +42,31 @@ Clears all entries from the question book.
 
 Format: `clear`
 
+### Locating questions/answers/tags by keywords: `find`
+
+Finds Q&A whose questions contain any of the given keywords.
+
+Format: `find q/ {keyword here}`
+
+Finds Q&A whose answers contain any of the given keywords.
+
+Format: `find a/ {keyword here}`
+
+Finds Q&A whose tags contain any of the given keywords.
+
+Format: `find t/ {keyword here}`
+
+Finds Q&A whose questions or answers contain any of the given keywords.
+
+Format: `find {keyword here}`
+
+Examples:
+* `find q/ lung disease` - finds questions with the word lung and/or disease
+* `find a/ vessels` - finds answers with the word vessels
+* `find t/ anatomy` - finds question sets tagged with the word anatomy
+* `find infection` - finds question and/or answers with the word infection
+
+
 ### Exiting the program : `exit`
 
 Exits the program.
@@ -61,10 +86,6 @@ Format: `help`
 ### Editing a Q&A : `edit` [Coming Soon]
 
 Edits an existing Q&A in the Medmoriser application.
-
-### Locating questions by keywords: `find` [Coming Soon]
-
-Finds Q&A whose questions contain any of the given keywords.
 
 ### Archiving data files [Coming Soon]
 
