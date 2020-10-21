@@ -24,7 +24,8 @@ import seedu.medmoriser.logic.commands.HelpCommand;
 import seedu.medmoriser.logic.commands.ListCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.qanda.QAndA;
-import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
+//import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
 import seedu.medmoriser.testutil.QuestionSetBuilder;
 import seedu.medmoriser.testutil.QuestionSetUtil;
@@ -74,7 +75,7 @@ public class MedmoriserParserTest {
         List<String> keywords = Arrays.asList("foo", "bar", "baz");
         FindCommand command = (FindCommand) parser.parseCommand(
                 FindCommand.COMMAND_WORD + " " + keywords.stream().collect(Collectors.joining(" ")));
-        assertEquals(new FindCommand(new QuestionContainsKeywordsPredicate(keywords)), command);
+        assertEquals(new FindCommand(new QAndAContainsKeywordsPredicate(keywords)), command);
     }
 
     @Test

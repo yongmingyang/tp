@@ -33,7 +33,7 @@ public class QuestionSetUtil {
         sb.append(PREFIX_QUESTION + qAndA.getQuestion().question + " ");
         sb.append(PREFIX_PHONE + qAndA.getPhone().value + " ");
         sb.append(PREFIX_EMAIL + qAndA.getEmail().value + " ");
-        sb.append(PREFIX_ANSWER + qAndA.getAnswer().value + " ");
+        sb.append(PREFIX_ANSWER + qAndA.getAnswer().answer + " ");
         qAndA.getTags().stream().forEach(
             s -> sb.append(PREFIX_TAG + s.tagName + " ")
         );
@@ -48,7 +48,7 @@ public class QuestionSetUtil {
         descriptor.getQuestion().ifPresent(name -> sb.append(PREFIX_QUESTION).append(name.question).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));
         descriptor.getEmail().ifPresent(email -> sb.append(PREFIX_EMAIL).append(email.value).append(" "));
-        descriptor.getAnswer().ifPresent(address -> sb.append(PREFIX_ANSWER).append(address.value).append(" "));
+        descriptor.getAnswer().ifPresent(address -> sb.append(PREFIX_ANSWER).append(address.answer).append(" "));
         if (descriptor.getTags().isPresent()) {
             Set<Tag> tags = descriptor.getTags().get();
             if (tags.isEmpty()) {

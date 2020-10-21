@@ -53,7 +53,7 @@ class JsonAdaptedQAndA {
         question = source.getQuestion().question;
         phone = source.getPhone().value;
         email = source.getEmail().value;
-        answer = source.getAnswer().value;
+        answer = source.getAnswer().answer;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
                 .collect(Collectors.toList()));

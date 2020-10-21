@@ -2,9 +2,15 @@ package seedu.medmoriser.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
+import java.util.function.Predicate;
+
 import seedu.medmoriser.commons.core.Messages;
 import seedu.medmoriser.model.Model;
+import seedu.medmoriser.model.qanda.AnswerContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
 /**
  * Finds and lists all questionSets in address book whose name contains any of the argument keywords.
@@ -19,9 +25,21 @@ public class FindCommand extends Command {
             + "Parameters: KEYWORD [MORE_KEYWORDS]...\n"
             + "Example: " + COMMAND_WORD + " alice bob charlie";
 
-    private final QuestionContainsKeywordsPredicate predicate;
+    private final Predicate<QAndA> predicate;
 
     public FindCommand(QuestionContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    public FindCommand(AnswerContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    public FindCommand(TagContainsKeywordsPredicate predicate) {
+        this.predicate = predicate;
+    }
+
+    public FindCommand(QAndAContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
