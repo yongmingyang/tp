@@ -32,11 +32,11 @@ public class FindCommandParser implements Parser<FindCommand> {
 
         String findType = nameKeywords[0];
         switch (findType) {
-        case "/t":
+        case "t/":
             return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        case "/q":
+        case "q/":
             return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        case "/a":
+        case "a/":
             return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         default:
             return new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(nameKeywords)));

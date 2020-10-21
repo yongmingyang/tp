@@ -10,7 +10,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
-//import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 
 public class FindCommandParserTest {
 
