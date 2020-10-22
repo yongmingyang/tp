@@ -1,14 +1,15 @@
 package seedu.medmoriser.model.qanda;
 
-import org.junit.jupiter.api.Test;
-import seedu.medmoriser.testutil.QuestionSetBuilder;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import org.junit.jupiter.api.Test;
+
+import seedu.medmoriser.testutil.QuestionSetBuilder;
 
 public class QAndAContainsKeywordPredicateTest {
     @Test
@@ -40,7 +41,7 @@ public class QAndAContainsKeywordPredicateTest {
     }
 
     @Test
-    public void test_QAndAContainsKeywords_returnsTrue() {
+    public void test_qAndAContainsKeywords_returnsTrue() {
         // One keyword
         QAndAContainsKeywordsPredicate predicate =
                 new QAndAContainsKeywordsPredicate(Collections.singletonList("Alice"));
@@ -60,7 +61,7 @@ public class QAndAContainsKeywordPredicateTest {
     }
 
     @Test
-    public void test_QAndADoesNotContainKeywords_returnsFalse() {
+    public void test_qAndADoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         QAndAContainsKeywordsPredicate predicate = new QAndAContainsKeywordsPredicate(Collections.emptyList());
         assertFalse(predicate.test(new QuestionSetBuilder().withQuestion("Bob").withAnswer("Alice").build()));

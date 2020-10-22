@@ -24,7 +24,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_QAndAContainsKeywordsPredicate_returnsFindCommand() {
+    public void parse_validArgsQAndAContainsKeywordsPredicate_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList("Alice", "Bob")));
@@ -35,7 +35,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_AnswerContainsKeywordsPredicate_returnsFindCommand() {
+    public void parse_validArgsAnswerContainsKeywordsPredicate_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList("a/", "Alice", "Bob")));
@@ -46,7 +46,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_QuestionContainsKeywordsPredicate_returnsFindCommand() {
+    public void parse_validArgsQuestionContainsKeywordsPredicate_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList("q/", "Alice", "Bob")));
@@ -57,7 +57,7 @@ public class FindCommandParserTest {
     }
 
     @Test
-    public void parse_validArgs_TagContainsKeywordsPredicate_returnsFindCommand() {
+    public void parse_validArgsTagContainsKeywordsPredicate_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
                 new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("t/", "Alice", "Bob")));
