@@ -40,7 +40,7 @@ public class QuestionSetCard extends UiPart<Region> {
     /**
      * Creates a {@code QuestionSetCode} with the given {@code QuestionSet} and index to display.
      */
-    public QuestionSetCard(QAndA qAndA, int displayedIndex) {
+    public QuestionSetCard(QAndA qAndA, int displayedIndex, boolean isAnswerDisplayed) {
         super(FXML);
         this.qAndA = qAndA;
         id.setText(displayedIndex + ". ");
@@ -49,6 +49,13 @@ public class QuestionSetCard extends UiPart<Region> {
         qAndA.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
                 .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+        if (!isAnswerDisplayed) {
+            hideAnswer();
+        }
+    }
+
+    public void hideAnswer() {
+        this.answer.setVisible(false);
     }
 
     @Override
