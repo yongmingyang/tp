@@ -6,7 +6,7 @@ import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
 import seedu.medmoriser.model.Model;
 
 /**
- * Lists all QAndAs in the address book to the user.
+ * Lists all QAndAs in Medmoriser to the user.
  */
 public class ListCommand extends Command {
 
@@ -41,5 +41,12 @@ public class ListCommand extends Command {
         } else {
             return new CommandResult(MESSAGE_LIST_QUESTIONS_SUCCESS, false);
         }
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof ListCommand // instanceof handles nulls
+                && isAnswerDisplayed == (((ListCommand) other).isAnswerDisplayed)); // state check
     }
 }
