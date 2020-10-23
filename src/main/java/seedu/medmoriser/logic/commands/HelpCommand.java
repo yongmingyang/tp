@@ -1,5 +1,7 @@
 package seedu.medmoriser.logic.commands;
 
+import seedu.medmoriser.commons.core.Messages;
+import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 
 /**
@@ -15,7 +17,11 @@ public class HelpCommand extends Command {
     public static final String SHOWING_HELP_MESSAGE = "Opened help window.";
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
+
+        if (QuizCommand.isQuiz) {
+            throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
+        }
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);
     }
 }

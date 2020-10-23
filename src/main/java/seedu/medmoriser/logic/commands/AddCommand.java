@@ -7,6 +7,7 @@ import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
+import seedu.medmoriser.commons.core.Messages;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.qanda.QAndA;
@@ -54,8 +55,14 @@ public class AddCommand extends Command {
             throw new CommandException(MESSAGE_DUPLICATE_QUESTIONSET);
         }
 
-        model.addQuestionSet(toAdd);
-        return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        else if (QuizCommand.isQuiz) {
+            throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
+        }
+
+        else {
+            model.addQuestionSet(toAdd);
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+        }
     }
 
     @Override

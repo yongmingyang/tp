@@ -10,6 +10,7 @@ import seedu.medmoriser.logic.commands.*;
 
 
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
+import seedu.medmoriser.model.qanda.Answer;
 
 /**
  * Parses user input.
@@ -53,6 +54,15 @@ public class MedmoriserParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case QuizCommand.COMMAND_WORD:
+            return new QuizCommandParser().parse(arguments);
+
+        case AnswerCommand.COMMAND_WORD:
+            return new AnswerCommandParser().parse(arguments);
+
+        case ExitQuizCommand.COMMAND_WORD:
+            return new ExitQuizCommand();
+
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
 
@@ -61,9 +71,6 @@ public class MedmoriserParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case QuizCommand.COMMAND_WORD:
-            return new QuizCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);

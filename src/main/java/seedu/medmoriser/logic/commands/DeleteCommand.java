@@ -35,13 +35,18 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<QAndA> lastShownList = model.getFilteredQAndAList();
 
-        if (targetIndex.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
-        }
+        if (QuizCommand.isQuiz) {
+            throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
+        } else {
 
-        QAndA qAndAToDelete = lastShownList.get(targetIndex.getZeroBased());
-        model.deleteQAndA(qAndAToDelete);
-        return new CommandResult(String.format(MESSAGE_DELETE_QANDA_SUCCESS, qAndAToDelete));
+            if (targetIndex.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
+            }
+
+            QAndA qAndAToDelete = lastShownList.get(targetIndex.getZeroBased());
+            model.deleteQAndA(qAndAToDelete);
+            return new CommandResult(String.format(MESSAGE_DELETE_QANDA_SUCCESS, qAndAToDelete));
+        }
     }
 
     @Override

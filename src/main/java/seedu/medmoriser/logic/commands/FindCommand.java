@@ -5,6 +5,7 @@ import static java.util.Objects.requireNonNull;
 import java.util.function.Predicate;
 
 import seedu.medmoriser.commons.core.Messages;
+import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.qanda.AnswerContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QAndA;
@@ -44,12 +45,17 @@ public class FindCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredQAndAList(predicate);
-        return new CommandResult(
-                String.format(Messages.MESSAGE_QANDA_LISTED_OVERVIEW,
-                        model.getFilteredQAndAList().size()));
+
+        if (QuizCommand.isQuiz) {
+            throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
+        } else {
+            model.updateFilteredQAndAList(predicate);
+            return new CommandResult(
+                    String.format(Messages.MESSAGE_QANDA_LISTED_OVERVIEW,
+                            model.getFilteredQAndAList().size()));
+        }
     }
 
     @Override
