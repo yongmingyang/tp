@@ -14,6 +14,9 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
 
+/**
+ * Starts a new Quiz for the user.
+ */
 public class QuizCommand extends Command {
 
     public static boolean isQuiz = false;

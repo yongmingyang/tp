@@ -10,8 +10,16 @@ import java.util.Arrays;
 
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
+/**
+ * Parses input arguments and creates a new QuizCommand object
+ */
 public class QuizCommandParser {
 
+    /**
+     * Parses the given {@code String} of arguments in the context of the QuizCommand
+     * and returns a QuizCommand object for execution.
+     * @throws ParseException if the user input does not conform the expected format
+     */
     public QuizCommand parse(String args) throws ParseException {
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {

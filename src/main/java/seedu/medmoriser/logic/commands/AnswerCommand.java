@@ -5,6 +5,9 @@ import seedu.medmoriser.model.Model;
 
 import static java.util.Objects.requireNonNull;
 
+/**
+ * Receives the user's answer for a quiz.
+ */
 public class AnswerCommand extends Command {
 
     public static final String COMMAND_WORD = "answer";
@@ -19,6 +22,10 @@ public class AnswerCommand extends Command {
 
     private final String userAnswer;
 
+    /**
+     * Creates an AnswerCommand
+     * @param answer The user's input answer.
+     */
     public AnswerCommand(String answer){
         this.userAnswer = answer;
     }

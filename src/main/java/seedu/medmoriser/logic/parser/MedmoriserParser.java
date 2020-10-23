@@ -6,11 +6,20 @@ import static seedu.medmoriser.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.medmoriser.logic.commands.*;
-
+import seedu.medmoriser.logic.commands.AddCommand;
+import seedu.medmoriser.logic.commands.AnswerCommand;
+import seedu.medmoriser.logic.commands.ClearCommand;
+import seedu.medmoriser.logic.commands.Command;
+import seedu.medmoriser.logic.commands.DeleteCommand;
+import seedu.medmoriser.logic.commands.EditCommand;
+import seedu.medmoriser.logic.commands.ExitCommand;
+import seedu.medmoriser.logic.commands.ExitQuizCommand;
+import seedu.medmoriser.logic.commands.FindCommand;
+import seedu.medmoriser.logic.commands.HelpCommand;
+import seedu.medmoriser.logic.commands.ListCommand;
+import seedu.medmoriser.logic.commands.QuizCommand;
 
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.qanda.Answer;
 
 /**
  * Parses user input.
