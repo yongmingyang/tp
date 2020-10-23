@@ -18,6 +18,7 @@ import org.junit.jupiter.api.Test;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.UserPrefs;
+import seedu.medmoriser.model.qanda.AnswerContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 
 /**
@@ -34,15 +35,26 @@ public class FindCommandTest {
         QuestionContainsKeywordsPredicate secondPredicate =
                 new QuestionContainsKeywordsPredicate(Collections.singletonList("second"));
 
+        AnswerContainsKeywordsPredicate thirdPredicate =
+                new AnswerContainsKeywordsPredicate(Collections.singletonList("first"));
+        AnswerContainsKeywordsPredicate fourthPredicate =
+                new AnswerContainsKeywordsPredicate(Collections.singletonList("second"));
+
         FindCommand findFirstCommand = new FindCommand(firstPredicate);
         FindCommand findSecondCommand = new FindCommand(secondPredicate);
 
+        FindCommand findThirdCommand = new FindCommand(thirdPredicate);
+        FindCommand findFourthCommand = new FindCommand(fourthPredicate);
+
         // same object -> returns true
         assertTrue(findFirstCommand.equals(findFirstCommand));
+        assertTrue(findThirdCommand.equals(findThirdCommand));
 
         // same values -> returns true
         FindCommand findFirstCommandCopy = new FindCommand(firstPredicate);
         assertTrue(findFirstCommand.equals(findFirstCommandCopy));
+        FindCommand findThirdCommandCopy = new FindCommand(thirdPredicate);
+        assertTrue(findThirdCommand.equals(findThirdCommandCopy));
 
         // different types -> returns false
         assertFalse(findFirstCommand.equals(1));
@@ -52,6 +64,7 @@ public class FindCommandTest {
 
         // different questionSet -> returns false
         assertFalse(findFirstCommand.equals(findSecondCommand));
+        assertFalse(findThirdCommand.equals(findFourthCommand));
     }
 
     @Test

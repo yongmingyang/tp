@@ -9,6 +9,9 @@ import java.util.Objects;
  */
 public class CommandResult {
 
+    /** Answers should be shown. */
+    private static boolean isAnswerDisplayed;
+
     private final String feedbackToUser;
 
     /** Help information should be shown to the user. */
@@ -34,8 +37,21 @@ public class CommandResult {
         this(feedbackToUser, false, false);
     }
 
+    /**
+     * Constructs a {@code CommandResult} with the specified {@code feedbackToUser}
+     * and hides/shows the answers, with other fields set to their default value.
+     */
+    public CommandResult(String feedbackToUser, boolean isAnswerDisplayed) {
+        this(feedbackToUser, false, false);
+        CommandResult.isAnswerDisplayed = isAnswerDisplayed;
+    }
+
     public String getFeedbackToUser() {
         return feedbackToUser;
+    }
+
+    public boolean isAnswerDisplayed() {
+        return isAnswerDisplayed;
     }
 
     public boolean isShowHelp() {
