@@ -24,10 +24,10 @@ public class AnswerCommand extends Command {
 
     /**
      * Creates an AnswerCommand
-     * @param answer The user's input answer.
+     * @param userAnswer The user's input answer.
      */
-    public AnswerCommand(String answer) {
-        this.userAnswer = answer;
+    public AnswerCommand(String userAnswer) {
+        this.userAnswer = userAnswer;
     }
 
     @Override
