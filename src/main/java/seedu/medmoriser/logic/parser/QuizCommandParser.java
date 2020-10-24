@@ -27,14 +27,17 @@ public class QuizCommandParser {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
-
+        String[] nameKeywords = trimmedArgs.split("/");
+        String[] keywordsArray;
         String findType = nameKeywords[0];
+
         switch (findType) {
-        case "t/":
-            return new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        case "q/":
-            return new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        case "t":
+            keywordsArray = nameKeywords[1].split("\\s+");
+            return new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+        case "q":
+            keywordsArray = nameKeywords[1].split("\\s+");
+            return new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         default:
             return new QuizCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
