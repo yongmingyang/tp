@@ -14,24 +14,24 @@ import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
- * A utility class to help with building EditQuestionSetDescriptor objects.
+ * A utility class to help with building EditQAndADescriptor objects.
  */
-public class EditQuestionSetDescriptorBuilder {
+public class EditQAndADescriptorBuilder {
 
     private EditQAndADescriptor descriptor;
 
-    public EditQuestionSetDescriptorBuilder() {
+    public EditQAndADescriptorBuilder() {
         descriptor = new EditQAndADescriptor();
     }
 
-    public EditQuestionSetDescriptorBuilder(EditCommand.EditQAndADescriptor descriptor) {
+    public EditQAndADescriptorBuilder(EditCommand.EditQAndADescriptor descriptor) {
         this.descriptor = new EditQAndADescriptor(descriptor);
     }
 
     /**
-     * Returns an {@code EditQuestionSetDescriptor} with fields containing {@code questionSet}'s details
+     * Returns an {@code EditQAndADescriptor} with fields containing {@code qAndA}'s details
      */
-    public EditQuestionSetDescriptorBuilder(QAndA qAndA) {
+    public EditQAndADescriptorBuilder(QAndA qAndA) {
         descriptor = new EditCommand.EditQAndADescriptor();
         descriptor.setQuestion(qAndA.getQuestion());
         descriptor.setPhone(qAndA.getPhone());
@@ -41,42 +41,42 @@ public class EditQuestionSetDescriptorBuilder {
     }
 
     /**
-     * Sets the {@code Name} of the {@code EditQuestionSetDescriptor} that we are building.
+     * Sets the {@code Name} of the {@code EditQAndADescriptor} that we are building.
      */
-    public EditQuestionSetDescriptorBuilder withQuestion(String question) {
+    public EditQAndADescriptorBuilder withQuestion(String question) {
         descriptor.setQuestion(new Question(question));
         return this;
     }
 
     /**
-     * Sets the {@code Phone} of the {@code EditQuestionSetDescriptor} that we are building.
+     * Sets the {@code Phone} of the {@code EditQAndADescriptor} that we are building.
      */
-    public EditQuestionSetDescriptorBuilder withPhone(String phone) {
+    public EditQAndADescriptorBuilder withPhone(String phone) {
         descriptor.setPhone(new Phone(phone));
         return this;
     }
 
     /**
-     * Sets the {@code Email} of the {@code EditQuestionSetDescriptor} that we are building.
+     * Sets the {@code Email} of the {@code EditQAndADescriptor} that we are building.
      */
-    public EditQuestionSetDescriptorBuilder withEmail(String email) {
+    public EditQAndADescriptorBuilder withEmail(String email) {
         descriptor.setEmail(new Email(email));
         return this;
     }
 
     /**
-     * Sets the {@code answer} of the {@code EditQuestionSetDescriptor} that we are building.
+     * Sets the {@code answer} of the {@code EditQAndADescriptor} that we are building.
      */
-    public EditQuestionSetDescriptorBuilder withAnswer(String answer) {
+    public EditQAndADescriptorBuilder withAnswer(String answer) {
         descriptor.setAnswer(new Answer(answer));
         return this;
     }
 
     /**
-     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditQuestionSetDescriptor}
+     * Parses the {@code tags} into a {@code Set<Tag>} and set it to the {@code EditQAndADescriptor}
      * that we are building.
      */
-    public EditQuestionSetDescriptorBuilder withTags(String... tags) {
+    public EditQAndADescriptorBuilder withTags(String... tags) {
         Set<Tag> tagSet = Stream.of(tags).map(Tag::new).collect(Collectors.toSet());
         descriptor.setTags(tagSet);
         return this;

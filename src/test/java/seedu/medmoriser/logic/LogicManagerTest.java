@@ -30,7 +30,7 @@ import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.storage.JsonMedmoriserStorage;
 import seedu.medmoriser.storage.JsonUserPrefsStorage;
 import seedu.medmoriser.storage.StorageManager;
-import seedu.medmoriser.testutil.QuestionSetBuilder;
+import seedu.medmoriser.testutil.QAndABuilder;
 
 public class LogicManagerTest {
     private static final IOException DUMMY_IO_EXCEPTION = new IOException("dummy exception");
@@ -81,7 +81,7 @@ public class LogicManagerTest {
         // Execute add command
         String addCommand = AddCommand.COMMAND_WORD + QUESTION_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY
                 + ANSWER_DESC_AMY;
-        QAndA expectedQAndA = new QuestionSetBuilder(AMY).withTags().build();
+        QAndA expectedQAndA = new QAndABuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
         expectedModel.addQAndA(expectedQAndA);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
@@ -89,7 +89,7 @@ public class LogicManagerTest {
     }
 
     @Test
-    public void getFilteredQuestionSetList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredQAndAList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredQAndAList().remove(0));
     }
 

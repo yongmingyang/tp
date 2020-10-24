@@ -19,7 +19,7 @@ import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
-import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
+import seedu.medmoriser.testutil.EditQAndADescriptorBuilder;
 
 /**
  * Contains helper methods for testing commands.
@@ -61,10 +61,10 @@ public class CommandTestUtil {
     public static final EditCommand.EditQAndADescriptor DESC_BOB;
 
     static {
-        DESC_AMY = new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_AMY)
+        DESC_AMY = new EditQAndADescriptorBuilder().withQuestion(VALID_QUESTION_AMY)
                 .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAnswer(VALID_ANSWER_AMY)
                 .withTags(VALID_TAG_FRIEND).build();
-        DESC_BOB = new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_BOB)
+        DESC_BOB = new EditQAndADescriptorBuilder().withQuestion(VALID_QUESTION_BOB)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAnswer(VALID_ANSWER_BOB)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
     }
@@ -99,7 +99,7 @@ public class CommandTestUtil {
      * Executes the given {@code command}, confirms that <br>
      * - a {@code CommandException} is thrown <br>
      * - the CommandException message matches {@code expectedMessage} <br>
-     * - the address book, filtered questionSet list and selected questionSet in {@code actualModel} remain unchanged
+     * - the address book, filtered qAndA list and selected qAndA in {@code actualModel} remain unchanged
      */
     public static void assertCommandFailure(Command command, Model actualModel, String expectedMessage) {
         // we are unable to defensively copy the model for comparison later, so we can
@@ -112,10 +112,10 @@ public class CommandTestUtil {
         assertEquals(expectedFilteredList, actualModel.getFilteredQAndAList());
     }
     /**
-     * Updates {@code model}'s filtered list to show only the questionSet at the given {@code targetIndex} in the
+     * Updates {@code model}'s filtered list to show only the qAndA at the given {@code targetIndex} in the
      * {@code model}'s address book.
      */
-    public static void showQuestionSetAtIndex(Model model, Index targetIndex) {
+    public static void showQAndAAtIndex(Model model, Index targetIndex) {
         assertTrue(targetIndex.getZeroBased() < model.getFilteredQAndAList().size());
 
         QAndA qAndA = model.getFilteredQAndAList().get(targetIndex.getZeroBased());

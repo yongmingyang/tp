@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasQuestionSet_nullQuestionSet_throwsNullPointerException() {
+    public void hasQAndA_nullQAndA_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> modelManager.hasQAndA(null));
     }
 
     @Test
-    public void hasQuestionSet_questionSetNotInMedmoriser_returnsFalse() {
+    public void hasQAndA_qAndANotInMedmoriser_returnsFalse() {
         assertFalse(modelManager.hasQAndA(ALICE));
     }
 
     @Test
-    public void hasQuestionSet_questionSetInMedmoriser_returnsTrue() {
+    public void hasQAndA_qAndAInMedmoriser_returnsTrue() {
         modelManager.addQAndA(ALICE);
         assertTrue(modelManager.hasQAndA(ALICE));
     }
 
     @Test
-    public void getFilteredQuestionSetList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredQAndAList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredQAndAList().remove(0));
     }
 
     @Test
     public void equals() {
-        Medmoriser medmoriser = new MedmoriserBuilder().withQuestionSet(ALICE).withQuestionSet(BENSON).build();
+        Medmoriser medmoriser = new MedmoriserBuilder().withQAndA(ALICE).withQAndA(BENSON).build();
         Medmoriser differentMedmoriser = new Medmoriser();
         UserPrefs userPrefs = new UserPrefs();
 

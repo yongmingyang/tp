@@ -33,23 +33,23 @@ public class TestUtil {
     }
 
     /**
-     * Returns the middle index of the questionSet in the {@code model}'s questionSet list.
+     * Returns the middle index of the qAndA in the {@code model}'s qAndA list.
      */
     public static Index getMidIndex(Model model) {
         return Index.fromOneBased(model.getFilteredQAndAList().size() / 2);
     }
 
     /**
-     * Returns the last index of the questionSet in the {@code model}'s questionSet list.
+     * Returns the last index of the qAndA in the {@code model}'s qAndA list.
      */
     public static Index getLastIndex(Model model) {
         return Index.fromOneBased(model.getFilteredQAndAList().size());
     }
 
     /**
-     * Returns the questionSet in the {@code model}'s questionSet list at {@code index}.
+     * Returns the qAndA in the {@code model}'s qAndA list at {@code index}.
      */
-    public static QAndA getQuestionSet(Model model, Index index) {
+    public static QAndA getQAndA(Model model, Index index) {
         return model.getFilteredQAndAList().get(index.getZeroBased());
     }
 }

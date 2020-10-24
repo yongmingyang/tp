@@ -51,14 +51,14 @@ public class JsonMedmoriserStorageTest {
     }
 
     @Test
-    public void readMedmoriser_invalidQuestionSetMedmoriser_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMedmoriser("invalidQuestionSetMedmoriser.json"));
+    public void readMedmoriser_invalidQAndAMedmoriser_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readMedmoriser("invalidQAndAMedmoriser.json"));
     }
 
     @Test
-    public void readMedmoriser_invalidAndValidQuestionSetMedmoriser_throwDataConversionException() {
+    public void readMedmoriser_invalidAndValidQAndAMedmoriser_throwDataConversionException() {
         assertThrows(DataConversionException.class, () ->
-            readMedmoriser("invalidAndValidQuestionSetMedmoriser.json"));
+            readMedmoriser("invalidAndValidQAndAMedmoriser.json"));
     }
 
     @Test

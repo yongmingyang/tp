@@ -14,21 +14,21 @@ import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
- * A utility class for QuestionSet.
+ * A utility class for QAndA.
  */
-public class QuestionSetUtil {
+public class QAndAUtil {
 
     /**
-     * Returns an add command string for adding the {@code questionSet}.
+     * Returns an add command string for adding the {@code qAndA}.
      */
     public static String getAddCommand(QAndA qAndA) {
-        return AddCommand.COMMAND_WORD + " " + getQuestionSetDetails(qAndA);
+        return AddCommand.COMMAND_WORD + " " + getQAndADetails(qAndA);
     }
 
     /**
-     * Returns the part of command string for the given {@code questionSet}'s details.
+     * Returns the part of command string for the given {@code qAndA}'s details.
      */
-    public static String getQuestionSetDetails(QAndA qAndA) {
+    public static String getQAndADetails(QAndA qAndA) {
         StringBuilder sb = new StringBuilder();
         sb.append(PREFIX_QUESTION + qAndA.getQuestion().question + " ");
         sb.append(PREFIX_PHONE + qAndA.getPhone().value + " ");
@@ -41,9 +41,9 @@ public class QuestionSetUtil {
     }
 
     /**
-     * Returns the part of command string for the given {@code EditQuestionSetDescriptor}'s details.
+     * Returns the part of command string for the given {@code EditQAndADescriptor}'s details.
      */
-    public static String getEditQuestionSetDescriptorDetails(EditCommand.EditQAndADescriptor descriptor) {
+    public static String getEditQAndADescriptorDetails(EditCommand.EditQAndADescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getQuestion().ifPresent(name -> sb.append(PREFIX_QUESTION).append(name.question).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

@@ -20,7 +20,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.exceptions.DuplicateQAndAException;
-import seedu.medmoriser.testutil.QuestionSetBuilder;
+import seedu.medmoriser.testutil.QAndABuilder;
 
 public class MedmoriserTest {
 
@@ -44,9 +44,9 @@ public class MedmoriserTest {
     }
 
     @Test
-    public void resetData_withDuplicateQuestionSets_throwsDuplicateQuestionSetException() {
-        // Two questionSets with the same identity fields
-        QAndA editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateQAndAs_throwsDuplicateQAndAException() {
+        // Two qAndAs with the same identity fields
+        QAndA editedAlice = new QAndABuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         List<QAndA> newQAndAs = Arrays.asList(ALICE, editedAlice);
         MedmoriserStub newData = new MedmoriserStub(newQAndAs);
@@ -55,37 +55,37 @@ public class MedmoriserTest {
     }
 
     @Test
-    public void hasQuestionSet_nullQuestionSet_throwsNullPointerException() {
+    public void hasQAndA_nullQAndA_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> medmoriser.hasQAndA(null));
     }
 
     @Test
-    public void hasQuestionSet_questionSetNotInMedmoriser_returnsFalse() {
+    public void hasQAndA_qAndANotInMedmoriser_returnsFalse() {
         assertFalse(medmoriser.hasQAndA(ALICE));
     }
 
     @Test
-    public void hasQuestionSet_questionSetInMedmoriser_returnsTrue() {
+    public void hasQAndA_qAndAInMedmoriser_returnsTrue() {
         medmoriser.addQAndA(ALICE);
         assertTrue(medmoriser.hasQAndA(ALICE));
     }
 
     @Test
-    public void hasQuestionSet_questionSetWithSameIdentityFieldsInMedmoriser_returnsTrue() {
+    public void hasQAndA_qAndAWithSameIdentityFieldsInMedmoriser_returnsTrue() {
         medmoriser.addQAndA(ALICE);
-        QAndA editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+        QAndA editedAlice = new QAndABuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
                 .build();
         assertTrue(medmoriser.hasQAndA(editedAlice));
     }
 
     @Test
-    public void getQuestionSetList_modifyList_throwsUnsupportedOperationException() {
+    public void getQAndAList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> medmoriser.getQAndAList().remove(0));
     }
 
 
     /**
-     * A stub ReadOnlyAddressBook whose questionSets list can violate interface constraints.
+     * A stub ReadOnlyAddressBook whose qAndAs list can violate interface constraints.
      */
     private static class MedmoriserStub implements ReadOnlyMedmoriser {
         private final ObservableList<QAndA> qAndAs = FXCollections.observableArrayList();

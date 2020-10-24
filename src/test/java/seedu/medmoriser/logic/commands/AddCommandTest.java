@@ -21,31 +21,31 @@ import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ReadOnlyMedmoriser;
 import seedu.medmoriser.model.ReadOnlyUserPrefs;
 import seedu.medmoriser.model.qanda.QAndA;
-import seedu.medmoriser.testutil.QuestionSetBuilder;
+import seedu.medmoriser.testutil.QAndABuilder;
 
 public class AddCommandTest {
 
     @Test
-    public void constructor_nullQuestionSet_throwsNullPointerException() {
+    public void constructor_nullQAndA_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> new AddCommand(null));
     }
 
     @Test
-    public void execute_questionSetAcceptedByModel_addSuccessful() throws Exception {
-        ModelStubAcceptingQuestionSetAdded modelStub = new ModelStubAcceptingQuestionSetAdded();
-        QAndA validQAndA = new QuestionSetBuilder().build();
+    public void execute_qAndAAcceptedByModel_addSuccessful() throws Exception {
+        ModelStubAcceptingQAndAAdded modelStub = new ModelStubAcceptingQAndAAdded();
+        QAndA validQAndA = new QAndABuilder().build();
 
         CommandResult commandResult = new AddCommand(validQAndA).execute(modelStub);
 
         assertEquals(String.format(AddCommand.MESSAGE_SUCCESS, validQAndA), commandResult.getFeedbackToUser());
-        assertEquals(Arrays.asList(validQAndA), modelStub.questionSetsAdded);
+        assertEquals(Arrays.asList(validQAndA), modelStub.qAndAsAdded);
     }
 
     @Test
-    public void execute_duplicateQuestionSet_throwsCommandException() {
-        QAndA validQAndA = new QuestionSetBuilder().build();
+    public void execute_duplicateQAndA_throwsCommandException() {
+        QAndA validQAndA = new QAndABuilder().build();
         AddCommand addCommand = new AddCommand(validQAndA);
-        ModelStub modelStub = new ModelStubWithQuestionSet(validQAndA);
+        ModelStub modelStub = new ModelStubWithQAndA(validQAndA);
 
         assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_QANDA, () ->
             addCommand.execute(modelStub)
@@ -54,8 +54,8 @@ public class AddCommandTest {
 
     @Test
     public void equals() {
-        QAndA alice = new QuestionSetBuilder().withQuestion("Alice").build();
-        QAndA bob = new QuestionSetBuilder().withQuestion("Bob").build();
+        QAndA alice = new QAndABuilder().withQuestion("Alice").build();
+        QAndA bob = new QAndABuilder().withQuestion("Bob").build();
         AddCommand addAliceCommand = new AddCommand(alice);
         AddCommand addBobCommand = new AddCommand(bob);
 
@@ -72,7 +72,7 @@ public class AddCommandTest {
         // null -> returns false
         assertFalse(addAliceCommand.equals(null));
 
-        // different questionSet -> returns false
+        // different qAndA -> returns false
         assertFalse(addAliceCommand.equals(addBobCommand));
     }
 
@@ -156,12 +156,12 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that contains a single questionSet.
+     * A Model stub that contains a single qAndA.
      */
-    private class ModelStubWithQuestionSet extends ModelStub {
+    private class ModelStubWithQAndA extends ModelStub {
         private final QAndA qAndA;
 
-        ModelStubWithQuestionSet(QAndA qAndA) {
+        ModelStubWithQAndA(QAndA qAndA) {
             requireNonNull(qAndA);
             this.qAndA = qAndA;
         }
@@ -174,21 +174,21 @@ public class AddCommandTest {
     }
 
     /**
-     * A Model stub that always accept the questionSet being added.
+     * A Model stub that always accept the qAndA being added.
      */
-    private class ModelStubAcceptingQuestionSetAdded extends ModelStub {
-        final ArrayList<QAndA> questionSetsAdded = new ArrayList<>();
+    private class ModelStubAcceptingQAndAAdded extends ModelStub {
+        final ArrayList<QAndA> qAndAsAdded = new ArrayList<>();
 
         @Override
         public boolean hasQAndA(QAndA qAndA) {
             requireNonNull(qAndA);
-            return questionSetsAdded.stream().anyMatch(qAndA::isSameQAndA);
+            return qAndAsAdded.stream().anyMatch(qAndA::isSameQAndA);
         }
 
         @Override
         public void addQAndA(QAndA qAndA) {
             requireNonNull(qAndA);
-            questionSetsAdded.add(qAndA);
+            qAndAsAdded.add(qAndA);
         }
 
         @Override
