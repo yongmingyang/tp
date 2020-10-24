@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.showQuestionSetAtIndex;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QANDA;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
+import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

@@ -12,13 +12,13 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSucce
 import static seedu.medmoriser.logic.commands.CommandTestUtil.showQuestionSetAtIndex;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QANDA;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_SECOND_QANDA;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
+import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
 
 import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.commons.core.Messages;
 import seedu.medmoriser.commons.core.index.Index;
-import seedu.medmoriser.logic.commands.EditCommand.EditQuestionSetDescriptor;
+import seedu.medmoriser.logic.commands.EditCommand.EditQAndADescriptor;
 import seedu.medmoriser.model.Medmoriser;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
@@ -37,13 +37,13 @@ public class EditCommandTest {
     @Test
     public void execute_allFieldsSpecifiedUnfilteredList_success() {
         QAndA editedQAndA = new QuestionSetBuilder().build();
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder(editedQAndA).build();
+        EditCommand.EditQAndADescriptor descriptor = new EditQuestionSetDescriptorBuilder(editedQAndA).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_QANDA, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQAndA);
 
         Model expectedModel = new ModelManager(new Medmoriser(model.getMedmoriser()), new UserPrefs());
-        expectedModel.setQuestionSet(model.getFilteredQAndAList().get(0), editedQAndA);
+        expectedModel.setQAndA(model.getFilteredQAndAList().get(0), editedQAndA);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -57,7 +57,7 @@ public class EditCommandTest {
         QAndA editedQAndA = questionSetInList.withQuestion(VALID_QUESTION_BOB).withPhone(VALID_PHONE_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
 
-        EditCommand.EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder()
+        EditCommand.EditQAndADescriptor descriptor = new EditQuestionSetDescriptorBuilder()
                 .withQuestion(VALID_QUESTION_BOB)
                 .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
         EditCommand editCommand = new EditCommand(indexLastQuestionSet, descriptor);
@@ -65,14 +65,14 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQAndA);
 
         Model expectedModel = new ModelManager(new Medmoriser(model.getMedmoriser()), new UserPrefs());
-        expectedModel.setQuestionSet(lastQAndA, editedQAndA);
+        expectedModel.setQAndA(lastQAndA, editedQAndA);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_noFieldSpecifiedUnfilteredList_success() {
-        EditCommand editCommand = new EditCommand(INDEX_FIRST_QANDA, new EditQuestionSetDescriptor());
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_QANDA, new EditCommand.EditQAndADescriptor());
         QAndA editedQAndA = model.getFilteredQAndAList().get(INDEX_FIRST_QANDA.getZeroBased());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQAndA);
@@ -96,7 +96,7 @@ public class EditCommandTest {
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQAndA);
 
         Model expectedModel = new ModelManager(new Medmoriser(model.getMedmoriser()), new UserPrefs());
-        expectedModel.setQuestionSet(model.getFilteredQAndAList().get(0), editedQAndA);
+        expectedModel.setQAndA(model.getFilteredQAndAList().get(0), editedQAndA);
 
         assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
     }
@@ -104,10 +104,10 @@ public class EditCommandTest {
     @Test
     public void execute_duplicateQuestionSetUnfilteredList_failure() {
         QAndA firstQAndA = model.getFilteredQAndAList().get(INDEX_FIRST_QANDA.getZeroBased());
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder(firstQAndA).build();
+        EditQAndADescriptor descriptor = new EditQuestionSetDescriptorBuilder(firstQAndA).build();
         EditCommand editCommand = new EditCommand(INDEX_SECOND_QANDA, descriptor);
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_QUESTIONSET);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_QANDA);
     }
 
     @Test
@@ -120,13 +120,13 @@ public class EditCommandTest {
         EditCommand editCommand = new EditCommand(INDEX_FIRST_QANDA,
                 new EditQuestionSetDescriptorBuilder(qAndAInList).build());
 
-        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_QUESTIONSET);
+        assertCommandFailure(editCommand, model, EditCommand.MESSAGE_DUPLICATE_QANDA);
     }
 
     @Test
     public void execute_invalidQuestionSetIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredQAndAList().size() + 1);
-        EditQuestionSetDescriptor descriptor =
+        EditQAndADescriptor descriptor =
                 new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_BOB).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
@@ -155,7 +155,7 @@ public class EditCommandTest {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_QANDA, DESC_AMY);
 
         // same values -> returns true
-        EditQuestionSetDescriptor copyDescriptor = new EditQuestionSetDescriptor(DESC_AMY);
+        EditCommand.EditQAndADescriptor copyDescriptor = new EditQAndADescriptor(DESC_AMY);
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_QANDA, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 

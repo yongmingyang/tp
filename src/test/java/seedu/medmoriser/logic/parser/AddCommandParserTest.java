@@ -26,8 +26,8 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.AMY;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.BOB;
+import static seedu.medmoriser.testutil.TypicalQAndA.AMY;
+import static seedu.medmoriser.testutil.TypicalQAndA.BOB;
 
 import org.junit.jupiter.api.Test;
 

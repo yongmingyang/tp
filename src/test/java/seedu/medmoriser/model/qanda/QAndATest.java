@@ -8,8 +8,8 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.BOB;
+import static seedu.medmoriser.testutil.TypicalQAndA.ALICE;
+import static seedu.medmoriser.testutil.TypicalQAndA.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,33 +26,33 @@ public class QAndATest {
     @Test
     public void isSameQuestionSet() {
         // same object -> returns true
-        assertTrue(ALICE.isSameQuestionSet(ALICE));
+        assertTrue(ALICE.isSameQAndA(ALICE));
 
         // null -> returns false
-        assertFalse(ALICE.isSameQuestionSet(null));
+        assertFalse(ALICE.isSameQAndA(null));
 
         // different phone and email -> returns false
         QAndA editedAlice = new QuestionSetBuilder(ALICE).withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.isSameQuestionSet(editedAlice));
+        assertFalse(ALICE.isSameQAndA(editedAlice));
 
         // different name -> returns false
         editedAlice = new QuestionSetBuilder(ALICE).withQuestion(VALID_QUESTION_BOB).build();
-        assertFalse(ALICE.isSameQuestionSet(editedAlice));
+        assertFalse(ALICE.isSameQAndA(editedAlice));
 
         // same name, same phone, different attributes -> returns true
         editedAlice = new QuestionSetBuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAnswer(VALID_ANSWER_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameQuestionSet(editedAlice));
+        assertTrue(ALICE.isSameQAndA(editedAlice));
 
         // same name, same email, different attributes -> returns true
         editedAlice = new QuestionSetBuilder(ALICE).withPhone(VALID_PHONE_BOB).withAnswer(VALID_ANSWER_BOB)
                 .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameQuestionSet(editedAlice));
+        assertTrue(ALICE.isSameQAndA(editedAlice));
 
         // same name, same phone, same email, different attributes -> returns true
         editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameQuestionSet(editedAlice));
+        assertTrue(ALICE.isSameQAndA(editedAlice));
     }
 
     @Test

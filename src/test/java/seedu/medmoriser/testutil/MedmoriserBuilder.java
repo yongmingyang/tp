@@ -24,7 +24,7 @@ public class MedmoriserBuilder {
      * Adds a new {@code QuestionSet} to the {@code Medmoriser} that we are building.
      */
     public MedmoriserBuilder withQuestionSet(QAndA qAndA) {
-        medmoriser.addQuestionSet(qAndA);
+        medmoriser.addQAndA(qAndA);
         return this;
     }
 

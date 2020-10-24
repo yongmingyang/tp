@@ -19,16 +19,16 @@ import seedu.medmoriser.model.qanda.QAndA;
 @JsonRootName(value = "medmoriser")
 class JsonSerializableMedmoriser {
 
-    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "QuestionSets list contains duplicate questionSet(s).";
+    public static final String MESSAGE_DUPLICATE_QANDA = "QAndAs list contains duplicate qAndA(s).";
 
-    private final List<JsonAdaptedQAndA> questionSets = new ArrayList<>();
+    private final List<JsonAdaptedQAndA> qAndAs = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonSerializableMedmoriser} with the given questionSets.
+     * Constructs a {@code JsonSerializableMedmoriser} with the given qAndAs.
      */
     @JsonCreator
-    public JsonSerializableMedmoriser(@JsonProperty("questionSets") List<JsonAdaptedQAndA> questionSets) {
-        this.questionSets.addAll(questionSets);
+    public JsonSerializableMedmoriser(@JsonProperty("qAndAs") List<JsonAdaptedQAndA> qAndAs) {
+        this.qAndAs.addAll(qAndAs);
     }
 
     /**
@@ -37,7 +37,7 @@ class JsonSerializableMedmoriser {
      * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
      */
     public JsonSerializableMedmoriser(ReadOnlyMedmoriser source) {
-        questionSets.addAll(source.getQAndAList().stream().map(JsonAdaptedQAndA::new)
+        qAndAs.addAll(source.getQAndAList().stream().map(JsonAdaptedQAndA::new)
                 .collect(Collectors.toList()));
     }
 
@@ -48,12 +48,12 @@ class JsonSerializableMedmoriser {
      */
     public Medmoriser toModelType() throws IllegalValueException {
         Medmoriser medmoriser = new Medmoriser();
-        for (JsonAdaptedQAndA jsonAdaptedQAndA : questionSets) {
+        for (JsonAdaptedQAndA jsonAdaptedQAndA : qAndAs) {
             QAndA qAndA = jsonAdaptedQAndA.toModelType();
-            if (medmoriser.hasQuestionSet(qAndA)) {
-                throw new IllegalValueException(MESSAGE_DUPLICATE_QUESTIONSET);
+            if (medmoriser.hasQAndA(qAndA)) {
+                throw new IllegalValueException(MESSAGE_DUPLICATE_QANDA);
             }
-            medmoriser.addQuestionSet(qAndA);
+            medmoriser.addQAndA(qAndA);
         }
         return medmoriser;
     }

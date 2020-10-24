@@ -47,7 +47,7 @@ public class AddCommandTest {
         AddCommand addCommand = new AddCommand(validQAndA);
         ModelStub modelStub = new ModelStubWithQuestionSet(validQAndA);
 
-        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_QUESTIONSET, () ->
+        assertThrows(CommandException.class, AddCommand.MESSAGE_DUPLICATE_QANDA, () ->
             addCommand.execute(modelStub)
         );
     }
@@ -114,7 +114,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void addQuestionSet(QAndA qAndA) {
+        public void addQAndA(QAndA qAndA) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -130,7 +130,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasQuestionSet(QAndA qAndA) {
+        public boolean hasQAndA(QAndA qAndA) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -140,7 +140,7 @@ public class AddCommandTest {
         }
 
         @Override
-        public void setQuestionSet(QAndA target, QAndA editedQAndA) {
+        public void setQAndA(QAndA target, QAndA editedQAndA) {
             throw new AssertionError("This method should not be called.");
         }
 
@@ -167,9 +167,9 @@ public class AddCommandTest {
         }
 
         @Override
-        public boolean hasQuestionSet(QAndA qAndA) {
+        public boolean hasQAndA(QAndA qAndA) {
             requireNonNull(qAndA);
-            return this.qAndA.isSameQuestionSet(qAndA);
+            return this.qAndA.isSameQAndA(qAndA);
         }
     }
 
@@ -180,13 +180,13 @@ public class AddCommandTest {
         final ArrayList<QAndA> questionSetsAdded = new ArrayList<>();
 
         @Override
-        public boolean hasQuestionSet(QAndA qAndA) {
+        public boolean hasQAndA(QAndA qAndA) {
             requireNonNull(qAndA);
-            return questionSetsAdded.stream().anyMatch(qAndA::isSameQuestionSet);
+            return questionSetsAdded.stream().anyMatch(qAndA::isSameQAndA);
         }
 
         @Override
-        public void addQuestionSet(QAndA qAndA) {
+        public void addQAndA(QAndA qAndA) {
             requireNonNull(qAndA);
             questionSetsAdded.add(qAndA);
         }

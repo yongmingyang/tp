@@ -43,7 +43,7 @@ public class QuestionSetUtil {
     /**
      * Returns the part of command string for the given {@code EditQuestionSetDescriptor}'s details.
      */
-    public static String getEditQuestionSetDescriptorDetails(EditCommand.EditQuestionSetDescriptor descriptor) {
+    public static String getEditQuestionSetDescriptorDetails(EditCommand.EditQAndADescriptor descriptor) {
         StringBuilder sb = new StringBuilder();
         descriptor.getQuestion().ifPresent(name -> sb.append(PREFIX_QUESTION).append(name.question).append(" "));
         descriptor.getPhone().ifPresent(phone -> sb.append(PREFIX_PHONE).append(phone.value).append(" "));

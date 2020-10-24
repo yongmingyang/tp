@@ -8,7 +8,7 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.QUESTION_DESC_AMY;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.AMY;
+import static seedu.medmoriser.testutil.TypicalQAndA.AMY;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -83,14 +83,14 @@ public class LogicManagerTest {
                 + ANSWER_DESC_AMY;
         QAndA expectedQAndA = new QuestionSetBuilder(AMY).withTags().build();
         ModelManager expectedModel = new ModelManager();
-        expectedModel.addQuestionSet(expectedQAndA);
+        expectedModel.addQAndA(expectedQAndA);
         String expectedMessage = LogicManager.FILE_OPS_ERROR_MESSAGE + DUMMY_IO_EXCEPTION;
         assertCommandFailure(addCommand, CommandException.class, expectedMessage, expectedModel);
     }
 
     @Test
     public void getFilteredQuestionSetList_modifyList_throwsUnsupportedOperationException() {
-        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredQuestionSetList().remove(0));
+        assertThrows(UnsupportedOperationException.class, () -> logic.getFilteredQAndAList().remove(0));
     }
 
     /**

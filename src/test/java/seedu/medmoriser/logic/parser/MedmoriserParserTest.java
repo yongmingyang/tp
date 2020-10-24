@@ -17,7 +17,6 @@ import seedu.medmoriser.logic.commands.AddCommand;
 import seedu.medmoriser.logic.commands.ClearCommand;
 import seedu.medmoriser.logic.commands.DeleteCommand;
 import seedu.medmoriser.logic.commands.EditCommand;
-import seedu.medmoriser.logic.commands.EditCommand.EditQuestionSetDescriptor;
 import seedu.medmoriser.logic.commands.ExitCommand;
 import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.commands.HelpCommand;
@@ -57,7 +56,7 @@ public class MedmoriserParserTest {
     @Test
     public void parseCommand_edit() throws Exception {
         QAndA qAndA = new QuestionSetBuilder().build();
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder(qAndA).build();
+        EditCommand.EditQAndADescriptor descriptor = new EditQuestionSetDescriptorBuilder(qAndA).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_QANDA.getOneBased() + " "
                 + QuestionSetUtil.getEditQuestionSetDescriptorDetails(descriptor));

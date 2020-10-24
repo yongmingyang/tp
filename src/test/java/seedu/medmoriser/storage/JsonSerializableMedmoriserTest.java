@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import seedu.medmoriser.commons.exceptions.IllegalValueException;
 import seedu.medmoriser.commons.util.JsonUtil;
 import seedu.medmoriser.model.Medmoriser;
-import seedu.medmoriser.testutil.TypicalQuestionSet;
+import seedu.medmoriser.testutil.TypicalQAndA;
 
 public class JsonSerializableMedmoriserTest {
 
@@ -29,7 +29,7 @@ public class JsonSerializableMedmoriserTest {
         JsonSerializableMedmoriser dataFromFile = JsonUtil.readJsonFile(TYPICAL_QUESTIONSETS_FILE,
                 JsonSerializableMedmoriser.class).get();
         Medmoriser medmoriserFromFile = dataFromFile.toModelType();
-        Medmoriser typicalQuestionSetsMedmoriser = TypicalQuestionSet.getTypicalMedmoriser();
+        Medmoriser typicalQuestionSetsMedmoriser = TypicalQAndA.getTypicalMedmoriser();
         assertEquals(medmoriserFromFile, typicalQuestionSetsMedmoriser);
     }
 
@@ -44,7 +44,7 @@ public class JsonSerializableMedmoriserTest {
     public void toModelType_duplicateQuestionSets_throwsIllegalValueException() throws Exception {
         JsonSerializableMedmoriser dataFromFile = JsonUtil.readJsonFile(DUPLICATE_QUESTIONSET_FILE,
                 JsonSerializableMedmoriser.class).get();
-        assertThrows(IllegalValueException.class, JsonSerializableMedmoriser.MESSAGE_DUPLICATE_QUESTIONSET,
+        assertThrows(IllegalValueException.class, JsonSerializableMedmoriser.MESSAGE_DUPLICATE_QANDA,
                 dataFromFile::toModelType);
     }
 

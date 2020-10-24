@@ -12,7 +12,7 @@ import seedu.medmoriser.model.qanda.QAndA;
  */
 public interface Model {
     /** {@code Predicate} that always evaluate to true */
-    Predicate<QAndA> PREDICATE_SHOW_ALL_QUESTIONSETS = unused -> true;
+    Predicate<QAndA> PREDICATE_SHOW_ALL_QANDA = unused -> true;
 
     /**
      * Replaces user prefs data with the data in {@code userPrefs}.
@@ -53,35 +53,35 @@ public interface Model {
     ReadOnlyMedmoriser getMedmoriser();
 
     /**
-     * Returns true if a questionSet with the same identity as {@code questionSet} exists in the address book.
+     * Returns true if a qAndA with the same identity as {@code qAndA} exists in the address book.
      */
-    boolean hasQuestionSet(QAndA qAndA);
+    boolean hasQAndA(QAndA qAndA);
 
     /**
-     * Deletes the given questionSet.
-     * The questionSet must exist in the address book.
+     * Deletes the given qAndA.
+     * The qAndA must exist in the address book.
      */
     void deleteQAndA(QAndA target);
 
     /**
-     * Adds the given questionSet.
-     * {@code questionSet} must not already exist in the address book.
+     * Adds the given qAndA.
+     * {@code qAndA} must not already exist in the address book.
      */
-    void addQuestionSet(QAndA qAndA);
+    void addQAndA(QAndA qAndA);
 
     /**
-     * Replaces the given questionSet {@code target} with {@code editedquestionSet}.
+     * Replaces the given qAndA {@code target} with {@code editedQAndA}.
      * {@code target} must exist in the address book.
-     * The questionSet identity of {@code editedquestionSet} must not be the same as another
-     * existing questionSet in the address book.
+     * The qAndA identity of {@code editedQAndA} must not be the same as another
+     * existing qAndA in the address book.
      */
-    void setQuestionSet(QAndA target, QAndA editedQAndA);
+    void setQAndA(QAndA target, QAndA editedQAndA);
 
-    /** Returns an unmodifiable view of the filtered questionSet list */
+    /** Returns an unmodifiable view of the filtered qAndA list */
     ObservableList<QAndA> getFilteredQAndAList();
 
     /**
-     * Updates the filter of the filtered questionSet list to filter by the given {@code predicate}.
+     * Updates the filter of the filtered qAndA list to filter by the given {@code predicate}.
      * @throws NullPointerException if {@code predicate} is null.
      */
     void updateFilteredQAndAList(Predicate<QAndA> predicate);

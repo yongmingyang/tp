@@ -35,7 +35,6 @@ import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.logic.commands.EditCommand;
-import seedu.medmoriser.logic.commands.EditCommand.EditQuestionSetDescriptor;
 import seedu.medmoriser.model.qanda.Answer;
 import seedu.medmoriser.model.qanda.Email;
 import seedu.medmoriser.model.qanda.Phone;
@@ -114,7 +113,7 @@ public class EditCommandParserTest {
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
                 + EMAIL_DESC_AMY + ANSWER_DESC_AMY + QUESTION_DESC_AMY + TAG_DESC_FRIEND;
 
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_AMY)
+        EditCommand.EditQAndADescriptor descriptor = new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_AMY)
                 .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAnswer(VALID_ANSWER_AMY)
                 .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -127,7 +126,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_FIRST_QANDA;
         String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
 
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditCommand.EditQAndADescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
@@ -139,7 +138,7 @@ public class EditCommandParserTest {
         // name
         Index targetIndex = INDEX_THIRD_QUESTIONSET;
         String userInput = targetIndex.getOneBased() + QUESTION_DESC_AMY;
-        EditQuestionSetDescriptor descriptor =
+        EditCommand.EditQAndADescriptor descriptor =
                 new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_AMY).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -176,7 +175,7 @@ public class EditCommandParserTest {
                 + TAG_DESC_FRIEND + PHONE_DESC_AMY + ANSWER_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
                 + PHONE_DESC_BOB + ANSWER_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
 
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditCommand.EditQAndADescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .withEmail(VALID_EMAIL_BOB).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
@@ -189,7 +188,7 @@ public class EditCommandParserTest {
         // no other valid values specified
         Index targetIndex = INDEX_FIRST_QANDA;
         String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
+        EditCommand.EditQAndADescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -208,7 +207,7 @@ public class EditCommandParserTest {
         Index targetIndex = INDEX_THIRD_QUESTIONSET;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
 
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withTags().build();
+        EditCommand.EditQAndADescriptor descriptor = new EditQuestionSetDescriptorBuilder().withTags().build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);

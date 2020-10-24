@@ -3,7 +3,7 @@ package seedu.medmoriser.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.medmoriser.storage.JsonAdaptedQAndA.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.BENSON;
+import static seedu.medmoriser.testutil.TypicalQAndA.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;

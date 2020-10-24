@@ -110,7 +110,7 @@ public class MainWindow extends UiPart<Stage> {
      * Fills up all the placeholders of this window.
      */
     void fillInnerParts() {
-        questionSetListPanel = new QuestionSetListPanel(logic.getFilteredQuestionSetList());
+        questionSetListPanel = new QuestionSetListPanel(logic.getFilteredQAndAList());
         questionSetListPanelPlaceholder.getChildren().add(questionSetListPanel.getRoot());
 
         resultDisplay = new ResultDisplay();

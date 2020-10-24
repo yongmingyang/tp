@@ -21,7 +21,7 @@ import seedu.medmoriser.model.qanda.QAndA;
 /**
  * A utility class containing a list of {@code QuestionSet} objects to be used in tests.
  */
-public class TypicalQuestionSet {
+public class TypicalQAndA {
 
     public static final QAndA ALICE = new QuestionSetBuilder().withQuestion("Alice Pauline")
             .withAnswer("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
@@ -58,7 +58,7 @@ public class TypicalQuestionSet {
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
-    private TypicalQuestionSet() {} // prevents instantiation
+    private TypicalQAndA() {} // prevents instantiation
 
     /**
      * Returns a {@code Medmoriser} with all the typical questionSets.
@@ -66,7 +66,7 @@ public class TypicalQuestionSet {
     public static Medmoriser getTypicalMedmoriser() {
         Medmoriser ab = new Medmoriser();
         for (QAndA qAndA : getTypicalQuestionSets()) {
-            ab.addQuestionSet(qAndA);
+            ab.addQAndA(qAndA);
         }
         return ab;
     }
