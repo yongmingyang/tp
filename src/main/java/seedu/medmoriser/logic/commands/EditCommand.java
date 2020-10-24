@@ -64,22 +64,26 @@ public class EditCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        List<QAndA> lastShownList = model.getFilteredQAndAList();
 
-        if (index.getZeroBased() >= lastShownList.size()) {
-            throw new CommandException(Messages.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
+        if (QuizCommand.getIsQuiz()) {
+            throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
+        } else {
+            List<QAndA> lastShownList = model.getFilteredQAndAList();
+            if (index.getZeroBased() >= lastShownList.size()) {
+                throw new CommandException(Messages.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
+            }
+
+            QAndA qAndAToEdit = lastShownList.get(index.getZeroBased());
+            QAndA editedQAndA = createEditedQuestionSet(qAndAToEdit, editQuestionSetDescriptor);
+
+            if (!qAndAToEdit.isSameQuestionSet(editedQAndA) && model.hasQuestionSet(editedQAndA)) {
+                throw new CommandException(MESSAGE_DUPLICATE_QUESTIONSET);
+            }
+
+            model.setQuestionSet(qAndAToEdit, editedQAndA);
+            model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
+            return new CommandResult(String.format(MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQAndA));
         }
-
-        QAndA qAndAToEdit = lastShownList.get(index.getZeroBased());
-        QAndA editedQAndA = createEditedQuestionSet(qAndAToEdit, editQuestionSetDescriptor);
-
-        if (!qAndAToEdit.isSameQuestionSet(editedQAndA) && model.hasQuestionSet(editedQAndA)) {
-            throw new CommandException(MESSAGE_DUPLICATE_QUESTIONSET);
-        }
-
-        model.setQuestionSet(qAndAToEdit, editedQAndA);
-        model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
-        return new CommandResult(String.format(MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQAndA));
     }
 
     /**

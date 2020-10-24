@@ -3,6 +3,8 @@ package seedu.medmoriser.logic.commands;
 import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
 
+import seedu.medmoriser.commons.core.Messages;
+import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 
 /**
@@ -33,13 +35,17 @@ public class ListCommand extends Command {
     }
 
     @Override
-    public CommandResult execute(Model model) {
+    public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
-        if (isAnswerDisplayed) {
-            return new CommandResult(MESSAGE_LIST_ALL_SUCCESS, true);
+        if (QuizCommand.getIsQuiz()) {
+            throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
-            return new CommandResult(MESSAGE_LIST_QUESTIONS_SUCCESS, false);
+            model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
+            if (isAnswerDisplayed) {
+                return new CommandResult(MESSAGE_LIST_ALL_SUCCESS, true);
+            } else {
+                return new CommandResult(MESSAGE_LIST_QUESTIONS_SUCCESS, false);
+            }
         }
     }
 
