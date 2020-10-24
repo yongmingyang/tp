@@ -53,10 +53,6 @@ public class AddCommandParser implements Parser<AddCommand> {
             qAndA = new QAndA(question, phone, email, answer, tagList);
         }
 
-
-
-
-
         return new AddCommand(qAndA);
     }
 
