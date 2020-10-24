@@ -65,7 +65,7 @@ public class EditCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (QuizCommand.isQuiz) {
+        if (QuizCommand.getIsQuiz()) {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
             List<QAndA> lastShownList = model.getFilteredQAndAList();

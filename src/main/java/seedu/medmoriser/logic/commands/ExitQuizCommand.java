@@ -16,10 +16,10 @@ public class ExitQuizCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
-        if (!QuizCommand.isQuiz) {
+        if (!QuizCommand.getIsQuiz()) {
             throw new CommandException(MESSAGE_NO_ONGOING_QUIZ);
         } else {
-            QuizCommand.isQuiz = false;
+            QuizCommand.setIsQuiz(false);
             return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT);
         }
     }

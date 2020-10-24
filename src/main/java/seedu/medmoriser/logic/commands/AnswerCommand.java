@@ -1,9 +1,9 @@
 package seedu.medmoriser.logic.commands;
 
+import static java.util.Objects.requireNonNull;
+
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
-
-import static java.util.Objects.requireNonNull;
 
 /**
  * Receives the user's answer for a quiz.
@@ -26,17 +26,17 @@ public class AnswerCommand extends Command {
      * Creates an AnswerCommand
      * @param answer The user's input answer.
      */
-    public AnswerCommand(String answer){
+    public AnswerCommand(String answer) {
         this.userAnswer = answer;
     }
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (!QuizCommand.isQuiz) {
+        if (!QuizCommand.getIsQuiz()) {
             throw new CommandException(MESSAGE_NOT_QUIZ);
         } else {
-            QuizCommand.isQuiz = false;
+            QuizCommand.setIsQuiz(false);
             return new CommandResult(MESSAGE_USER_ANSWER + userAnswer);
         }
     }

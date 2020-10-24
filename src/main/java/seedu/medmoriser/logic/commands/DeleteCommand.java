@@ -35,7 +35,7 @@ public class DeleteCommand extends Command {
         requireNonNull(model);
         List<QAndA> lastShownList = model.getFilteredQAndAList();
 
-        if (QuizCommand.isQuiz) {
+        if (QuizCommand.getIsQuiz()) {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
 

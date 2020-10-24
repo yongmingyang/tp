@@ -19,7 +19,7 @@ public class HelpCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
 
-        if (QuizCommand.isQuiz) {
+        if (QuizCommand.getIsQuiz()) {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         }
         return new CommandResult(SHOWING_HELP_MESSAGE, true, false);

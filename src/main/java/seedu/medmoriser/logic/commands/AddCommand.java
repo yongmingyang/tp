@@ -53,13 +53,9 @@ public class AddCommand extends Command {
 
         if (model.hasQuestionSet(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_QUESTIONSET);
-        }
-
-        else if (QuizCommand.isQuiz) {
+        } else if (QuizCommand.getIsQuiz()) {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
-        }
-
-        else {
+        } else {
             model.addQuestionSet(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }

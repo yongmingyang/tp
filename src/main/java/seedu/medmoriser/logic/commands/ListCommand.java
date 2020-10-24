@@ -37,7 +37,7 @@ public class ListCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        if (QuizCommand.isQuiz) {
+        if (QuizCommand.getIsQuiz()) {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
             model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);

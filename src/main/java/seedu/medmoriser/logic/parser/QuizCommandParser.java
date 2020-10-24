@@ -1,14 +1,14 @@
 package seedu.medmoriser.logic.parser;
 
-import seedu.medmoriser.logic.commands.QuizCommand;
-import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
-import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
-import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
+import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 import java.util.Arrays;
 
-import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import seedu.medmoriser.logic.commands.QuizCommand;
+import seedu.medmoriser.logic.parser.exceptions.ParseException;
+import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
 /**
  * Parses input arguments and creates a new QuizCommand object
@@ -31,12 +31,12 @@ public class QuizCommandParser {
 
         String findType = nameKeywords[0];
         switch (findType) {
-            case "t/":
-                return new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-            case "q/":
-                return new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-            default:
-                return new QuizCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        case "t/":
+            return new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        case "q/":
+            return new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        default:
+            return new QuizCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
         }
     }
 }

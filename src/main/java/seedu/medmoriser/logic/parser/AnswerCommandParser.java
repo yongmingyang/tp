@@ -1,9 +1,9 @@
 package seedu.medmoriser.logic.parser;
 
+import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+
 import seedu.medmoriser.logic.commands.AnswerCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-
-import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 
 /**
  * Parses input arguments and creates a new AnswerCommand object
