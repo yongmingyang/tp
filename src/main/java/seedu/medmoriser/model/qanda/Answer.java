@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.commons.util.AppUtil.checkArgument;
 
 /**
- * Represents a QuestionSet's answer in the question bank.
+ * Represents a qAndA's answer in the question bank.
  * Guarantees: immutable; is valid as declared in {@link #isValidAnswer(String)}
  */
 public class Answer {

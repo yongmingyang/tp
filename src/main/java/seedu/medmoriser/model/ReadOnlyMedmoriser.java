@@ -9,8 +9,8 @@ import seedu.medmoriser.model.qanda.QAndA;
 public interface ReadOnlyMedmoriser {
 
     /**
-     * Returns an unmodifiable view of the questionSets list.
-     * This list will not contain any duplicate questionSets.
+     * Returns an unmodifiable view of the qAndAs list.
+     * This list will not contain any duplicate qAndAs.
      */
     ObservableList<QAndA> getQAndAList();
 

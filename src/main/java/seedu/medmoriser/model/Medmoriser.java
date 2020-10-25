@@ -10,11 +10,11 @@ import seedu.medmoriser.model.qanda.UniqueQAndAList;
 
 /**
  * Wraps all data at the address-book level
- * Duplicates are not allowed (by .isSameQuestionSet comparison)
+ * Duplicates are not allowed (by .isSameQAndA comparison)
  */
 public class Medmoriser implements ReadOnlyMedmoriser {
 
-    private final UniqueQAndAList questionSets;
+    private final UniqueQAndAList qAndAs;
 
     /*
      * The 'unusual' code block below is a non-static initialization block, sometimes used to avoid duplication
@@ -24,13 +24,13 @@ public class Medmoriser implements ReadOnlyMedmoriser {
      *   among constructors.
      */
     {
-        questionSets = new UniqueQAndAList();
+        qAndAs = new UniqueQAndAList();
     }
 
     public Medmoriser() {}
 
     /**
-     * Creates an AddressBook using the QuestionSets in the {@code toBeCopied}
+     * Creates an AddressBook using the QAndAs in the {@code toBeCopied}
      */
     public Medmoriser(ReadOnlyMedmoriser toBeCopied) {
         this();
@@ -40,11 +40,11 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     //// list overwrite operations
 
     /**
-     * Replaces the contents of the questionSet list with {@code questionSets}.
-     * {@code questionSets} must not contain duplicate questionSets.
+     * Replaces the contents of the qAndA list with {@code qAndAs}.
+     * {@code qAndAs} must not contain duplicate qAndAs.
      */
-    public void setQuestionSets(List<QAndA> qAndAs) {
-        this.questionSets.setQuestionSets(qAndAs);
+    public void setqAndAs(List<QAndA> qAndAs) {
+        this.qAndAs.setQAndAs(qAndAs);
     }
 
     /**
@@ -53,69 +53,69 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     public void resetData(ReadOnlyMedmoriser newData) {
         requireNonNull(newData);
 
-        setQuestionSets(newData.getQAndAList());
+        setqAndAs(newData.getQAndAList());
     }
 
-    //// questionSet-level operations
+    //// qAndA-level operations
 
     /**
-     * Returns true if a questionSet with the same identity as {@code questionSet} exists in the address book.
+     * Returns true if a qAndA with the same identity as {@code qAndA} exists in the address book.
      */
-    public boolean hasQuestionSet(QAndA qAndA) {
+    public boolean hasQAndA(QAndA qAndA) {
         requireNonNull(qAndA);
-        return questionSets.contains(qAndA);
+        return qAndAs.contains(qAndA);
     }
 
     /**
-     * Adds a questionSet to the address book.
-     * The questionSet must not already exist in the address book.
+     * Adds a qAndA to the address book.
+     * The qAndA must not already exist in the address book.
      */
-    public void addQuestionSet(QAndA p) {
-        questionSets.add(p);
+    public void addQAndA(QAndA p) {
+        qAndAs.add(p);
     }
 
     /**
-     * Replaces the given questionSet {@code target} in the list with {@code editedQuestionSet}.
+     * Replaces the given qAndA {@code target} in the list with {@code editedQAndA}.
      * {@code target} must exist in the address book.
-     * The questionSet identity of {@code editedQuestionSet} must
-     * not be the same as another existing questionSet in the address book.
+     * The qAndA identity of {@code editedQAndA} must
+     * not be the same as another existing qAndA in the address book.
      */
-    public void setQuestionSet(QAndA target, QAndA editedQAndA) {
+    public void setQAndA(QAndA target, QAndA editedQAndA) {
         requireNonNull(editedQAndA);
 
-        questionSets.setQuestionSet(target, editedQAndA);
+        qAndAs.setQAndA(target, editedQAndA);
     }
 
     /**
      * Removes {@code key} from this {@code AddressBook}.
      * {@code key} must exist in the address book.
      */
-    public void removeQuestionSet(QAndA key) {
-        questionSets.remove(key);
+    public void removeQAndA(QAndA key) {
+        qAndAs.remove(key);
     }
 
     //// util methods
 
     @Override
     public String toString() {
-        return questionSets.asUnmodifiableObservableList().size() + " questionSets";
+        return qAndAs.asUnmodifiableObservableList().size() + " qAndAs";
         // TODO: refine later
     }
 
     @Override
     public ObservableList<QAndA> getQAndAList() {
-        return questionSets.asUnmodifiableObservableList();
+        return qAndAs.asUnmodifiableObservableList();
     }
 
     @Override
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof Medmoriser // instanceof handles nulls
-                && questionSets.equals(((Medmoriser) other).questionSets));
+                && qAndAs.equals(((Medmoriser) other).qAndAs));
     }
 
     @Override
     public int hashCode() {
-        return questionSets.hashCode();
+        return qAndAs.hashCode();
     }
 }

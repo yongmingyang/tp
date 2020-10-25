@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.medmoriser.commons.util.StringUtil;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
- * Tests that a {@code QuestionSet}'s {@code Tag} matches any of the keywords given.
+ * Tests that a {@code QAndA}'s {@code Tag} matches any of the keywords given.
  */
 public class TagContainsKeywordsPredicate implements Predicate<QAndA> {
     private final List<String> keywords;
@@ -23,7 +22,8 @@ public class TagContainsKeywordsPredicate implements Predicate<QAndA> {
                 .anyMatch(keyword -> {
                     Set<Tag> tags = qAndA.getTags();
                     for (Tag tag : tags) {
-                        if (StringUtil.containsWordIgnoreCase(tag.tagName, keyword)) {
+                        String lowercase = tag.tagName.toLowerCase();
+                        if (lowercase.equals(keyword.toLowerCase())) {
                             return true;
                         }
                     }

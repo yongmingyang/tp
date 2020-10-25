@@ -22,25 +22,42 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+        assert args != null;
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] keywordsArray = trimmedArgs.split("/|, ");;
 
-        String findType = nameKeywords[0];
-        switch (findType) {
-        case "t/":
-            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        case "q/":
-            return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        case "a/":
-            return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        default:
-            return new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        if (keywordsArray[0].contains(" ")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
+        //trim whitespaces
+        keywordsArray = trimArg(keywordsArray);
+
+        String findType = keywordsArray[0];
+
+        switch (findType) {
+        case "t":
+            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+        case "q":
+            return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+        case "a":
+            return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+        default:
+            return new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+        }
+    }
+
+    private String[] trimArg(String[] args) {
+        String[] toReturn = new String[args.length];
+        for (int i = 0; i < args.length; i++) {
+            toReturn[i] = args[i].trim();
+        }
+        return toReturn;
     }
 
 }
