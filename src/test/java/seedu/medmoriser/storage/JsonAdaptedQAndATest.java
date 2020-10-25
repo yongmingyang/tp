@@ -18,7 +18,7 @@ import seedu.medmoriser.model.qanda.Phone;
 import seedu.medmoriser.model.qanda.Question;
 
 public class JsonAdaptedQAndATest {
-    private static final String INVALID_QUESTION = "R@chel";
+    private static final String INVALID_QUESTION = " ";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ADDRESS = " ";
     private static final String INVALID_EMAIL = "example.com";
