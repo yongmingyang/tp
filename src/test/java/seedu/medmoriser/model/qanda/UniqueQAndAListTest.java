@@ -96,7 +96,7 @@ public class UniqueQAndAListTest {
     }
 
     @Test
-    public void setQAndA_editedQuestionSetHasDifferentIdentity_success() {
+    public void setQAndA_editedQAndAHasDifferentIdentity_success() {
         uniqueQAndAList.add(QUESTION1);
         uniqueQAndAList.setQAndA(QUESTION1, QUESTIONB);
         UniqueQAndAList expectedUniqueQAndAList = new UniqueQAndAList();
@@ -105,7 +105,7 @@ public class UniqueQAndAListTest {
     }
 
     @Test
-    public void setQAndA_editedQAndAHasNonUniqueIdentity_throwsDuplicateQuestionSetException() {
+    public void setQAndA_editedQAndAHasNonUniqueIdentity_throwsDuplicateQAndAException() {
         uniqueQAndAList.add(QUESTION1);
         uniqueQAndAList.add(QUESTIONB);
         assertThrows(DuplicateQAndAException.class, () -> uniqueQAndAList.setQAndA(QUESTION1, QUESTIONB));

@@ -43,7 +43,7 @@ public class MedmoriserTest {
     }
 
     @Test
-    public void resetData_withDuplicateQuestionSets_throwsDuplicateQAndAException() {
+    public void resetData_withDuplicateQAndA_throwsDuplicateQAndAException() {
         // Two QAndAs with the same identity fields
         QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2)
                 .build();

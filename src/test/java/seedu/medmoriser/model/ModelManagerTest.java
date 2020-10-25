@@ -83,7 +83,7 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasQuestionSet_qAndAInMedmoriser_returnsTrue() {
+    public void hasQAndA_qAndAInMedmoriser_returnsTrue() {
         modelManager.addQAndA(QUESTION1);
         assertTrue(modelManager.hasQAndA(QUESTION1));
     }
