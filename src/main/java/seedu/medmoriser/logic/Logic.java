@@ -30,8 +30,8 @@ public interface Logic {
      */
     ReadOnlyMedmoriser getMedmoriser();
 
-    /** Returns an unmodifiable view of the filtered list of questionSets */
-    ObservableList<QAndA> getFilteredQuestionSetList();
+    /** Returns an unmodifiable view of the filtered list of qAndAs */
+    ObservableList<QAndA> getFilteredQAndAList();
 
     /**
      * Returns the user prefs' address book file path.

@@ -3,10 +3,10 @@ package seedu.medmoriser.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.HOON;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.IDA;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
+import static seedu.medmoriser.testutil.TypicalQAndA.ALICE;
+import static seedu.medmoriser.testutil.TypicalQAndA.HOON;
+import static seedu.medmoriser.testutil.TypicalQAndA.IDA;
+import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
 
 import java.io.IOException;
 import java.nio.file.Path;
@@ -51,14 +51,14 @@ public class JsonMedmoriserStorageTest {
     }
 
     @Test
-    public void readMedmoriser_invalidQuestionSetMedmoriser_throwDataConversionException() {
-        assertThrows(DataConversionException.class, () -> readMedmoriser("invalidQuestionSetMedmoriser.json"));
+    public void readMedmoriser_invalidQAndAMedmoriser_throwDataConversionException() {
+        assertThrows(DataConversionException.class, () -> readMedmoriser("invalidQAndAMedmoriser.json"));
     }
 
     @Test
-    public void readMedmoriser_invalidAndValidQuestionSetMedmoriser_throwDataConversionException() {
+    public void readMedmoriser_invalidAndValidQAndAMedmoriser_throwDataConversionException() {
         assertThrows(DataConversionException.class, () ->
-            readMedmoriser("invalidAndValidQuestionSetMedmoriser.json"));
+            readMedmoriser("invalidAndValidQAndAMedmoriser.json"));
     }
 
     @Test
@@ -73,14 +73,14 @@ public class JsonMedmoriserStorageTest {
         assertEquals(original, new Medmoriser(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addQuestionSet(HOON);
-        original.removeQuestionSet(ALICE);
+        original.addQAndA(HOON);
+        original.removeQAndA(ALICE);
         jsonMedmoriserStorage.saveMedmoriser(original, filePath);
         readBack = jsonMedmoriserStorage.readMedmoriser(filePath).get();
         assertEquals(original, new Medmoriser(readBack));
 
         // Save and read without specifying file path
-        original.addQuestionSet(IDA);
+        original.addQAndA(IDA);
         jsonMedmoriserStorage.saveMedmoriser(original); // file path not specified
         readBack = jsonMedmoriserStorage.readMedmoriser().get(); // file path not specified
         assertEquals(original, new Medmoriser(readBack));

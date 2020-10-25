@@ -21,7 +21,7 @@ import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 public class ParserUtilTest {
-    private static final String INVALID_QUESTION = "R@chel";
+    private static final String INVALID_QUESTION = " ";
     private static final String INVALID_PHONE = "+651234";
     private static final String INVALID_ANSWER = " ";
     private static final String INVALID_EMAIL = "example.com";

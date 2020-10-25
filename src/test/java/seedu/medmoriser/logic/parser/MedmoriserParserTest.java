@@ -17,7 +17,6 @@ import seedu.medmoriser.logic.commands.AddCommand;
 import seedu.medmoriser.logic.commands.ClearCommand;
 import seedu.medmoriser.logic.commands.DeleteCommand;
 import seedu.medmoriser.logic.commands.EditCommand;
-import seedu.medmoriser.logic.commands.EditCommand.EditQuestionSetDescriptor;
 import seedu.medmoriser.logic.commands.ExitCommand;
 import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.commands.HelpCommand;
@@ -26,9 +25,9 @@ import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 //import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
-import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
-import seedu.medmoriser.testutil.QuestionSetBuilder;
-import seedu.medmoriser.testutil.QuestionSetUtil;
+import seedu.medmoriser.testutil.EditQAndADescriptorBuilder;
+import seedu.medmoriser.testutil.QAndABuilder;
+import seedu.medmoriser.testutil.QAndAUtil;
 
 public class MedmoriserParserTest {
 
@@ -36,8 +35,8 @@ public class MedmoriserParserTest {
 
     @Test
     public void parseCommand_add() throws Exception {
-        QAndA qAndA = new QuestionSetBuilder().build();
-        AddCommand command = (AddCommand) parser.parseCommand(QuestionSetUtil.getAddCommand(qAndA));
+        QAndA qAndA = new QAndABuilder().build();
+        AddCommand command = (AddCommand) parser.parseCommand(QAndAUtil.getAddCommand(qAndA));
         assertEquals(new AddCommand(qAndA), command);
     }
 
@@ -56,11 +55,11 @@ public class MedmoriserParserTest {
 
     @Test
     public void parseCommand_edit() throws Exception {
-        QAndA qAndA = new QuestionSetBuilder().build();
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder(qAndA).build();
+        QAndA qAndA = new QAndABuilder().build();
+        EditCommand.EditQAndADescriptor descriptor = new EditQAndADescriptorBuilder(qAndA).build();
         EditCommand command = (EditCommand) parser.parseCommand(EditCommand.COMMAND_WORD + " "
                 + INDEX_FIRST_QANDA.getOneBased() + " "
-                + QuestionSetUtil.getEditQuestionSetDescriptorDetails(descriptor));
+                + QAndAUtil.getEditQAndADescriptorDetails(descriptor));
         assertEquals(new EditCommand(INDEX_FIRST_QANDA, descriptor), command);
     }
 

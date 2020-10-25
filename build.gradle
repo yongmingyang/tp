@@ -70,7 +70,11 @@ dependencies {
 }
 
 shadowJar {
-    archiveName = 'medmoriser.jar'
+    archiveFileName = 'medmoriser.jar'
+}
+
+run {
+    enableAssertions = true
 }
 
 defaultTasks 'clean', 'test'

@@ -42,27 +42,27 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditCommand.EditQuestionSetDescriptor editQuestionSetDescriptor = new EditCommand.EditQuestionSetDescriptor();
+        EditCommand.EditQAndADescriptor editQAndADescriptor = new EditCommand.EditQAndADescriptor();
         if (argMultimap.getValue(PREFIX_QUESTION).isPresent()) {
-            editQuestionSetDescriptor.setQuestion(ParserUtil.parseQuestion(argMultimap
+            editQAndADescriptor.setQuestion(ParserUtil.parseQuestion(argMultimap
                     .getValue(PREFIX_QUESTION).get()));
         }
         if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editQuestionSetDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
+            editQAndADescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
         }
         if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editQuestionSetDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
+            editQAndADescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
         }
         if (argMultimap.getValue(PREFIX_ANSWER).isPresent()) {
-            editQuestionSetDescriptor.setAnswer(ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get()));
+            editQAndADescriptor.setAnswer(ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editQuestionSetDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editQAndADescriptor::setTags);
 
-        if (!editQuestionSetDescriptor.isAnyFieldEdited()) {
+        if (!editQAndADescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editQuestionSetDescriptor);
+        return new EditCommand(index, editQAndADescriptor);
     }
 
     /**
