@@ -22,30 +22,43 @@ public class FindCommandParser implements Parser<FindCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public FindCommand parse(String args) throws ParseException {
+        assert args != null;
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("/");
-        String[] keywordsArray;
+        String[] keywordsArray = trimmedArgs.split("/|, ");;
 
-        String findType = nameKeywords[0];
+        if (keywordsArray[0].contains(" ")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+        //trim whitespaces
+        keywordsArray = trimArg(keywordsArray);
+
+        String findType = keywordsArray[0];
+//        System.out.println(keywordsArray[2]);
+        System.out.println(keywordsArray[1]);
         switch (findType) {
         case "t":
-            keywordsArray = nameKeywords[1].split("\\s+");
             return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         case "q":
-            keywordsArray = nameKeywords[1].split("\\s+");
             return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         case "a":
-            keywordsArray = nameKeywords[1].split("\\s+");
             return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         default:
-            keywordsArray = trimmedArgs.split("\\s+");
             return new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         }
+    }
+
+    private String[] trimArg(String[] args) {
+        String[] toReturn = new String[args.length];
+        for (int i = 0; i < args.length; i++) {
+            toReturn[i] = args[i].trim();
+        }
+        return toReturn;
     }
 
 }

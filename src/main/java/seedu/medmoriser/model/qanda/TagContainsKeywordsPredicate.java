@@ -23,7 +23,8 @@ public class TagContainsKeywordsPredicate implements Predicate<QAndA> {
                 .anyMatch(keyword -> {
                     Set<Tag> tags = qAndA.getTags();
                     for (Tag tag : tags) {
-                        if (StringUtil.containsWordIgnoreCase(tag.tagName, keyword)) {
+                        String lowercase = tag.tagName.toLowerCase();
+                        if (lowercase.equals(keyword.toLowerCase())) {
                             return true;
                         }
                     }

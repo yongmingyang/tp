@@ -18,7 +18,10 @@ public class QuestionContainsKeywordsPredicate implements Predicate<QAndA> {
     @Override
     public boolean test(QAndA qAndA) {
         return keywords.stream()
-                .anyMatch(keyword -> StringUtil.containsWordIgnoreCase(qAndA.getQuestion().question, keyword));
+                .anyMatch(keyword -> {
+                    return qAndA.getQuestion().question.toLowerCase().contains(keyword.toLowerCase());
+//                    StringUtil.containsWordIgnoreCase(qAndA.getQuestion().question, keyword)
+                });
     }
 
     @Override

@@ -3,6 +3,7 @@ package seedu.medmoriser.model.qanda;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -58,6 +59,10 @@ public class TagContainsKeywordPredicateTest {
         // Mixed-case keywords
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new QAndABuilder().withTags("Alice", "Bob").build()));
+
+        // Words with spacing
+        predicate = new TagContainsKeywordsPredicate(Arrays.asList("Nervous System", "Cardiology"));
+        assertTrue(predicate.test(new QAndABuilder().withTags("nervous System", "Hematology").build()));
     }
 
     @Test
