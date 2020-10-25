@@ -22,7 +22,7 @@ import seedu.medmoriser.model.tag.Tag;
  */
 class JsonAdaptedQAndA {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "QuestionSet's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "QAndA's %s field is missing!";
 
     private final String question;
     private final String phone;
@@ -31,7 +31,7 @@ class JsonAdaptedQAndA {
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedQuestionSet} with the given questionSet details.
+     * Constructs a {@code JsonAdaptedQAndA} with the given qAndA details.
      */
     @JsonCreator
     public JsonAdaptedQAndA(@JsonProperty("name") String question, @JsonProperty("phone") String phone,
@@ -47,7 +47,7 @@ class JsonAdaptedQAndA {
     }
 
     /**
-     * Converts a given {@code QuestionSet} into this class for Jackson use.
+     * Converts a given {@code QAndA} into this class for Jackson use.
      */
     public JsonAdaptedQAndA(QAndA source) {
         question = source.getQuestion().question;
@@ -60,14 +60,14 @@ class JsonAdaptedQAndA {
     }
 
     /**
-     * Converts this Jackson-friendly adapted questionSet object into the model's {@code QuestionSet} object.
+     * Converts this Jackson-friendly adapted qAndA object into the model's {@code QAndA} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted questionSet.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted qAndA.
      */
     public QAndA toModelType() throws IllegalValueException {
-        final List<Tag> questionSetTags = new ArrayList<>();
+        final List<Tag> qAndATags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            questionSetTags.add(tag.toModelType());
+            qAndATags.add(tag.toModelType());
         }
 
         if (question == null) {
@@ -103,7 +103,7 @@ class JsonAdaptedQAndA {
         }
         final Answer modelAnswer = new Answer(answer);
 
-        final Set<Tag> modelTags = new HashSet<>(questionSetTags);
+        final Set<Tag> modelTags = new HashSet<>(qAndATags);
         return new QAndA(modelQuestion, modelPhone, modelEmail, modelAnswer, modelTags);
     }
 

@@ -26,8 +26,8 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseSuccess;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.AMY;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.BOB;
+import static seedu.medmoriser.testutil.TypicalQAndA.AMY;
+import static seedu.medmoriser.testutil.TypicalQAndA.BOB;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,14 +38,14 @@ import seedu.medmoriser.model.qanda.Phone;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
-import seedu.medmoriser.testutil.QuestionSetBuilder;
+import seedu.medmoriser.testutil.QAndABuilder;
 
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
     @Test
     public void parse_allFieldsPresent_success() {
-        QAndA expectedQAndA = new QuestionSetBuilder(BOB).withTags(VALID_TAG_FRIEND).build();
+        QAndA expectedQAndA = new QAndABuilder(BOB).withTags(VALID_TAG_FRIEND).build();
 
         // whitespace only preamble
         assertParseSuccess(parser, PREAMBLE_WHITESPACE + QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB
@@ -68,7 +68,7 @@ public class AddCommandParserTest {
                 + ANSWER_DESC_BOB + TAG_DESC_FRIEND, new AddCommand(expectedQAndA));
 
         // multiple tags - all accepted
-        QAndA expectedQAndAMultipleTags = new QuestionSetBuilder(BOB).withTags(VALID_TAG_FRIEND,
+        QAndA expectedQAndAMultipleTags = new QAndABuilder(BOB).withTags(VALID_TAG_FRIEND,
                 VALID_TAG_HUSBAND)
                 .build();
         assertParseSuccess(parser, QUESTION_DESC_BOB + PHONE_DESC_BOB + EMAIL_DESC_BOB + ANSWER_DESC_BOB
@@ -78,7 +78,7 @@ public class AddCommandParserTest {
     @Test
     public void parse_optionalFieldsMissing_success() {
         // zero tags
-        QAndA expectedQAndA = new QuestionSetBuilder(AMY).withTags().build();
+        QAndA expectedQAndA = new QAndABuilder(AMY).withTags().build();
         assertParseSuccess(parser, QUESTION_DESC_AMY + PHONE_DESC_AMY + EMAIL_DESC_AMY + ANSWER_DESC_AMY,
                 new AddCommand(expectedQAndA));
     }

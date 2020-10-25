@@ -59,7 +59,7 @@ public class LogicManager implements Logic {
     }
 
     @Override
-    public ObservableList<QAndA> getFilteredQuestionSetList() {
+    public ObservableList<QAndA> getFilteredQAndAList() {
         return model.getFilteredQAndAList();
     }
 
