@@ -10,7 +10,7 @@ import java.util.Objects;
 public class CommandResult {
 
     /** Answers should be shown. */
-    private static boolean isAnswerDisplayed;
+    private static boolean isAnswerDisplayed = true;
 
     private final String feedbackToUser;
 
