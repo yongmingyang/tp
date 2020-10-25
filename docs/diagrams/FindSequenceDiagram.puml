@@ -1,0 +1,69 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MedmoriserParser" as MedmoriserParser MEDMORISER_PARSER_COLOR
+participant ":FindCommandParser" as FindCommandParser COMMAND_PARSER_COLOR
+participant "f:FindCommand" as FindCommand COMMAND_COLOR
+participant ":CommandResult" as CommandResult COMMAND_RESULT_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("find Immunology")
+activate LogicManager
+
+LogicManager -> MedmoriserParser : parseCommand("find Immunology")
+activate MedmoriserParser
+
+create FindCommandParser
+MedmoriserParser -> FindCommandParser
+activate FindCommandParser
+
+FindCommandParser --> MedmoriserParser
+deactivate FindCommandParser
+
+MedmoriserParser -> FindCommandParser : parse("Immunology")
+activate FindCommandParser
+
+create FindCommand
+FindCommandParser -> FindCommand
+activate FindCommand
+
+FindCommand --> FindCommandParser : f
+deactivate FindCommand
+
+FindCommandParser --> MedmoriserParser : f
+deactivate FindCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+FindCommandParser -[hidden]-> MedmoriserParser
+destroy FindCommandParser
+
+MedmoriserParser --> LogicManager : f
+deactivate MedmoriserParser
+
+LogicManager -> FindCommand : execute()
+activate FindCommand
+
+FindCommand -> Model : updateFilteredQAndAList(predicate)
+activate Model
+
+Model --> FindCommand
+deactivate Model
+
+create CommandResult
+FindCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> FindCommand
+deactivate CommandResult
+
+FindCommand --> LogicManager : result
+deactivate FindCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
