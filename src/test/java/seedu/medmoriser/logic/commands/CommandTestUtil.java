@@ -39,8 +39,8 @@ public class CommandTestUtil {
     public static final String TAG_DESC_TAG2 = " " + PREFIX_TAG + VALID_TAG_TAG2;
 
     public static final String INVALID_QUESTION_DESC = " "
-            + PREFIX_QUESTION + "Question&"; // '&' not allowed in questions
-    public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for addresses
+            + PREFIX_QUESTION + " "; // empty string not allowed in questions
+    public static final String INVALID_ANSWER_DESC = " " + PREFIX_ANSWER; // empty string not allowed for answers
     public static final String INVALID_TAG_DESC = " " + PREFIX_TAG + "tag*"; // '*' not allowed in tags
 
     public static final String PREAMBLE_WHITESPACE = "\t  \r  \n";

@@ -48,8 +48,8 @@ public class QAndATest {
     @Test
     public void equals() {
         // same values -> returns true
-        QAndA Question1Copy = new QAndABuilder(QUESTION1).build();
-        assertTrue(QUESTION1.equals(Question1Copy));
+        QAndA question1Copy = new QAndABuilder(QUESTION1).build();
+        assertTrue(QUESTION1.equals(question1Copy));
 
         // same object -> returns true
         assertTrue(QUESTION1.equals(QUESTION1));

@@ -5,17 +5,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_QANDA_LISTED_OVERVIEW;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
-<<<<<<< HEAD
-import static seedu.medmoriser.testutil.TypicalQAndA.CARL;
-import static seedu.medmoriser.testutil.TypicalQAndA.ELLE;
-import static seedu.medmoriser.testutil.TypicalQAndA.FIONA;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION3;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION5;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION6;
 import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
-=======
-import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION3;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION5;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION6;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
->>>>>>> refactor-phone-email
 
 import java.util.Arrays;
 import java.util.Collections;

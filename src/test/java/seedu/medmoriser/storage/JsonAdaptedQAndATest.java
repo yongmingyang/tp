@@ -16,7 +16,7 @@ import seedu.medmoriser.model.qanda.Answer;
 import seedu.medmoriser.model.qanda.Question;
 
 public class JsonAdaptedQAndATest {
-    private static final String INVALID_QUESTION = "R@chel";
+    private static final String INVALID_QUESTION = " ";
     private static final String INVALID_ANSWER = " ";
     private static final String INVALID_TAG = "#friend";
 
@@ -34,7 +34,6 @@ public class JsonAdaptedQAndATest {
 
     @Test
     public void toModelType_invalidQuestion_throwsIllegalValueException() {
-
         JsonAdaptedQAndA qAndA =
                 new JsonAdaptedQAndA(INVALID_QUESTION, VALID_ANSWER, VALID_TAGS);
         String expectedMessage = Question.MESSAGE_CONSTRAINTS;

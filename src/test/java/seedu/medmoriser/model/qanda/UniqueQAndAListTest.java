@@ -42,7 +42,7 @@ public class UniqueQAndAListTest {
     @Test
     public void contains_qAndAWithSameIdentityFieldsInList_returnsTrue() {
         uniqueQAndAList.add(QUESTION1);
-        QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_TAG2)
+        QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2)
                 .build();
         assertTrue(uniqueQAndAList.contains(editedQuestion1));
     }
