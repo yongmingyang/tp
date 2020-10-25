@@ -53,24 +53,25 @@ Format: `clear`
 
 Finds Q&A whose questions contain any of the given keywords.
 
-Format: `find q/ {keyword here}`
+Format: `find q/{keyword here}`, for 2 or more words: `find q/{word1}, {word2}`
 
 Finds Q&A whose answers contain any of the given keywords.
 
-Format: `find a/ {keyword here}`
+Format: `find a/{keyword here}`, for 2 or more words: `find q/{word1}, {word2}`
 
-Finds Q&A whose tags contain any of the given keywords.
+Finds Q&A whose tags contain any of the given keywords. 
+Keywords for tags can have spaces. This require the text to have an exact match (case-insensitive).
 
-Format: `find t/ {keyword here}`
+Format: `find t/{keyword here}`
 
 Finds Q&A whose questions or answers contain any of the given keywords.
 
-Format: `find {keyword here}`
+Format: `find {keyword here}`, for 2 or more words: `find q/{word1}, {word2}`
 
 Examples:
-* `find q/ lung disease` - finds questions with the word lung and/or disease
-* `find a/ vessels` - finds answers with the word vessels
-* `find t/ anatomy` - finds question sets tagged with the word anatomy
+* `find q/lung, disease` - finds questions with the word lung and/or disease
+* `find a/vessels` - finds answers with the word vessels
+* `find t/anatomy, Nervous System` - finds question sets tagged with the word anatomy or Nervous System (can be both)
 * `find infection` - finds question and/or answers with the word infection
 
 
