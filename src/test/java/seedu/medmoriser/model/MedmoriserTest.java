@@ -3,10 +3,9 @@ package seedu.medmoriser.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG2;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION1;
 import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
 
 import java.util.Arrays;
@@ -46,9 +45,9 @@ public class MedmoriserTest {
     @Test
     public void resetData_withDuplicateQuestionSets_throwsDuplicateQuestionSetException() {
         // Two questionSets with the same identity fields
-        QAndA editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+        QAndA editedQuestion1 = new QuestionSetBuilder(QUESTION1).withTags(VALID_TAG_TAG2)
                 .build();
-        List<QAndA> newQAndAs = Arrays.asList(ALICE, editedAlice);
+        List<QAndA> newQAndAs = Arrays.asList(QUESTION1, editedQuestion1);
         MedmoriserStub newData = new MedmoriserStub(newQAndAs);
 
         assertThrows(DuplicateQuestionSetException.class, () -> medmoriser.resetData(newData));
@@ -61,21 +60,21 @@ public class MedmoriserTest {
 
     @Test
     public void hasQuestionSet_questionSetNotInMedmoriser_returnsFalse() {
-        assertFalse(medmoriser.hasQuestionSet(ALICE));
+        assertFalse(medmoriser.hasQuestionSet(QUESTION1));
     }
 
     @Test
     public void hasQuestionSet_questionSetInMedmoriser_returnsTrue() {
-        medmoriser.addQuestionSet(ALICE);
-        assertTrue(medmoriser.hasQuestionSet(ALICE));
+        medmoriser.addQuestionSet(QUESTION1);
+        assertTrue(medmoriser.hasQuestionSet(QUESTION1));
     }
 
     @Test
     public void hasQuestionSet_questionSetWithSameIdentityFieldsInMedmoriser_returnsTrue() {
-        medmoriser.addQuestionSet(ALICE);
-        QAndA editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+        medmoriser.addQuestionSet(QUESTION1);
+        QAndA editedQuestion1 = new QuestionSetBuilder(QUESTION1).withTags(VALID_TAG_TAG2)
                 .build();
-        assertTrue(medmoriser.hasQuestionSet(editedAlice));
+        assertTrue(medmoriser.hasQuestionSet(editedQuestion1));
     }
 
     @Test

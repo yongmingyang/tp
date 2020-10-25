@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.BENSON;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION1;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasQuestionSet_questionSetNotInMedmoriser_returnsFalse() {
-        assertFalse(modelManager.hasQuestionSet(ALICE));
+        assertFalse(modelManager.hasQuestionSet(QUESTION1));
     }
 
     @Test
     public void hasQuestionSet_questionSetInMedmoriser_returnsTrue() {
-        modelManager.addQuestionSet(ALICE);
-        assertTrue(modelManager.hasQuestionSet(ALICE));
+        modelManager.addQuestionSet(QUESTION1);
+        assertTrue(modelManager.hasQuestionSet(QUESTION1));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Medmoriser medmoriser = new MedmoriserBuilder().withQuestionSet(ALICE).withQuestionSet(BENSON).build();
+        Medmoriser medmoriser = new MedmoriserBuilder().withQuestionSet(QUESTION1).withQuestionSet(QUESTION2).build();
         Medmoriser differentMedmoriser = new Medmoriser();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,8 +117,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentMedmoriser, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getQuestion().question.split("\\s+");
-        modelManager.updateFilteredQAndAList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = QUESTION1.getQuestion().question.split("\\s+");
+        modelManager.updateFilteredQAndAList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords[1])));
         assertFalse(modelManager.equals(new ModelManager(medmoriser, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

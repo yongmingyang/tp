@@ -3,9 +3,9 @@ package seedu.medmoriser.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.HOON;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.IDA;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION1;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION8;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION9;
 import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
 
 import java.io.IOException;
@@ -73,14 +73,14 @@ public class JsonMedmoriserStorageTest {
         assertEquals(original, new Medmoriser(readBack));
 
         // Modify data, overwrite exiting file, and read back
-        original.addQuestionSet(HOON);
-        original.removeQuestionSet(ALICE);
+        original.addQuestionSet(QUESTION8);
+        original.removeQuestionSet(QUESTION1);
         jsonMedmoriserStorage.saveMedmoriser(original, filePath);
         readBack = jsonMedmoriserStorage.readMedmoriser(filePath).get();
         assertEquals(original, new Medmoriser(readBack));
 
         // Save and read without specifying file path
-        original.addQuestionSet(IDA);
+        original.addQuestionSet(QUESTION9);
         jsonMedmoriserStorage.saveMedmoriser(original); // file path not specified
         readBack = jsonMedmoriserStorage.readMedmoriser().get(); // file path not specified
         assertEquals(original, new Medmoriser(readBack));

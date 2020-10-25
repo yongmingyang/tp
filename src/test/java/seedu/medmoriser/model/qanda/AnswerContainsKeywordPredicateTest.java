@@ -72,7 +72,7 @@ public class AnswerContainsKeywordPredicateTest {
 
         // Keywords match question, tag, but does not match answer
         predicate = new AnswerContainsKeywordsPredicate(Arrays.asList("12345", "fakeTag", "Ma1n", "Stre3t"));
-        assertFalse(predicate.test(new QuestionSetBuilder().withQuestion("Alice").withPhone("12345")
+        assertFalse(predicate.test(new QuestionSetBuilder().withQuestion("Alice")
                 .withTags("fakeTag").withAnswer("Main Street").build()));
     }
 }

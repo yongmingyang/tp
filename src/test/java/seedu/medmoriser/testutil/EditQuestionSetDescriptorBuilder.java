@@ -6,8 +6,6 @@ import java.util.stream.Stream;
 
 import seedu.medmoriser.logic.commands.EditCommand.EditQuestionSetDescriptor;
 import seedu.medmoriser.model.qanda.Answer;
-import seedu.medmoriser.model.qanda.Email;
-import seedu.medmoriser.model.qanda.Phone;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
@@ -33,8 +31,6 @@ public class EditQuestionSetDescriptorBuilder {
     public EditQuestionSetDescriptorBuilder(QAndA qAndA) {
         descriptor = new EditQuestionSetDescriptor();
         descriptor.setQuestion(qAndA.getQuestion());
-        descriptor.setPhone(qAndA.getPhone());
-        descriptor.setEmail(qAndA.getEmail());
         descriptor.setAnswer(qAndA.getAnswer());
         descriptor.setTags(qAndA.getTags());
     }
@@ -44,22 +40,6 @@ public class EditQuestionSetDescriptorBuilder {
      */
     public EditQuestionSetDescriptorBuilder withQuestion(String question) {
         descriptor.setQuestion(new Question(question));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Phone} of the {@code EditQuestionSetDescriptor} that we are building.
-     */
-    public EditQuestionSetDescriptorBuilder withPhone(String phone) {
-        descriptor.setPhone(new Phone(phone));
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code EditQuestionSetDescriptor} that we are building.
-     */
-    public EditQuestionSetDescriptorBuilder withEmail(String email) {
-        descriptor.setEmail(new Email(email));
         return this;
     }
 

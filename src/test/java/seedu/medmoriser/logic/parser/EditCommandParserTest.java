@@ -1,29 +1,19 @@
 package seedu.medmoriser.logic.parser;
 
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.ANSWER_DESC_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.ANSWER_DESC_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.EMAIL_DESC_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.EMAIL_DESC_BOB;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.ANSWER_DESC_A;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.ANSWER_DESC_B;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.INVALID_ANSWER_DESC;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.INVALID_EMAIL_DESC;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.INVALID_PHONE_DESC;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.INVALID_QUESTION_DESC;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.INVALID_TAG_DESC;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.PHONE_DESC_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.PHONE_DESC_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.QUESTION_DESC_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.TAG_DESC_FRIEND;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.TAG_DESC_HUSBAND;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.QUESTION_DESC_A;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.TAG_DESC_TAG1;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.TAG_DESC_TAG2;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_A;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_B;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_A;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG1;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG2;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -37,8 +27,6 @@ import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.logic.commands.EditCommand;
 import seedu.medmoriser.logic.commands.EditCommand.EditQuestionSetDescriptor;
 import seedu.medmoriser.model.qanda.Answer;
-import seedu.medmoriser.model.qanda.Email;
-import seedu.medmoriser.model.qanda.Phone;
 import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
@@ -55,7 +43,7 @@ public class EditCommandParserTest {
     @Test
     public void parse_missingParts_failure() {
         // no index specified
-        assertParseFailure(parser, VALID_QUESTION_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, VALID_QUESTION_A, MESSAGE_INVALID_FORMAT);
 
         // no field specified
         assertParseFailure(parser, "1", EditCommand.MESSAGE_NOT_EDITED);
@@ -67,10 +55,10 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidPreamble_failure() {
         // negative index
-        assertParseFailure(parser, "-5" + QUESTION_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "-5" + QUESTION_DESC_A, MESSAGE_INVALID_FORMAT);
 
         // zero index
-        assertParseFailure(parser, "0" + QUESTION_DESC_AMY, MESSAGE_INVALID_FORMAT);
+        assertParseFailure(parser, "0" + QUESTION_DESC_A, MESSAGE_INVALID_FORMAT);
 
         // invalid arguments being parsed as preamble
         assertParseFailure(parser, "1 some random string", MESSAGE_INVALID_FORMAT);
@@ -82,53 +70,31 @@ public class EditCommandParserTest {
     @Test
     public void parse_invalidValue_failure() {
         assertParseFailure(parser, "1" + INVALID_QUESTION_DESC, Question.MESSAGE_CONSTRAINTS); // invalid name
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS); // invalid phone
-        assertParseFailure(parser, "1" + INVALID_EMAIL_DESC, Email.MESSAGE_CONSTRAINTS); // invalid email
         assertParseFailure(parser, "1" + INVALID_ANSWER_DESC, Answer.MESSAGE_CONSTRAINTS); // invalid ANSWER
         assertParseFailure(parser, "1" + INVALID_TAG_DESC, Tag.MESSAGE_CONSTRAINTS); // invalid tag
 
-        // invalid phone followed by valid email
-        assertParseFailure(parser, "1" + INVALID_PHONE_DESC + EMAIL_DESC_AMY, Phone.MESSAGE_CONSTRAINTS);
-
-        // valid phone followed by invalid phone. The test case for invalid phone followed by valid phone
-        // is tested at {@code parse_invalidValueFollowedByValidValue_success()}
-        assertParseFailure(parser, "1" + PHONE_DESC_BOB + INVALID_PHONE_DESC, Phone.MESSAGE_CONSTRAINTS);
-
         // while parsing {@code PREFIX_TAG} alone will reset the tags of the {@code QuestionSet} being edited,
         // parsing it together with a valid tag results in error
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_DESC_HUSBAND + TAG_EMPTY,
+        assertParseFailure(parser, "1" + TAG_DESC_TAG1 + TAG_DESC_TAG2 + TAG_EMPTY,
                 Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_DESC_FRIEND + TAG_EMPTY + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + TAG_DESC_TAG1 + TAG_EMPTY + TAG_DESC_TAG2,
                 Tag.MESSAGE_CONSTRAINTS);
-        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_FRIEND + TAG_DESC_HUSBAND,
+        assertParseFailure(parser, "1" + TAG_EMPTY + TAG_DESC_TAG1 + TAG_DESC_TAG2,
                 Tag.MESSAGE_CONSTRAINTS);
 
         // multiple invalid values, but only the first invalid value is captured
-        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + INVALID_EMAIL_DESC + VALID_ANSWER_AMY
-                        + VALID_PHONE_AMY, Question.MESSAGE_CONSTRAINTS);
+        assertParseFailure(parser, "1" + INVALID_QUESTION_DESC + VALID_ANSWER_A,
+                Question.MESSAGE_CONSTRAINTS);
     }
 
     @Test
     public void parse_allFieldsSpecified_success() {
         Index targetIndex = INDEX_SECOND_QANDA;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + TAG_DESC_HUSBAND
-                + EMAIL_DESC_AMY + ANSWER_DESC_AMY + QUESTION_DESC_AMY + TAG_DESC_FRIEND;
+        String userInput = targetIndex.getOneBased() + TAG_DESC_TAG2 + ANSWER_DESC_A + QUESTION_DESC_A
+                + TAG_DESC_TAG1;
 
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_AMY)
-                .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_AMY).withAnswer(VALID_ANSWER_AMY)
-                .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_someFieldsSpecified_success() {
-        Index targetIndex = INDEX_FIRST_QANDA;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_BOB + EMAIL_DESC_AMY;
-
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_AMY).build();
+        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_A)
+                .withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_TAG2, VALID_TAG_TAG1).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
@@ -138,33 +104,21 @@ public class EditCommandParserTest {
     public void parse_oneFieldSpecified_success() {
         // name
         Index targetIndex = INDEX_THIRD_QUESTIONSET;
-        String userInput = targetIndex.getOneBased() + QUESTION_DESC_AMY;
+        String userInput = targetIndex.getOneBased() + QUESTION_DESC_A;
         EditQuestionSetDescriptor descriptor =
-                new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_AMY).build();
+                new EditQuestionSetDescriptorBuilder().withQuestion(VALID_QUESTION_A).build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
-        // phone
-        userInput = targetIndex.getOneBased() + PHONE_DESC_AMY;
-        descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // email
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_AMY;
-        descriptor = new EditQuestionSetDescriptorBuilder().withEmail(VALID_EMAIL_AMY).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // ANSWER
-        userInput = targetIndex.getOneBased() + ANSWER_DESC_AMY;
-        descriptor = new EditQuestionSetDescriptorBuilder().withAnswer(VALID_ANSWER_AMY).build();
+        // answer
+        userInput = targetIndex.getOneBased() + ANSWER_DESC_A;
+        descriptor = new EditQuestionSetDescriptorBuilder().withAnswer(VALID_ANSWER_A).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
 
         // tags
-        userInput = targetIndex.getOneBased() + TAG_DESC_FRIEND;
-        descriptor = new EditQuestionSetDescriptorBuilder().withTags(VALID_TAG_FRIEND).build();
+        userInput = targetIndex.getOneBased() + TAG_DESC_TAG1;
+        descriptor = new EditQuestionSetDescriptorBuilder().withTags(VALID_TAG_TAG1).build();
         expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
@@ -172,34 +126,15 @@ public class EditCommandParserTest {
     @Test
     public void parse_multipleRepeatedFields_acceptsLast() {
         Index targetIndex = INDEX_FIRST_QANDA;
-        String userInput = targetIndex.getOneBased() + PHONE_DESC_AMY + ANSWER_DESC_AMY + EMAIL_DESC_AMY
-                + TAG_DESC_FRIEND + PHONE_DESC_AMY + ANSWER_DESC_AMY + EMAIL_DESC_AMY + TAG_DESC_FRIEND
-                + PHONE_DESC_BOB + ANSWER_DESC_BOB + EMAIL_DESC_BOB + TAG_DESC_HUSBAND;
+        String userInput = targetIndex.getOneBased() + ANSWER_DESC_A
+                + TAG_DESC_TAG1 + ANSWER_DESC_A + TAG_DESC_TAG1
+                + ANSWER_DESC_B + TAG_DESC_TAG2;
 
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_FRIEND, VALID_TAG_HUSBAND)
+        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withAnswer(VALID_ANSWER_B)
+                .withTags(VALID_TAG_TAG1, VALID_TAG_TAG2)
                 .build();
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
-    public void parse_invalidValueFollowedByValidValue_success() {
-        // no other valid values specified
-        Index targetIndex = INDEX_FIRST_QANDA;
-        String userInput = targetIndex.getOneBased() + INVALID_PHONE_DESC + PHONE_DESC_BOB;
-        EditQuestionSetDescriptor descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB)
-                .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-        assertParseSuccess(parser, userInput, expectedCommand);
-
-        // other valid values specified
-        userInput = targetIndex.getOneBased() + EMAIL_DESC_BOB + INVALID_PHONE_DESC + ANSWER_DESC_BOB
-                + PHONE_DESC_BOB;
-        descriptor = new EditQuestionSetDescriptorBuilder().withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB)
-                .withAnswer(VALID_ANSWER_BOB).build();
-        expectedCommand = new EditCommand(targetIndex, descriptor);
         assertParseSuccess(parser, userInput, expectedCommand);
     }
 

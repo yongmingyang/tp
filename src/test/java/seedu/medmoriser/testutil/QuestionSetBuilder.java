@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 import seedu.medmoriser.model.qanda.Answer;
-import seedu.medmoriser.model.qanda.Email;
-import seedu.medmoriser.model.qanda.Phone;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
@@ -16,14 +14,10 @@ import seedu.medmoriser.model.util.SampleDataUtil;
  */
 public class QuestionSetBuilder {
 
-    public static final String DEFAULT_QUESTION = "Alice Pauline";
-    public static final String DEFAULT_PHONE = "85355255";
-    public static final String DEFAULT_EMAIL = "alice@gmail.com";
-    public static final String DEFAULT_ANSWER = "123, Jurong West Ave 6, #08-111";
+    public static final String DEFAULT_QUESTION = "This is a question";
+    public static final String DEFAULT_ANSWER = "This is the answer";
 
     private Question question;
-    private Phone phone;
-    private Email email;
     private Answer answer;
     private Set<Tag> tags;
 
@@ -32,8 +26,6 @@ public class QuestionSetBuilder {
      */
     public QuestionSetBuilder() {
         question = new Question(DEFAULT_QUESTION);
-        phone = new Phone(DEFAULT_PHONE);
-        email = new Email(DEFAULT_EMAIL);
         answer = new Answer(DEFAULT_ANSWER);
         tags = new HashSet<>();
     }
@@ -43,8 +35,6 @@ public class QuestionSetBuilder {
      */
     public QuestionSetBuilder(QAndA qAndAToCopy) {
         question = qAndAToCopy.getQuestion();
-        phone = qAndAToCopy.getPhone();
-        email = qAndAToCopy.getEmail();
         answer = qAndAToCopy.getAnswer();
         tags = new HashSet<>(qAndAToCopy.getTags());
     }
@@ -73,24 +63,8 @@ public class QuestionSetBuilder {
         return this;
     }
 
-    /**
-     * Sets the {@code Phone} of the {@code QuestionSet} that we are building.
-     */
-    public QuestionSetBuilder withPhone(String phone) {
-        this.phone = new Phone(phone);
-        return this;
-    }
-
-    /**
-     * Sets the {@code Email} of the {@code QuestionSet} that we are building.
-     */
-    public QuestionSetBuilder withEmail(String email) {
-        this.email = new Email(email);
-        return this;
-    }
-
     public QAndA build() {
-        return new QAndA(question, phone, email, answer, tags);
+        return new QAndA(question, answer, tags);
     }
 
 }
