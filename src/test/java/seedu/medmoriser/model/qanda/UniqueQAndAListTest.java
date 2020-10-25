@@ -118,7 +118,7 @@ public class UniqueQAndAListTest {
 
     @Test
 
-    public void remove_qAndADoesNotExist_throwsQuestionSetNotFoundException() {
+    public void remove_qAndADoesNotExist_throwsQAndANotFoundException() {
         assertThrows(QAndANotFoundException.class, () -> uniqueQAndAList.remove(QUESTION1));
     }
 
