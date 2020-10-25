@@ -5,8 +5,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QANDA;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQAndA.ALICE;
-import static seedu.medmoriser.testutil.TypicalQAndA.BENSON;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION1;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -79,13 +79,13 @@ public class ModelManagerTest {
 
     @Test
     public void hasQAndA_qAndANotInMedmoriser_returnsFalse() {
-        assertFalse(modelManager.hasQAndA(ALICE));
+        assertFalse(modelManager.hasQAndA(QUESTION1));
     }
 
     @Test
     public void hasQAndA_qAndAInMedmoriser_returnsTrue() {
-        modelManager.addQAndA(ALICE);
-        assertTrue(modelManager.hasQAndA(ALICE));
+        modelManager.addQAndA(QUESTION1);
+        assertTrue(modelManager.hasQAndA(QUESTION1));
     }
 
     @Test
@@ -95,7 +95,7 @@ public class ModelManagerTest {
 
     @Test
     public void equals() {
-        Medmoriser medmoriser = new MedmoriserBuilder().withQAndA(ALICE).withQAndA(BENSON).build();
+        Medmoriser medmoriser = new MedmoriserBuilder().withQAndA(QUESTION1).withQAndA(QUESTION2).build();
         Medmoriser differentMedmoriser = new Medmoriser();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,8 +117,8 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentMedmoriser, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getQuestion().question.split("\\s+");
-        modelManager.updateFilteredQAndAList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = QUESTION1.getQuestion().question.split("\\s+");
+        modelManager.updateFilteredQAndAList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords[1])));
         assertFalse(modelManager.equals(new ModelManager(medmoriser, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests

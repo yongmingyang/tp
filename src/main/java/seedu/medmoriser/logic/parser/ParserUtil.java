@@ -10,8 +10,6 @@ import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.commons.util.StringUtil;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.qanda.Answer;
-import seedu.medmoriser.model.qanda.Email;
-import seedu.medmoriser.model.qanda.Phone;
 import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
@@ -51,21 +49,6 @@ public class ParserUtil {
     }
 
     /**
-     * Parses a {@code String phone} into a {@code Phone}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code phone} is invalid.
-     */
-    public static Phone parsePhone(String phone) throws ParseException {
-        requireNonNull(phone);
-        String trimmedPhone = phone.trim();
-        if (!Phone.isValidPhone(trimmedPhone)) {
-            throw new ParseException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        return new Phone(trimmedPhone);
-    }
-
-    /**
      * Parses a {@code String answer} into an {@code answer}.
      * Leading and trailing whitespaces will be trimmed.
      *
@@ -78,21 +61,6 @@ public class ParserUtil {
             throw new ParseException(Answer.MESSAGE_CONSTRAINTS);
         }
         return new Answer(trimmedAnswer);
-    }
-
-    /**
-     * Parses a {@code String email} into an {@code Email}.
-     * Leading and trailing whitespaces will be trimmed.
-     *
-     * @throws ParseException if the given {@code email} is invalid.
-     */
-    public static Email parseEmail(String email) throws ParseException {
-        requireNonNull(email);
-        String trimmedEmail = email.trim();
-        if (!Email.isValidEmail(trimmedEmail)) {
-            throw new ParseException(Email.MESSAGE_CONSTRAINTS);
-        }
-        return new Email(trimmedEmail);
     }
 
     /**

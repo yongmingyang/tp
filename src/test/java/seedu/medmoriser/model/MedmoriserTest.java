@@ -3,10 +3,9 @@ package seedu.medmoriser.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG2;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQAndA.ALICE;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION1;
 import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
 
 import java.util.Arrays;
@@ -44,11 +43,11 @@ public class MedmoriserTest {
     }
 
     @Test
-    public void resetData_withDuplicateQAndAs_throwsDuplicateQAndAException() {
-        // Two qAndAs with the same identity fields
-        QAndA editedAlice = new QAndABuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+    public void resetData_withDuplicateQAndA_throwsDuplicateQAndAException() {
+        // Two QAndAs with the same identity fields
+        QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2)
                 .build();
-        List<QAndA> newQAndAs = Arrays.asList(ALICE, editedAlice);
+        List<QAndA> newQAndAs = Arrays.asList(QUESTION1, editedQuestion1);
         MedmoriserStub newData = new MedmoriserStub(newQAndAs);
 
         assertThrows(DuplicateQAndAException.class, () -> medmoriser.resetData(newData));
@@ -61,21 +60,21 @@ public class MedmoriserTest {
 
     @Test
     public void hasQAndA_qAndANotInMedmoriser_returnsFalse() {
-        assertFalse(medmoriser.hasQAndA(ALICE));
+        assertFalse(medmoriser.hasQAndA(QUESTION1));
     }
 
     @Test
     public void hasQAndA_qAndAInMedmoriser_returnsTrue() {
-        medmoriser.addQAndA(ALICE);
-        assertTrue(medmoriser.hasQAndA(ALICE));
+        medmoriser.addQAndA(QUESTION1);
+        assertTrue(medmoriser.hasQAndA(QUESTION1));
     }
 
     @Test
     public void hasQAndA_qAndAWithSameIdentityFieldsInMedmoriser_returnsTrue() {
-        medmoriser.addQAndA(ALICE);
-        QAndA editedAlice = new QAndABuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+        medmoriser.addQAndA(QUESTION1);
+        QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2)
                 .build();
-        assertTrue(medmoriser.hasQAndA(editedAlice));
+        assertTrue(medmoriser.hasQAndA(editedQuestion1));
     }
 
     @Test

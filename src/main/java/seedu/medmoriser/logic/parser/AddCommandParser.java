@@ -2,8 +2,6 @@ package seedu.medmoriser.logic.parser;
 
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -13,8 +11,6 @@ import java.util.stream.Stream;
 import seedu.medmoriser.logic.commands.AddCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.qanda.Answer;
-import seedu.medmoriser.model.qanda.Email;
-import seedu.medmoriser.model.qanda.Phone;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
@@ -31,7 +27,7 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     public AddCommand parse(String args) throws ParseException {
         ArgumentMultimap argMultimap = ArgumentTokenizer.tokenize(args, PREFIX_QUESTION,
-                PREFIX_PHONE, PREFIX_EMAIL, PREFIX_ANSWER, PREFIX_TAG);
+                 PREFIX_ANSWER, PREFIX_TAG);
 
         if (!arePrefixesPresent(argMultimap, PREFIX_QUESTION, PREFIX_ANSWER)
                 || !argMultimap.getPreamble().isEmpty()) {
@@ -39,20 +35,11 @@ public class AddCommandParser implements Parser<AddCommand> {
         }
 
         Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
-        Phone phone;
-        Email email;
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
         QAndA qAndA;
 
-        if (!arePrefixesPresent(argMultimap, PREFIX_PHONE, PREFIX_EMAIL)) {
-            qAndA = new QAndA(question, answer, tagList);
-        } else {
-            phone = ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get());
-            email = ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get());
-            qAndA = new QAndA(question, phone, email, answer, tagList);
-        }
-
+        qAndA = new QAndA(question, answer, tagList);
         return new AddCommand(qAndA);
     }
 

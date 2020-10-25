@@ -2,14 +2,12 @@ package seedu.medmoriser.model.qanda;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_B;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_B;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG2;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQAndA.ALICE;
-import static seedu.medmoriser.testutil.TypicalQAndA.BOB;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION1;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTIONB;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,71 +24,55 @@ public class QAndATest {
     @Test
     public void isSameQAndA() {
         // same object -> returns true
-        assertTrue(ALICE.isSameQAndA(ALICE));
+        assertTrue(QUESTION1.isSameQAndA(QUESTION1));
 
         // null -> returns false
-        assertFalse(ALICE.isSameQAndA(null));
+        assertFalse(QUESTION1.isSameQAndA(null));
 
-        // different phone and email -> returns false
-        QAndA editedAlice = new QAndABuilder(ALICE).withPhone(VALID_PHONE_BOB)
-                .withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.isSameQAndA(editedAlice));
+        QAndA editedQuestion1;
 
-        // different name -> returns false
-        editedAlice = new QAndABuilder(ALICE).withQuestion(VALID_QUESTION_BOB).build();
-        assertFalse(ALICE.isSameQAndA(editedAlice));
+        // different question -> returns false
+        editedQuestion1 = new QAndABuilder(QUESTION1).withQuestion(VALID_QUESTION_B).build();
+        assertFalse(QUESTION1.isSameQAndA(editedQuestion1));
 
-        // same name, same phone, different attributes -> returns true
-        editedAlice = new QAndABuilder(ALICE).withEmail(VALID_EMAIL_BOB).withAnswer(VALID_ANSWER_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameQAndA(editedAlice));
+        // same question, different answer -> returns false
+        editedQuestion1 = new QAndABuilder(QUESTION1).withAnswer(VALID_ANSWER_B)
+                .withTags(VALID_TAG_TAG2).build();
+        assertFalse(QUESTION1.isSameQAndA(editedQuestion1));
 
-        // same name, same email, different attributes -> returns true
-        editedAlice = new QAndABuilder(ALICE).withPhone(VALID_PHONE_BOB).withAnswer(VALID_ANSWER_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameQAndA(editedAlice));
-
-        // same name, same phone, same email, different attributes -> returns true
-        editedAlice = new QAndABuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND).build();
-        assertTrue(ALICE.isSameQAndA(editedAlice));
+        // same question, same answer, different tag -> returns true
+        editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2).build();
+        assertTrue(QUESTION1.isSameQAndA(editedQuestion1));
     }
 
     @Test
     public void equals() {
         // same values -> returns true
-        QAndA aliceCopy = new QAndABuilder(ALICE).build();
-        assertTrue(ALICE.equals(aliceCopy));
+        QAndA question1Copy = new QAndABuilder(QUESTION1).build();
+        assertTrue(QUESTION1.equals(question1Copy));
 
         // same object -> returns true
-        assertTrue(ALICE.equals(ALICE));
+        assertTrue(QUESTION1.equals(QUESTION1));
 
         // null -> returns false
-        assertFalse(ALICE.equals(null));
+        assertFalse(QUESTION1.equals(null));
 
         // different type -> returns false
-        assertFalse(ALICE.equals(5));
+        assertFalse(QUESTION1.equals(5));
 
-        // different qAndA -> returns false
-        assertFalse(ALICE.equals(BOB));
+        // different questionSet -> returns false
+        assertFalse(QUESTION1.equals(QUESTIONB));
 
         // different question -> returns false
-        QAndA editedAlice = new QAndABuilder(ALICE).withQuestion(VALID_QUESTION_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different phone -> returns false
-        editedAlice = new QAndABuilder(ALICE).withPhone(VALID_PHONE_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
-
-        // different email -> returns false
-        editedAlice = new QAndABuilder(ALICE).withEmail(VALID_EMAIL_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withQuestion(VALID_QUESTION_B).build();
+        assertFalse(QUESTION1.equals(editedQuestion1));
 
         // different answer -> returns false
-        editedAlice = new QAndABuilder(ALICE).withAnswer(VALID_ANSWER_BOB).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedQuestion1 = new QAndABuilder(QUESTION1).withAnswer(VALID_ANSWER_B).build();
+        assertFalse(QUESTION1.equals(editedQuestion1));
 
         // different tags -> returns false
-        editedAlice = new QAndABuilder(ALICE).withTags(VALID_TAG_HUSBAND).build();
-        assertFalse(ALICE.equals(editedAlice));
+        editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2).build();
+        assertFalse(QUESTION1.equals(editedQuestion1));
     }
 }

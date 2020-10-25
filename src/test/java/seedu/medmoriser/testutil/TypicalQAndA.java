@@ -1,15 +1,11 @@
 package seedu.medmoriser.testutil;
 
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_EMAIL_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_EMAIL_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_FRIEND;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_A;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_B;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_A;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_B;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG1;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG2;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,38 +19,36 @@ import seedu.medmoriser.model.qanda.QAndA;
  */
 public class TypicalQAndA {
 
-    public static final QAndA ALICE = new QAndABuilder().withQuestion("Alice Pauline")
-            .withAnswer("123, Jurong West Ave 6, #08-111").withEmail("alice@example.com")
-            .withPhone("94351253")
-            .withTags("friends").build();
-    public static final QAndA BENSON = new QAndABuilder().withQuestion("Benson Meier")
-            .withAnswer("311, Clementi Ave 2, #02-25")
-            .withEmail("johnd@example.com").withPhone("98765432")
-            .withTags("owesMoney", "friends").build();
-    public static final QAndA CARL = new QAndABuilder().withQuestion("Carl Kurz").withPhone("95352563")
-            .withEmail("heinz@example.com").withAnswer("wall street").build();
-    public static final QAndA DANIEL = new QAndABuilder().withQuestion("Daniel Meier").withPhone("87652533")
-            .withEmail("cornelia@example.com").withAnswer("10th street").withTags("friends").build();
-    public static final QAndA ELLE = new QAndABuilder().withQuestion("Elle Meyer").withPhone("9482224")
-            .withEmail("werner@example.com").withAnswer("michegan ave").build();
-    public static final QAndA FIONA = new QAndABuilder().withQuestion("Fiona Kunz").withPhone("9482427")
-            .withEmail("lydia@example.com").withAnswer("little tokyo").build();
-    public static final QAndA GEORGE = new QAndABuilder().withQuestion("George Best").withPhone("9482442")
-            .withEmail("anna@example.com").withAnswer("4th street").build();
+    public static final QAndA QUESTION1 = new QAndABuilder().withQuestion("Question One")
+            .withAnswer("Answer 1")
+            .withTags("DNA").build();
+    public static final QAndA QUESTION2 = new QAndABuilder().withQuestion("Question Two")
+            .withAnswer("Answer 2")
+            .withTags("ImmuneSystem").build();
+    public static final QAndA QUESTION3 = new QAndABuilder().withQuestion("Question Three")
+            .withAnswer("Answer 3").build();
+    public static final QAndA QUESTION4 = new QAndABuilder().withQuestion("Question Four")
+            .withAnswer("Answer 4").build();
+    public static final QAndA QUESTION5 = new QAndABuilder().withQuestion("Question Five")
+            .withAnswer("Answer 5").build();
+    public static final QAndA QUESTION6 = new QAndABuilder().withQuestion("Question Six")
+            .withAnswer("Answer 6")
+            .build();
+    public static final QAndA QUESTION7 = new QAndABuilder().withQuestion("Question Seven")
+            .withAnswer("Answer 7")
+            .build();
 
     // Manually added
-    public static final QAndA HOON = new QAndABuilder().withQuestion("Hoon Meier").withPhone("8482424")
-            .withEmail("stefan@example.com").withAnswer("little india").build();
-    public static final QAndA IDA = new QAndABuilder().withQuestion("Ida Mueller").withPhone("8482131")
-            .withEmail("hans@example.com").withAnswer("chicago ave").build();
+    public static final QAndA QUESTION8 = new QAndABuilder().withQuestion("Question Eight")
+            .withAnswer("Answer 8").build();
+    public static final QAndA QUESTION9 = new QAndABuilder().withQuestion("Question Nine")
+            .withAnswer("Answer 9").build();
 
-    // Manually added - QAndA's details found in {@code CommandTestUtil}
-    public static final QAndA AMY = new QAndABuilder().withQuestion(VALID_QUESTION_AMY)
-            .withPhone(VALID_PHONE_AMY).withEmail(VALID_EMAIL_AMY).withAnswer(VALID_ANSWER_AMY)
-            .withTags(VALID_TAG_FRIEND).build();
-    public static final QAndA BOB = new QAndABuilder().withQuestion(VALID_QUESTION_BOB)
-            .withPhone(VALID_PHONE_BOB).withEmail(VALID_EMAIL_BOB).withAnswer(VALID_ANSWER_BOB)
-            .withTags(VALID_TAG_HUSBAND, VALID_TAG_FRIEND).build();
+    // Manually added - QuestionSet's details found in {@code CommandTestUtil}
+    public static final QAndA QUESTIONA = new QAndABuilder().withQuestion(VALID_QUESTION_A)
+            .withAnswer(VALID_ANSWER_A).withTags(VALID_TAG_TAG1).build();
+    public static final QAndA QUESTIONB = new QAndABuilder().withQuestion(VALID_QUESTION_B)
+            .withAnswer(VALID_ANSWER_B).withTags(VALID_TAG_TAG2, VALID_TAG_TAG1).build();
 
     public static final String KEYWORD_MATCHING_MEIER = "Meier"; // A keyword that matches MEIER
 
@@ -72,6 +66,8 @@ public class TypicalQAndA {
     }
 
     public static List<QAndA> getTypicalQAndAs() {
-        return new ArrayList<>(Arrays.asList(ALICE, BENSON, CARL, DANIEL, ELLE, FIONA, GEORGE));
+        return new ArrayList<>(Arrays.asList(QUESTION1, QUESTION2, QUESTION3, QUESTION4, QUESTION5, QUESTION6,
+                QUESTION7));
+
     }
 }
