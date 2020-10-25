@@ -1,6 +1,6 @@
 package seedu.medmoriser.logic.commands;
 
-import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
+import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QANDA;
 
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
@@ -22,7 +22,7 @@ public class ExitQuizCommand extends Command {
             throw new CommandException(MESSAGE_NO_ONGOING_QUIZ);
         } else {
             QuizCommand.setIsQuiz(false);
-            model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
+            model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QANDA);
             return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT);
         }
     }
