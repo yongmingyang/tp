@@ -28,18 +28,23 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] nameKeywords = trimmedArgs.split("\\s+");
+        String[] nameKeywords = trimmedArgs.split("/");
+        String[] keywordsArray;
 
         String findType = nameKeywords[0];
         switch (findType) {
-        case "t/":
-            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        case "q/":
-            return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-        case "a/":
-            return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+        case "t":
+            keywordsArray = nameKeywords[1].split("\\s+");
+            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+        case "q":
+            keywordsArray = nameKeywords[1].split("\\s+");
+            return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+        case "a":
+            keywordsArray = nameKeywords[1].split("\\s+");
+            return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         default:
-            return new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
+            keywordsArray = trimmedArgs.split("\\s+");
+            return new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         }
     }
 

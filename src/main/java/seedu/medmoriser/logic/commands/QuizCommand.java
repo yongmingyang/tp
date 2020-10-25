@@ -1,6 +1,8 @@
 package seedu.medmoriser.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.List;
 import java.util.Random;
@@ -21,7 +23,15 @@ public class QuizCommand extends Command {
 
     public static final String COMMAND_WORD = "quiz";
 
-    public static final String MESSAGE_USAGE = "Quiz time! Heres a question...";
+    public static final String MESSAGE_SUCCESS = "Quiz time! Heres a question...";
+
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Quizzes the user on a question based on the keywords"
+            + " provided by the user. Quiz by tag, question or keyword. \n"
+            + "Parameters: "
+            + PREFIX_QUESTION + "QUESTION " + "or "
+            + PREFIX_TAG + "TAG " + "or "
+            + "KEYWORD [MORE_KEYWORDS]...\n"
+            + "Example: " + COMMAND_WORD + " t/tag";
 
     public static final String MESSAGE_NO_QUESTION_WITH_KEYWORD = "No question with this tag/keyword";
 
@@ -65,7 +75,7 @@ public class QuizCommand extends Command {
             model.updateFilteredQAndAList(x -> x.equals(question));
             setIsQuiz(true);
 
-            return new CommandResult(MESSAGE_USAGE);
+            return new CommandResult(MESSAGE_SUCCESS);
         } else {
             throw new CommandException(MESSAGE_NO_QUESTION_WITH_KEYWORD);
         }

@@ -4,7 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
-import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
+import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QANDA;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -25,14 +25,14 @@ import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
- * Edits the details of an existing QuestionSet in the question bank.
+ * Edits the details of an existing QAndA in the question bank.
  */
 public class EditCommand extends Command {
 
     public static final String COMMAND_WORD = "edit";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the questionSet identified "
-            + "by the index number used in the displayed questionSet list. "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Edits the details of the QAndA identified "
+            + "by the index number used in the displayed QAndA list. "
             + "Existing values will be overwritten by the input values.\n"
             + "Parameters: INDEX (must be a positive integer) "
             + "[" + PREFIX_QUESTION + "QUESTION] "
@@ -42,23 +42,23 @@ public class EditCommand extends Command {
             + PREFIX_QUESTION + "What causes pimples? "
             + PREFIX_ANSWER + "triggered by androgen hormones and, in some cases, genetics";
 
-    public static final String MESSAGE_EDIT_QUESTIONSET_SUCCESS = "Edited questionSet: %1$s";
+    public static final String MESSAGE_EDIT_QANDA_SUCCESS = "Edited QAndA: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
-    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "This questionSet already exists in the question bank.";
+    public static final String MESSAGE_DUPLICATE_QANDA = "This QAndA already exists in the question bank.";
 
     private final Index index;
-    private final EditQuestionSetDescriptor editQuestionSetDescriptor;
+    private final EditQAndADescriptor editQAndADescriptor;
 
     /**
-     * @param index of the questionSet in the filtered questionSet list to edit
-     * @param editQuestionSetDescriptor details to edit the questionSet with
+     * @param index of the qAndA in the filtered qAndA list to edit
+     * @param editQAndADescriptor details to edit the qAndA with
      */
-    public EditCommand(Index index, EditQuestionSetDescriptor editQuestionSetDescriptor) {
+    public EditCommand(Index index, EditQAndADescriptor editQAndADescriptor) {
         requireNonNull(index);
-        requireNonNull(editQuestionSetDescriptor);
+        requireNonNull(editQAndADescriptor);
 
         this.index = index;
-        this.editQuestionSetDescriptor = new EditQuestionSetDescriptor(editQuestionSetDescriptor);
+        this.editQAndADescriptor = new EditQAndADescriptor(editQAndADescriptor);
     }
 
     @Override
@@ -74,31 +74,31 @@ public class EditCommand extends Command {
             }
 
             QAndA qAndAToEdit = lastShownList.get(index.getZeroBased());
-            QAndA editedQAndA = createEditedQuestionSet(qAndAToEdit, editQuestionSetDescriptor);
+            QAndA editedQAndA = createEditedQAndA(qAndAToEdit, editQAndADescriptor);
 
-            if (!qAndAToEdit.isSameQuestionSet(editedQAndA) && model.hasQuestionSet(editedQAndA)) {
-                throw new CommandException(MESSAGE_DUPLICATE_QUESTIONSET);
+            if (!qAndAToEdit.isSameQAndA(editedQAndA) && model.hasQAndA(editedQAndA)) {
+                throw new CommandException(MESSAGE_DUPLICATE_QANDA);
             }
 
-            model.setQuestionSet(qAndAToEdit, editedQAndA);
-            model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
-            return new CommandResult(String.format(MESSAGE_EDIT_QUESTIONSET_SUCCESS, editedQAndA));
+            model.setQAndA(qAndAToEdit, editedQAndA);
+            model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QANDA);
+            return new CommandResult(String.format(MESSAGE_EDIT_QANDA_SUCCESS, editedQAndA));
         }
     }
 
     /**
-     * Creates and returns a {@code QuestionSet} with the details of {@code questionSetToEdit}
-     * edited with {@code editQuestionSetDescriptor}.
+     * Creates and returns a {@code QAndA} with the details of {@code qAndAToEdit}
+     * edited with {@code editQAndADescriptor}.
      */
-    private static QAndA createEditedQuestionSet(QAndA qAndAToEdit,
-                                                 EditQuestionSetDescriptor editQuestionSetDescriptor) {
+    private static QAndA createEditedQAndA(QAndA qAndAToEdit,
+                                           EditQAndADescriptor editQAndADescriptor) {
         assert qAndAToEdit != null;
 
-        Question updatedQuestion = editQuestionSetDescriptor.getQuestion().orElse(qAndAToEdit.getQuestion());
-        Phone updatedPhone = editQuestionSetDescriptor.getPhone().orElse(qAndAToEdit.getPhone());
-        Email updatedEmail = editQuestionSetDescriptor.getEmail().orElse(qAndAToEdit.getEmail());
-        Answer updatedAnswer = editQuestionSetDescriptor.getAnswer().orElse(qAndAToEdit.getAnswer());
-        Set<Tag> updatedTags = editQuestionSetDescriptor.getTags().orElse(qAndAToEdit.getTags());
+        Question updatedQuestion = editQAndADescriptor.getQuestion().orElse(qAndAToEdit.getQuestion());
+        Phone updatedPhone = editQAndADescriptor.getPhone().orElse(qAndAToEdit.getPhone());
+        Email updatedEmail = editQAndADescriptor.getEmail().orElse(qAndAToEdit.getEmail());
+        Answer updatedAnswer = editQAndADescriptor.getAnswer().orElse(qAndAToEdit.getAnswer());
+        Set<Tag> updatedTags = editQAndADescriptor.getTags().orElse(qAndAToEdit.getTags());
 
         return new QAndA(updatedQuestion, updatedPhone, updatedEmail, updatedAnswer, updatedTags);
     }
@@ -118,27 +118,27 @@ public class EditCommand extends Command {
         // state check
         EditCommand e = (EditCommand) other;
         return index.equals(e.index)
-                && editQuestionSetDescriptor.equals(e.editQuestionSetDescriptor);
+                && editQAndADescriptor.equals(e.editQAndADescriptor);
     }
 
     /**
-     * Stores the details to edit the questionSet with. Each non-empty field value will replace the
-     * corresponding field value of the questionSet.
+     * Stores the details to edit the qAndA with. Each non-empty field value will replace the
+     * corresponding field value of the qAndA.
      */
-    public static class EditQuestionSetDescriptor {
+    public static class EditQAndADescriptor {
         private Question question;
         private Phone phone;
         private Email email;
         private Answer answer;
         private Set<Tag> tags;
 
-        public EditQuestionSetDescriptor() {}
+        public EditQAndADescriptor() {}
 
         /**
          * Copy constructor.
          * A defensive copy of {@code tags} is used internally.
          */
-        public EditQuestionSetDescriptor(EditQuestionSetDescriptor toCopy) {
+        public EditQAndADescriptor(EditQAndADescriptor toCopy) {
             setQuestion(toCopy.question);
             setPhone(toCopy.phone);
             setEmail(toCopy.email);
@@ -210,12 +210,12 @@ public class EditCommand extends Command {
             }
 
             // instanceof handles nulls
-            if (!(other instanceof EditQuestionSetDescriptor)) {
+            if (!(other instanceof EditQAndADescriptor)) {
                 return false;
             }
 
             // state check
-            EditQuestionSetDescriptor e = (EditQuestionSetDescriptor) other;
+            EditQAndADescriptor e = (EditQAndADescriptor) other;
 
             return getQuestion().equals(e.getQuestion())
                     && getPhone().equals(e.getPhone())

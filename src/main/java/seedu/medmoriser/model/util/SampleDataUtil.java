@@ -43,7 +43,7 @@ public class SampleDataUtil {
     public static ReadOnlyMedmoriser getSampleMedmoriser() {
         Medmoriser sampleAb = new Medmoriser();
         for (QAndA sampleQAndA : getSampleQuestionSets()) {
-            sampleAb.addQuestionSet(sampleQAndA);
+            sampleAb.addQAndA(sampleQAndA);
         }
         return sampleAb;
     }

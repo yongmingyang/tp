@@ -3,7 +3,7 @@ package seedu.medmoriser.storage;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static seedu.medmoriser.storage.JsonAdaptedQAndA.MISSING_FIELD_MESSAGE_FORMAT;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.BENSON;
+import static seedu.medmoriser.testutil.TypicalQAndA.BENSON;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,57 +33,57 @@ public class JsonAdaptedQAndATest {
             .collect(Collectors.toList());
 
     @Test
-    public void toModelType_validQuestionSetDetails_returnsQuestionSet() throws Exception {
-        JsonAdaptedQAndA questionSet = new JsonAdaptedQAndA(BENSON);
-        assertEquals(BENSON, questionSet.toModelType());
+    public void toModelType_validQAndADetails_returnsQAndA() throws Exception {
+        JsonAdaptedQAndA qAndA = new JsonAdaptedQAndA(BENSON);
+        assertEquals(BENSON, qAndA.toModelType());
     }
 
     @Test
     public void toModelType_invalidQuestion_throwsIllegalValueException() {
-        JsonAdaptedQAndA questionSet =
+        JsonAdaptedQAndA qAndA =
                 new JsonAdaptedQAndA(INVALID_QUESTION, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Question.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, qAndA::toModelType);
     }
 
     @Test
     public void toModelType_nullQuestion_throwsIllegalValueException() {
-        JsonAdaptedQAndA questionSet = new JsonAdaptedQAndA(null, VALID_PHONE, VALID_EMAIL,
+        JsonAdaptedQAndA qAndA = new JsonAdaptedQAndA(null, VALID_PHONE, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Question.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, qAndA::toModelType);
     }
 
     @Test
     public void toModelType_invalidPhone_throwsIllegalValueException() {
-        JsonAdaptedQAndA questionSet =
+        JsonAdaptedQAndA qAndA =
                 new JsonAdaptedQAndA(VALID_QUESTION, INVALID_PHONE, VALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Phone.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, qAndA::toModelType);
     }
 
     @Test
     public void toModelType_nullPhone_throwsIllegalValueException() {
-        JsonAdaptedQAndA questionSet = new JsonAdaptedQAndA(VALID_QUESTION, null, VALID_EMAIL,
+        JsonAdaptedQAndA qAndA = new JsonAdaptedQAndA(VALID_QUESTION, null, VALID_EMAIL,
                 VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, qAndA::toModelType);
     }
 
     @Test
     public void toModelType_invalidEmail_throwsIllegalValueException() {
-        JsonAdaptedQAndA questionSet =
+        JsonAdaptedQAndA qAndA =
                 new JsonAdaptedQAndA(VALID_QUESTION, VALID_PHONE, INVALID_EMAIL, VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = Email.MESSAGE_CONSTRAINTS;
-        assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, qAndA::toModelType);
     }
 
     @Test
     public void toModelType_nullEmail_throwsIllegalValueException() {
-        JsonAdaptedQAndA questionSet = new JsonAdaptedQAndA(VALID_QUESTION, VALID_PHONE, null,
+        JsonAdaptedQAndA qAndA = new JsonAdaptedQAndA(VALID_QUESTION, VALID_PHONE, null,
                 VALID_ADDRESS, VALID_TAGS);
         String expectedMessage = String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName());
-        assertThrows(IllegalValueException.class, expectedMessage, questionSet::toModelType);
+        assertThrows(IllegalValueException.class, expectedMessage, qAndA::toModelType);
     }
 
     @Test
@@ -106,9 +106,9 @@ public class JsonAdaptedQAndATest {
     public void toModelType_invalidTags_throwsIllegalValueException() {
         List<JsonAdaptedTag> invalidTags = new ArrayList<>(VALID_TAGS);
         invalidTags.add(new JsonAdaptedTag(INVALID_TAG));
-        JsonAdaptedQAndA questionSet =
+        JsonAdaptedQAndA qAndA =
                 new JsonAdaptedQAndA(VALID_QUESTION, VALID_PHONE, VALID_EMAIL, VALID_ADDRESS, invalidTags);
-        assertThrows(IllegalValueException.class, questionSet::toModelType);
+        assertThrows(IllegalValueException.class, qAndA::toModelType);
     }
 
 }

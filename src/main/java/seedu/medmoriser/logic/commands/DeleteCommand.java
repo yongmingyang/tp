@@ -11,7 +11,7 @@ import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.qanda.QAndA;
 
 /**
- * Deletes a questionSet identified using it's displayed index from the address book.
+ * Deletes a qAndA identified using it's displayed index from the address book.
  */
 public class DeleteCommand extends Command {
 

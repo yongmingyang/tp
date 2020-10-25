@@ -6,7 +6,7 @@ import java.util.function.Predicate;
 import seedu.medmoriser.commons.util.StringUtil;
 
 /**
- * Tests that a {@code QuestionSet}'s {@code Question} matches any of the keywords given.
+ * Tests that a {@code QAndA}'s {@code Question} matches any of the keywords given.
  */
 public class QuestionContainsKeywordsPredicate implements Predicate<QAndA> {
     private final List<String> keywords;

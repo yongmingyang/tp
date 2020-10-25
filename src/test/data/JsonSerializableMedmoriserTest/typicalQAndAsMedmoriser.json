@@ -1,6 +1,6 @@
 {
   "_comment": "AddressBook save file which contains the same QuestionSet values as in TypicalQuestionSets#getTypicalAddressBook()",
-  "questionSets" : [ {
+  "qAndAs" : [ {
     "name" : "Alice Pauline",
     "phone" : "94351253",
     "email" : "alice@example.com",

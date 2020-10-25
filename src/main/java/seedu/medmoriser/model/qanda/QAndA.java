@@ -77,7 +77,7 @@ public class QAndA {
      * Returns true if both QuestionSets of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two QuestionSets.
      */
-    public boolean isSameQuestionSet(QAndA otherQAndA) {
+    public boolean isSameQAndA(QAndA otherQAndA) {
         if (otherQAndA == this) {
             return true;
         }

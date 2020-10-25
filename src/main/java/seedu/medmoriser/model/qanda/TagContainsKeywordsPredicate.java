@@ -8,7 +8,7 @@ import seedu.medmoriser.commons.util.StringUtil;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
- * Tests that a {@code QuestionSet}'s {@code Tag} matches any of the keywords given.
+ * Tests that a {@code QAndA}'s {@code Tag} matches any of the keywords given.
  */
 public class TagContainsKeywordsPredicate implements Predicate<QAndA> {
     private final List<String> keywords;
