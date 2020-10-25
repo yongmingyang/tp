@@ -12,6 +12,7 @@ import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
+import seedu.medmoriser.ui.QuestionSetListPanel.QuestionSetListViewCell;
 
 /**
  * Finds and lists all questionSets in address book whose name contains any of the argument keywords.
@@ -52,6 +53,7 @@ public class FindCommand extends Command {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
             model.updateFilteredQAndAList(predicate);
+            model.getFilteredQAndAList().get(0).setIsQuiz();
             return new CommandResult(
                     String.format(Messages.MESSAGE_QANDA_LISTED_OVERVIEW,
                             model.getFilteredQAndAList().size()));

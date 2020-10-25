@@ -40,7 +40,7 @@ public class QuestionSetListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code QuestionSet} using a {@code QuestionSetCard}.
      */
-    class QuestionSetListViewCell extends ListCell<QAndA> {
+    public class QuestionSetListViewCell extends ListCell<QAndA> {
         private boolean isAnswerDisplayed;
 
         public QuestionSetListViewCell() {
@@ -60,7 +60,9 @@ public class QuestionSetListPanel extends UiPart<Region> {
                 setGraphic(null);
                 setText(null);
             } else {
-                if (isAnswerDisplayed) {
+                if (qAndA.getIsQuiz()) {
+                    setGraphic(new QuizCard(qAndA, getIndex() + 1, false).getRoot());
+                } else if (isAnswerDisplayed) {
                     setGraphic(new QuestionSetCard(qAndA, getIndex() + 1, true).getRoot());
                 } else {
                     setGraphic(new QuestionSetCard(qAndA, getIndex() + 1, false).getRoot());

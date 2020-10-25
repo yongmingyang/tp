@@ -19,6 +19,7 @@ public class QAndA {
     private final Question question;
     private final Phone phone;
     private final Email email;
+    private boolean isQuiz = false;
 
     // Data fields
     private final Answer answer;
@@ -63,6 +64,14 @@ public class QAndA {
 
     public Answer getAnswer() {
         return answer;
+    }
+
+    public Boolean getIsQuiz() {
+        return this.isQuiz;
+    }
+
+    public void setIsQuiz() {
+        this.isQuiz = true;
     }
 
     /**
