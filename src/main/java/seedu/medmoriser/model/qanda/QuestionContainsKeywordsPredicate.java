@@ -3,8 +3,6 @@ package seedu.medmoriser.model.qanda;
 import java.util.List;
 import java.util.function.Predicate;
 
-import seedu.medmoriser.commons.util.StringUtil;
-
 /**
  * Tests that a {@code QAndA}'s {@code Question} matches any of the keywords given.
  */
@@ -20,7 +18,6 @@ public class QuestionContainsKeywordsPredicate implements Predicate<QAndA> {
         return keywords.stream()
                 .anyMatch(keyword -> {
                     return qAndA.getQuestion().question.toLowerCase().contains(keyword.toLowerCase());
-//                    StringUtil.containsWordIgnoreCase(qAndA.getQuestion().question, keyword)
                 });
     }
 

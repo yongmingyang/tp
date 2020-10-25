@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.function.Predicate;
 
-import seedu.medmoriser.commons.util.StringUtil;
 import seedu.medmoriser.model.tag.Tag;
 
 /**

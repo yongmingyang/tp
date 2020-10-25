@@ -39,8 +39,7 @@ public class FindCommandParser implements Parser<FindCommand> {
         keywordsArray = trimArg(keywordsArray);
 
         String findType = keywordsArray[0];
-//        System.out.println(keywordsArray[2]);
-        System.out.println(keywordsArray[1]);
+
         switch (findType) {
         case "t":
             return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
