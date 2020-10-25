@@ -6,7 +6,7 @@ import seedu.medmoriser.model.qanda.QAndA;
 /**
  * A utility class to help with building Medmoriser objects.
  * Example usage: <br>
- *     {@code Medmoriser md = new MedmoriserBuilder().withQuestionSet("John", "Doe").build();}
+ *     {@code Medmoriser md = new MedmoriserBuilder().withQAndA("John", "Doe").build();}
  */
 public class MedmoriserBuilder {
 
@@ -21,10 +21,10 @@ public class MedmoriserBuilder {
     }
 
     /**
-     * Adds a new {@code QuestionSet} to the {@code Medmoriser} that we are building.
+     * Adds a new {@code QAndA} to the {@code Medmoriser} that we are building.
      */
-    public MedmoriserBuilder withQuestionSet(QAndA qAndA) {
-        medmoriser.addQuestionSet(qAndA);
+    public MedmoriserBuilder withQAndA(QAndA qAndA) {
+        medmoriser.addQAndA(qAndA);
         return this;
     }
 

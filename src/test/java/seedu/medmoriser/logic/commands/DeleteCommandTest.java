@@ -4,10 +4,10 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.showQuestionSetAtIndex;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.showQAndAAtIndex;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QANDA;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_SECOND_QANDA;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
+import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
 
 import org.junit.jupiter.api.Test;
 
@@ -50,7 +50,7 @@ public class DeleteCommandTest {
 
     @Test
     public void execute_validIndexFilteredList_success() {
-        showQuestionSetAtIndex(model, INDEX_FIRST_QANDA);
+        showQAndAAtIndex(model, INDEX_FIRST_QANDA);
 
         QAndA qAndAToDelete = model.getFilteredQAndAList()
                 .get(INDEX_FIRST_QANDA.getZeroBased());
@@ -60,14 +60,14 @@ public class DeleteCommandTest {
 
         Model expectedModel = new ModelManager(model.getMedmoriser(), new UserPrefs());
         expectedModel.deleteQAndA(qAndAToDelete);
-        showNoQuestionSet(expectedModel);
+        showNoQAndA(expectedModel);
 
         assertCommandSuccess(deleteCommand, model, expectedMessage, expectedModel);
     }
 
     @Test
     public void execute_invalidIndexFilteredList_throwsCommandException() {
-        showQuestionSetAtIndex(model, INDEX_FIRST_QANDA);
+        showQAndAAtIndex(model, INDEX_FIRST_QANDA);
 
         Index outOfBoundIndex = INDEX_SECOND_QANDA;
         // ensures that outOfBoundIndex is still in bounds of address book list
@@ -96,14 +96,14 @@ public class DeleteCommandTest {
         // null -> returns false
         assertFalse(deleteFirstCommand.equals(null));
 
-        // different questionSet -> returns false
+        // different qAndA -> returns false
         assertFalse(deleteFirstCommand.equals(deleteSecondCommand));
     }
 
     /**
      * Updates {@code model}'s filtered list to show no one.
      */
-    private void showNoQuestionSet(Model model) {
+    private void showNoQAndA(Model model) {
         model.updateFilteredQAndAList(p -> false);
 
         assertTrue(model.getFilteredQAndAList().isEmpty());

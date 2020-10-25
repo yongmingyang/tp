@@ -8,13 +8,13 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import seedu.medmoriser.model.qanda.exceptions.DuplicateQuestionSetException;
-import seedu.medmoriser.model.qanda.exceptions.QuestionSetNotFoundException;
+import seedu.medmoriser.model.qanda.exceptions.DuplicateQAndAException;
+import seedu.medmoriser.model.qanda.exceptions.QAndANotFoundException;
 
 /**
  * A list of questionSets that enforces uniqueness between its elements and does not allow nulls.
- * A questionSet is considered unique by comparing using {@code QuestionSet#isSameQuestionSet(QuestionSet)}.
- * As such, adding and updating of questionSets uses QuestionSet#isSameQuestionSet(QuestionSet)
+ * A questionSet is considered unique by comparing using {@code QuestionSet#isSameQAndA(QuestionSet)}.
+ * As such, adding and updating of questionSets uses QuestionSet#isSameQAndA(QuestionSet)
  * for equality so as to ensure that the questionSet being added or updated is
  * unique in terms of identity in the UniqueQuestionSetList. However, the removal
  * of a questionSet uses QuestionSet#equals(Object) so as to ensure that the questionSet
@@ -22,7 +22,7 @@ import seedu.medmoriser.model.qanda.exceptions.QuestionSetNotFoundException;
  *
  * Supports a minimal set of list operations.
  *
- * @see QAndA#isSameQuestionSet(QAndA)
+ * @see QAndA#isSameQAndA(QAndA)
  */
 public class UniqueQAndAList implements Iterable<QAndA> {
 
@@ -35,7 +35,7 @@ public class UniqueQAndAList implements Iterable<QAndA> {
      */
     public boolean contains(QAndA toCheck) {
         requireNonNull(toCheck);
-        return internalList.stream().anyMatch(toCheck::isSameQuestionSet);
+        return internalList.stream().anyMatch(toCheck::isSameQAndA);
     }
 
     /**
@@ -45,7 +45,7 @@ public class UniqueQAndAList implements Iterable<QAndA> {
     public void add(QAndA toAdd) {
         requireNonNull(toAdd);
         if (contains(toAdd)) {
-            throw new DuplicateQuestionSetException();
+            throw new DuplicateQAndAException();
         }
         internalList.add(toAdd);
     }
@@ -56,16 +56,16 @@ public class UniqueQAndAList implements Iterable<QAndA> {
      * The questionSet identity of {@code editedQuestionSet} must not be the same as another existing
      * questionSet in the list.
      */
-    public void setQuestionSet(QAndA target, QAndA editedQAndA) {
+    public void setQAndA(QAndA target, QAndA editedQAndA) {
         requireAllNonNull(target, editedQAndA);
 
         int index = internalList.indexOf(target);
         if (index == -1) {
-            throw new QuestionSetNotFoundException();
+            throw new QAndANotFoundException();
         }
 
-        if (!target.isSameQuestionSet(editedQAndA) && contains(editedQAndA)) {
-            throw new DuplicateQuestionSetException();
+        if (!target.isSameQAndA(editedQAndA) && contains(editedQAndA)) {
+            throw new DuplicateQAndAException();
         }
 
         internalList.set(index, editedQAndA);
@@ -78,11 +78,11 @@ public class UniqueQAndAList implements Iterable<QAndA> {
     public void remove(QAndA toRemove) {
         requireNonNull(toRemove);
         if (!internalList.remove(toRemove)) {
-            throw new QuestionSetNotFoundException();
+            throw new QAndANotFoundException();
         }
     }
 
-    public void setQuestionSets(UniqueQAndAList replacement) {
+    public void setQAndAs(UniqueQAndAList replacement) {
         requireNonNull(replacement);
         internalList.setAll(replacement.internalList);
     }
@@ -91,10 +91,10 @@ public class UniqueQAndAList implements Iterable<QAndA> {
      * Replaces the contents of this list with {@code questionSets}.
      * {@code questionSets} must not contain duplicate questionSets.
      */
-    public void setQuestionSets(List<QAndA> qAndAs) {
+    public void setQAndAs(List<QAndA> qAndAs) {
         requireAllNonNull(qAndAs);
         if (!questionSetsAreUnique(qAndAs)) {
-            throw new DuplicateQuestionSetException();
+            throw new DuplicateQAndAException();
         }
 
         internalList.setAll(qAndAs);
@@ -130,7 +130,7 @@ public class UniqueQAndAList implements Iterable<QAndA> {
     private boolean questionSetsAreUnique(List<QAndA> qAndAs) {
         for (int i = 0; i < qAndAs.size() - 1; i++) {
             for (int j = i + 1; j < qAndAs.size(); j++) {
-                if (qAndAs.get(i).isSameQuestionSet(qAndAs.get(j))) {
+                if (qAndAs.get(i).isSameQAndA(qAndAs.get(j))) {
                     return false;
                 }
             }

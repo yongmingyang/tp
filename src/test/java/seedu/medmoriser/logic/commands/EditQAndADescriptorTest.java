@@ -12,15 +12,14 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.medmoriser.testutil.EditQuestionSetDescriptorBuilder;
+import seedu.medmoriser.testutil.EditQAndADescriptorBuilder;
 
 public class EditQAndADescriptorTest {
 
     @Test
     public void equals() {
         // same values -> returns true
-        EditCommand.EditQuestionSetDescriptor descriptorWithSameValues = new EditCommand
-                .EditQuestionSetDescriptor(DESC_AMY);
+        EditCommand.EditQAndADescriptor descriptorWithSameValues = new EditCommand.EditQAndADescriptor(DESC_AMY);
         assertTrue(DESC_AMY.equals(descriptorWithSameValues));
 
         // same object -> returns true
@@ -36,24 +35,24 @@ public class EditQAndADescriptorTest {
         assertFalse(DESC_AMY.equals(DESC_BOB));
 
         // different question -> returns false
-        EditCommand.EditQuestionSetDescriptor editedAmy = new EditQuestionSetDescriptorBuilder(DESC_AMY)
+        EditCommand.EditQAndADescriptor editedAmy = new EditQAndADescriptorBuilder(DESC_AMY)
                 .withQuestion(VALID_QUESTION_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different phone -> returns false
-        editedAmy = new EditQuestionSetDescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
+        editedAmy = new EditQAndADescriptorBuilder(DESC_AMY).withPhone(VALID_PHONE_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different email -> returns false
-        editedAmy = new EditQuestionSetDescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
+        editedAmy = new EditQAndADescriptorBuilder(DESC_AMY).withEmail(VALID_EMAIL_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different answer -> returns false
-        editedAmy = new EditQuestionSetDescriptorBuilder(DESC_AMY).withAnswer(VALID_ANSWER_BOB).build();
+        editedAmy = new EditQAndADescriptorBuilder(DESC_AMY).withAnswer(VALID_ANSWER_BOB).build();
         assertFalse(DESC_AMY.equals(editedAmy));
 
         // different tags -> returns false
-        editedAmy = new EditQuestionSetDescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
+        editedAmy = new EditQAndADescriptorBuilder(DESC_AMY).withTags(VALID_TAG_HUSBAND).build();
         assertFalse(DESC_AMY.equals(editedAmy));
     }
 }

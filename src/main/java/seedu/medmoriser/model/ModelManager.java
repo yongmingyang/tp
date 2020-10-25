@@ -89,33 +89,33 @@ public class ModelManager implements Model {
     }
 
     @Override
-    public boolean hasQuestionSet(QAndA qAndA) {
+    public boolean hasQAndA(QAndA qAndA) {
         requireNonNull(qAndA);
-        return medmoriser.hasQuestionSet(qAndA);
+        return medmoriser.hasQAndA(qAndA);
     }
 
     @Override
     public void deleteQAndA(QAndA target) {
-        medmoriser.removeQuestionSet(target);
+        medmoriser.removeQAndA(target);
     }
 
     @Override
-    public void addQuestionSet(QAndA qAndA) {
-        medmoriser.addQuestionSet(qAndA);
-        updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
+    public void addQAndA(QAndA qAndA) {
+        medmoriser.addQAndA(qAndA);
+        updateFilteredQAndAList(PREDICATE_SHOW_ALL_QANDA);
     }
 
     @Override
-    public void setQuestionSet(QAndA target, QAndA editedQAndA) {
+    public void setQAndA(QAndA target, QAndA editedQAndA) {
         requireAllNonNull(target, editedQAndA);
 
-        medmoriser.setQuestionSet(target, editedQAndA);
+        medmoriser.setQAndA(target, editedQAndA);
     }
 
-    //=========== Filtered QuestionSet List Accessors =============================================================
+    //=========== Filtered QAndA List Accessors =============================================================
 
     /**
-     * Returns an unmodifiable view of the list of {@code QuestionSet} backed by the internal list of
+     * Returns an unmodifiable view of the list of {@code QAndA} backed by the internal list of
      * {@code versionedAddressBook}
      */
     @Override

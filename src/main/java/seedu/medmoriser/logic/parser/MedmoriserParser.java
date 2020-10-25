@@ -6,9 +6,18 @@ import static seedu.medmoriser.commons.core.Messages.MESSAGE_UNKNOWN_COMMAND;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import seedu.medmoriser.logic.commands.*;
-
-
+import seedu.medmoriser.logic.commands.AddCommand;
+import seedu.medmoriser.logic.commands.AnswerCommand;
+import seedu.medmoriser.logic.commands.ClearCommand;
+import seedu.medmoriser.logic.commands.Command;
+import seedu.medmoriser.logic.commands.DeleteCommand;
+import seedu.medmoriser.logic.commands.EditCommand;
+import seedu.medmoriser.logic.commands.ExitCommand;
+import seedu.medmoriser.logic.commands.ExitQuizCommand;
+import seedu.medmoriser.logic.commands.FindCommand;
+import seedu.medmoriser.logic.commands.HelpCommand;
+import seedu.medmoriser.logic.commands.ListCommand;
+import seedu.medmoriser.logic.commands.QuizCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 
 /**
@@ -53,6 +62,15 @@ public class MedmoriserParser {
         case FindCommand.COMMAND_WORD:
             return new FindCommandParser().parse(arguments);
 
+        case QuizCommand.COMMAND_WORD:
+            return new QuizCommandParser().parse(arguments);
+
+        case AnswerCommand.COMMAND_WORD:
+            return new AnswerCommandParser().parse(arguments);
+
+        case ExitQuizCommand.COMMAND_WORD:
+            return new ExitQuizCommand();
+
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
 
@@ -61,9 +79,6 @@ public class MedmoriserParser {
 
         case HelpCommand.COMMAND_WORD:
             return new HelpCommand();
-
-        case QuizCommand.COMMAND_WORD:
-            return new QuizCommandParser().parse(arguments);
 
         default:
             throw new ParseException(MESSAGE_UNKNOWN_COMMAND);
