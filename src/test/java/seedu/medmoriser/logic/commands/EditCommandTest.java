@@ -52,8 +52,8 @@ public class EditCommandTest {
         Index indexLastQAndA = Index.fromOneBased(model.getFilteredQAndAList().size());
         QAndA lastQAndA = model.getFilteredQAndAList().get(indexLastQAndA.getZeroBased());
 
-        QAndABuilder questionSetInList = new QAndABuilder(lastQAndA);
-        QAndA editedQAndA = questionSetInList.withQuestion(VALID_QUESTION_B).withTags(VALID_TAG_TAG2).build();
+        QAndABuilder qAndAInList = new QAndABuilder(lastQAndA);
+        QAndA editedQAndA = qAndAInList.withQuestion(VALID_QUESTION_B).withTags(VALID_TAG_TAG2).build();
 
         EditCommand.EditQAndADescriptor descriptor = new EditQAndADescriptorBuilder()
                 .withQuestion(VALID_QUESTION_B).withTags(VALID_TAG_TAG2).build();

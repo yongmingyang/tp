@@ -105,7 +105,7 @@ public class UniqueQAndAListTest {
     }
 
     @Test
-    public void setQAndA_editedQuestionSetHasNonUniqueIdentity_throwsDuplicateQuestionSetException() {
+    public void setQAndA_editedQAndAHasNonUniqueIdentity_throwsDuplicateQuestionSetException() {
         uniqueQAndAList.add(QUESTION1);
         uniqueQAndAList.add(QUESTIONB);
         assertThrows(DuplicateQAndAException.class, () -> uniqueQAndAList.setQAndA(QUESTION1, QUESTIONB));
@@ -123,7 +123,7 @@ public class UniqueQAndAListTest {
     }
 
     @Test
-    public void remove_existingQuestionSet_removesQAndA() {
+    public void remove_existingQAndA_removesQAndA() {
         uniqueQAndAList.add(QUESTION1);
         uniqueQAndAList.remove(QUESTION1);
         UniqueQAndAList expectedUniqueQAndAList = new UniqueQAndAList();
@@ -162,7 +162,7 @@ public class UniqueQAndAListTest {
     }
 
     @Test
-    public void setQAndAs_listWithDuplicateQuestions_throwsDuplicateQuestionSetException() {
+    public void setQAndAs_listWithDuplicateQuestions_throwsDuplicateQAndAException() {
         List<QAndA> listWithDuplicateQAndAs = Arrays.asList(QUESTION1, QUESTION1);
         assertThrows(DuplicateQAndAException.class, () ->
             uniqueQAndAList.setQAndAs(listWithDuplicateQAndAs));

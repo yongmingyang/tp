@@ -43,8 +43,8 @@ public class MedmoriserTest {
     }
 
     @Test
-    public void resetData_withDuplicateQuestionSets_throwsDuplicateQuestionSetException() {
-        // Two questionSets with the same identity fields
+    public void resetData_withDuplicateQuestionSets_throwsDuplicateQAndAException() {
+        // Two QAndAs with the same identity fields
         QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2)
                 .build();
         List<QAndA> newQAndAs = Arrays.asList(QUESTION1, editedQuestion1);
@@ -59,18 +59,18 @@ public class MedmoriserTest {
     }
 
     @Test
-    public void hasQAndA_questionSetNotInMedmoriser_returnsFalse() {
+    public void hasQAndA_qAndANotInMedmoriser_returnsFalse() {
         assertFalse(medmoriser.hasQAndA(QUESTION1));
     }
 
     @Test
-    public void hasQuestionSet_questionSetInMedmoriser_returnsTrue() {
+    public void hasQAndA_qAndAInMedmoriser_returnsTrue() {
         medmoriser.addQAndA(QUESTION1);
         assertTrue(medmoriser.hasQAndA(QUESTION1));
     }
 
     @Test
-    public void hasQuestionSet_questionSetWithSameIdentityFieldsInMedmoriser_returnsTrue() {
+    public void hasQAndA_qAndAWithSameIdentityFieldsInMedmoriser_returnsTrue() {
         medmoriser.addQAndA(QUESTION1);
         QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2)
                 .build();

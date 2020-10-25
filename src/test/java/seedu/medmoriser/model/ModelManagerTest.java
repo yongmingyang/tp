@@ -78,12 +78,12 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasQAndA_questionSetNotInMedmoriser_returnsFalse() {
+    public void hasQAndA_qAndANotInMedmoriser_returnsFalse() {
         assertFalse(modelManager.hasQAndA(QUESTION1));
     }
 
     @Test
-    public void hasQuestionSet_questionSetInMedmoriser_returnsTrue() {
+    public void hasQuestionSet_qAndAInMedmoriser_returnsTrue() {
         modelManager.addQAndA(QUESTION1);
         assertTrue(modelManager.hasQAndA(QUESTION1));
     }
