@@ -58,6 +58,10 @@ public class TagContainsKeywordPredicateTest {
         // Mixed-case keywords
         predicate = new TagContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
         assertTrue(predicate.test(new QAndABuilder().withTags("Alice", "Bob").build()));
+
+        // Words with spacing
+        predicate = new TagContainsKeywordsPredicate(Arrays.asList("Nervous System", "Cardiology"));
+        assertTrue(predicate.test(new QAndABuilder().withTags("nervous System", "Hematology").build()));
     }
 
     @Test

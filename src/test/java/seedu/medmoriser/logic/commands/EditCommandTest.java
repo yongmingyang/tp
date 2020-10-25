@@ -2,11 +2,10 @@ package seedu.medmoriser.logic.commands;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.DESC_AMY;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.DESC_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_PHONE_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.DESC_A;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.DESC_B;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_B;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG2;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.showQAndAAtIndex;
@@ -54,12 +53,10 @@ public class EditCommandTest {
         QAndA lastQAndA = model.getFilteredQAndAList().get(indexLastQAndA.getZeroBased());
 
         QAndABuilder qAndAInList = new QAndABuilder(lastQAndA);
-        QAndA editedQAndA = qAndAInList.withQuestion(VALID_QUESTION_BOB).withPhone(VALID_PHONE_BOB)
-                .withTags(VALID_TAG_HUSBAND).build();
+        QAndA editedQAndA = qAndAInList.withQuestion(VALID_QUESTION_B).withTags(VALID_TAG_TAG2).build();
 
         EditCommand.EditQAndADescriptor descriptor = new EditQAndADescriptorBuilder()
-                .withQuestion(VALID_QUESTION_BOB)
-                .withPhone(VALID_PHONE_BOB).withTags(VALID_TAG_HUSBAND).build();
+                .withQuestion(VALID_QUESTION_B).withTags(VALID_TAG_TAG2).build();
         EditCommand editCommand = new EditCommand(indexLastQAndA, descriptor);
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QANDA_SUCCESS, editedQAndA);
@@ -89,9 +86,9 @@ public class EditCommandTest {
         QAndA qAndAInFilteredList = model.getFilteredQAndAList()
                 .get(INDEX_FIRST_QANDA.getZeroBased());
         QAndA editedQAndA = new QAndABuilder(qAndAInFilteredList)
-                .withQuestion(VALID_QUESTION_BOB).build();
+                .withQuestion(VALID_QUESTION_B).build();
         EditCommand editCommand = new EditCommand(INDEX_FIRST_QANDA,
-                new EditQAndADescriptorBuilder().withQuestion(VALID_QUESTION_BOB).build());
+                new EditQAndADescriptorBuilder().withQuestion(VALID_QUESTION_B).build());
 
         String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QANDA_SUCCESS, editedQAndA);
 
@@ -127,7 +124,7 @@ public class EditCommandTest {
     public void execute_invalidQAndAIndexUnfilteredList_failure() {
         Index outOfBoundIndex = Index.fromOneBased(model.getFilteredQAndAList().size() + 1);
         EditQAndADescriptor descriptor =
-                new EditQAndADescriptorBuilder().withQuestion(VALID_QUESTION_BOB).build();
+                new EditQAndADescriptorBuilder().withQuestion(VALID_QUESTION_B).build();
         EditCommand editCommand = new EditCommand(outOfBoundIndex, descriptor);
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
@@ -145,17 +142,18 @@ public class EditCommandTest {
         assertTrue(outOfBoundIndex.getZeroBased() < model.getMedmoriser().getQAndAList().size());
 
         EditCommand editCommand = new EditCommand(outOfBoundIndex,
-                new EditQAndADescriptorBuilder().withQuestion(VALID_QUESTION_BOB).build());
+                new EditQAndADescriptorBuilder().withQuestion(VALID_QUESTION_B).build());
 
         assertCommandFailure(editCommand, model, Messages.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
     }
 
     @Test
     public void equals() {
-        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_QANDA, DESC_AMY);
+        final EditCommand standardCommand = new EditCommand(INDEX_FIRST_QANDA, DESC_A);
 
         // same values -> returns true
-        EditCommand.EditQAndADescriptor copyDescriptor = new EditQAndADescriptor(DESC_AMY);
+        EditQAndADescriptor copyDescriptor = new EditQAndADescriptor(DESC_A);
+
         EditCommand commandWithSameValues = new EditCommand(INDEX_FIRST_QANDA, copyDescriptor);
         assertTrue(standardCommand.equals(commandWithSameValues));
 
@@ -169,10 +167,10 @@ public class EditCommandTest {
         assertFalse(standardCommand.equals(new ClearCommand()));
 
         // different index -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_QANDA, DESC_AMY)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_SECOND_QANDA, DESC_A)));
 
         // different descriptor -> returns false
-        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_QANDA, DESC_BOB)));
+        assertFalse(standardCommand.equals(new EditCommand(INDEX_FIRST_QANDA, DESC_B)));
     }
 
 }
