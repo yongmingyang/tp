@@ -86,7 +86,7 @@ public class QuizCommandTest {
         QAndA filteredQAndA = filteredList.get(0);
         String filteredQuestionString = filteredQAndA.getQuestion().question;
         filteredQuestionString = filteredQuestionString.toLowerCase();
-        
+
         assertTrue(filteredQuestionString.contains("three") ||
                 filteredQuestionString.contains("five") ||
                 filteredQuestionString.contains("six"));
