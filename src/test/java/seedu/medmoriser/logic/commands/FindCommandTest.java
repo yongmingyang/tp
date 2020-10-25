@@ -5,10 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_QANDA_LISTED_OVERVIEW;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
+<<<<<<< HEAD
 import static seedu.medmoriser.testutil.TypicalQAndA.CARL;
 import static seedu.medmoriser.testutil.TypicalQAndA.ELLE;
 import static seedu.medmoriser.testutil.TypicalQAndA.FIONA;
 import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
+=======
+import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION3;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION5;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.QUESTION6;
+import static seedu.medmoriser.testutil.TypicalQuestionSet.getTypicalMedmoriser;
+>>>>>>> refactor-phone-email
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -80,11 +87,11 @@ public class FindCommandTest {
     @Test
     public void execute_multipleKeywords_multipleQAndAsFound() {
         String expectedMessage = String.format(MESSAGE_QANDA_LISTED_OVERVIEW, 3);
-        QuestionContainsKeywordsPredicate predicate = preparePredicate("Kurz Elle Kunz");
+        QuestionContainsKeywordsPredicate predicate = preparePredicate("Three Five Six");
         FindCommand command = new FindCommand(predicate);
         expectedModel.updateFilteredQAndAList(predicate);
         assertCommandSuccess(command, model, expectedMessage, expectedModel);
-        assertEquals(Arrays.asList(CARL, ELLE, FIONA), model.getFilteredQAndAList());
+        assertEquals(Arrays.asList(QUESTION3, QUESTION5, QUESTION6), model.getFilteredQAndAList());
     }
 
     /**

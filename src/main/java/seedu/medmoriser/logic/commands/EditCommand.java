@@ -18,8 +18,6 @@ import seedu.medmoriser.commons.util.CollectionUtil;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.qanda.Answer;
-import seedu.medmoriser.model.qanda.Email;
-import seedu.medmoriser.model.qanda.Phone;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
@@ -95,12 +93,10 @@ public class EditCommand extends Command {
         assert qAndAToEdit != null;
 
         Question updatedQuestion = editQAndADescriptor.getQuestion().orElse(qAndAToEdit.getQuestion());
-        Phone updatedPhone = editQAndADescriptor.getPhone().orElse(qAndAToEdit.getPhone());
-        Email updatedEmail = editQAndADescriptor.getEmail().orElse(qAndAToEdit.getEmail());
         Answer updatedAnswer = editQAndADescriptor.getAnswer().orElse(qAndAToEdit.getAnswer());
         Set<Tag> updatedTags = editQAndADescriptor.getTags().orElse(qAndAToEdit.getTags());
 
-        return new QAndA(updatedQuestion, updatedPhone, updatedEmail, updatedAnswer, updatedTags);
+        return new QAndA(updatedQuestion, updatedAnswer, updatedTags);
     }
 
     @Override
@@ -127,8 +123,6 @@ public class EditCommand extends Command {
      */
     public static class EditQAndADescriptor {
         private Question question;
-        private Phone phone;
-        private Email email;
         private Answer answer;
         private Set<Tag> tags;
 
@@ -140,8 +134,6 @@ public class EditCommand extends Command {
          */
         public EditQAndADescriptor(EditQAndADescriptor toCopy) {
             setQuestion(toCopy.question);
-            setPhone(toCopy.phone);
-            setEmail(toCopy.email);
             setAnswer(toCopy.answer);
             setTags(toCopy.tags);
         }
@@ -150,7 +142,7 @@ public class EditCommand extends Command {
          * Returns true if at least one field is edited.
          */
         public boolean isAnyFieldEdited() {
-            return CollectionUtil.isAnyNonNull(question, phone, email, answer, tags);
+            return CollectionUtil.isAnyNonNull(question, answer, tags);
         }
 
         public void setQuestion(Question question) {
@@ -159,22 +151,6 @@ public class EditCommand extends Command {
 
         public Optional<Question> getQuestion() {
             return Optional.ofNullable(question);
-        }
-
-        public void setPhone(Phone phone) {
-            this.phone = phone;
-        }
-
-        public Optional<Phone> getPhone() {
-            return Optional.ofNullable(phone);
-        }
-
-        public void setEmail(Email email) {
-            this.email = email;
-        }
-
-        public Optional<Email> getEmail() {
-            return Optional.ofNullable(email);
         }
 
         public void setAnswer(Answer answer) {
@@ -218,8 +194,6 @@ public class EditCommand extends Command {
             EditQAndADescriptor e = (EditQAndADescriptor) other;
 
             return getQuestion().equals(e.getQuestion())
-                    && getPhone().equals(e.getPhone())
-                    && getEmail().equals(e.getEmail())
                     && getAnswer().equals(e.getAnswer())
                     && getTags().equals(e.getTags());
         }
