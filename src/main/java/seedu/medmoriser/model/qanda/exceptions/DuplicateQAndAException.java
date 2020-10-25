@@ -6,6 +6,6 @@ package seedu.medmoriser.model.qanda.exceptions;
  */
 public class DuplicateQAndAException extends RuntimeException {
     public DuplicateQAndAException() {
-        super("Operation would result in duplicate question sets");
+        super("Operation would result in duplicate QAndAs");
     }
 }

@@ -34,8 +34,8 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "general knowledge "
             + PREFIX_TAG + "common sense";
 
-    public static final String MESSAGE_SUCCESS = "New qAndA added: %1$s";
-    public static final String MESSAGE_DUPLICATE_QANDA = "This qAndA already exists in the answer book";
+    public static final String MESSAGE_SUCCESS = "New QAndA added: %1$s";
+    public static final String MESSAGE_DUPLICATE_QANDA = "This QAndA already exists in the answer book";
 
     private final QAndA toAdd;
 

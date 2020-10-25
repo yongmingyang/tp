@@ -42,7 +42,7 @@ public class EditCommand extends Command {
             + PREFIX_QUESTION + "What causes pimples? "
             + PREFIX_ANSWER + "triggered by androgen hormones and, in some cases, genetics";
 
-    public static final String MESSAGE_EDIT_QANDA_SUCCESS = "Edited qAndA: %1$s";
+    public static final String MESSAGE_EDIT_QANDA_SUCCESS = "Edited QAndA: %1$s";
     public static final String MESSAGE_NOT_EDITED = "At least one field to edit must be provided.";
     public static final String MESSAGE_DUPLICATE_QANDA = "This QAndA already exists in the question bank.";
 
