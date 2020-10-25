@@ -14,7 +14,7 @@ public class AnswerCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": The answer that the user keys in for the quiz "
             + "question. \n"
-            + "Example: " + COMMAND_WORD + "This is my answer";
+            + "Example: " + COMMAND_WORD + " This is my answer";
 
     public static final String MESSAGE_USER_ANSWER = "Your answer: ";
 
