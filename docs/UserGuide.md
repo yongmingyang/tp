@@ -1,41 +1,62 @@
-## User Guide
+---
+layout: page
+title: User Guide
+---
 
-Medmoriser is a **desktop** app to help medical students memorise and revise their content. It is optimized for
+This guide aims to orientate you to the features of **Medmoriser**. If you're a medical student looking for a quiz 
+management system, this guide will give you all the information you need to get started with **Medmoriser**.
+
+* Table of Contents
+{:toc}
+
+**Medmoriser** is a desktop app to help medical students memorise and revise their content. It is optimized for
  CLI users so that frequent revisions can be done faster by typing in commands.
 
+--------------------------------------------------------------------------------------------------------------------
 
 ## Features
 
+<div markdown="block" class="alert alert-info">
+
+**:information_source: Notes about the command format:**<br>
+
+* Words in `UPPER_CASE` are the parameters to be supplied by the user.<br>
+  e.g. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is the heart responsible for?`.
+
+* Items in square brackets are optional.<br>
+  e.g. `q/QUESTION [t/TAG]` can be used as `q/What is the heart responsible for t/cardiology` or as `q/What is the heart responsible for`.
+
+* Items with `…`​ after them can be used multiple times including zero times.<br>
+  e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/heart`, `t/heart t/cardiology` etc.
+
+* Parameters can be in any order.<br>
+  e.g. if the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.
+
+</div>
+
+### Viewing help: `help`
+
+If you need to view the help page, this command shows a message explaining how to access it.
+
+Format: `help`
+
 ### Adding a qAndA: `add`
 
-Adds a question and answer pair to the database.
+You can add a question and answer pair to the database.
 
 Format: `add q/QUESTION a/ANSWER`
 
 Examples:
-* `add q/what organ system is the lungs part of? a/respiratory system`
+* `add q/what organ system is the lungs part of? a/respiratory system?`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
-### Listing all Questions & Answers : `list`
+### Deleting a Q&A: `delete`
 
-Shows the entire database of questions and answers in the database.
-
-Format: `list <questions>`
-
-* Just typing list will list all questions and answers
-* Adding the `questions` parameter will only list the questions (i.e. hide the answers) 
-
-Examples:
-* `list` will show all questions and answers
-* `list questions` will only show all questions
-
-### Deleting a Q&A : `delete`
-
-Deletes the specified Q&A from the question book.
+You can delete a specified Q&A from the database.
 
 Format: `delete INDEX`
 
-* Deletes the Q&A at the specified `INDEX`.
+* This allows you to delete the Q&A at the specified `INDEX`.
 * The index refers to the index number shown in the displayed question list.
 * The index **must be a positive integer** 1, 2, 3, …
 
@@ -43,30 +64,55 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd Q&A in the question book.
 * `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
 
-### Clearing all entries : `clear`
+### Listing all Questions & Answers: `list` (by: Jonathan Foo)
 
-Clears all entries from the question book.
+This shows you the entire database of questions and answers.
 
-Format: `clear`
+Format: `list [questions]`
 
-### Locating questions/answers/tags by keywords: `find`
+* Just typing list will list all questions and answers
+* Adding the `questions` parameter will list only the questions (i.e. hide the answers) 
 
-Finds Q&A whose questions contain any of the given keywords.
+Examples:
+* `list` will show all questions and answers
+* `list questions` will only show all questions
 
-Format: `find q/{keyword here}`, for 2 or more words: `find q/{word1}, {word2}`
+### Editing a Q&A: `edit`
 
-Finds Q&A whose answers contain any of the given keywords.
+You can make changes to an existing Q&A with this command.
 
-Format: `find a/{keyword here}`, for 2 or more words: `find q/{word1}, {word2}`
+Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 
-Finds Q&A whose tags contain any of the given keywords. 
-Keywords for tags can have spaces. This require the text to have an exact match (case-insensitive).
+* This allows you to edit the Q&A at the specified `INDEX`. The index refers to the index number shown in the displayed question list. The index **must be a positive integer** 1, 2, 3, …​
+* You must provide at least one of the optional fields.
+* Existing values will be updated to the input values.
+* When you edit the tags, the existing tags of the Q&A will be removed i.e adding of tags is not cumulative.
+* You can remove all the Q&A's tags by typing `t/` without specifying any tags after it.
 
-Format: `find t/{keyword here}`
+Examples:
+*  `edit 1 a/To pump blood` Edits the answer the 1st question to be `To pump blood`.
+*  `edit 2 q/What is the heart t/` Edits the question of the 2nd Q&A to be `What is the heart` and clears all existing tags.
 
-Finds Q&A whose questions or answers contain any of the given keywords.
+### Locating questions/answers/tags by keywords: `find` (by: Yong Ming Yang)
 
-Format: `find {keyword here}`, for 2 or more words: `find q/{word1}, {word2}`
+If you would like to search the database, you can do so in a few ways:
+
+1. Find Q&A with **questions** containing any of the given keywords.
+
+    Format: `find q/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
+
+2. Find Q&A with **answers** containing any of the given keywords.
+
+    Format: `find a/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
+
+3. Find Q&A with **tags** containing any of the given keywords. 
+    Keywords for tags can have spaces. This requires the text to have an exact match (case-insensitive).
+
+    Format: `find a/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
+
+4. Find Q&A with **questions or answers** containing any of the given keywords.
+
+    Format: `find a/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
 
 Examples:
 * `find q/lung, disease` - finds questions with the word lung and/or disease
@@ -74,37 +120,32 @@ Examples:
 * `find t/anatomy, Nervous System` - finds question sets tagged with the word anatomy or Nervous System (can be both)
 * `find infection` - finds question and/or answers with the word infection
 
+### Clearing all entries: `clear`
 
-### Exiting the program : `exit`
+If you want to reset the database, this command helps to clear all entries from the question book.
 
-Exits the program.
+Format: `clear`
+
+### Exiting the program: `exit`
+
+If you're done with your work, this command allows you to exit the program.
 
 Format: `exit`
 
 ### Saving the data
 
-Medmoriser data are saved in the hard disk automatically after any command that changes the data. There is no need to save manually.
-
-### Viewing help : `help` [Coming soon]
-
-Shows a message explaning how to access the help page.
-
-Format: `help`
-
-### Editing a Q&A : `edit` [Coming Soon]
-
-Edits an existing Q&A in the Medmoriser application.
+You don't need to worry about saving data manually, as Medmoriser data is automatically saved in the hard disk after any command that changes the data.
 
 ### Archiving data files [Coming Soon]
 
-Archive questions that the user does not need anymore.
+If you don't need certain questions anymore, you can archive them to declutter your workspace.
 
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
 
 **Q**: How do I transfer my data to another Computer?<br>
-**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous AddressBook home folder.
+**A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Medmoriser home folder.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -113,11 +154,12 @@ Archive questions that the user does not need anymore.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add n/NAME p/PHONE_NUMBER e/EMAIL a/ADDRESS [t/TAG]…​` <br> e.g., `add n/James Ho p/22224444 e/jamesho@example.com a/123, Clementi Rd, 1234665 t/friend t/colleague`
+**Add** | `add q/QUESTION a/ANSWER [t/TAG]…​` <br> e.g., `add q/What does the heart do a/Pump blood t/heart t/cardiology`
 **Delete** | `delete INDEX`<br> e.g., `delete 3`
-
-**Edit** | Coming Soon
-**Find** | Coming Soon
-
 **List** | `list`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g., `edit a/Maintain blood pressure t/cardiology`
+**Find** | `find KEYWORD` <br> e.g., `find system`
+**Clear** | `clear`
+**Help** | `help`
+**Exit** | `exit`
 
