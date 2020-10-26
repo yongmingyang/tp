@@ -16,10 +16,7 @@ public class AnswerContainsKeywordsPredicate implements Predicate<QAndA> {
     @Override
     public boolean test(QAndA qAndA) {
         return keywords.stream()
-                .anyMatch(keyword -> {
-                    System.out.println("current keyword is: " + keyword);
-                    return qAndA.getAnswer().answer.toLowerCase().contains(keyword.toLowerCase());
-                });
+                .anyMatch(keyword -> qAndA.getAnswer().answer.toLowerCase().contains(keyword.toLowerCase()));
     }
 
     @Override
