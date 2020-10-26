@@ -29,24 +29,23 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
-        String[] keywordsArray = trimmedArgs.split("/|, ");;
+        String[] keywordsArray = trimmedArgs.split("/|, ");
+        String[] excludeType = keywordsArray;
 
-        if (keywordsArray[0].contains(" ")) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
         //trim whitespaces
         keywordsArray = trimArg(keywordsArray);
 
         String findType = keywordsArray[0];
-
+        if (keywordsArray.length > 1) {
+            excludeType = Arrays.copyOfRange(keywordsArray, 1, keywordsArray.length);
+        }
         switch (findType) {
         case "t":
-            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+            return new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList(excludeType)));
         case "q":
-            return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+            return new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(excludeType)));
         case "a":
-            return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+            return new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList(excludeType)));
         default:
             return new FindCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         }
