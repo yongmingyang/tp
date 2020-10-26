@@ -26,8 +26,12 @@ management system, this guide will give you all the information you need to get 
 * Items in square brackets are optional.<br>
   e.g. `q/QUESTION [t/TAG]` can be used as `q/What is the heart responsible for t/cardiology` or as `q/What is the heart responsible for`.
 
+<<<<<<< Updated upstream
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/heart`, `t/heart t/cardiology` etc.
+=======
+### Listing all Questions & Answers : `list` (by: Jonathan Foo)
+>>>>>>> Stashed changes
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.
@@ -93,7 +97,7 @@ Examples:
 *  `edit 1 a/To pump blood` Edits the answer the 1st question to be `To pump blood`.
 *  `edit 2 q/What is the heart t/` Edits the question of the 2nd Q&A to be `What is the heart` and clears all existing tags.
 
-### Locating questions/answers/tags by keywords: `find`
+### Locating questions/answers/tags by keywords: `find` (by: Yong Ming Yang)
 
 If you would like to search the database, you can do so in a few ways:
 
