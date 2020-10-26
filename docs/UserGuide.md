@@ -64,7 +64,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd Q&A in the question book.
 * `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
 
-### Listing all Questions & Answers : `list` (by: Jonathan Foo)
+### Listing all Questions & Answers: `list` (by: Jonathan Foo)
 
 This shows you the entire database of questions and answers.
 
