@@ -77,20 +77,20 @@
 }
 
 .split-pane:horizontal .split-pane-divider {
-    -fx-background-color: derive(#ffefd3, 20%);
+    -fx-background-color: derive(#2c2d33, 20%);
     -fx-border-color: transparent transparent transparent #4d4d4d;
 }
 
 .split-pane {
     -fx-border-radius: 1;
     -fx-border-width: 1;
-    -fx-background-color: derive(#ffefd3, 20%);
+    -fx-background-color: derive(#2c2d33, 20%);
 }
 
 .list-view {
     -fx-background-insets: 0;
     -fx-padding: 0;
-    -fx-background-color: derive(#ffefd3, 20%);
+    -fx-background-color: derive(#2c2d33, 20%);
 }
 
 .list-cell {
@@ -100,15 +100,15 @@
 }
 
 .list-cell:filled:even {
-    -fx-background-color: #a2d6f9;
+    -fx-background-color: #7bded3;
 }
 
 .list-cell:filled:odd {
-    -fx-background-color: #87cefa;
+    -fx-background-color: #aaeae3;
 }
 
 .list-cell:filled:selected {
-    -fx-background-color: #ffe0e9;
+    -fx-background-color: #62b2a9;
 }
 
 .list-cell:filled:selected #cardPane {
@@ -225,12 +225,12 @@
 }
 
 .button:hover {
-    -fx-background-color: #3a3a3a;
+    -fx-background-color: #7bded3;
 }
 
 .button:pressed, .button:default:hover:pressed {
   -fx-background-color: white;
-  -fx-text-fill: #1d1d1d;
+  -fx-text-fill: #7bded3;
 }
 
 .button:focused {
@@ -318,7 +318,7 @@
 }
 
 #commandTextField {
-    -fx-background-color: #c6ebbe #c6ebbe #c6ebbe #c6ebbe;
+    -fx-background-color: #28292b #28292b #28292b #28292b;
     -fx-background-insets: 0;
     -fx-border-color: black, black, black, black;
     -fx-border-insets: 0;
@@ -333,7 +333,7 @@
 }
 
 #resultDisplay .content {
-    -fx-background-color: transparent, #c6ebbe, transparent, #c6ebbe;
+    -fx-background-color: transparent, #2c2d33, transparent, #2c2d33;
     -fx-background-radius: 0;
     -fx-border-color: transparent, transparent, transparent, transparent;
 }
