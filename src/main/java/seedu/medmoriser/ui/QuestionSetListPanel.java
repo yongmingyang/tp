@@ -43,7 +43,7 @@ public class QuestionSetListPanel extends UiPart<Region> {
     public class QuestionSetListViewCell extends ListCell<QAndA> {
         private boolean isAnswerDisplayed;
 
-        /*
+        /**
          * Constructor
          */
         public QuestionSetListViewCell() {
