@@ -10,10 +10,6 @@ public class QuestionContainsKeywordsPredicate implements Predicate<QAndA> {
     private final List<String> keywords;
 
     public QuestionContainsKeywordsPredicate(List<String> keywords) {
-        for(int i = 0; i < keywords.size(); i++) {
-            String curr = keywords.get(i);
-            keywords.set(i, curr.toLowerCase());
-        }
         this.keywords = keywords;
     }
 

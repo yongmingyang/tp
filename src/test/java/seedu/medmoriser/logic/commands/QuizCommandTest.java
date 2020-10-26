@@ -71,7 +71,7 @@ public class QuizCommandTest {
         model.updateFilteredQAndAList(predicate);
         assertCommandFailure(command, model, expectedMessage);
     }
-
+//
     @Test
     public void execute_multipleKeywords_multipleQAndAsFound() {
         String expectedMessage = String.format(MESSAGE_SUCCESS, 3);
@@ -87,9 +87,12 @@ public class QuizCommandTest {
         assertTrue(filteredQuestionString.contains("three") ||
                 filteredQuestionString.contains("five") ||
                 filteredQuestionString.contains("six"));
+
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         try {
             CommandResult result = command.execute(model);
+            ExitQuizCommand exitQuizCommand = new ExitQuizCommand();
+            exitQuizCommand.execute(model);
             assertEquals(expectedCommandResult, result);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);
