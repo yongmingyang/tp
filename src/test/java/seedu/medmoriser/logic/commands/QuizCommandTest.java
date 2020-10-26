@@ -1,6 +1,5 @@
 package seedu.medmoriser.logic.commands;
 
-
 import java.util.Arrays;
 import java.util.Collections;
 import javafx.collections.ObservableList;
@@ -10,13 +9,11 @@ import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.UserPrefs;
 import seedu.medmoriser.model.qanda.QAndA;
-import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.medmoriser.logic.commands.QuizCommand.MESSAGE_NO_QUESTION_WITH_KEYWORD;
