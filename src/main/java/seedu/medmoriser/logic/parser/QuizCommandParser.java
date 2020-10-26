@@ -7,7 +7,6 @@ import java.util.Arrays;
 import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.commands.QuizCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.qanda.AnswerContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
@@ -29,22 +28,6 @@ public class QuizCommandParser implements Parser<QuizCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_USAGE));
         }
 
-        //String[] nameKeywords = trimmedArgs.split("/");
-//        String[] nameKeywords = trimmedArgs.split("/|, ");;
-//        nameKeywords = trimArg(nameKeywords);
-//        String[] keywordsArray;
-//        String findType = nameKeywords[0];
-//
-//        switch (findType) {
-//        case "t":
-//            keywordsArray = nameKeywords[1].split("\\s+");
-//            return new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
-//        case "q":
-//            keywordsArray = nameKeywords[1].split("\\s+");
-//            return new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
-//        default:
-//            return new QuizCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(nameKeywords)));
-//        }
         String[] keywordsArray = trimmedArgs.split("/|, ");;
 
         if (keywordsArray[0].contains(" ")) {
@@ -64,9 +47,7 @@ public class QuizCommandParser implements Parser<QuizCommand> {
         default:
             return new QuizCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         }
-
     }
-
 
     private String[] trimArg(String[] args) {
         String[] toReturn = new String[args.length];

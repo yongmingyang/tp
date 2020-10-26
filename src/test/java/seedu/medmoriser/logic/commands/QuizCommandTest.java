@@ -1,17 +1,5 @@
 package seedu.medmoriser.logic.commands;
 
-import java.util.Arrays;
-import java.util.Collections;
-import javafx.collections.ObservableList;
-import org.junit.jupiter.api.Test;
-import seedu.medmoriser.logic.commands.exceptions.CommandException;
-import seedu.medmoriser.model.Model;
-import seedu.medmoriser.model.ModelManager;
-import seedu.medmoriser.model.UserPrefs;
-import seedu.medmoriser.model.qanda.QAndA;
-import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
-import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,6 +7,20 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailu
 import static seedu.medmoriser.logic.commands.QuizCommand.MESSAGE_NO_QUESTION_WITH_KEYWORD;
 import static seedu.medmoriser.logic.commands.QuizCommand.MESSAGE_SUCCESS;
 import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
+
+import java.util.Arrays;
+import java.util.Collections;
+
+import org.junit.jupiter.api.Test;
+
+import javafx.collections.ObservableList;
+import seedu.medmoriser.logic.commands.exceptions.CommandException;
+import seedu.medmoriser.model.Model;
+import seedu.medmoriser.model.ModelManager;
+import seedu.medmoriser.model.UserPrefs;
+import seedu.medmoriser.model.qanda.QAndA;
+import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
+import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
 public class QuizCommandTest {
     private Model model = new ModelManager(getTypicalMedmoriser(), new UserPrefs());
@@ -71,7 +73,7 @@ public class QuizCommandTest {
         model.updateFilteredQAndAList(predicate);
         assertCommandFailure(command, model, expectedMessage);
     }
-//
+
     @Test
     public void execute_multipleKeywords_multipleQAndAsFound() {
         String expectedMessage = String.format(MESSAGE_SUCCESS, 3);
@@ -84,9 +86,9 @@ public class QuizCommandTest {
         String filteredQuestionString = filteredQAndA.getQuestion().question;
         filteredQuestionString = filteredQuestionString.toLowerCase();
 
-        assertTrue(filteredQuestionString.contains("three") ||
-                filteredQuestionString.contains("five") ||
-                filteredQuestionString.contains("six"));
+        assertTrue(filteredQuestionString.contains("three")
+                || filteredQuestionString.contains("five")
+                || filteredQuestionString.contains("six"));
 
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         try {

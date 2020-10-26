@@ -1,15 +1,17 @@
 package seedu.medmoriser.logic.parser;
 
+import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseFailure;
+import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseSuccess;
+
 import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.medmoriser.logic.commands.QuizCommand;
 import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
-
-import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseFailure;
-import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseSuccess;
 
 public class QuizCommandParserTest {
 
@@ -17,7 +19,8 @@ public class QuizCommandParserTest {
 
     @Test
     public void parse_emptyArg_throwsParseException() {
-        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_USAGE));
+        assertParseFailure(parser, "     ", String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                QuizCommand.MESSAGE_USAGE));
     }
 
     @Test
@@ -36,7 +39,8 @@ public class QuizCommandParserTest {
     public void parse_validArgsQuestionContainsKeywordsPredicate_returnsQuizCommand() {
         // no leading and trailing whitespaces
         QuizCommand expectedQuizCommand =
-                new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList("q", "digestive system", "skeletal system")));
+                new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList("q", "digestive system",
+                        "skeletal system")));
         assertParseSuccess(parser, "q/digestive system, skeletal system", expectedQuizCommand);
 
         // multiple whitespaces between keywords
@@ -47,7 +51,8 @@ public class QuizCommandParserTest {
     public void parse_validArgsTagContainsKeywordsPredicate_returnsQuizCommand() {
         // no leading and trailing whitespaces
         QuizCommand expectedQuizCommand =
-                new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList("t", "digestive system", "skeletal system")));
+                new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList("t", "digestive system",
+                        "skeletal system")));
         assertParseSuccess(parser, "t/digestive system, skeletal system", expectedQuizCommand);
 
         // multiple whitespaces between keywords

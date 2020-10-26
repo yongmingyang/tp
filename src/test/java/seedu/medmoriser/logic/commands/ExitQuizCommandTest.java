@@ -1,16 +1,18 @@
 package seedu.medmoriser.logic.commands;
 
+import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailure;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
+import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
+
 import java.util.Arrays;
+
 import org.junit.jupiter.api.Test;
+
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.UserPrefs;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
-
-import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailure;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
-import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
 
 public class ExitQuizCommandTest {
     private Model model = new ModelManager(getTypicalMedmoriser(), new UserPrefs());
@@ -20,7 +22,8 @@ public class ExitQuizCommandTest {
     public void execute_exitOngoingQuiz_success() {
         QuestionContainsKeywordsPredicate predicate = preparePredicate("three");
         QuizCommand quizCommand = new QuizCommand(predicate);
-        CommandResult expectedCommandResult = new CommandResult(ExitQuizCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT, false, false);
+        CommandResult expectedCommandResult = new CommandResult(ExitQuizCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT,
+                false, false);
 
         try {
             quizCommand.execute(model);
