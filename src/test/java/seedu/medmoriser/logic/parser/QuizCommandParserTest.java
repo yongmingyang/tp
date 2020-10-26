@@ -28,7 +28,6 @@ public class QuizCommandParserTest {
         // no leading and trailing whitespaces
         QuizCommand expectedQuizCommand =
                 new QuizCommand(new QAndAContainsKeywordsPredicate(Arrays.asList("digestive", "skeletal")));
-        System.out.println(expectedQuizCommand);
         assertParseSuccess(parser, "digestive, skeletal", expectedQuizCommand);
 
         // multiple whitespaces between keywords

@@ -38,33 +38,34 @@ public class FindCommandParserTest {
     public void parse_validArgsAnswerContainsKeywordsPredicate_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList("a", "Alice", "Bob")));
-        assertParseSuccess(parser, "a/Alice, Bob", expectedFindCommand);
+                new FindCommand(new AnswerContainsKeywordsPredicate(Arrays.asList("Chronic Diseases", "Immune")));
+        assertParseSuccess(parser, "a/Chronic Diseases, Immune", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "a/ \n Alice, \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, "a/ \n Chronic Diseases, \n \t Immune  \t", expectedFindCommand);
     }
 
     @Test
     public void parse_validArgsQuestionContainsKeywordsPredicate_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList("q", "Alice", "Bob")));
-        assertParseSuccess(parser, "q/Alice, Bob", expectedFindCommand);
+                new FindCommand(new QuestionContainsKeywordsPredicate(Arrays.asList("Diabetic Condition",
+                        "glucose level")));
+        assertParseSuccess(parser, "q/Diabetic Condition, glucose level", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "q/ Alice,  Bob  ", expectedFindCommand);
+        assertParseSuccess(parser, "q/ Diabetic Condition ,  glucose level  ", expectedFindCommand);
     }
 
     @Test
     public void parse_validArgsTagContainsKeywordsPredicate_returnsFindCommand() {
         // no leading and trailing whitespaces
         FindCommand expectedFindCommand =
-                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("t", "Alice", "Bob")));
-        assertParseSuccess(parser, "t/Alice, Bob", expectedFindCommand);
+                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("Immunology", "Chronic Diseases")));
+        assertParseSuccess(parser, "t/Immunology, Chronic Diseases", expectedFindCommand);
 
         // multiple whitespaces between keywords
-        assertParseSuccess(parser, "t/ \n Alice, \n \t Bob  \t", expectedFindCommand);
+        assertParseSuccess(parser, "t/ \n Immunology, \n \t Chronic Diseases  \t", expectedFindCommand);
     }
 
 }
