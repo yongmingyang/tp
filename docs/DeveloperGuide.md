@@ -279,6 +279,41 @@ The following activity diagram summarizes what happens when a user executes a ne
 
 _{more aspects and alternatives to be added}_
 
+
+
+### Delete Feature (Jian Ling)
+
+#### Implementation
+
+This feature allows the user to delete a QAndA from the answer book. The flow of the execution of the delete command is shown below.
+
+1. User enters the input to delete a QAndA (eg. `delete 1`)
+
+2. The `LogicManager`  executes this command, leading to the command being parsed by `MedmoriserParser` and `DeleteCommandParser`
+
+3. After successful parsing, `DeleteCommand#execute(Model model)` is called. This method checks for the following scenarios:
+
+   - A quiz is currently in progress
+   - The index entered by the user is out of bounds
+
+   If any of the scenarios above occur, a `CommandException` will be thrown with their respective error messages. Othewise, a new `CommandResult` is returned, along with a success message that the specified QAndA has been successfully deleted
+
+The sequence diagram (Fig. 1.1) below shows the flow of the delete  feature.
+
+(Figure 1.1: Delete command sequence diagram)
+
+![DeleteSequenceDiagram](/Users/tengjianling/tp/docs/images/DeleteSequenceDiagram.png)
+
+
+
+The activity diagram (Fig 1.2) below further shows the flow of the delete feature.
+
+(Figure 1.2: Delete command activity diagram)
+
+![DeleteActivityDiagram](/Users/tengjianling/tp/docs/images/DeleteActivityDiagram.png)
+
+
+
 ### \[Proposed\] Data archiving
 
 _{Explain here how the data archiving feature will be implemented}_
@@ -302,7 +337,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* medical students with heavy content to memorise 
+* medical students with heavy content to memorise
 * has a need to manage and frequently revisit a significant number of questions and answers
 * has a need to refer to images and diagrams
 * prefer desktop apps over other types
@@ -310,9 +345,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * Aggregate and organises contents and much faster than traditional methods.
-* Allows students to memorise contents more efficiently by continuously testing them. This way they can practice active recall. 
+* Allows students to memorise contents more efficiently by continuously testing them. This way they can practice active recall.
 
 
 ### User stories
