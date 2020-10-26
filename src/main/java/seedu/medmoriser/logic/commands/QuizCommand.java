@@ -85,6 +85,7 @@ public class QuizCommand extends Command {
     public boolean equals(Object other) {
         return other == this // short circuit if same object
                 || (other instanceof QuizCommand // instanceof handles nulls
-                && predicate.equals(((QuizCommand) other).predicate)); // state check
+                && predicate.equals(((QuizCommand) other).predicate)) // state check
+                && (isQuiz == ((QuizCommand) other).isQuiz);
     }
 }
