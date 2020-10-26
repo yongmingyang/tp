@@ -12,7 +12,6 @@ import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
-import seedu.medmoriser.ui.QuestionSetListPanel.QuestionSetListViewCell;
 
 /**
  * Finds and lists all qAndAs in address book whose name contains any of the argument keywords.
