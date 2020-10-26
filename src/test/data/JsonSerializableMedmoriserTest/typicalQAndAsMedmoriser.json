@@ -1,0 +1,32 @@
+{
+  "_comment": "AddressBook save file which contains the same QuestionSet values as in TypicalQuestionSets#getTypicalAddressBook()",
+  "qAndAs" : [ {
+    "question" : "Question One",
+    "answer" : "Answer 1",
+    "tagged" : [ "DNA" ]
+  }, {
+    "question" : "Question Two",
+    "answer" : "Answer 2",
+    "tagged" : [ "ImmuneSystem" ]
+  }, {
+    "question" : "Question Three",
+    "answer" : "Answer 3",
+    "tagged" : [ ]
+  }, {
+    "question" : "Question Four",
+    "answer" : "Answer 4",
+    "tagged" : [ ]
+  }, {
+    "question" : "Question Five",
+    "answer" : "Answer 5",
+    "tagged" : [ ]
+  }, {
+    "question" : "Question Six",
+    "answer" : "Answer 6",
+    "tagged" : [ ]
+  }, {
+    "question" : "Question Seven",
+    "answer" : "Answer 7",
+    "tagged" : [ ]
+  } ]
+}

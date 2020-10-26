@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.medmoriser.testutil.QuestionSetBuilder;
+import seedu.medmoriser.testutil.QAndABuilder;
 
 public class AnswerContainsKeywordPredicateTest {
     @Test
@@ -36,7 +36,7 @@ public class AnswerContainsKeywordPredicateTest {
         // null -> returns false
         assertFalse(firstPredicate.equals(null));
 
-        // different questionSet -> returns false
+        // different qAndA -> returns false
         assertFalse(firstPredicate.equals(secondPredicate));
     }
 
@@ -45,34 +45,34 @@ public class AnswerContainsKeywordPredicateTest {
         // One keyword
         AnswerContainsKeywordsPredicate predicate =
                 new AnswerContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new QuestionSetBuilder().withAnswer("Alice Bob").build()));
+        assertTrue(predicate.test(new QAndABuilder().withAnswer("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new AnswerContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-        assertTrue(predicate.test(new QuestionSetBuilder().withAnswer("Alice Bob").build()));
+        assertTrue(predicate.test(new QAndABuilder().withAnswer("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new AnswerContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-        assertTrue(predicate.test(new QuestionSetBuilder().withAnswer("Alice Carol").build()));
+        assertTrue(predicate.test(new QAndABuilder().withAnswer("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new AnswerContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-        assertTrue(predicate.test(new QuestionSetBuilder().withAnswer("Alice Bob").build()));
+        assertTrue(predicate.test(new QAndABuilder().withAnswer("Alice Bob").build()));
     }
 
     @Test
     public void test_answerDoesNotContainKeywords_returnsFalse() {
         // Zero keywords
         AnswerContainsKeywordsPredicate predicate = new AnswerContainsKeywordsPredicate(Collections.emptyList());
-        assertFalse(predicate.test(new QuestionSetBuilder().withAnswer("Alice").build()));
+        assertFalse(predicate.test(new QAndABuilder().withAnswer("Alice").build()));
 
         // Non-matching keyword
         predicate = new AnswerContainsKeywordsPredicate(Arrays.asList("Carol"));
-        assertFalse(predicate.test(new QuestionSetBuilder().withAnswer("Alice Bob").build()));
+        assertFalse(predicate.test(new QAndABuilder().withAnswer("Alice Bob").build()));
 
         // Keywords match question, tag, but does not match answer
         predicate = new AnswerContainsKeywordsPredicate(Arrays.asList("12345", "fakeTag", "Ma1n", "Stre3t"));
-        assertFalse(predicate.test(new QuestionSetBuilder().withQuestion("Alice").withPhone("12345")
+        assertFalse(predicate.test(new QAndABuilder().withQuestion("Alice")
                 .withTags("fakeTag").withAnswer("Main Street").build()));
     }
 }

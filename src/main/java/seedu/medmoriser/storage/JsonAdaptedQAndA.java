@@ -11,8 +11,6 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import seedu.medmoriser.commons.exceptions.IllegalValueException;
 import seedu.medmoriser.model.qanda.Answer;
-import seedu.medmoriser.model.qanda.Email;
-import seedu.medmoriser.model.qanda.Phone;
 import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
@@ -22,37 +20,30 @@ import seedu.medmoriser.model.tag.Tag;
  */
 class JsonAdaptedQAndA {
 
-    public static final String MISSING_FIELD_MESSAGE_FORMAT = "QuestionSet's %s field is missing!";
+    public static final String MISSING_FIELD_MESSAGE_FORMAT = "QAndA's %s field is missing!";
 
     private final String question;
-    private final String phone;
-    private final String email;
     private final String answer;
     private final List<JsonAdaptedTag> tagged = new ArrayList<>();
 
     /**
-     * Constructs a {@code JsonAdaptedQuestionSet} with the given questionSet details.
+     * Constructs a {@code JsonAdaptedQAndA} with the given qAndA details.
      */
     @JsonCreator
-    public JsonAdaptedQAndA(@JsonProperty("name") String question, @JsonProperty("phone") String phone,
-                            @JsonProperty("email") String email, @JsonProperty("address") String address,
+    public JsonAdaptedQAndA(@JsonProperty("name") String question, @JsonProperty("answer") String answer,
                             @JsonProperty("tagged") List<JsonAdaptedTag> tagged) {
         this.question = question;
-        this.phone = phone;
-        this.email = email;
-        this.answer = address;
+        this.answer = answer;
         if (tagged != null) {
             this.tagged.addAll(tagged);
         }
     }
 
     /**
-     * Converts a given {@code QuestionSet} into this class for Jackson use.
+     * Converts a given {@code QAndA} into this class for Jackson use.
      */
     public JsonAdaptedQAndA(QAndA source) {
         question = source.getQuestion().question;
-        phone = source.getPhone().value;
-        email = source.getEmail().value;
         answer = source.getAnswer().answer;
         tagged.addAll(source.getTags().stream()
                 .map(JsonAdaptedTag::new)
@@ -60,14 +51,14 @@ class JsonAdaptedQAndA {
     }
 
     /**
-     * Converts this Jackson-friendly adapted questionSet object into the model's {@code QuestionSet} object.
+     * Converts this Jackson-friendly adapted qAndA object into the model's {@code QAndA} object.
      *
-     * @throws IllegalValueException if there were any data constraints violated in the adapted questionSet.
+     * @throws IllegalValueException if there were any data constraints violated in the adapted qAndA.
      */
     public QAndA toModelType() throws IllegalValueException {
-        final List<Tag> questionSetTags = new ArrayList<>();
+        final List<Tag> qAndATags = new ArrayList<>();
         for (JsonAdaptedTag tag : tagged) {
-            questionSetTags.add(tag.toModelType());
+            qAndATags.add(tag.toModelType());
         }
 
         if (question == null) {
@@ -79,22 +70,6 @@ class JsonAdaptedQAndA {
         }
         final Question modelQuestion = new Question(question);
 
-        if (phone == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Phone.class.getSimpleName()));
-        }
-        if (!Phone.isValidPhone(phone)) {
-            throw new IllegalValueException(Phone.MESSAGE_CONSTRAINTS);
-        }
-        final Phone modelPhone = new Phone(phone);
-
-        if (email == null) {
-            throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Email.class.getSimpleName()));
-        }
-        if (!Email.isValidEmail(email)) {
-            throw new IllegalValueException(Email.MESSAGE_CONSTRAINTS);
-        }
-        final Email modelEmail = new Email(email);
-
         if (answer == null) {
             throw new IllegalValueException(String.format(MISSING_FIELD_MESSAGE_FORMAT, Answer.class.getSimpleName()));
         }
@@ -103,8 +78,8 @@ class JsonAdaptedQAndA {
         }
         final Answer modelAnswer = new Answer(answer);
 
-        final Set<Tag> modelTags = new HashSet<>(questionSetTags);
-        return new QAndA(modelQuestion, modelPhone, modelEmail, modelAnswer, modelTags);
+        final Set<Tag> modelTags = new HashSet<>(qAndATags);
+        return new QAndA(modelQuestion, modelAnswer, modelTags);
     }
 
 }

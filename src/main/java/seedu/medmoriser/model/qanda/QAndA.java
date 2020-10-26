@@ -17,8 +17,7 @@ public class QAndA {
 
     // Identity fields
     private final Question question;
-    private final Phone phone;
-    private final Email email;
+
     private boolean isQuiz = false;
 
     // Data fields
@@ -26,40 +25,18 @@ public class QAndA {
     private final Set<Tag> tags = new HashSet<>();
 
     /**
-     * If all fiels are present:
+     * If all fields are present:
      * Every field must be present and not null.
-     */
-    public QAndA(Question question, Phone phone, Email email, Answer answer, Set<Tag> tags) {
-        requireAllNonNull(question, phone, email, answer, tags);
-        this.question = question;
-        this.phone = phone;
-        this.email = email;
-        this.answer = answer;
-        this.tags.addAll(tags);
-    }
-
-    /**
-     * Phone and email field can be omitted.
      */
     public QAndA(Question question, Answer answer, Set<Tag> tags) {
         requireAllNonNull(question, answer, tags);
         this.question = question;
-        this.phone = new Phone("00000000");
-        this.email = new Email("toBeIgnoredNow@email.com");
         this.answer = answer;
         this.tags.addAll(tags);
     }
 
     public Question getQuestion() {
         return question;
-    }
-
-    public Phone getPhone() {
-        return phone;
-    }
-
-    public Email getEmail() {
-        return email;
     }
 
     public Answer getAnswer() {
@@ -86,14 +63,14 @@ public class QAndA {
      * Returns true if both QuestionSets of the same name have at least one other identity field that is the same.
      * This defines a weaker notion of equality between two QuestionSets.
      */
-    public boolean isSameQuestionSet(QAndA otherQAndA) {
+    public boolean isSameQAndA(QAndA otherQAndA) {
         if (otherQAndA == this) {
             return true;
         }
 
         return otherQAndA != null
                 && otherQAndA.getQuestion().equals(getQuestion())
-                && (otherQAndA.getPhone().equals(getPhone()) || otherQAndA.getEmail().equals(getEmail()));
+                && (otherQAndA.getAnswer().equals(getAnswer()));
     }
 
     /**
@@ -112,8 +89,6 @@ public class QAndA {
 
         QAndA otherQAndA = (QAndA) other;
         return otherQAndA.getQuestion().equals(getQuestion())
-                && otherQAndA.getPhone().equals(getPhone())
-                && otherQAndA.getEmail().equals(getEmail())
                 && otherQAndA.getAnswer().equals(getAnswer())
                 && otherQAndA.getTags().equals(getTags());
     }
@@ -121,17 +96,13 @@ public class QAndA {
     @Override
     public int hashCode() {
         // use this method for custom fields hashing instead of implementing your own
-        return Objects.hash(question, phone, email, answer, tags);
+        return Objects.hash(question, answer, tags);
     }
 
     @Override
     public String toString() {
         final StringBuilder builder = new StringBuilder();
         builder.append(getQuestion())
-                .append(" Phone: ")
-                .append(getPhone())
-                .append(" Email: ")
-                .append(getEmail())
                 .append(" Answer: ")
                 .append(getAnswer())
                 .append(" Tags: ");

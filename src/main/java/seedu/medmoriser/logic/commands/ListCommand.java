@@ -1,7 +1,7 @@
 package seedu.medmoriser.logic.commands;
 
 import static java.util.Objects.requireNonNull;
-import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
+import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QANDA;
 
 import seedu.medmoriser.commons.core.Messages;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
@@ -40,7 +40,7 @@ public class ListCommand extends Command {
         if (QuizCommand.getIsQuiz()) {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
-            model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
+            model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QANDA);
             if (isAnswerDisplayed) {
                 return new CommandResult(MESSAGE_LIST_ALL_SUCCESS, true);
             } else {

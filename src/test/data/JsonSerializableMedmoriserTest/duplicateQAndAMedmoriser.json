@@ -1,0 +1,10 @@
+{
+  "qAndAs": [ {
+    "question": "Question 1",
+    "answer": "Answer 1",
+    "tagged": [ "disease" ]
+  }, {
+    "question": "Question 1",
+    "answer": "Answer 1"
+  } ]
+}

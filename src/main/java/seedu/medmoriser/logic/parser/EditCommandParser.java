@@ -3,8 +3,6 @@ package seedu.medmoriser.logic.parser;
 import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -31,8 +29,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     public EditCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
-                ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_PHONE,
-                        PREFIX_EMAIL, PREFIX_ANSWER, PREFIX_TAG);
+                ArgumentTokenizer.tokenize(args, PREFIX_QUESTION, PREFIX_ANSWER, PREFIX_TAG);
 
         Index index;
 
@@ -42,27 +39,21 @@ public class EditCommandParser implements Parser<EditCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
-        EditCommand.EditQuestionSetDescriptor editQuestionSetDescriptor = new EditCommand.EditQuestionSetDescriptor();
+        EditCommand.EditQAndADescriptor editQAndADescriptor = new EditCommand.EditQAndADescriptor();
         if (argMultimap.getValue(PREFIX_QUESTION).isPresent()) {
-            editQuestionSetDescriptor.setQuestion(ParserUtil.parseQuestion(argMultimap
+            editQAndADescriptor.setQuestion(ParserUtil.parseQuestion(argMultimap
                     .getValue(PREFIX_QUESTION).get()));
         }
-        if (argMultimap.getValue(PREFIX_PHONE).isPresent()) {
-            editQuestionSetDescriptor.setPhone(ParserUtil.parsePhone(argMultimap.getValue(PREFIX_PHONE).get()));
-        }
-        if (argMultimap.getValue(PREFIX_EMAIL).isPresent()) {
-            editQuestionSetDescriptor.setEmail(ParserUtil.parseEmail(argMultimap.getValue(PREFIX_EMAIL).get()));
-        }
         if (argMultimap.getValue(PREFIX_ANSWER).isPresent()) {
-            editQuestionSetDescriptor.setAnswer(ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get()));
+            editQAndADescriptor.setAnswer(ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get()));
         }
-        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editQuestionSetDescriptor::setTags);
+        parseTagsForEdit(argMultimap.getAllValues(PREFIX_TAG)).ifPresent(editQAndADescriptor::setTags);
 
-        if (!editQuestionSetDescriptor.isAnyFieldEdited()) {
+        if (!editQAndADescriptor.isAnyFieldEdited()) {
             throw new ParseException(EditCommand.MESSAGE_NOT_EDITED);
         }
 
-        return new EditCommand(index, editQuestionSetDescriptor);
+        return new EditCommand(index, editQAndADescriptor);
     }
 
     /**

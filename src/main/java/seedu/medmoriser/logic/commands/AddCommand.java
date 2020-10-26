@@ -2,8 +2,6 @@ package seedu.medmoriser.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_EMAIL;
-import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_PHONE;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
@@ -19,23 +17,19 @@ public class AddCommand extends Command {
 
     public static final String COMMAND_WORD = "add";
 
-    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a QuestionSet to the question bank "
+    public static final String MESSAGE_USAGE = COMMAND_WORD + ": Adds a QAndA to the question bank "
             + "Parameters: "
             + PREFIX_QUESTION + "QUESTION "
-            + PREFIX_PHONE + "PHONE "
-            + PREFIX_EMAIL + "EMAIL "
             + PREFIX_ANSWER + "ANSWER "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
             + PREFIX_QUESTION + "John Doe "
-            + PREFIX_PHONE + "98765432 "
-            + PREFIX_EMAIL + "johnd@example.com "
             + PREFIX_ANSWER + "311, Clementi Ave 2, #02-25 "
             + PREFIX_TAG + "friends "
             + PREFIX_TAG + "owesMoney";
 
-    public static final String MESSAGE_SUCCESS = "New questionSet added: %1$s";
-    public static final String MESSAGE_DUPLICATE_QUESTIONSET = "This questionSet already exists in the answer book";
+    public static final String MESSAGE_SUCCESS = "New QAndA added: %1$s";
+    public static final String MESSAGE_DUPLICATE_QANDA = "This QAndA already exists in the answer book";
 
     private final QAndA toAdd;
 
@@ -51,12 +45,12 @@ public class AddCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
 
-        if (model.hasQuestionSet(toAdd)) {
-            throw new CommandException(MESSAGE_DUPLICATE_QUESTIONSET);
+        if (model.hasQAndA(toAdd)) {
+            throw new CommandException(MESSAGE_DUPLICATE_QANDA);
         } else if (QuizCommand.getIsQuiz()) {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
-            model.addQuestionSet(toAdd);
+            model.addQAndA(toAdd);
             return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
         }
     }

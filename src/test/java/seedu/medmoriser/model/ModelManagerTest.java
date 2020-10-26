@@ -3,10 +3,10 @@ package seedu.medmoriser.model;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QUESTIONSETS;
+import static seedu.medmoriser.model.Model.PREDICATE_SHOW_ALL_QANDA;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.BENSON;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION1;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION2;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -73,29 +73,29 @@ public class ModelManagerTest {
     }
 
     @Test
-    public void hasQuestionSet_nullQuestionSet_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> modelManager.hasQuestionSet(null));
+    public void hasQAndA_nullQAndA_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> modelManager.hasQAndA(null));
     }
 
     @Test
-    public void hasQuestionSet_questionSetNotInMedmoriser_returnsFalse() {
-        assertFalse(modelManager.hasQuestionSet(ALICE));
+    public void hasQAndA_qAndANotInMedmoriser_returnsFalse() {
+        assertFalse(modelManager.hasQAndA(QUESTION1));
     }
 
     @Test
-    public void hasQuestionSet_questionSetInMedmoriser_returnsTrue() {
-        modelManager.addQuestionSet(ALICE);
-        assertTrue(modelManager.hasQuestionSet(ALICE));
+    public void hasQAndA_qAndAInMedmoriser_returnsTrue() {
+        modelManager.addQAndA(QUESTION1);
+        assertTrue(modelManager.hasQAndA(QUESTION1));
     }
 
     @Test
-    public void getFilteredQuestionSetList_modifyList_throwsUnsupportedOperationException() {
+    public void getFilteredQAndAList_modifyList_throwsUnsupportedOperationException() {
         assertThrows(UnsupportedOperationException.class, () -> modelManager.getFilteredQAndAList().remove(0));
     }
 
     @Test
     public void equals() {
-        Medmoriser medmoriser = new MedmoriserBuilder().withQuestionSet(ALICE).withQuestionSet(BENSON).build();
+        Medmoriser medmoriser = new MedmoriserBuilder().withQAndA(QUESTION1).withQAndA(QUESTION2).build();
         Medmoriser differentMedmoriser = new Medmoriser();
         UserPrefs userPrefs = new UserPrefs();
 
@@ -117,12 +117,12 @@ public class ModelManagerTest {
         assertFalse(modelManager.equals(new ModelManager(differentMedmoriser, userPrefs)));
 
         // different filteredList -> returns false
-        String[] keywords = ALICE.getQuestion().question.split("\\s+");
-        modelManager.updateFilteredQAndAList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords)));
+        String[] keywords = QUESTION1.getQuestion().question.split("\\s+");
+        modelManager.updateFilteredQAndAList(new QuestionContainsKeywordsPredicate(Arrays.asList(keywords[1])));
         assertFalse(modelManager.equals(new ModelManager(medmoriser, userPrefs)));
 
         // resets modelManager to initial state for upcoming tests
-        modelManager.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QUESTIONSETS);
+        modelManager.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QANDA);
 
         // different userPrefs -> returns false
         UserPrefs differentUserPrefs = new UserPrefs();

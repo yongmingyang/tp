@@ -3,11 +3,11 @@ package seedu.medmoriser.model.qanda;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_BOB;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_HUSBAND;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_B;
+import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG2;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.ALICE;
-import static seedu.medmoriser.testutil.TypicalQuestionSet.BOB;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION1;
+import static seedu.medmoriser.testutil.TypicalQAndA.QUESTIONB;
 
 import java.util.Arrays;
 import java.util.Collections;
@@ -15,156 +15,157 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import seedu.medmoriser.model.qanda.exceptions.DuplicateQuestionSetException;
-import seedu.medmoriser.model.qanda.exceptions.QuestionSetNotFoundException;
-import seedu.medmoriser.testutil.QuestionSetBuilder;
+import seedu.medmoriser.model.qanda.exceptions.DuplicateQAndAException;
+import seedu.medmoriser.model.qanda.exceptions.QAndANotFoundException;
+import seedu.medmoriser.testutil.QAndABuilder;
 
 public class UniqueQAndAListTest {
 
     private final UniqueQAndAList uniqueQAndAList = new UniqueQAndAList();
 
     @Test
-    public void contains_nullQuestionSet_throwsNullPointerException() {
+    public void contains_nullQAndA_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueQAndAList.contains(null));
     }
 
     @Test
-    public void contains_questionSetNotInList_returnsFalse() {
-        assertFalse(uniqueQAndAList.contains(ALICE));
+    public void contains_qAndANotInList_returnsFalse() {
+        assertFalse(uniqueQAndAList.contains(QUESTION1));
     }
 
     @Test
-    public void contains_questionSetInList_returnsTrue() {
-        uniqueQAndAList.add(ALICE);
-        assertTrue(uniqueQAndAList.contains(ALICE));
+    public void contains_qAndAInList_returnsTrue() {
+        uniqueQAndAList.add(QUESTION1);
+        assertTrue(uniqueQAndAList.contains(QUESTION1));
     }
 
     @Test
-    public void contains_questionSetWithSameIdentityFieldsInList_returnsTrue() {
-        uniqueQAndAList.add(ALICE);
-        QAndA editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB).withTags(VALID_TAG_HUSBAND)
+    public void contains_qAndAWithSameIdentityFieldsInList_returnsTrue() {
+        uniqueQAndAList.add(QUESTION1);
+        QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2)
                 .build();
-        assertTrue(uniqueQAndAList.contains(editedAlice));
+        assertTrue(uniqueQAndAList.contains(editedQuestion1));
     }
 
     @Test
-    public void add_nullQuestionSet_throwsNullPointerException() {
+    public void add_nullQAndA_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueQAndAList.add(null));
     }
 
     @Test
-    public void add_duplicateQuestionSet_throwsDuplicateQuestionSetException() {
-        uniqueQAndAList.add(ALICE);
-        assertThrows(DuplicateQuestionSetException.class, () -> uniqueQAndAList.add(ALICE));
+    public void add_duplicateQAndA_throwsDuplicateQAndAException() {
+        uniqueQAndAList.add(QUESTION1);
+        assertThrows(DuplicateQAndAException.class, () -> uniqueQAndAList.add(QUESTION1));
     }
 
     @Test
-    public void setQuestionSet_nullTargetQuestionSet_throwsNullPointerException() {
-        assertThrows(NullPointerException.class, () -> uniqueQAndAList.setQuestionSet(null, ALICE));
+    public void setQAndA_nullTargetQAndA_throwsNullPointerException() {
+        assertThrows(NullPointerException.class, () -> uniqueQAndAList.setQAndA(null, QUESTION1));
     }
 
     @Test
-    public void setQuestionSet_nullEditedQuestionSet_throwsNullPointerException() {
+    public void setQAndA_nullEditedQAndA_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            uniqueQAndAList.setQuestionSet(ALICE, null));
+            uniqueQAndAList.setQAndA(QUESTION1, null));
     }
 
     @Test
-    public void setQuestionSet_targetQuestionSetNotInList_throwsQuestionSetNotFoundException() {
-        assertThrows(QuestionSetNotFoundException.class, () -> uniqueQAndAList.setQuestionSet(ALICE, ALICE));
+    public void setQAndA_targetQAndANotInList_throwsQAndANotFoundException() {
+        assertThrows(QAndANotFoundException.class, () -> uniqueQAndAList.setQAndA(QUESTION1, QUESTION1));
     }
 
     @Test
-    public void setQuestionSet_editedQuestionSetIsSameQuestionSet_success() {
-        uniqueQAndAList.add(ALICE);
-        uniqueQAndAList.setQuestionSet(ALICE, ALICE);
+    public void setQAndA_editedQAndAIsSameQAndA_success() {
+        uniqueQAndAList.add(QUESTION1);
+        uniqueQAndAList.setQAndA(QUESTION1, QUESTION1);
         UniqueQAndAList expectedUniqueQAndAList = new UniqueQAndAList();
-        expectedUniqueQAndAList.add(ALICE);
+        expectedUniqueQAndAList.add(QUESTION1);
         assertEquals(expectedUniqueQAndAList, uniqueQAndAList);
     }
 
     @Test
-    public void setQuestionSet_editedQuestionSetHasSameIdentity_success() {
-        uniqueQAndAList.add(ALICE);
-        QAndA editedAlice = new QuestionSetBuilder(ALICE).withAnswer(VALID_ANSWER_BOB)
-                .withTags(VALID_TAG_HUSBAND)
+    public void setQAndA_editedQAndAHasSameIdentity_success() {
+        uniqueQAndAList.add(QUESTION1);
+        QAndA editedQuestion1 = new QAndABuilder(QUESTION1).withAnswer(VALID_ANSWER_B)
+                .withTags(VALID_TAG_TAG2)
                 .build();
-        uniqueQAndAList.setQuestionSet(ALICE, editedAlice);
+        uniqueQAndAList.setQAndA(QUESTION1, editedQuestion1);
         UniqueQAndAList expectedUniqueQAndAList = new UniqueQAndAList();
-        expectedUniqueQAndAList.add(editedAlice);
+        expectedUniqueQAndAList.add(editedQuestion1);
         assertEquals(expectedUniqueQAndAList, uniqueQAndAList);
     }
 
     @Test
-    public void setQuestionSet_editedQuestionSetHasDifferentIdentity_success() {
-        uniqueQAndAList.add(ALICE);
-        uniqueQAndAList.setQuestionSet(ALICE, BOB);
+    public void setQAndA_editedQAndAHasDifferentIdentity_success() {
+        uniqueQAndAList.add(QUESTION1);
+        uniqueQAndAList.setQAndA(QUESTION1, QUESTIONB);
         UniqueQAndAList expectedUniqueQAndAList = new UniqueQAndAList();
-        expectedUniqueQAndAList.add(BOB);
+        expectedUniqueQAndAList.add(QUESTIONB);
         assertEquals(expectedUniqueQAndAList, uniqueQAndAList);
     }
 
     @Test
-    public void setQuestionSet_editedQuestionSetHasNonUniqueIdentity_throwsDuplicateQuestionSetException() {
-        uniqueQAndAList.add(ALICE);
-        uniqueQAndAList.add(BOB);
-        assertThrows(DuplicateQuestionSetException.class, () -> uniqueQAndAList.setQuestionSet(ALICE, BOB));
+    public void setQAndA_editedQAndAHasNonUniqueIdentity_throwsDuplicateQAndAException() {
+        uniqueQAndAList.add(QUESTION1);
+        uniqueQAndAList.add(QUESTIONB);
+        assertThrows(DuplicateQAndAException.class, () -> uniqueQAndAList.setQAndA(QUESTION1, QUESTIONB));
     }
 
     @Test
-    public void remove_nullQuestionSet_throwsNullPointerException() {
+    public void remove_nullQAndA_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () -> uniqueQAndAList.remove(null));
     }
 
     @Test
-    public void remove_questionSetDoesNotExist_throwsQuestionSetNotFoundException() {
-        assertThrows(QuestionSetNotFoundException.class, () -> uniqueQAndAList.remove(ALICE));
+
+    public void remove_qAndADoesNotExist_throwsQAndANotFoundException() {
+        assertThrows(QAndANotFoundException.class, () -> uniqueQAndAList.remove(QUESTION1));
     }
 
     @Test
-    public void remove_existingQuestionSet_removesQuestionSet() {
-        uniqueQAndAList.add(ALICE);
-        uniqueQAndAList.remove(ALICE);
+    public void remove_existingQAndA_removesQAndA() {
+        uniqueQAndAList.add(QUESTION1);
+        uniqueQAndAList.remove(QUESTION1);
         UniqueQAndAList expectedUniqueQAndAList = new UniqueQAndAList();
         assertEquals(expectedUniqueQAndAList, uniqueQAndAList);
     }
 
     @Test
-    public void setQuestionSets_nullUniqueQuestionSetList_throwsNullPointerException() {
+    public void setQAndAs_nullUniqueQAndAList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            uniqueQAndAList.setQuestionSets((UniqueQAndAList) null));
+            uniqueQAndAList.setQAndAs((UniqueQAndAList) null));
     }
 
     @Test
-    public void setQuestionSets_uniqueQuestionSetList_replacesOwnListWithProvidedUniqueQuestionSetList() {
-        uniqueQAndAList.add(ALICE);
+    public void setQAndAs_uniqueQAndAList_replacesOwnListWithProvidedUniqueQAndAsList() {
+        uniqueQAndAList.add(QUESTION1);
         UniqueQAndAList expectedUniqueQAndAList = new UniqueQAndAList();
-        expectedUniqueQAndAList.add(BOB);
-        uniqueQAndAList.setQuestionSets(expectedUniqueQAndAList);
+        expectedUniqueQAndAList.add(QUESTIONB);
+        uniqueQAndAList.setQAndAs(expectedUniqueQAndAList);
         assertEquals(expectedUniqueQAndAList, uniqueQAndAList);
     }
 
     @Test
-    public void setQuestionSets_nullList_throwsNullPointerException() {
+    public void setQAndAs_nullList_throwsNullPointerException() {
         assertThrows(NullPointerException.class, () ->
-            uniqueQAndAList.setQuestionSets((List<QAndA>) null));
+            uniqueQAndAList.setQAndAs((List<QAndA>) null));
     }
 
     @Test
-    public void setQuestionSets_list_replacesOwnListWithProvidedList() {
-        uniqueQAndAList.add(ALICE);
-        List<QAndA> qAndAList = Collections.singletonList(BOB);
-        uniqueQAndAList.setQuestionSets(qAndAList);
+    public void setQAndAs_list_replacesOwnListWithProvidedList() {
+        uniqueQAndAList.add(QUESTION1);
+        List<QAndA> qAndAList = Collections.singletonList(QUESTIONB);
+        uniqueQAndAList.setQAndAs(qAndAList);
         UniqueQAndAList expectedUniqueQAndAList = new UniqueQAndAList();
-        expectedUniqueQAndAList.add(BOB);
+        expectedUniqueQAndAList.add(QUESTIONB);
         assertEquals(expectedUniqueQAndAList, uniqueQAndAList);
     }
 
     @Test
-    public void setQuestionSets_listWithDuplicateQuestions_throwsDuplicateQuestionSetException() {
-        List<QAndA> listWithDuplicateQAndAs = Arrays.asList(ALICE, ALICE);
-        assertThrows(DuplicateQuestionSetException.class, () ->
-            uniqueQAndAList.setQuestionSets(listWithDuplicateQAndAs));
+    public void setQAndAs_listWithDuplicateQuestions_throwsDuplicateQAndAException() {
+        List<QAndA> listWithDuplicateQAndAs = Arrays.asList(QUESTION1, QUESTION1);
+        assertThrows(DuplicateQAndAException.class, () ->
+            uniqueQAndAList.setQAndAs(listWithDuplicateQAndAs));
     }
 
     @Test
