@@ -26,12 +26,8 @@ management system, this guide will give you all the information you need to get 
 * Items in square brackets are optional.<br>
   e.g. `q/QUESTION [t/TAG]` can be used as `q/What is the heart responsible for t/cardiology` or as `q/What is the heart responsible for`.
 
-<<<<<<< Updated upstream
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/heart`, `t/heart t/cardiology` etc.
-=======
-### Listing all Questions & Answers : `list` (by: Jonathan Foo)
->>>>>>> Stashed changes
 
 * Parameters can be in any order.<br>
   e.g. if the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.
@@ -51,7 +47,7 @@ You can add a question and answer pair to the database.
 Format: `add q/QUESTION a/ANSWER`
 
 Examples:
-* `add q/what organ system is the lungs part of? a/respiratory system`
+* `add q/what organ system is the lungs part of? a/respiratory system?`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
 ### Deleting a Q&A: `delete`
@@ -68,7 +64,7 @@ Examples:
 * `list` followed by `delete 2` deletes the 2nd Q&A in the question book.
 * `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
 
-### Listing all Questions & Answers: `list`
+### Listing all Questions & Answers : `list` (by: Jonathan Foo)
 
 This shows you the entire database of questions and answers.
 
