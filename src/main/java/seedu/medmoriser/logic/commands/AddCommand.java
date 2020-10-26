@@ -44,9 +44,6 @@ public class AddCommand extends Command {
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
-        for (int i = 0; i < model.getFilteredQAndAList().size(); i++) {
-            model.getFilteredQAndAList().get(i).setNotQuiz();
-        }
 
         if (model.hasQAndA(toAdd)) {
             throw new CommandException(MESSAGE_DUPLICATE_QANDA);
