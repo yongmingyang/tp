@@ -18,6 +18,9 @@ public class HelpCommand extends Command {
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
+        for (int i = 0; i < model.getFilteredQAndAList().size(); i++) {
+            model.getFilteredQAndAList().get(i).setNotQuiz();
+        }
 
         if (QuizCommand.getIsQuiz()) {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);

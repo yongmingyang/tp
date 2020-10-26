@@ -13,7 +13,7 @@
   </icons>
   <scene>
     <Scene>
-         <HBox alignment="CENTER" style="-fx-background-color: ffafcc;">
+         <HBox alignment="CENTER">
             <children>
                <Label fx:id="helpMessage" text="Label">
                   <HBox.margin>

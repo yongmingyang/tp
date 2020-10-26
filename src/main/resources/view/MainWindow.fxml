@@ -13,13 +13,13 @@
     <Image url="@/images/address_book_32.png" />
   </icons>
   <scene>
-    <Scene>
+    <Scene fill="#2c2d33">
       <stylesheets>
         <URL value="@DarkTheme.css" />
         <URL value="@Extensions.css" />
       </stylesheets>
 
-      <VBox>
+      <VBox style="-fx-background-color: #78797d;" styleClass="pane-with-border">
         <MenuBar fx:id="menuBar" VBox.vgrow="NEVER">
           <Menu mnemonicParsing="false" text="File">
             <MenuItem mnemonicParsing="false" onAction="#handleExit" text="Exit" />
@@ -29,26 +29,26 @@
           </Menu>
         </MenuBar>
 
-        <StackPane fx:id="commandBoxPlaceholder" style="-fx-background-color: f6d8ac;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="commandBoxPlaceholder" style="-fx-background-color: #78797d;" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: f6d8ac;" styleClass="pane-with-border" VBox.vgrow="NEVER">
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: #78797d;" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
             <Insets bottom="5" left="10" right="10" top="5" />
           </padding>
         </StackPane>
 
-        <VBox fx:id="qAndAList" minWidth="340" prefWidth="340" style="-fx-background-color: f6d8ac;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
+        <VBox fx:id="qAndAList" minWidth="340" prefWidth="340" style="-fx-background-color: #78797d;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
-          <StackPane fx:id="questionSetListPanelPlaceholder" VBox.vgrow="ALWAYS" />
+          <StackPane fx:id="questionSetListPanelPlaceholder" style="-fx-background-color: #78797d; -fx-background-radius: 5px;" VBox.vgrow="ALWAYS" />
         </VBox>
 
-        <StackPane fx:id="statusbarPlaceholder" VBox.vgrow="NEVER" />
+        <StackPane fx:id="statusbarPlaceholder" style="-fx-background-color: #78797d;" VBox.vgrow="NEVER" />
       </VBox>
     </Scene>
   </scene>

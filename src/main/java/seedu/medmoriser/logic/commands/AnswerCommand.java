@@ -37,6 +37,7 @@ public class AnswerCommand extends Command {
             throw new CommandException(MESSAGE_NOT_QUIZ);
         } else {
             QuizCommand.setIsQuiz(false);
+            model.getFilteredQAndAList().get(0).setQuizAnswer();
             return new CommandResult(MESSAGE_USER_ANSWER + userAnswer);
         }
     }

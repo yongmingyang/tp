@@ -73,6 +73,7 @@ public class QuizCommand extends Command {
         if (filteredList.size() > 0) {
             QAndA question = getRandomQuestion(filteredList);
             model.updateFilteredQAndAList(x -> x.equals(question));
+            model.getFilteredQAndAList().get(0).setAsQuiz();
             setIsQuiz(true);
 
             return new CommandResult(MESSAGE_SUCCESS);

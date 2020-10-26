@@ -23,6 +23,9 @@ public class ExitQuizCommand extends Command {
         } else {
             QuizCommand.setIsQuiz(false);
             model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QANDA);
+            for (int i = 0; i < model.getFilteredQAndAList().size(); i++) {
+                model.getFilteredQAndAList().get(i).setNotQuiz();
+            }
             return new CommandResult(MESSAGE_EXIT_ACKNOWLEDGEMENT);
         }
     }
