@@ -337,7 +337,7 @@ _{Explain here how the data archiving feature will be implemented}_
 
 **Target user profile**:
 
-* medical students with heavy content to memorise 
+* medical students with heavy content to memorise
 * has a need to manage and frequently revisit a significant number of questions and answers
 * has a need to refer to images and diagrams
 * prefer desktop apps over other types
@@ -345,9 +345,9 @@ _{Explain here how the data archiving feature will be implemented}_
 * prefers typing to mouse interactions
 * is reasonably comfortable using CLI apps
 
-**Value proposition**: 
+**Value proposition**:
 * Aggregate and organises contents and much faster than traditional methods.
-* Allows students to memorise contents more efficiently by continuously testing them. This way they can practice active recall. 
+* Allows students to memorise contents more efficiently by continuously testing them. This way they can practice active recall.
 
 
 ### User stories
