@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-This guide aims to orientate you to the features of **Medmoriser**. If you're a medical student looking for a quiz 
+This guide aims to orientate you to the features of **Medmoriser**. If you're a medical student looking for a quiz
 management system, this guide will give you all the information you need to get started with **Medmoriser**.
 
 * Table of Contents
