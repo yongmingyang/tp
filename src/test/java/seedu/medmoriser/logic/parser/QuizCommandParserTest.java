@@ -38,7 +38,7 @@ public class QuizCommandParserTest {
     public void parse_validArgsQuestionContainsKeywordsPredicate_returnsQuizCommand() {
         // no leading and trailing whitespaces
         QuizCommand expectedQuizCommand =
-                new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList("q", "digestive system",
+                new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList("digestive system",
                         "skeletal system")));
         assertParseSuccess(parser, "q/digestive system, skeletal system", expectedQuizCommand);
 
@@ -50,7 +50,7 @@ public class QuizCommandParserTest {
     public void parse_validArgsTagContainsKeywordsPredicate_returnsQuizCommand() {
         // no leading and trailing whitespaces
         QuizCommand expectedQuizCommand =
-                new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList("t", "digestive system",
+                new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList("digestive system",
                         "skeletal system")));
         assertParseSuccess(parser, "t/digestive system, skeletal system", expectedQuizCommand);
 

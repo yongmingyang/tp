@@ -4,7 +4,6 @@ import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 
 import java.util.Arrays;
 
-import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.commands.QuizCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
