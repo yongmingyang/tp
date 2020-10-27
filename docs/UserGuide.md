@@ -113,11 +113,11 @@ If you would like to search the database, you can do so in a few ways:
 3. Find Q&A with **tags** containing any of the given keywords. 
     Keywords for tags can also have phrases, however this requires the text to have an exact match (case-insensitive).
 
-    Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE1, KEYWORD1`
+    Format: `find t/KEYWORD`, for 2 or more words: `find q/PHRASE1, KEYWORD1`
 
 4. Find Q&A with **questions or answers** containing any of the given keywords.
 
-    Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE, KEYWORD1`
+    Format: `find KEYWORD`, for 2 or more words: `find PHRASE, KEYWORD1`
 
 Examples:
 * `find q/system, disease` - finds questions containing the word "system" and/or "disease".
