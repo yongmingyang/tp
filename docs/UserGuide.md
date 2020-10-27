@@ -133,7 +133,7 @@ Expected Result:
 
 ![FindResult](images/FindResult.PNG)
 
-The input `find t/Chronic diseases, Diagnosis` will filter out the questions with the tag "Chronic Diseases" and/or "Diagnosis"
+The input `find t/Chronic diseases, Diagnosis` will return the questions with the tag "Chronic Diseases" and/or "Diagnosis"
 as shown.
 ### Clearing all entries: `clear`
 
