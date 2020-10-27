@@ -7,9 +7,9 @@
 
 'T1 through T4 are shades of the original color from lightest to darkest
 
-!define UI_COLOR #F38181
-!define UI_COLOR_T1 #CC6C6C
-!define UI_COLOR_T2 #3FC71B
+!define UI_COLOR #F28080
+!define UI_COLOR_T1 #D97373
+!define UI_COLOR_T2 #BF6565
 !define UI_COLOR_T3 #166800
 !define UI_COLOR_T4 #0E4100
 

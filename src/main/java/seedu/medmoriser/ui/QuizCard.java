@@ -39,7 +39,7 @@ public class QuizCard extends UiPart<Region> {
     public QuizCard(QAndA qAndA, int displayedIndex, boolean isAnswerDisplayed) {
         super(FXML);
         this.qAndA = qAndA;
-        id.setText(displayedIndex + ". ");
+        id.setText("");
         question.setText(qAndA.getQuestion().question);
         answer.setText(qAndA.getAnswer().answer);
         qAndA.getTags().stream()

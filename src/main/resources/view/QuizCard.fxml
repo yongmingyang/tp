@@ -13,17 +13,17 @@
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
-            <HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="600" minHeight="-Infinity" spacing="5" style="-fx-background-color: #2c2d33;">
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="600" minHeight="-Infinity" spacing="5" style="-fx-background-color: #2c2d33;">
                 <Label fx:id="id" alignment="TOP_CENTER" contentDisplay="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="quiz_big_label">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
                     </minWidth>
                 </Label>
-                <Label fx:id="question" alignment="CENTER_LEFT" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="600" minHeight="-Infinity" styleClass="quiz_big_label" text="\$question" wrapText="true" />
+                <Label fx:id="question" alignment="CENTER" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="600" minHeight="-Infinity" styleClass="quiz_big_label" text="\$question" wrapText="true" />
             </HBox>
-            <FlowPane fx:id="tags" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="530" />
-            <Label fx:id="answer" alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="530" styleClass="quiz_small_label" text="\$answer" wrapText="true" />
+            <FlowPane fx:id="tags" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="530" />
+            <Label fx:id="answer" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="530" styleClass="quiz_small_label" text="\$answer" wrapText="true" />
         </VBox>
         <rowConstraints>
             <RowConstraints />

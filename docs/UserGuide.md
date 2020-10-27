@@ -51,7 +51,7 @@ Examples:
 * `add q/what organ system is the lungs part of? a/respiratory system?`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
-### Deleting a Q&A: `delete`
+### Deleting a Q&A: `delete` 
 
 You can delete a specified Q&A from the database.
 
@@ -59,9 +59,11 @@ Format: `delete INDEX`
 
 * This allows you to delete the Q&A at the specified `INDEX`.
 * The index refers to the index number shown in the displayed question list.
-* The index **must be a positive integer** 1, 2, 3, …
+
+ℹ️ **Note:** The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
 
 Examples:
+
 * `list` followed by `delete 2` deletes the 2nd Q&A in the question book.
 * `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
 
@@ -72,28 +74,34 @@ This shows you the entire database of questions and answers.
 Format: `list [questions]`
 
 * Just typing list will list all questions and answers
-* Adding the `questions` parameter will list only the questions (i.e. hide the answers) 
+* Adding the `questions` parameter will list only the questions (i.e. hide the answers)
 
 Examples:
 * `list` will show all questions and answers
 * `list questions` will only show all questions
 
-### Editing a Q&A: `edit`
+### Editing a Q&A: `edit` 
 
 You can make changes to an existing Q&A with this command.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 
-* This allows you to edit the Q&A at the specified `INDEX`. The index refers to the index number shown in the displayed question list. The index **must be a positive integer** 1, 2, 3, …​
-* You must provide at least one of the optional fields.
+* This allows you to edit the Q&A at the specified `INDEX`. The index refers to the index number shown in the displayed question list. 
 * Existing values will be updated to the input values.
+
+ℹ️ **Notes about the edit command:** <br>
+<div>
 * When you edit the tags, the existing tags of the Q&A will be removed i.e adding of tags is not cumulative.
-* You can remove all the Q&A's tags by typing `t/` without specifying any tags after it.
+* You must provide at least one of the optional fields.
+* The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
+</div>
+
+💡 **Tip:** You can remove all the QAndA's tags by typing `t/` without specifying any tags after it.
 
 Examples:
+
 *  `edit 1 a/To pump blood` Edits the answer the 1st question to be `To pump blood`.
 *  `edit 2 q/What is the heart t/` Edits the question of the 2nd Q&A to be `What is the heart` and clears all existing tags.
-
 ### Locating questions/answers/tags by keywords: `find` (by: Yong Ming Yang)
 
 If you would like to search the database, you can do so in a few ways:
@@ -110,7 +118,7 @@ If you would like to search the database, you can do so in a few ways:
 
     Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE 1, KEYWORD1`
 
-3. Find Q&A with **tags** containing any of the given keywords. 
+3. Find Q&A with **tags** containing any of the given keywords.
     Keywords for tags can also have phrases, however this requires the text to have an exact match (case-insensitive).
 
     Format: `find t/KEYWORD`, for 2 or more words: `find q/PHRASE1, KEYWORD1`
