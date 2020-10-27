@@ -34,9 +34,6 @@ public class DeleteCommand extends Command {
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         List<QAndA> lastShownList = model.getFilteredQAndAList();
-        for (int i = 0; i < model.getFilteredQAndAList().size(); i++) {
-            model.getFilteredQAndAList().get(i).setNotQuiz();
-        }
 
         if (QuizCommand.getIsQuiz()) {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
