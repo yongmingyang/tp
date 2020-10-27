@@ -3,14 +3,15 @@ layout: page
 title: User Guide
 ---
 
-This guide aims to orientate you to the features of **Medmoriser**. If you're a medical student looking for a quiz
+Hi Medical Student! Welcome to the User Guide for **Medmoriser**!
+
+**Medmoriser** is a desktop app to help medical students organize, memorise and revise their content.
+
+This guide aims to orientate you to the features of **Medmoriser**. If you're looking for a quiz
 management system, this guide will give you all the information you need to get started with **Medmoriser**.
 
 * Table of Contents
 {:toc}
-
-**Medmoriser** is a desktop app to help medical students memorise and revise their content. It is optimized for
- CLI users so that frequent revisions can be done faster by typing in commands.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -97,6 +98,10 @@ Examples:
 
 If you would like to search the database, you can do so in a few ways:
 
+> **TIP**
+>
+> `PHRASE` refers to words with spaces in between, for example: "nervous system"
+
 1. Find Q&A with **questions** containing any of the given keywords.
 
     Format: `find q/KEYWORD`, for 2 or more words: `find q/PHRASE 1, KEYWORD1`
@@ -108,18 +113,28 @@ If you would like to search the database, you can do so in a few ways:
 3. Find Q&A with **tags** containing any of the given keywords. 
     Keywords for tags can also have phrases, however this requires the text to have an exact match (case-insensitive).
 
-    Format: `find a/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
+    Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE1, KEYWORD1`
 
 4. Find Q&A with **questions or answers** containing any of the given keywords.
 
-    Format: `find a/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
+    Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE, KEYWORD1`
 
 Examples:
-* `find q/system, disease` - finds questions with the word "system" and/or "disease".
-* `find a/vessels, chronic disease` - finds answers with the word vessels, and/or the phrase "chronic disease".
+* `find q/system, disease` - finds questions containing the word "system" and/or "disease".
+* `find a/vessels, chronic disease` - finds answers containing the word vessels, and/or the phrase "chronic disease".
 * `find t/anatomy, Nervous System` - finds question sets tagged with the word "anatomy" and/or "Nervous System" (can be both), requires exact match of words (case-insensitive).
-* `find infection, nervous system` - finds question and/or answers with the word infection, and/or the phrase "nervous system"
+* `find infection, nervous system` - finds question and/or answers containing the word "infection", and/or the phrase "nervous system"
 
+How it should look like in the application:
+
+![FindContext](images/FindContext.PNG)
+
+Expected Result:
+
+![FindResult](images/FindResult.PNG)
+
+The input `find t/Chronic diseases, Diagnosis` will filter out the questions with the tag "Chronic Diseases" and/or "Diagnosis"
+as shown.
 ### Clearing all entries: `clear`
 
 If you want to reset the database, this command helps to clear all entries from the question book.
