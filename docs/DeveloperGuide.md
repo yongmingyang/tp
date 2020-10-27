@@ -133,7 +133,7 @@ Classes used by multiple components are in the `seedu.addressbook.commons` packa
 
 This section describes some noteworthy details on how certain features are implemented.
 
-### Find feature
+### Find feature (Ming Yang)
 
 #### Implementation
 
@@ -152,23 +152,6 @@ Explanation of the diagrams:
 2. The `FindCommandParser` identifies the type of find command, such as find tag/question/answer.
 3. A `FindCommand` with the respective predicate such as `TagContainsKeywordPredicate` is created and returned to the `LogicManager`.
 4. The filtered list of question will be displayed on the `UI`.
-
-#### Design consideration:
-
-##### Aspect: How undo & redo executes
-
-* **Alternative 1 (current choice):** Saves the entire answer book.
-  * Pros: Easy to implement.
-  * Cons: May have performance issues in terms of memory usage.
-
-* **Alternative 2:** Individual command knows how to undo/redo by
-  itself.
-  * Pros: Will use less memory (e.g. for `delete`, just save the qAndA being deleted).
-  * Cons: We must ensure that the implementation of each individual command are correct.
-
-_{more aspects and alternatives to be added}_
-
-
 
 ### Delete Feature (Jian Ling)
 
@@ -193,8 +176,6 @@ The sequence diagram (Fig. 1.1) below shows the flow of the delete  feature.
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-
-
 The activity diagram (Fig 1.2) below further shows the flow of the delete feature.
 
 (Figure 1.2: Delete command activity diagram)
@@ -202,6 +183,33 @@ The activity diagram (Fig 1.2) below further shows the flow of the delete featur
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
 
+### List Feature (Jonathan Foo)
+
+#### Implementation
+
+This section elaborates on the implementation of the list feature.
+
+The sequence diagram below shows the interactions between the Ui and Logic components for the list command.
+
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+1. The user enters input to list all QAndAs.
+
+2. The `Ui` component calls the `Logic` component to execute this. `MedmoriserParser` parses the command, resulting in a `ListCommand` object which is executed by  the `LogicManager`.
+
+3. This updates the `Model` to show all QAndAs in the answer book.
+
+4. The result of this command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
+
+5. `Ui` checks the `CommandResult` object and modifies the visibility of the `Answer` label. In this case, the visibilty is set to `hidden`
+
+The following activity diagram summarises what happens when a user executes the `list` command.
+
+![ListActivityDiagram](images/ListActivityDiagram.png)
+
+#### Design considerations:
+* The `Ui` component was selected to perform the showing/hiding of answers as it already had access to the various components in the GUI, hence preventing further coupling between the different components.
+* We decided to use `list` rather than `list all` to show all questions and answers as we wanted to maintain the original functionality of the `list` command.
 
 ### \[Proposed\] Data archiving
 
