@@ -191,7 +191,7 @@ The sequence diagram (Fig. 1.1) below shows the flow of the delete  feature.
 
 (Figure 1.1: Delete command sequence diagram)
 
-![DeleteSequenceDiagram](/Users/tengjianling/tp/docs/images/DeleteSequenceDiagram.png)
+![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
 
 
@@ -199,7 +199,7 @@ The activity diagram (Fig 1.2) below further shows the flow of the delete featur
 
 (Figure 1.2: Delete command activity diagram)
 
-![DeleteActivityDiagram](/Users/tengjianling/tp/docs/images/DeleteActivityDiagram.png)
+![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
 
 
