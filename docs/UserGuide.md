@@ -74,7 +74,7 @@ This shows you the entire database of questions and answers.
 Format: `list [questions]`
 
 * Just typing list will list all questions and answers
-* Adding the `questions` parameter will list only the questions (i.e. hide the answers) 
+* Adding the `questions` parameter will list only the questions (i.e. hide the answers)
 
 Examples:
 * `list` will show all questions and answers
@@ -118,7 +118,7 @@ If you would like to search the database, you can do so in a few ways:
 
     Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE 1, KEYWORD1`
 
-3. Find Q&A with **tags** containing any of the given keywords. 
+3. Find Q&A with **tags** containing any of the given keywords.
     Keywords for tags can also have phrases, however this requires the text to have an exact match (case-insensitive).
 
     Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE1, KEYWORD1`
