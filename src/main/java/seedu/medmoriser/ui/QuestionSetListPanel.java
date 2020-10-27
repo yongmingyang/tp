@@ -30,6 +30,7 @@ public class QuestionSetListPanel extends UiPart<Region> {
     }
 
     public void setAnswerView(boolean isAnswerDisplayed) {
+        assert questionSetListView != null;
         questionSetListView.setCellFactory(listView -> {
             QuestionSetListViewCell temp = new QuestionSetListViewCell();
             temp.setAnswerDisplayed(isAnswerDisplayed);
