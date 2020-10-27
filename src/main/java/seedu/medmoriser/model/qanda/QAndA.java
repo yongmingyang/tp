@@ -17,6 +17,8 @@ public class QAndA {
 
     // Identity fields
     private final Question question;
+    private boolean isQuiz = false;
+    private boolean isQuizAnswer = false;
 
     // Data fields
     private final Answer answer;
@@ -39,6 +41,27 @@ public class QAndA {
 
     public Answer getAnswer() {
         return answer;
+    }
+
+    public Boolean getIsQuiz() {
+        return this.isQuiz;
+    }
+
+    public Boolean getIsQuizAnwer() {
+        return this.isQuizAnswer;
+    }
+
+    public void setQuizAnswer() {
+        this.isQuizAnswer = true;
+    }
+
+    public void setAsQuiz() {
+        this.isQuiz = true;
+    }
+
+    public void setNotQuiz() {
+        this.isQuiz = false;
+        this.isQuizAnswer = false;
     }
 
     /**
