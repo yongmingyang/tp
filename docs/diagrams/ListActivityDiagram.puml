@@ -1,0 +1,12 @@
+@startuml
+:User enters list command;
+:User input is parsed;
+:Update model to return all QAndAs;
+:Check if answers are to be displayed;
+if () then ([answersDisplayed])
+    :Set answers to be visible;
+else ([else])
+    :Set answers to be hidden;
+endif
+:Show all QAndAs on GUI;
+@enduml
