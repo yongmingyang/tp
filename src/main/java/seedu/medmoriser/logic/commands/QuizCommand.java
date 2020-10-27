@@ -60,8 +60,15 @@ public class QuizCommand extends Command {
         return isQuiz;
     }
 
-    public static void setIsQuiz(boolean ongoingQuiz) {
+    public static void setIsQuiz(boolean ongoingQuiz, Model model) {
         isQuiz = ongoingQuiz;
+        if (!isQuiz) {
+            for (int i = 0; i < model.getFilteredQAndAList().size(); i++) {
+                model.getFilteredQAndAList().get(i).setNotQuiz();
+            }
+        } else {
+            model.getFilteredQAndAList().get(0).setAsQuiz();
+        }
     }
 
     @Override
@@ -73,7 +80,7 @@ public class QuizCommand extends Command {
         if (filteredList.size() > 0) {
             QAndA question = getRandomQuestion(filteredList);
             model.updateFilteredQAndAList(x -> x.equals(question));
-            setIsQuiz(true);
+            setIsQuiz(true, model);
 
             return new CommandResult(MESSAGE_SUCCESS);
         } else {
