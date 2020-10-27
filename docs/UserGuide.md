@@ -3,7 +3,7 @@ layout: page
 title: User Guide
 ---
 
-This guide aims to orientate you to the features of **Medmoriser**. If you're a medical student looking for a quiz 
+This guide aims to orientate you to the features of **Medmoriser**. If you're a medical student looking for a quiz
 management system, this guide will give you all the information you need to get started with **Medmoriser**.
 
 * Table of Contents
@@ -105,7 +105,7 @@ If you would like to search the database, you can do so in a few ways:
 
     Format: `find a/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
 
-3. Find Q&A with **tags** containing any of the given keywords. 
+3. Find Q&A with **tags** containing any of the given keywords.
     Keywords for tags can have spaces. This requires the text to have an exact match (case-insensitive).
 
     Format: `find a/KEYWORD`, for 2 or more words: `find q/KEYWORD1, KEYWORD2`
