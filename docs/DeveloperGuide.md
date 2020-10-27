@@ -153,6 +153,23 @@ Explanation of the diagrams:
 3. A `FindCommand` with the respective predicate such as `TagContainsKeywordPredicate` is created and returned to the `LogicManager`.
 4. The filtered list of question will be displayed on the `UI`.
 
+### Quiz Feature (Joshua Tan)
+
+#### Implementation
+
+This feature allows the user to quiz himself/herself. The flow of the execution is as follows:
+
+1. User enters the input for quiz (eg. `quiz t/Immune System`)
+
+2. The `LogicManager` executes the command, the command is then parsed by `MedmoriserParser` and the command is
+identified as a `QuizCommand`. The command is then parsed by `QuizCommandParser`.
+ 
+3. `QuizCommandParser` identifies the type of quiz command. (eg. quiz t/)
+
+4. A `QuizCommand` with the respective predicate, in this case `TagContainsKeywordPredicate` is created and returned to `LogicManager`
+
+5. The `QuizCard` will be displayed on the `UI`.
+
 ### Delete Feature (Jian Ling)
 
 #### Implementation

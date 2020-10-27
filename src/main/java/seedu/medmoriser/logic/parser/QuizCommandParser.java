@@ -4,7 +4,6 @@ import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FOR
 
 import java.util.Arrays;
 
-import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.commands.QuizCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
 import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
@@ -22,28 +21,29 @@ public class QuizCommandParser implements Parser<QuizCommand> {
      * @throws ParseException if the user input does not conform the expected format
      */
     public QuizCommand parse(String args) throws ParseException {
+        assert args != null;
         String trimmedArgs = args.trim();
         if (trimmedArgs.isEmpty()) {
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_USAGE));
         }
 
-        String[] keywordsArray = trimmedArgs.split("/|, ");;
+        String[] keywordsArray = trimmedArgs.split("/|, ");
+        String[] excludeType = keywordsArray;
 
-        if (keywordsArray[0].contains(" ")) {
-            throw new ParseException(
-                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
-        }
         //trim whitespaces
         keywordsArray = trimArg(keywordsArray);
 
         String findType = keywordsArray[0];
+        if (keywordsArray.length > 1) {
+            excludeType = Arrays.copyOfRange(keywordsArray, 1, keywordsArray.length);
+        }
 
         switch (findType) {
         case "t":
-            return new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+            return new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList(excludeType)));
         case "q":
-            return new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+            return new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(excludeType)));
         default:
             return new QuizCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
         }

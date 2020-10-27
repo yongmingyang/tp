@@ -149,6 +149,47 @@ If you want to reset the database, this command helps to clear all entries from 
 
 Format: `clear`
 
+### Quiz yourself on a question: `quiz` (by: Joshua Tan)
+
+You will be able to test yourself on your knowledge from the questions that you added into the application.
+Medmoriser will then randomly select a question to quiz you based on the keywords you provided.
+
+1. Quiz a Q&A with **questions** containing any of the given keywords.
+
+    Format: `quiz q/KEYWORD`, for 2 or more words: `quiz q/PHRASE 1, KEYWORD 1`
+
+2. Quiz a Q&A wih **tag** containing any of the given keywords.
+
+    Format: `quiz t/KEYWORD`, for 2 or more words: `quiz t/PHRASE 1, KEYWORD 1`
+
+3. Quiz a Q&A with **questions or answers** containing any of the given keywords.
+
+    Format: `quiz KEYWORD`, for 2 or more words: `quiz PHRASE 1, KEYWORD 1`
+    
+Examples:
+* `quiz q/immunology` - randomly quizzes a question containing the word "immunology".
+* `quiz t/surgery, injuries` - randomly quizzes a question that was tagged with the word "surgery" and/or "injuries" (can be both), requires exact match of words (case-insensitive).
+* `quiz medicinal` - randomly quizzes a question and/or answer containing the keyword medicinal.
+
+How it should look like in the application:
+
+![QuizContext](images/QuizContext.png)
+
+Expected Result:
+
+![QuizResult](images/QuizResult.png)
+
+### Answering a quiz question: `answer` (by: Joshua Tan)
+You will be able to key in your answer for a quiz question:
+
+Format: `answer YOUR_ANSWER`
+
+### Exiting a quiz: `exitquiz` (by: Joshua Tan)
+Once you are done with a quiz and have finished comparing your input answer with the answer in the question, you have to exit the quiz to run other commands.
+If you want to run other commands in the midst of a quiz(ie. if you have not answered the question) you have to exit the quiz first:
+
+Format: `exitquiz`
+
 ### Exiting the program: `exit`
 
 If you're done with your work, this command allows you to exit the program.
@@ -177,11 +218,14 @@ If you don't need certain questions anymore, you can archive them to declutter y
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER [t/TAG]…​` <br> e.g., `add q/What does the heart do a/Pump blood t/heart t/cardiology`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**List** | `list`
-**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g., `edit a/Maintain blood pressure t/cardiology`
-**Find** | `find KEYWORD or [q/QUESTION] or [a/ANSWER] or [t/TAG]` <br> e.g., `find system, or find a/answer1, answer 2`
+**Add** | `add q/QUESTION a/ANSWER [t/TAG]…​` <br> e.g. `add q/What does the heart do a/Pump blood t/heart t/cardiology`
+**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**List** | `list [questions]`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g. `edit 1 a/Maintain blood pressure t/cardiology`
+**Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system, or find a/answer1, answer 2`
+**Quiz** | `quiz KEYWORD or [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz xray, or quiz t/Immune System`
+**Answer** | `answer YOUR_ANSWER` 
+**Exit Quiz** | `exitquiz`
 **Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`
