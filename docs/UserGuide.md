@@ -160,11 +160,15 @@ The `edit 2 q/how many bones are there in an ADULT human skeleton? t/ ` input wi
 
 ### Locating questions/answers/tags by keywords: `find` (by: Yong Ming Yang)
 
-If you would like to search the database, you can do so in a few ways:
 
-> **TIP**
->
-> `PHRASE` refers to words with spaces in between, for example: "nervous system"
+<div markdown="block" class="alert alert-info">
+
+**::bulb: Tip:**<br>
+`PHRASE` refers to words with spaces in between, for example: "nervous system"
+
+</div>
+
+If you would like to search the database based on keywords or phrases, you can do so in a few ways:
 
 1. Find Q&A with **questions** containing any of the given keywords.
 
