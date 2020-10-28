@@ -27,6 +27,6 @@ public interface Storage extends MedmoriserStorage, UserPrefsStorage {
     Optional<ReadOnlyMedmoriser> readMedmoriser() throws DataConversionException, IOException;
 
     @Override
-    void saveMedmoriser(ReadOnlyMedmoriser addressBook) throws IOException;
+    void saveMedmoriser(ReadOnlyMedmoriser medmoriser) throws IOException;
 
 }
