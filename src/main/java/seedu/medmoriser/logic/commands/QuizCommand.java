@@ -23,7 +23,7 @@ public class QuizCommand extends Command {
 
     public static final String COMMAND_WORD = "quiz";
 
-    public static final String MESSAGE_SUCCESS = "Quiz time! Heres a question...";
+    public static final String MESSAGE_SUCCESS = "Quiz time! Here's a question...";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Quizzes the user on a question based on the keywords"
             + " provided by the user. Quiz by tag, question or keyword. \n"

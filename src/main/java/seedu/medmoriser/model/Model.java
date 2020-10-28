@@ -35,7 +35,7 @@ public interface Model {
     void setGuiSettings(GuiSettings guiSettings);
 
     /**
-     * Returns the user prefs' address book file path.
+     * Returns the user prefs' medmoriser file path.
      */
     Path getMedmoriserFilePath();
 
@@ -53,27 +53,27 @@ public interface Model {
     ReadOnlyMedmoriser getMedmoriser();
 
     /**
-     * Returns true if a qAndA with the same identity as {@code qAndA} exists in the address book.
+     * Returns true if a qAndA with the same identity as {@code qAndA} exists in the medmoriser.
      */
     boolean hasQAndA(QAndA qAndA);
 
     /**
      * Deletes the given qAndA.
-     * The qAndA must exist in the address book.
+     * The qAndA must exist in the medmoriser.
      */
     void deleteQAndA(QAndA target);
 
     /**
      * Adds the given qAndA.
-     * {@code qAndA} must not already exist in the address book.
+     * {@code qAndA} must not already exist in the medmoriser.
      */
     void addQAndA(QAndA qAndA);
 
     /**
      * Replaces the given qAndA {@code target} with {@code editedQAndA}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the medmoriser.
      * The qAndA identity of {@code editedQAndA} must not be the same as another
-     * existing qAndA in the address book.
+     * existing qAndA in the medmoriser.
      */
     void setQAndA(QAndA target, QAndA editedQAndA);
 

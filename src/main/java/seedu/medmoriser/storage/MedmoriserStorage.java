@@ -19,7 +19,7 @@ public interface MedmoriserStorage {
     Path getMedmoriserFilePath();
 
     /**
-     * Returns AddressBook data as a {@link ReadOnlyMedmoriser}.
+     * Returns Medmoriser data as a {@link ReadOnlyMedmoriser}.
      *   Returns {@code Optional.empty()} if storage file is not found.
      * @throws DataConversionException if the data in storage is not in the expected format.
      * @throws IOException if there was any problem when reading from the storage.
@@ -33,14 +33,14 @@ public interface MedmoriserStorage {
 
     /**
      * Saves the given {@link ReadOnlyMedmoriser} to the storage.
-     * @param addressBook cannot be null.
+     * @param medmoriser cannot be null.
      * @throws IOException if there was any problem writing to the file.
      */
-    void saveMedmoriser(ReadOnlyMedmoriser addressBook) throws IOException;
+    void saveMedmoriser(ReadOnlyMedmoriser medmoriser) throws IOException;
 
     /**
      * @see #saveMedmoriser(ReadOnlyMedmoriser)
      */
-    void saveMedmoriser(ReadOnlyMedmoriser addressBook, Path filePath) throws IOException;
+    void saveMedmoriser(ReadOnlyMedmoriser medmoriser, Path filePath) throws IOException;
 
 }

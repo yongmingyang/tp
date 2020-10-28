@@ -5,7 +5,7 @@ title: User Guide
 
 Hi Medical Student! Welcome to the User Guide for **Medmoriser**!
 
-**Medmoriser** is a desktop app to help medical students organize, memorise and revise their content.
+**Medmoriser** is a desktop app to help medical students organise, memorise and revise their content.
 
 This guide aims to orientate you to the features of **Medmoriser**. If you're looking for a quiz
 management system, this guide will give you all the information you need to get started with **Medmoriser**.
@@ -15,7 +15,19 @@ management system, this guide will give you all the information you need to get 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## How to use this guide
+
+The explanation for each feature follows the template:
+
+> Introduction of feature
+>
+> Format of command
+> 
+> * Details about behaviour of the command
+> * are in the bulletpoints
+> 
+> Examples:
+> * example of the command usage
 
 <div markdown="block" class="alert alert-info">
 
@@ -35,6 +47,8 @@ management system, this guide will give you all the information you need to get 
 
 </div>
 
+## Features
+
 ### Viewing help: `help`
 
 If you need to view the help page, this command shows a message explaining how to access it.
@@ -51,7 +65,7 @@ Examples:
 * `add q/what organ system is the lungs part of? a/respiratory system?`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
-### Deleting a Q&A: `delete` 
+### Deleting a Q&A: `delete` (by: Teng Jian Ling)
 
 You can delete a specified Q&A from the database.
 
@@ -60,27 +74,49 @@ Format: `delete INDEX`
 * This allows you to delete the Q&A at the specified `INDEX`.
 * The index refers to the index number shown in the displayed question list.
 
-ℹ️ **Note:** The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
+<div markdown="block" class="alert alert-info">
+**:information_source: Note about the delete command:**<br>
+
+The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
+
+</div>
+
 
 Examples:
 
 * `list` followed by `delete 2` deletes the 2nd Q&A in the question book.
 * `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
 
+How it should look in the application:
+
+Entering the command:![DeleteContext](images/DeleteContext.png)
+
+
+
+Expected Result:![DeleteResult](images/DeleteResult.png)
+
+The `delete 2 ` command deletes the 2nd QAndA in the database, as shown above.
+
+
+
 ### Listing all Questions & Answers: `list` (by: Jonathan Foo)
 
-This shows you the entire database of questions and answers.
+You can use this command to view all the Q&As you have added.
 
 Format: `list [questions]`
 
-* Just typing list will list all questions and answers
+* Entering `list` will list all questions and answers
 * Adding the `questions` parameter will list only the questions (i.e. hide the answers)
 
 Examples:
 * `list` will show all questions and answers
 * `list questions` will only show all questions
 
-### Editing a Q&A: `edit` 
+The expected behaviour of `list` (left) vs `list questions` (right) is shown below:
+
+![ListCommand](images/ListCommand.png)
+
+### Editing a Q&A: `edit` (by: Teng Jian Ling)
 
 You can make changes to an existing Q&A with this command.
 
@@ -89,19 +125,39 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 * This allows you to edit the Q&A at the specified `INDEX`. The index refers to the index number shown in the displayed question list. 
 * Existing values will be updated to the input values.
 
-ℹ️ **Notes about the edit command:** <br>
-<div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the edit command:**<br>
+
 * When you edit the tags, the existing tags of the Q&A will be removed i.e adding of tags is not cumulative.
 * You must provide at least one of the optional fields.
 * The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
+
 </div>
 
-💡 **Tip:** You can remove all the QAndA's tags by typing `t/` without specifying any tags after it.
+<div markdown="block" class="alert alert-info">
+
+**::bulb: Tip:**<br>
+
+You can remove all the QAndA's tags by typing `t/` without specifying any tags after it.
+
+</div>
 
 Examples:
 
-*  `edit 1 a/To pump blood` Edits the answer the 1st question to be `To pump blood`.
-*  `edit 2 q/What is the heart t/` Edits the question of the 2nd Q&A to be `What is the heart` and clears all existing tags.
+*  `edit 1 a/To pump blood` - Edits the answer the 1st question to be `To pump blood`.
+*  `edit 2 q/how many bones are there in an ADULT human skeleton? t/` - Edits the question of the 2nd Q&A to be `how many bones are there in an ADULT human skeleton?` and clears all existing tags.
+
+How it should look in the application:
+
+Entering the edit command:![EditContext](images/EditContext.png)
+
+
+
+Expected Result:![EditResult](images/EditResult.png)
+
+The `edit 2 q/how many bones are there in an ADULT human skeleton? t/ ` input will edit the QAndA at index 2 and remove all tags as shown.
+
 ### Locating questions/answers/tags by keywords: `find` (by: Yong Ming Yang)
 
 If you would like to search the database, you can do so in a few ways:
@@ -149,6 +205,48 @@ If you want to reset the database, this command helps to clear all entries from 
 
 Format: `clear`
 
+### Quiz yourself on a question: `quiz` (by: Joshua Tan)
+
+You will be able to test yourself on your knowledge from the questions that you added into the application.
+Medmoriser will then randomly select a question to quiz you based on the keywords you provided.
+
+1. Quiz a Q&A with **questions** containing any of the given keywords.
+
+    Format: `quiz q/KEYWORD`, for 2 or more words: `quiz q/PHRASE 1, KEYWORD 1`
+
+2. Quiz a Q&A wih **tag** containing any of the given keywords.
+
+    Format: `quiz t/KEYWORD`, for 2 or more words: `quiz t/PHRASE 1, KEYWORD 1`
+
+3. Quiz a Q&A with **questions or answers** containing any of the given keywords.
+
+    Format: `quiz KEYWORD`, for 2 or more words: `quiz PHRASE 1, KEYWORD 1`
+    
+
+Examples:
+* `quiz q/immunology` - randomly quizzes a question containing the word "immunology".
+* `quiz t/surgery, injuries` - randomly quizzes a question that was tagged with the word "surgery" and/or "injuries" (can be both), requires exact match of words (case-insensitive).
+* `quiz medicinal` - randomly quizzes a question and/or answer containing the keyword medicinal.
+
+How it should look like in the application:
+
+![QuizContext](images/QuizContext.png)
+
+Expected Result:
+
+![QuizResult](images/QuizResult.png)
+
+### Answering a quiz question: `answer` (by: Joshua Tan)
+You will be able to key in your answer for a quiz question:
+
+Format: `answer YOUR_ANSWER`
+
+### Exiting a quiz: `exitquiz` (by: Joshua Tan)
+Once you are done with a quiz and have finished comparing your input answer with the answer in the question, you have to exit the quiz to run other commands.
+If you want to run other commands in the midst of a quiz(ie. if you have not answered the question) you have to exit the quiz first:
+
+Format: `exitquiz`
+
 ### Exiting the program: `exit`
 
 If you're done with your work, this command allows you to exit the program.
@@ -177,11 +275,14 @@ If you don't need certain questions anymore, you can archive them to declutter y
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER [t/TAG]…​` <br> e.g., `add q/What does the heart do a/Pump blood t/heart t/cardiology`
-**Delete** | `delete INDEX`<br> e.g., `delete 3`
-**List** | `list`
-**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g., `edit a/Maintain blood pressure t/cardiology`
-**Find** | `find KEYWORD or [q/QUESTION] or [a/ANSWER] or [t/TAG]` <br> e.g., `find system, or find a/answer1, answer 2`
+**Add** | `add q/QUESTION a/ANSWER [t/TAG]…​` <br> e.g. `add q/What does the heart do a/Pump blood t/heart t/cardiology`
+**Delete** | `delete INDEX`<br> e.g. `delete 3`
+**List** | `list [questions]`
+**Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g. `edit 1 a/Maintain blood pressure t/cardiology`
+**Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system, or find a/answer1, answer 2`
+**Quiz** | `quiz KEYWORD or [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz xray, or quiz t/Immune System`
+**Answer** | `answer YOUR_ANSWER` 
+**Exit Quiz** | `exitquiz`
 **Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`
