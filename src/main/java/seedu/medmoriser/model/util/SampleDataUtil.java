@@ -20,7 +20,7 @@ public class SampleDataUtil {
             new QAndA(new Question("What is the largest organ in the human body?"), new Answer("Skin"),
                 getTagSet("anatomy")),
             new QAndA(new Question("What is the largest bone in the body?"), new Answer("Femur"),
-                getTagSet("anatomy, skeletal system")),
+                getTagSet("anatomy", "skeletal system")),
             new QAndA(new Question("Which type of cell is found in the brain?"), new Answer("Neurons"),
                 getTagSet("neurology")),
             new QAndA(new Question("People with diabetes are unable to produce or use ______ properly"),
