@@ -48,7 +48,7 @@ public class MainApp extends Application {
 
     @Override
     public void init() throws Exception {
-        logger.info("=============================[ Initializing AddressBook ]===========================");
+        logger.info("=============================[ Initializing Medmoriser ]===========================");
         super.init();
 
         AppParameters appParameters = AppParameters.parse(getParameters());
@@ -69,24 +69,24 @@ public class MainApp extends Application {
     }
 
     /**
-     * Returns a {@code ModelManager} with the data from {@code storage}'s address book and {@code userPrefs}. <br>
-     * The data from the sample address book will be used instead if {@code storage}'s address book is not found,
-     * or an empty address book will be used instead if errors occur when reading {@code storage}'s address book.
+     * Returns a {@code ModelManager} with the data from {@code storage}'s medmoriser and {@code userPrefs}. <br>
+     * The data from the sample medmoriser will be used instead if {@code storage}'s medmoriser is not found,
+     * or an empty medmoriser will be used instead if errors occur when reading {@code storage}'s medmoriser.
      */
     private Model initModelManager(Storage storage, ReadOnlyUserPrefs userPrefs) {
-        Optional<ReadOnlyMedmoriser> addressBookOptional;
+        Optional<ReadOnlyMedmoriser> medmoriserOptional;
         ReadOnlyMedmoriser initialData;
         try {
-            addressBookOptional = storage.readMedmoriser();
-            if (!addressBookOptional.isPresent()) {
-                logger.info("Data file not found. Will be starting with a sample AddressBook");
+            medmoriserOptional = storage.readMedmoriser();
+            if (!medmoriserOptional.isPresent()) {
+                logger.info("Data file not found. Will be starting with a sample Medmoriser");
             }
-            initialData = addressBookOptional.orElseGet(SampleDataUtil::getSampleMedmoriser);
+            initialData = medmoriserOptional.orElseGet(SampleDataUtil::getSampleMedmoriser);
         } catch (DataConversionException e) {
-            logger.warning("Data file not in the correct format. Will be starting with an empty AddressBook");
+            logger.warning("Data file not in the correct format. Will be starting with an empty Medmoriser");
             initialData = new Medmoriser();
         } catch (IOException e) {
-            logger.warning("Problem while reading from the file. Will be starting with an empty AddressBook");
+            logger.warning("Problem while reading from the file. Will be starting with an empty Medmoriser");
             initialData = new Medmoriser();
         }
 
@@ -167,13 +167,13 @@ public class MainApp extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        logger.info("Starting AddressBook " + MainApp.VERSION);
+        logger.info("Starting Medmoriser " + MainApp.VERSION);
         ui.start(primaryStage);
     }
 
     @Override
     public void stop() {
-        logger.info("============================ [ Stopping Address Book ] =============================");
+        logger.info("============================ [ Stopping Medmoriser ] =============================");
         try {
             storage.saveUserPrefs(model.getUserPrefs());
         } catch (IOException e) {

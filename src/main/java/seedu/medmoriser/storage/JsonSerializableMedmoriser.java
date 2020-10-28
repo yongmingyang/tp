@@ -32,9 +32,9 @@ class JsonSerializableMedmoriser {
     }
 
     /**
-     * Converts a given {@code ReadOnlyAddressBook} into this class for Jackson use.
+     * Converts a given {@code ReadOnlyMedmoriser} into this class for Jackson use.
      *
-     * @param source future changes to this will not affect the created {@code JsonSerializableAddressBook}.
+     * @param source future changes to this will not affect the created {@code JsonSerializableMedmoriser}.
      */
     public JsonSerializableMedmoriser(ReadOnlyMedmoriser source) {
         qAndAs.addAll(source.getQAndAList().stream().map(JsonAdaptedQAndA::new)
