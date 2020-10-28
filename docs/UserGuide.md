@@ -5,7 +5,7 @@ title: User Guide
 
 Hi Medical Student! Welcome to the User Guide for **Medmoriser**!
 
-**Medmoriser** is a desktop app to help medical students organize, memorise and revise their content.
+**Medmoriser** is a desktop app to help medical students organise, memorise and revise their content.
 
 This guide aims to orientate you to the features of **Medmoriser**. If you're looking for a quiz
 management system, this guide will give you all the information you need to get started with **Medmoriser**.
@@ -15,7 +15,19 @@ management system, this guide will give you all the information you need to get 
 
 --------------------------------------------------------------------------------------------------------------------
 
-## Features
+## How to use this guide
+
+The explanation for each feature follows the template:
+
+> Introduction of feature
+>
+> Format of command
+> 
+> * Details about behaviour of the command
+> * are in the bulletpoints
+> 
+> Examples:
+> * example of the command usage
 
 <div markdown="block" class="alert alert-info">
 
@@ -34,6 +46,8 @@ management system, this guide will give you all the information you need to get 
   e.g. if the command specifies `q/QUESTION a/ANSWER`, `a/ANSWER q/QUESTION` is also acceptable.
 
 </div>
+
+## Features
 
 ### Viewing help: `help`
 
@@ -79,7 +93,7 @@ Entering the command:![DeleteContext](images/DeleteContext.png)
 
 
 
-Expected Result:![DeleteResult](/Users/tengjianling/tp/docs/images/DeleteResult.png)
+Expected Result:![DeleteResult](images/DeleteResult.png)
 
 The `delete 2 ` command deletes the 2nd QAndA in the database, as shown above.
 
@@ -87,16 +101,20 @@ The `delete 2 ` command deletes the 2nd QAndA in the database, as shown above.
 
 ### Listing all Questions & Answers: `list` (by: Jonathan Foo)
 
-This shows you the entire database of questions and answers.
+You can use this command to view all the Q&As you have added.
 
 Format: `list [questions]`
 
-* Just typing list will list all questions and answers
+* Entering `list` will list all questions and answers
 * Adding the `questions` parameter will list only the questions (i.e. hide the answers)
 
 Examples:
 * `list` will show all questions and answers
 * `list questions` will only show all questions
+
+The expected behaviour of `list` (left) vs `list questions` (right) is shown below:
+
+![ListCommand](images/ListCommand.png)
 
 ### Editing a Q&A: `edit` (by: Teng Jian Ling)
 
