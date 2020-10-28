@@ -93,7 +93,7 @@ Entering the command:![DeleteContext](images/DeleteContext.png)
 
 
 
-Expected Result:![DeleteResult](/Users/tengjianling/tp/docs/images/DeleteResult.png)
+Expected Result:![DeleteResult](images/DeleteResult.png)
 
 The `delete 2 ` command deletes the 2nd QAndA in the database, as shown above.
 
@@ -114,7 +114,7 @@ Examples:
 
 The expected behaviour of `list` (left) vs `list questions` (right) is shown below:
 
-![ListCommand](/docs/images/ListCommand.png)
+![ListCommand](images/ListCommand.png)
 
 ### Editing a Q&A: `edit` (by: Teng Jian Ling)
 
