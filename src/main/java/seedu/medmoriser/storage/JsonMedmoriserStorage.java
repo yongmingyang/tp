@@ -15,7 +15,7 @@ import seedu.medmoriser.commons.util.JsonUtil;
 import seedu.medmoriser.model.ReadOnlyMedmoriser;
 
 /**
- * A class to access AddressBook data stored as a json file on the hard disk.
+ * A class to access Medmoriser data stored as a json file on the hard disk.
  */
 public class JsonMedmoriserStorage implements MedmoriserStorage {
 
@@ -45,14 +45,14 @@ public class JsonMedmoriserStorage implements MedmoriserStorage {
     public Optional<ReadOnlyMedmoriser> readMedmoriser(Path filePath) throws DataConversionException {
         requireNonNull(filePath);
 
-        Optional<JsonSerializableMedmoriser> jsonAddressBook = JsonUtil.readJsonFile(
+        Optional<JsonSerializableMedmoriser> jsonMedmoriser = JsonUtil.readJsonFile(
                 filePath, JsonSerializableMedmoriser.class);
-        if (!jsonAddressBook.isPresent()) {
+        if (!jsonMedmoriser.isPresent()) {
             return Optional.empty();
         }
 
         try {
-            return Optional.of(jsonAddressBook.get().toModelType());
+            return Optional.of(jsonMedmoriser.get().toModelType());
         } catch (IllegalValueException ive) {
             logger.info("Illegal values found in " + filePath + ": " + ive.getMessage());
             throw new DataConversionException(ive);
@@ -60,8 +60,8 @@ public class JsonMedmoriserStorage implements MedmoriserStorage {
     }
 
     @Override
-    public void saveMedmoriser(ReadOnlyMedmoriser addressBook) throws IOException {
-        saveMedmoriser(addressBook, filePath);
+    public void saveMedmoriser(ReadOnlyMedmoriser medmoriser) throws IOException {
+        saveMedmoriser(medmoriser, filePath);
     }
 
     /**
@@ -69,12 +69,12 @@ public class JsonMedmoriserStorage implements MedmoriserStorage {
      *
      * @param filePath location of the data. Cannot be null.
      */
-    public void saveMedmoriser(ReadOnlyMedmoriser addressBook, Path filePath) throws IOException {
-        requireNonNull(addressBook);
+    public void saveMedmoriser(ReadOnlyMedmoriser medmoriser, Path filePath) throws IOException {
+        requireNonNull(medmoriser);
         requireNonNull(filePath);
 
         FileUtil.createIfMissing(filePath);
-        JsonUtil.saveJsonFile(new JsonSerializableMedmoriser(addressBook), filePath);
+        JsonUtil.saveJsonFile(new JsonSerializableMedmoriser(medmoriser), filePath);
     }
 
 }

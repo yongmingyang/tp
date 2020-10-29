@@ -4,7 +4,7 @@ import javafx.collections.ObservableList;
 import seedu.medmoriser.model.qanda.QAndA;
 
 /**
- * Unmodifiable view of a question bank
+ * Unmodifiable view of a medmoriser
  */
 public interface ReadOnlyMedmoriser {
 
