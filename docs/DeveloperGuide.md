@@ -157,7 +157,13 @@ Explanation of the diagrams:
 
 #### Implementation
 
-This feature allows the user to quiz himself/herself. The flow of the execution is as follows:
+This feature allows the user to quiz himself/herself. 
+
+The sequence diagram below shows the interactions between the Logic and model components for the quiz command.
+
+![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
+
+The flow of the execution is as follows:
 
 1. User enters the input for quiz (eg. `quiz t/Immune System`)
 
@@ -169,6 +175,10 @@ identified as a `QuizCommand`. The command is then parsed by `QuizCommandParser`
 4. A `QuizCommand` with the respective predicate, in this case `TagContainsKeywordPredicate` is created and returned to `LogicManager`
 
 5. The `QuizCard` will be displayed on the `UI`.
+
+The diagram below shows the activity diagram flow for the quiz command
+
+![QuizActivityDiagram](images/QuizActivityDiagram.png)
 
 ### Delete Feature (Jian Ling)
 

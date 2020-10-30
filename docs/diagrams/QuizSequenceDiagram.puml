@@ -1,0 +1,73 @@
+@startuml
+!include style.puml
+
+box Logic LOGIC_COLOR_T1
+participant ":LogicManager" as LogicManager LOGIC_COLOR
+participant ":MedmoriserParser" as MedmoriserParser MEDMORISER_PARSER_COLOR
+participant ":QuizCommandParser" as QuizCommandParser COMMAND_PARSER_COLOR
+participant "f:QuizCommand" as QuizCommand COMMAND_COLOR
+participant ":CommandResult" as CommandResult COMMAND_RESULT_COLOR
+end box
+
+box Model MODEL_COLOR_T1
+participant ":Model" as Model MODEL_COLOR
+end box
+
+[-> LogicManager : execute("quiz t/Infections")
+activate LogicManager
+
+LogicManager -> MedmoriserParser : parseCommand("quiz t/Infections")
+activate MedmoriserParser
+
+create QuizCommandParser
+MedmoriserParser -> QuizCommandParser
+activate QuizCommandParser
+
+QuizCommandParser --> MedmoriserParser
+deactivate QuizCommandParser
+
+MedmoriserParser -> QuizCommandParser : parse("t/Infections")
+activate QuizCommandParser
+
+create QuizCommand
+QuizCommandParser -> QuizCommand
+activate QuizCommand
+
+QuizCommand --> QuizCommandParser : f
+deactivate QuizCommand
+
+QuizCommandParser --> MedmoriserParser : f
+deactivate QuizCommandParser
+'Hidden arrow to position the destroy marker below the end of the activation bar.
+QuizCommandParser -[hidden]-> MedmoriserParser
+destroy QuizCommandParser
+
+MedmoriserParser --> LogicManager : f
+deactivate MedmoriserParser
+
+LogicManager -> QuizCommand : execute()
+activate QuizCommand
+
+QuizCommand -> QuizCommand : getRandomQuestion(filteredList)
+
+QuizCommand -> Model : updateFilteredQAndAList(x -> x.equals(question))
+activate Model
+
+Model --> QuizCommand
+deactivate Model
+
+QuizCommand -> QuizCommand : setIsQuiz(true, model)
+
+create CommandResult
+QuizCommand -> CommandResult
+activate CommandResult
+
+CommandResult --> QuizCommand
+deactivate CommandResult
+
+QuizCommand --> LogicManager : result
+deactivate QuizCommand
+
+[<--LogicManager
+deactivate LogicManager
+@enduml
