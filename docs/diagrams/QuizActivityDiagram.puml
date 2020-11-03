@@ -1,0 +1,22 @@
+@startuml
+start
+:Quiz command executed;
+:Parse the quiz command;
+
+if () then ([valid command])
+  : Identify command type;
+    if () then ([quiz tags])
+      :retrieve tag predicate;
+    elseif () then ([quiz questions])
+      :retrieve question predicate;
+    else
+      :retrieve QAndA predicate;
+    endif
+   :Randomly select a question based on predicate;
+
+else ([invalid command])
+  :Invalid Command;
+endif
+:show on GUI;
+stop
+@enduml
