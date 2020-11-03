@@ -3,6 +3,8 @@ layout: page
 title: User Guide
 ---
 
+## Introduction
+
 Hi Medical Student! Welcome to the User Guide for **Medmoriser**!
 
 **Medmoriser** is a desktop app to help medical students organise, memorise and revise their content.
@@ -29,6 +31,8 @@ The explanation for each feature follows the template:
 > Examples:
 > * example of the command usage
 
+
+
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -49,20 +53,25 @@ The explanation for each feature follows the template:
 
 ## Features
 
+This section will bring you through various features of Medmoriser. After this section, you will know how to use most of the commands available. 
+
+You can follow the instructions one by one, or simply jump to the feature of insterest. For a summary of all commands, please refer to section `Command Summary` at the end of this guide.
+
 ### Viewing help: `help`
 
 If you need to view the help page, this command shows a message explaining how to access it.
 
 Format: `help`
 
-### Adding a qAndA: `add`
+### Adding a qAndA: `add` (by: Cheng Jiyuqing)
 
-You can add a question and answer pair to the database.
+You can add a question and answer pair to the database. You can tag this pair with a tag / tags of your choice. It is also okay to not tag the question at all.
 
-Format: `add q/QUESTION a/ANSWER`
+Format: `add q/QUESTION a/ANSWER [t/TAG]…​`
 
 Examples:
 * `add q/what organ system is the lungs part of? a/respiratory system?`
+* `add q/what organ system is the lungs part of? a/respiratory system? t/Body systems t/Respiratory system`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
 ### Deleting a Q&A: `delete` (by: Teng Jian Ling)
@@ -205,7 +214,7 @@ The input `find t/Chronic diseases, Diagnosis` will return the questions with th
 as shown.
 ### Clearing all entries: `clear`
 
-If you want to reset the database, this command helps to clear all entries from the question book.
+If you want to reset the database (i.e. clear all data), this command helps to clear all entries from the question book. This action is irreversible, please be careful when using this command.
 
 Format: `clear`
 
@@ -253,7 +262,7 @@ Format: `exitquiz`
 
 ### Exiting the program: `exit`
 
-If you're done with your work, this command allows you to exit the program.
+If you're done with your work, this command allows you to exit the program. You can also exit the application by closing its window like any normal program window.
 
 Format: `exit`
 
@@ -268,6 +277,7 @@ If you don't need certain questions anymore, you can archive them to declutter y
 --------------------------------------------------------------------------------------------------------------------
 
 ## FAQ
+Commonly asked questions and answers.
 
 **Q**: How do I transfer my data to another Computer?<br>
 **A**: Install the app in the other computer and overwrite the empty data file it creates with the file that contains the data of your previous Medmoriser home folder.
@@ -276,6 +286,7 @@ If you don't need certain questions anymore, you can archive them to declutter y
 
 
 ## Command summary
+A brief summary of all the commands available. For details of when and how each command should be used, please refer to section `Features`.
 
 Action | Format, Examples
 --------|------------------
