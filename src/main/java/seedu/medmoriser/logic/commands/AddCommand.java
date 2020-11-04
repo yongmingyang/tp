@@ -23,10 +23,9 @@ public class AddCommand extends Command {
             + PREFIX_ANSWER + "ANSWER "
             + "[" + PREFIX_TAG + "TAG]...\n"
             + "Example: " + COMMAND_WORD + " "
-            + PREFIX_QUESTION + "John Doe "
-            + PREFIX_ANSWER + "311, Clementi Ave 2, #02-25 "
-            + PREFIX_TAG + "friends "
-            + PREFIX_TAG + "owesMoney";
+            + PREFIX_QUESTION + "How many taste buds does the average human have?" + " "
+            + PREFIX_ANSWER + "10,000" + " "
+            + PREFIX_TAG + "Human Anatomy";
 
     public static final String MESSAGE_SUCCESS = "New QAndA added: %1$s";
     public static final String MESSAGE_DUPLICATE_QANDA = "This QAndA already exists in the answer book";
@@ -51,7 +50,7 @@ public class AddCommand extends Command {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
             model.addQAndA(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true);
         }
     }
 
