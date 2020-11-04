@@ -46,19 +46,19 @@ public class QuestionContainsKeywordsPredicateTest {
         // One keyword
         QuestionContainsKeywordsPredicate predicate =
                 new QuestionContainsKeywordsPredicate(Collections.singletonList("Alice"));
-        assertTrue(predicate.test(new QAndABuilder().withQuestion("Alice").build()));
+        assertTrue(predicate.test(new QAndABuilder().withQuestion("Alice Bob").build()));
 
         // Multiple keywords
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Alice", "Bob"));
-//        assertTrue(predicate.test(new QAndABuilder().withQuestion("Alice Bob").build()));
+        assertTrue(predicate.test(new QAndABuilder().withQuestion("Alice Bob").build()));
 
         // Only one matching keyword
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("Bob", "Carol"));
-//        assertTrue(predicate.test(new QAndABuilder().withQuestion("Alice Carol").build()));
+        assertTrue(predicate.test(new QAndABuilder().withQuestion("Alice Carol").build()));
 
         // Mixed-case keywords
         predicate = new QuestionContainsKeywordsPredicate(Arrays.asList("aLIce", "bOB"));
-//        assertTrue(predicate.test(new QAndABuilder().withQuestion("Alice Bob").build()));
+        assertTrue(predicate.test(new QAndABuilder().withQuestion("Alice Bob").build()));
     }
 
     @Test

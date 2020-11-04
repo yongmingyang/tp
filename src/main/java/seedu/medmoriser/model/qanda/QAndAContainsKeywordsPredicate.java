@@ -18,9 +18,9 @@ public class QAndAContainsKeywordsPredicate implements Predicate<QAndA> {
     public boolean test(QAndA qAndA) {
         return keywords.stream()
                 .anyMatch(keyword -> qAndA.getQuestion().question.toLowerCase()
-                        .matches((".*\\b" + Pattern.quote(keyword) + "\\b.*".toLowerCase()))
+                        .matches((".*\\b" + Pattern.quote(keyword.toLowerCase()) + "\\b.*"))
                         || qAndA.getAnswer().answer.toLowerCase()
-                                .matches((".*\\b" + Pattern.quote(keyword) + "\\b.*".toLowerCase()))
+                                .matches((".*\\b" + Pattern.quote(keyword.toLowerCase()) + "\\b.*"))
                 );
     }
 

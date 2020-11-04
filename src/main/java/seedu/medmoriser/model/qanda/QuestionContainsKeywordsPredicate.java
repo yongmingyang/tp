@@ -21,7 +21,7 @@ public class QuestionContainsKeywordsPredicate implements Predicate<QAndA> {
                     System.out.println(keyword);
                     System.out.println(qAndA.getQuestion().question.toLowerCase());
                     return qAndA.getQuestion().question.toLowerCase()
-                            .matches((".*\\b" + Pattern.quote(keyword) + "\\b.*".toLowerCase()));
+                            .matches((".*\\b" + Pattern.quote(keyword.toLowerCase()) + "\\b.*"));
                 });
     }
 
