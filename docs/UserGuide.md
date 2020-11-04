@@ -31,8 +31,6 @@ The explanation for each feature follows the template:
 > Examples:
 > * example of the command usage
 
-
-
 <div markdown="block" class="alert alert-info">
 
 **:information_source: Notes about the command format:**<br>
@@ -172,7 +170,7 @@ The `edit 2 q/how many bones are there in an ADULT human skeleton? t/ ` input wi
 
 <div markdown="block" class="alert alert-info">
 
-**::bulb: Tip:**<br>
+**:bulb: Tip:**<br>
 `PHRASE` refers to words with spaces in between, for example: "nervous system"
 
 </div>
@@ -214,7 +212,7 @@ The input `find t/Chronic diseases, Diagnosis` will return the questions with th
 as shown.
 ### Clearing all entries: `clear`
 
-If you want to reset the database (i.e. clear all data), this command helps to clear all entries from the question book. This action is irreversible, please be careful when using this command.
+If you want to reset your question book, this command clears all existing entries.
 
 Format: `clear`
 
