@@ -54,7 +54,7 @@ public class FindCommand extends Command {
             model.updateFilteredQAndAList(predicate);
             return new CommandResult(
                     String.format(Messages.MESSAGE_QANDA_LISTED_OVERVIEW,
-                            model.getFilteredQAndAList().size()));
+                            model.getFilteredQAndAList().size()), true);
         }
     }
 

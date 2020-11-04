@@ -51,7 +51,7 @@ public class AddCommand extends Command {
             throw new CommandException(Messages.MESSAGE_ONGOING_QUIZ);
         } else {
             model.addQAndA(toAdd);
-            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd));
+            return new CommandResult(String.format(MESSAGE_SUCCESS, toAdd), true);
         }
     }
 
