@@ -3,6 +3,7 @@ package seedu.medmoriser.logic.parser;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.parser.ParserUtil.MESSAGE_INVALID_INDEX;
+import static seedu.medmoriser.logic.parser.ParserUtil.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX;
 import static seedu.medmoriser.testutil.Assert.assertThrows;
 import static seedu.medmoriser.testutil.TypicalIndexes.INDEX_FIRST_QANDA;
 
@@ -32,12 +33,13 @@ public class ParserUtilTest {
 
     @Test
     public void parseIndex_invalidInput_throwsParseException() {
-        assertThrows(ParseException.class, () -> ParserUtil.parseIndex("10 a"));
+        assertThrows(ParseException.class, MESSAGE_INVALID_QANDA_DISPLAYED_INDEX,
+                () -> ParserUtil.parseIndex("10 a"));
     }
 
     @Test
     public void parseIndex_outOfRangeInput_throwsParseException() {
-        assertThrows(ParseException.class, MESSAGE_INVALID_INDEX, ()
+        assertThrows(ParseException.class, MESSAGE_INVALID_QANDA_DISPLAYED_INDEX, ()
             -> ParserUtil.parseIndex(Long.toString(Integer.MAX_VALUE + 1)));
     }
 

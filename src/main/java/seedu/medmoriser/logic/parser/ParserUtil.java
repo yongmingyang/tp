@@ -30,7 +30,7 @@ public class ParserUtil {
     public static Index parseIndex(String oneBasedIndex) throws ParseException {
         String trimmedIndex = oneBasedIndex.trim();
         if (!StringUtil.isNonZeroUnsignedInteger(trimmedIndex)) {
-            if (trimmedIndex.matches("-?\\d+")) {
+            if (!trimmedIndex.matches("[a-zA-Z]+")) {
                 throw new ParseException(MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
             }
             throw new ParseException(MESSAGE_INVALID_INDEX);
