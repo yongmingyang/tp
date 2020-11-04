@@ -148,6 +148,23 @@ public class EditCommandTest {
     }
 
     @Test
+    public void execute_answersHidden_successAndShowsAnswers() throws Exception {
+        ListCommand listCommand = new ListCommand(false);
+
+        QAndA editedQAndA = new QAndABuilder().build();
+        EditQAndADescriptor descriptor = new EditQAndADescriptorBuilder(editedQAndA).build();
+        EditCommand editCommand = new EditCommand(INDEX_FIRST_QANDA, descriptor);
+        CommandResult commandResult = editCommand.execute(model);
+
+        String expectedMessage = String.format(EditCommand.MESSAGE_EDIT_QANDA_SUCCESS, editedQAndA);
+        Model expectedModel = new ModelManager(new Medmoriser(model.getMedmoriser()), new UserPrefs());
+        expectedModel.setQAndA(model.getFilteredQAndAList().get(0), editedQAndA);
+        assertCommandSuccess(editCommand, model, expectedMessage, expectedModel);
+
+        assertTrue(commandResult.isAnswerDisplayed());
+    }
+
+    @Test
     public void equals() {
         final EditCommand standardCommand = new EditCommand(INDEX_FIRST_QANDA, DESC_A);
 

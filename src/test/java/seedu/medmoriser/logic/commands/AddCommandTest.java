@@ -53,6 +53,16 @@ public class AddCommandTest {
     }
 
     @Test
+    public void execute_answersHidden_successAndShowsAnswers() throws Exception {
+        ListCommand listCommand = new ListCommand(false);
+        ModelStubAcceptingQAndAAdded modelStub = new ModelStubAcceptingQAndAAdded();
+        QAndA validQAndA = new QAndABuilder().build();
+
+        CommandResult commandResult = new AddCommand(validQAndA).execute(modelStub);
+        assertTrue(commandResult.isAnswerDisplayed());
+    }
+
+    @Test
     public void equals() {
         QAndA alice = new QAndABuilder().withQuestion("Alice").build();
         QAndA bob = new QAndABuilder().withQuestion("Bob").build();
