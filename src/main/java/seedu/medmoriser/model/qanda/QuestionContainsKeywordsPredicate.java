@@ -17,12 +17,8 @@ public class QuestionContainsKeywordsPredicate implements Predicate<QAndA> {
     @Override
     public boolean test(QAndA qAndA) {
         return keywords.stream()
-                .anyMatch(keyword -> {
-                    System.out.println(keyword);
-                    System.out.println(qAndA.getQuestion().question.toLowerCase());
-                    return qAndA.getQuestion().question.toLowerCase()
-                            .matches((".*\\b" + Pattern.quote(keyword.toLowerCase()) + "\\b.*"));
-                });
+                .anyMatch(keyword -> qAndA.getQuestion().question.toLowerCase()
+                            .matches((".*\\b" + Pattern.quote(keyword.toLowerCase()) + "\\b.*")));
     }
 
     @Override
