@@ -1,6 +1,9 @@
 package seedu.medmoriser.logic.commands;
 
 import static java.util.Objects.requireNonNull;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
 import java.util.function.Predicate;
 
@@ -23,8 +26,12 @@ public class FindCommand extends Command {
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Finds all QAndAs whose names contain any of "
             + "the specified keywords (case-insensitive) and displays them as a list with index numbers.\n"
-            + "Parameters (each separated by a comma): KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " alice, bob, charlie";
+            + "Parameters (each keyword/phrase separated by a comma): "
+            + PREFIX_QUESTION + "KEYWORD [MORE_KEYWORDS]... OR "
+            + PREFIX_ANSWER + "KEYWORD [MORE_KEYWORDS]... OR "
+            + PREFIX_TAG + "KEYWORD [MORE_KEYWORDS]... OR "
+            + "KEYWORD [MORE_KEYWORDS]... \n"
+            + "Example: " + COMMAND_WORD + " " + PREFIX_TAG + "Human Anatomy";
 
     private final Predicate<QAndA> predicate;
 
