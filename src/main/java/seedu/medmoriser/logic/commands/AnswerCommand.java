@@ -2,7 +2,6 @@ package seedu.medmoriser.logic.commands;
 
 import static java.util.Objects.requireNonNull;
 
-import seedu.medmoriser.commons.core.Messages;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 
@@ -23,11 +22,11 @@ public class AnswerCommand extends Command {
 
     public static final String MESSAGE_ALREADY_ANSWERED = "This quiz has already been answered";
 
-    private final String userAnswer;
-
     private static boolean beenAnswered = false;
 
     private static CommandResult currCommandResult;
+
+    private final String userAnswer;
 
     /**
      * Creates an AnswerCommand
