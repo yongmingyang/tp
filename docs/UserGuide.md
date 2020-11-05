@@ -229,15 +229,9 @@ Medmoriser will then randomly select a question to quiz you based on the keyword
 
     Format: `quiz t/KEYWORD`, for 2 or more words: `quiz t/PHRASE 1, KEYWORD 1`
 
-3. Quiz a QAndA with **questions or answers** containing any of the given keywords.
-
-    Format: `quiz KEYWORD`, for 2 or more words: `quiz PHRASE 1, KEYWORD 1`
-    
-
 Examples:
 * `quiz q/immunology` - randomly quizzes a question containing the word "immunology".
 * `quiz t/surgery, injuries` - randomly quizzes a question that was tagged with the word "surgery" and/or "injuries" (can be both), requires exact match of words (case-insensitive).
-* `quiz medicinal` - randomly quizzes a question and/or answer containing the keyword medicinal.
 
 How it should look like in the application:
 
@@ -293,7 +287,7 @@ Action | Format, Examples
 **List** | `list [questions]`
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g. `edit 1 a/Maintain blood pressure t/cardiology`
 **Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system, or find a/answer1, answer 2`
-**Quiz** | `quiz KEYWORD or [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz xray, or quiz t/Immune System`
+**Quiz** | `quiz [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz t/Immune System or quiz q/blood`
 **Answer** | `answer YOUR_ANSWER` 
 **End Quiz** | `endquiz`
 **Clear** | `clear`
