@@ -68,4 +68,14 @@ public class FindCommandParserTest {
         assertParseSuccess(parser, "t/ \n Immunology, \n \t Chronic Diseases  \t", expectedFindCommand);
     }
 
+    @Test
+    public void parse_emptyArgsTagContainsKeywordsPredicate_returnsFindCommand() {
+        // no leading and trailing whitespaces
+        FindCommand expectedFindCommand =
+                new FindCommand(new TagContainsKeywordsPredicate(Arrays.asList("t")));
+        assertParseSuccess(parser, "t/", expectedFindCommand);
+
+        // multiple whitespaces after t/
+        assertParseSuccess(parser, "t/  ", expectedFindCommand);
+    }
 }

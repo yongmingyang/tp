@@ -1,6 +1,7 @@
 package seedu.medmoriser.logic.parser;
 
 import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.medmoriser.commons.core.Messages.MESSAGE_INVALID_QANDA_DISPLAYED_INDEX;
 
 import seedu.medmoriser.commons.core.index.Index;
 import seedu.medmoriser.logic.commands.DeleteCommand;
@@ -21,6 +22,9 @@ public class DeleteCommandParser implements Parser<DeleteCommand> {
             Index index = ParserUtil.parseIndex(args);
             return new DeleteCommand(index);
         } catch (ParseException pe) {
+            if (pe.getMessage().equals(MESSAGE_INVALID_QANDA_DISPLAYED_INDEX)) {
+                throw new ParseException(MESSAGE_INVALID_QANDA_DISPLAYED_INDEX);
+            }
             throw new ParseException(
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, DeleteCommand.MESSAGE_USAGE), pe);
         }

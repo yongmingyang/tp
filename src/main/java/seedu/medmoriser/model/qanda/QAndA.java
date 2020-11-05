@@ -117,9 +117,11 @@ public class QAndA {
         final StringBuilder builder = new StringBuilder();
         builder.append(getQuestion())
                 .append(" Answer: ")
-                .append(getAnswer())
-                .append(" Tags: ");
-        getTags().forEach(builder::append);
+                .append(getAnswer());
+        if (getTags().size() > 0) {
+            builder.append(" Tags: ");
+            getTags().forEach(builder::append);
+        }
         return builder.toString();
     }
 
