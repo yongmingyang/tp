@@ -14,15 +14,15 @@ import seedu.medmoriser.model.ModelManager;
 import seedu.medmoriser.model.UserPrefs;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 
-public class ExitQuizCommandTest {
+public class EndQuizCommandTest {
     private Model model = new ModelManager(getTypicalMedmoriser(), new UserPrefs());
     private Model expectedModel = new ModelManager(getTypicalMedmoriser(), new UserPrefs());
 
     @Test
-    public void execute_exitOngoingQuiz_success() {
+    public void execute_endOngoingQuiz_success() {
         QuestionContainsKeywordsPredicate predicate = preparePredicate("three");
         QuizCommand quizCommand = new QuizCommand(predicate);
-        CommandResult expectedCommandResult = new CommandResult(ExitQuizCommand.MESSAGE_EXIT_ACKNOWLEDGEMENT,
+        CommandResult expectedCommandResult = new CommandResult(EndQuizCommand.MESSAGE_ENDQUIZ_ACKNOWLEDGEMENT,
                 false, false);
 
         try {
@@ -31,13 +31,13 @@ public class ExitQuizCommandTest {
             throw new AssertionError("Execution of command should not fail.", ce);
         }
 
-        assertCommandSuccess(new ExitQuizCommand(), model, expectedCommandResult, expectedModel);
+        assertCommandSuccess(new EndQuizCommand(), model, expectedCommandResult, expectedModel);
     }
 
     @Test
-    public void execute_noOngoingQuizExitQuiz_throwsCommandException() {
-        String expectedMessage = ExitQuizCommand.MESSAGE_NO_ONGOING_QUIZ;
-        ExitQuizCommand command = new ExitQuizCommand();
+    public void execute_noOngoingQuizEndQuiz_throwsCommandException() {
+        String expectedMessage = EndQuizCommand.MESSAGE_NO_ONGOING_QUIZ;
+        EndQuizCommand command = new EndQuizCommand();
         assertCommandFailure(command, model, expectedMessage);
     }
 
