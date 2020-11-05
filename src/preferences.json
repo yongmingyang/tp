@@ -7,5 +7,5 @@
       "y" : 82
     }
   },
-  "addressBookFilePath" : "data/addressbook.json"
+  "medmoriserFilePath" : "data/medmoriser.json"
 }
