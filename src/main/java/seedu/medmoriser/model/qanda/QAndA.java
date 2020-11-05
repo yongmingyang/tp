@@ -82,8 +82,8 @@ public class QAndA {
         }
 
         return otherQAndA != null
-                && otherQAndA.getQuestion().equals(getQuestion())
-                && (otherQAndA.getAnswer().equals(getAnswer()));
+                && otherQAndA.getQuestion().equals(getQuestion());
+                //&& (otherQAndA.getAnswer().equals(getAnswer()));
     }
 
     /**
