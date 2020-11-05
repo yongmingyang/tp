@@ -60,6 +60,7 @@ public class QuizCommand extends Command {
         return isQuiz;
     }
 
+
     public static void setIsQuiz(boolean ongoingQuiz, Model model) {
         isQuiz = ongoingQuiz;
         if (!isQuiz) {
@@ -70,6 +71,8 @@ public class QuizCommand extends Command {
             model.getFilteredQAndAList().get(0).setAsQuiz();
         }
     }
+
+
 
     @Override
     public CommandResult execute(Model model) throws CommandException {
