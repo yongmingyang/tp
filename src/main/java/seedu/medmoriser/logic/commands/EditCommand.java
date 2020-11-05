@@ -80,7 +80,7 @@ public class EditCommand extends Command {
 
             model.setQAndA(qAndAToEdit, editedQAndA);
             model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QANDA);
-            return new CommandResult(String.format(MESSAGE_EDIT_QANDA_SUCCESS, editedQAndA));
+            return new CommandResult(String.format(MESSAGE_EDIT_QANDA_SUCCESS, editedQAndA), true);
         }
     }
 

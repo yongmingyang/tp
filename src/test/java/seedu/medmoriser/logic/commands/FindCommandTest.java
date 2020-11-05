@@ -87,6 +87,21 @@ public class FindCommandTest {
         assertEquals(Arrays.asList(QUESTION3, QUESTION5, QUESTION6), model.getFilteredQAndAList());
     }
 
+    @Test
+    public void execute_answersHidden_successAndShowsAnswers() throws Exception {
+        ListCommand listCommand = new ListCommand(false);
+
+        String expectedMessage = String.format(MESSAGE_QANDA_LISTED_OVERVIEW, 3);
+        QuestionContainsKeywordsPredicate predicate = preparePredicate("Three Five Six");
+        FindCommand command = new FindCommand(predicate);
+        expectedModel.updateFilteredQAndAList(predicate);
+        assertCommandSuccess(command, model, expectedMessage, expectedModel);
+        assertEquals(Arrays.asList(QUESTION3, QUESTION5, QUESTION6), model.getFilteredQAndAList());
+
+        CommandResult commandResult = command.execute(model);
+        assertTrue(commandResult.isAnswerDisplayed());
+    }
+
     /**
      * Parses {@code userInput} into a {@code NameContainsKeywordsPredicate}.
      */
