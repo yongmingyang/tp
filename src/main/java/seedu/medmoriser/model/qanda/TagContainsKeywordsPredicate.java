@@ -18,17 +18,22 @@ public class TagContainsKeywordsPredicate implements Predicate<QAndA> {
 
     @Override
     public boolean test(QAndA qAndA) {
-        return keywords.stream()
-                .anyMatch(keyword -> {
-                    Set<Tag> tags = qAndA.getTags();
-                    for (Tag tag : tags) {
-                        String lowercase = tag.tagName.toLowerCase();
-                        if (lowercase.equals(keyword.toLowerCase())) {
-                            return true;
+        if (keywords.size() == 0 || keywords.get(0).equals("t")) {
+            Set<Tag> tags = qAndA.getTags();
+            return tags.isEmpty();
+        } else {
+            return keywords.stream()
+                    .anyMatch(keyword -> {
+                        Set<Tag> tags = qAndA.getTags();
+                        for (Tag tag : tags) {
+                            String lowercase = tag.tagName.toLowerCase();
+                            if (lowercase.equals(keyword.toLowerCase())) {
+                                return true;
+                            }
                         }
-                    }
-                    return false;
-                });
+                        return false;
+                    });
+        }
     }
 
     @Override
