@@ -72,13 +72,13 @@ Examples:
 * `add q/what organ system is the lungs part of? a/respiratory system? t/Body systems t/Respiratory system`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
-### Deleting a Q&A: `delete` (by: Teng Jian Ling)
+### Deleting a QAndA: `delete` (by: Teng Jian Ling)
 
-You can delete a specified Q&A from the database.
+You can delete a specified QAndA from the database.
 
 Format: `delete INDEX`
 
-* This allows you to delete the Q&A at the specified `INDEX`.
+* This allows you to delete the QAndA at the specified `INDEX`.
 * The index refers to the index number shown in the displayed question list.
 
 <div markdown="block" class="alert alert-info">
@@ -91,7 +91,7 @@ The index **must be a positive integer** (1, 2, 3, ...) within the range of the 
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd Q&A in the question book.
+* `list` followed by `delete 2` deletes the 2nd QAndA in the question book.
 * `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
 
 How it should look in the application:
@@ -108,7 +108,7 @@ The `delete 2 ` command deletes the 2nd QAndA in the database, as shown above.
 
 ### Listing all Questions & Answers: `list` (by: Jonathan Foo)
 
-You can use this command to view all the Q&As you have added.
+You can use this command to view all the QAndAs you have added.
 
 Format: `list [questions]`
 
@@ -123,20 +123,20 @@ The expected behaviour of `list` (left) vs `list questions` (right) is shown bel
 
 ![ListCommand](images/ListCommand.png)
 
-### Editing a Q&A: `edit` (by: Teng Jian Ling)
+### Editing a QAndA: `edit` (by: Teng Jian Ling)
 
-You can make changes to an existing Q&A with this command.
+You can make changes to an existing QAndA with this command.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 
-* This allows you to edit the Q&A at the specified `INDEX`. The index refers to the index number shown in the displayed question list. 
+* This allows you to edit the QAndA at the specified `INDEX`. The index refers to the index number shown in the displayed question list. 
 * Existing values will be updated to the input values.
 
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the edit command:**<br>
 
-* When you edit the tags, the existing tags of the Q&A will be removed i.e adding of tags is not cumulative.
+* When you edit the tags, the existing tags of the QAndA will be removed i.e adding of tags is not cumulative.
 * You must provide at least one of the optional fields.
 * The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
 
@@ -153,7 +153,7 @@ You can remove all the QAndA's tags by typing `t/` without specifying any tags a
 Examples:
 
 *  `edit 1 a/To pump blood` - Edits the answer the 1st question to be `To pump blood`.
-*  `edit 2 q/how many bones are there in an ADULT human skeleton? t/` - Edits the question of the 2nd Q&A to be `how many bones are there in an ADULT human skeleton?` and clears all existing tags.
+*  `edit 2 q/how many bones are there in an ADULT human skeleton? t/` - Edits the question of the 2nd QAndA to be `how many bones are there in an ADULT human skeleton?` and clears all existing tags.
 
 How it should look in the application:
 
@@ -177,20 +177,20 @@ The `edit 2 q/how many bones are there in an ADULT human skeleton? t/ ` input wi
 
 If you would like to search the database based on keywords or phrases, you can do so in a few ways:
 
-1. Find Q&A with **questions** containing any of the given keywords.
+1. Find QAndA with **questions** containing any of the given keywords.
 
     Format: `find q/KEYWORD`, for 2 or more words: `find q/PHRASE 1, KEYWORD1`
 
-2. Find Q&A with **answers** containing any of the given keywords.
+2. Find QAndA with **answers** containing any of the given keywords.
 
     Format: `find a/KEYWORD`, for 2 or more words: `find q/PHRASE 1, KEYWORD1`
 
-3. Find Q&A with **tags** containing any of the given keywords.
+3. Find QAndA with **tags** containing any of the given keywords.
     Keywords for tags can also have phrases, however this requires the text to have an exact match (case-insensitive).
 
     Format: `find t/KEYWORD`, for 2 or more words: `find q/PHRASE1, KEYWORD1`
 
-4. Find Q&A with **questions or answers** containing any of the given keywords.
+4. Find QAndA with **questions or answers** containing any of the given keywords.
 
     Format: `find KEYWORD`, for 2 or more words: `find PHRASE, KEYWORD1`
 
@@ -221,15 +221,15 @@ Format: `clear`
 You will be able to test yourself on your knowledge from the questions that you added into the application.
 Medmoriser will then randomly select a question to quiz you based on the keywords you provided.
 
-1. Quiz a Q&A with **questions** containing any of the given keywords.
+1. Quiz a QAndA with **questions** containing any of the given keywords.
 
     Format: `quiz q/KEYWORD`, for 2 or more words: `quiz q/PHRASE 1, KEYWORD 1`
 
-2. Quiz a Q&A wih **tag** containing any of the given keywords.
+2. Quiz a QAndA wih **tag** containing any of the given keywords.
 
     Format: `quiz t/KEYWORD`, for 2 or more words: `quiz t/PHRASE 1, KEYWORD 1`
 
-3. Quiz a Q&A with **questions or answers** containing any of the given keywords.
+3. Quiz a QAndA with **questions or answers** containing any of the given keywords.
 
     Format: `quiz KEYWORD`, for 2 or more words: `quiz PHRASE 1, KEYWORD 1`
     
