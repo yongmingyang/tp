@@ -252,11 +252,11 @@ You will be able to key in your answer for a quiz question:
 
 Format: `answer YOUR_ANSWER`
 
-### Exiting a quiz: `exitquiz` (by: Joshua Tan)
-Once you are done with a quiz and have finished comparing your input answer with the answer in the question, you have to exit the quiz to run other commands.
-If you want to run other commands in the midst of a quiz(ie. if you have not answered the question) you have to exit the quiz first:
+### Ending a quiz: `endquiz` (by: Joshua Tan)
+Once you are done with a quiz and have finished comparing your input answer with the answer in the question, you have to end the quiz to run other commands.
+If you want to run other commands in the midst of a quiz(ie. if you have not answered the question) you have to end the quiz first:
 
-Format: `exitquiz`
+Format: `endquiz`
 
 ### Exiting the program: `exit`
 
@@ -295,7 +295,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system, or find a/answer1, answer 2`
 **Quiz** | `quiz KEYWORD or [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz xray, or quiz t/Immune System`
 **Answer** | `answer YOUR_ANSWER` 
-**Exit Quiz** | `exitquiz`
+**End Quiz** | `endquiz`
 **Clear** | `clear`
 **Help** | `help`
 **Exit** | `exit`

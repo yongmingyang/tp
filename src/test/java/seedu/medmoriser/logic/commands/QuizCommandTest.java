@@ -93,7 +93,7 @@ public class QuizCommandTest {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         try {
             CommandResult result = command.execute(model);
-            ExitQuizCommand exitQuizCommand = new ExitQuizCommand();
+            EndQuizCommand exitQuizCommand = new EndQuizCommand();
             exitQuizCommand.execute(model);
             assertEquals(expectedCommandResult, result);
         } catch (CommandException ce) {
