@@ -22,6 +22,7 @@ public class ExitQuizCommand extends Command {
             throw new CommandException(MESSAGE_NO_ONGOING_QUIZ);
         } else {
             QuizCommand.setIsQuiz(false, model);
+            AnswerCommand.setBeenAnswered(false, model);
             model.updateFilteredQAndAList(PREDICATE_SHOW_ALL_QANDA);
             for (int i = 0; i < model.getFilteredQAndAList().size(); i++) {
                 model.getFilteredQAndAList().get(i).setNotQuiz();
