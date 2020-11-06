@@ -57,6 +57,7 @@ public class QuizCommand extends Command {
         return isQuiz;
     }
 
+
     public static void setIsQuiz(boolean ongoingQuiz, Model model) {
         isQuiz = ongoingQuiz;
         if (!isQuiz) {
