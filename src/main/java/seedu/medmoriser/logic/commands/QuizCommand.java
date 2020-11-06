@@ -12,7 +12,6 @@ import javafx.collections.ObservableList;
 import seedu.medmoriser.logic.commands.exceptions.CommandException;
 import seedu.medmoriser.model.Model;
 import seedu.medmoriser.model.qanda.QAndA;
-import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
@@ -26,12 +25,11 @@ public class QuizCommand extends Command {
     public static final String MESSAGE_SUCCESS = "Quiz time! Here's a question...";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Quizzes the user on a question based on the keywords"
-            + " provided by the user. Quiz by tag, question or keyword. \n"
+            + " provided by the user. Quiz by tag or keyword in question. \n"
             + "Parameters: "
-            + PREFIX_QUESTION + "QUESTION " + "or "
-            + PREFIX_TAG + "TAG " + "or "
-            + "KEYWORD [MORE_KEYWORDS]...\n"
-            + "Example: " + COMMAND_WORD + " t/tag";
+            + PREFIX_QUESTION + "QUESTION_KEYWORD [MORE_KEYWORDS]... " + "OR "
+            + PREFIX_TAG + "TAG [MORE_TAGS]...  \n"
+            + "Example: " + COMMAND_WORD + " t/Human Anatomy, Nervous System";
 
     public static final String MESSAGE_NO_QUESTION_WITH_KEYWORD = "No question with this tag/keyword";
 
@@ -44,10 +42,6 @@ public class QuizCommand extends Command {
     }
 
     public QuizCommand(QuestionContainsKeywordsPredicate predicate) {
-        this.predicate = predicate;
-    }
-
-    public QuizCommand(QAndAContainsKeywordsPredicate predicate) {
         this.predicate = predicate;
     }
 
