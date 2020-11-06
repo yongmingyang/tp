@@ -24,11 +24,12 @@ The explanation for each feature follows the template:
 > Introduction of feature
 >
 > Format of command
-> 
+>
 > * Details about behaviour of the command
 > * are in the bulletpoints
-> 
+>
 > Examples:
+>
 > * example of the command usage
 
 <div markdown="block" class="alert alert-info">
@@ -144,7 +145,7 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-info">
 
-**::bulb: Tip:**<br>
+**:bulb: Tip:**<br>
 
 You can remove all the QAndA's tags by typing `t/` without specifying any tags after it.
 
@@ -248,6 +249,23 @@ Format: `answer YOUR_ANSWER`
 
 ### Moving to next quiz question: `next` (by: Teng Jian Ling)
 You will be able to continue testing yourself without ending the current quiz. Medmoriser will randomly select a different quiz question based on the same keywords you provided previously.
+
+Format: `next`
+
+Example:
+
+<div markdown="block" class="alert alert-info">
+**:bulb: Tip:**<br>
+If you want to skip the current quiz question, you can enter `next` without answering first.
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the edit command:**<br>
+
+* You can only use the `next` command when you are in an ongoing quiz.
+* When there are no more questions with the specified keywords, you will not be able to use `next` to retrieve another quiz question.
+
+</div>
 
 ### Ending a quiz: `endquiz` (by: Joshua Tan)
 Once you are done with a quiz and have finished comparing your input answer with the answer in the question, you have to end the quiz to run other commands.
