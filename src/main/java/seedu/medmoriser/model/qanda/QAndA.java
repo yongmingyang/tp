@@ -19,6 +19,7 @@ public class QAndA {
     private final Question question;
     private boolean isQuiz = false;
     private boolean isQuizAnswer = false;
+    private boolean beenAnswered = false;
 
     // Data fields
     private final Answer answer;
@@ -64,6 +65,14 @@ public class QAndA {
         this.isQuizAnswer = false;
     }
 
+    public void setBeenAnswered() {
+        beenAnswered = true;
+    }
+
+    public void setNotBeenAnswered() {
+        beenAnswered = false;
+    }
+
     /**
      * Returns an immutable tag set, which throws {@code UnsupportedOperationException}
      * if modification is attempted.
@@ -82,8 +91,7 @@ public class QAndA {
         }
 
         return otherQAndA != null
-                && otherQAndA.getQuestion().equals(getQuestion())
-                && (otherQAndA.getAnswer().equals(getAnswer()));
+                && otherQAndA.getQuestion().equals(getQuestion());
     }
 
     /**

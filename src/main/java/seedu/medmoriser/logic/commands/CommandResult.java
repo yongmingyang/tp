@@ -62,6 +62,10 @@ public class CommandResult {
         return exit;
     }
 
+    public void setIsAnswerDisplayed(boolean isAnswerDisplayed) {
+        this.isAnswerDisplayed = isAnswerDisplayed;
+    }
+
     @Override
     public boolean equals(Object other) {
         if (other == this) {
