@@ -157,7 +157,7 @@ Explanation of the diagrams:
 
 #### Implementation
 
-This feature allows the user to quiz himself/herself. 
+This feature allows the user to quiz himself/herself.
 
 The sequence diagram below shows the interactions between the Logic and model components for the quiz command.
 
@@ -169,7 +169,7 @@ The flow of the execution is as follows:
 
 2. The `LogicManager` executes the command, the command is then parsed by `MedmoriserParser` and the command is
 identified as a `QuizCommand`. The command is then parsed by `QuizCommandParser`.
- 
+
 3. `QuizCommandParser` identifies the type of quiz command. (eg. quiz t/)
 
 4. A `QuizCommand` with the respective predicate, in this case `TagContainsKeywordPredicate` is created and returned to `LogicManager`
