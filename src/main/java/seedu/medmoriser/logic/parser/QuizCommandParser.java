@@ -6,7 +6,6 @@ import java.util.Arrays;
 
 import seedu.medmoriser.logic.commands.QuizCommand;
 import seedu.medmoriser.logic.parser.exceptions.ParseException;
-import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
@@ -45,7 +44,8 @@ public class QuizCommandParser implements Parser<QuizCommand> {
         case "q":
             return new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList(excludeType)));
         default:
-            return new QuizCommand(new QAndAContainsKeywordsPredicate(Arrays.asList(keywordsArray)));
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_USAGE));
         }
     }
 
