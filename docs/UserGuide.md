@@ -52,7 +52,7 @@ The explanation for each feature follows the template:
 
 ## Features
 
-This section will bring you through various features of Medmoriser. After this section, you will know how to use most of the commands available. 
+This section will bring you through various features of Medmoriser. After this section, you will know how to use most of the commands available.
 
 You can follow the instructions one by one, or simply jump to the feature of insterest. For a summary of all commands, please refer to section `Command Summary` at the end of this guide.
 
@@ -130,7 +130,7 @@ You can make changes to an existing QAndA with this command.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 
-* This allows you to edit the QAndA at the specified `INDEX`. The index refers to the index number shown in the displayed question list. 
+* This allows you to edit the QAndA at the specified `INDEX`. The index refers to the index number shown in the displayed question list.
 * Existing values will be updated to the input values.
 
 
