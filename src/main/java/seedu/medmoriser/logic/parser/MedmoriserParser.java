@@ -12,8 +12,8 @@ import seedu.medmoriser.logic.commands.ClearCommand;
 import seedu.medmoriser.logic.commands.Command;
 import seedu.medmoriser.logic.commands.DeleteCommand;
 import seedu.medmoriser.logic.commands.EditCommand;
+import seedu.medmoriser.logic.commands.EndQuizCommand;
 import seedu.medmoriser.logic.commands.ExitCommand;
-import seedu.medmoriser.logic.commands.ExitQuizCommand;
 import seedu.medmoriser.logic.commands.FindCommand;
 import seedu.medmoriser.logic.commands.HelpCommand;
 import seedu.medmoriser.logic.commands.ListCommand;
@@ -68,8 +68,8 @@ public class MedmoriserParser {
         case AnswerCommand.COMMAND_WORD:
             return new AnswerCommandParser().parse(arguments);
 
-        case ExitQuizCommand.COMMAND_WORD:
-            return new ExitQuizCommand();
+        case EndQuizCommand.COMMAND_WORD:
+            return new EndQuizCommand();
 
         case ListCommand.COMMAND_WORD:
             return new ListCommandParser().parse(arguments);
