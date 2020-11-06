@@ -18,7 +18,7 @@ public class AnswerCommand extends Command {
 
     public static final String MESSAGE_USER_ANSWER = "Your answer: ";
 
-    public static final String MESSAGE_NOT_QUIZ = "There is no ongoing quiz";
+    public static final String MESSAGE_NOT_QUIZ = "There is no ongoing quiz.";
 
     public static final String MESSAGE_ALREADY_ANSWERED = "This quiz has already been answered";
 
