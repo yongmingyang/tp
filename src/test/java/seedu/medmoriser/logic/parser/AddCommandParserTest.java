@@ -33,6 +33,9 @@ import seedu.medmoriser.testutil.QAndABuilder;
 public class AddCommandParserTest {
     private AddCommandParser parser = new AddCommandParser();
 
+    public static String INVALID_QUESTION_MULTIPLE_PREFIX = " " + "q/This is an invalid q/question q/";
+    public static String INVALID_ANSWER_MULTIPLE_PREFIX = " " + "a/This is an invalid a/answer a/";
+
     @Test
     public void parse_allFieldsPresent_success() {
         QAndA expectedQAndA = new QAndABuilder(QUESTIONB).withTags(VALID_TAG_TAG1).build();
@@ -110,4 +113,29 @@ public class AddCommandParserTest {
                 + ANSWER_DESC_B + TAG_DESC_TAG1 + TAG_DESC_TAG2,
                 String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
     }
+
+    @Test
+    public void parse_moreThanOneQuestionPrefix_throwsParseException() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_ONE_PREFIX);
+
+        // without tags
+        assertParseFailure(parser, INVALID_QUESTION_MULTIPLE_PREFIX + ANSWER_DESC_A, expectedMessage);
+
+        // with tags
+        assertParseFailure(parser, INVALID_QUESTION_MULTIPLE_PREFIX + ANSWER_DESC_A + TAG_DESC_TAG1,
+                expectedMessage);
+    }
+
+    @Test
+    public void parse_moreThanOneAnswerPrefix_throwsParseException() {
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_ONE_PREFIX);
+
+        // without tags
+        assertParseFailure(parser, QUESTION_DESC_A + INVALID_ANSWER_MULTIPLE_PREFIX, expectedMessage);
+
+        // with tags
+        assertParseFailure(parser, QUESTION_DESC_A + INVALID_ANSWER_MULTIPLE_PREFIX + TAG_DESC_TAG1,
+                expectedMessage);
+    }
+
 }

@@ -39,6 +39,9 @@ public class EditCommandParserTest {
 
     private EditCommandParser parser = new EditCommandParser();
 
+    public static String INVALID_QUESTION_MULTIPLE_PREFIX = " " + "q/This is an invalid q/question q/";
+    public static String INVALID_ANSWER_MULTIPLE_PREFIX = " " + "a/This is an invalid a/answer a/";
+
     @Test
     public void parse_missingParts_failure() {
         // no index specified
@@ -146,5 +149,23 @@ public class EditCommandParserTest {
         EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
 
         assertParseSuccess(parser, userInput, expectedCommand);
+    }
+
+    @Test
+    public void parse_multipleQuestionPrefix_failure() {
+        Index targetIndex = INDEX_FIRST_QANDA;
+        String userInput = targetIndex.getOneBased() + INVALID_QUESTION_MULTIPLE_PREFIX;
+
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_ONE_PREFIX);
+        assertParseFailure(parser, userInput, expectedMessage);
+    }
+
+    @Test
+    public void parse_multipleAnswerPrefix_failure() {
+        Index targetIndex = INDEX_FIRST_QANDA;
+        String userInput = targetIndex.getOneBased() + INVALID_ANSWER_MULTIPLE_PREFIX;
+
+        String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_ONE_PREFIX);
+        assertParseFailure(parser, userInput, expectedMessage);
     }
 }
