@@ -31,7 +31,7 @@ public class UniqueQAndAList implements Iterable<QAndA> {
             FXCollections.unmodifiableObservableList(internalList);
 
     /**
-     * Returns true if the list contains an equivalent questionSet as the given argument.
+     * Returns true if the list contains an equivalent qAndA as the given argument.
      */
     public boolean contains(QAndA toCheck) {
         requireNonNull(toCheck);
@@ -39,8 +39,8 @@ public class UniqueQAndAList implements Iterable<QAndA> {
     }
 
     /**
-     * Adds a questionSet to the list.
-     * The questionSet must not already exist in the list.
+     * Adds a qAndA to the list.
+     * The qAndA must not already exist in the list.
      */
     public void add(QAndA toAdd) {
         requireNonNull(toAdd);
@@ -51,7 +51,7 @@ public class UniqueQAndAList implements Iterable<QAndA> {
     }
 
     /**
-     * Replaces the questionSet {@code target} in the list with {@code editedQuestionSet}.
+     * Replaces the qAndA {@code target} in the list with {@code editedQuestionSet}.
      * {@code target} must exist in the list.
      * The questionSet identity of {@code editedQuestionSet} must not be the same as another existing
      * questionSet in the list.
@@ -72,8 +72,8 @@ public class UniqueQAndAList implements Iterable<QAndA> {
     }
 
     /**
-     * Removes the equivalent questionSet from the list.
-     * The questionSet must exist in the list.
+     * Removes the equivalent qAndA from the list.
+     * The qAndA must exist in the list.
      */
     public void remove(QAndA toRemove) {
         requireNonNull(toRemove);
@@ -88,8 +88,8 @@ public class UniqueQAndAList implements Iterable<QAndA> {
     }
 
     /**
-     * Replaces the contents of this list with {@code questionSets}.
-     * {@code questionSets} must not contain duplicate questionSets.
+     * Replaces the contents of this list with {@code qAndAs}.
+     * {@code qAndAs} must not contain duplicate qAndAs.
      */
     public void setQAndAs(List<QAndA> qAndAs) {
         requireAllNonNull(qAndAs);
@@ -125,7 +125,7 @@ public class UniqueQAndAList implements Iterable<QAndA> {
     }
 
     /**
-     * Returns true if {@code questionSets} contains only unique questionSet.
+     * Returns true if {@code qAndAs} contains only unique qAndAs.
      */
     private boolean questionSetsAreUnique(List<QAndA> qAndAs) {
         for (int i = 0; i < qAndAs.size() - 1; i++) {
