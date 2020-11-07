@@ -44,6 +44,7 @@ public class AnswerCommandTest {
         AnswerCommand answerCommand = new AnswerCommand(USER_ANSWER_1);
 
         AnswerCommand.setBeenAnswered(true, model);
+        model.getFilteredQAndAList().get(0).setQuizAnswer();
 
         String repeatedAnswerMessage = USER_ANSWER_2 + "\n" + MESSAGE_ALREADY_ANSWERED;
         assertCommandFailure(answerCommand, model, repeatedAnswerMessage);
