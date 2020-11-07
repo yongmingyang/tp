@@ -73,6 +73,20 @@ Examples:
 * `add q/what organ system is the lungs part of? a/respiratory system? t/Body systems t/Respiratory system.`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
+How it should look in the application
+
+Add with tag:
+![Add With Tag](images/AddCommandEg1.png)
+
+Expected result:
+![Add With Tag](images/AddCommandEg2.png)
+                    
+Add with tag:
+![Add With Tag](images/AddCommandEg3.png)
+
+Expected result:
+![Add With Tag](images/AddCommandEg4.png)
+
 ### Deleting a QAndA: `delete` (by: Teng Jian Ling)
 
 You can delete a specified QAndA from the database.
