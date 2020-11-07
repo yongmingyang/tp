@@ -51,6 +51,8 @@ public class QuestionSetCard extends UiPart<Region> {
                 .forEach(tag -> {
                     Label tagName = new Label(tag.tagName);
                     tagName.setMaxWidth(680);
+                    tagName.setMaxHeight(Double.NEGATIVE_INFINITY);
+                    tagName.setMinHeight(Double.NEGATIVE_INFINITY);
                     tagName.setWrapText(true);
                     tags.getChildren().add(tagName); }
         );
