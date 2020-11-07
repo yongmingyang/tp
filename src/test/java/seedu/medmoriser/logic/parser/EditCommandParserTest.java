@@ -10,10 +10,11 @@ import static seedu.medmoriser.logic.commands.CommandTestUtil.QUESTION_DESC_A;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.TAG_DESC_TAG1;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.TAG_DESC_TAG2;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_A;
-import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_ANSWER_B;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_QUESTION_A;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG1;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.VALID_TAG_TAG2;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_ANSWER;
+import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseFailure;
 import static seedu.medmoriser.logic.parser.CommandParserTestUtil.assertParseSuccess;
@@ -37,10 +38,13 @@ public class EditCommandParserTest {
     private static final String MESSAGE_INVALID_FORMAT =
             String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE);
 
-    private EditCommandParser parser = new EditCommandParser();
+    private static final String INVALID_ANSWER_MULTIPLE_PREFIX = " " + PREFIX_ANSWER + "This is an invalid"
+            + PREFIX_ANSWER + "answer " + PREFIX_ANSWER;
 
-    public static String INVALID_QUESTION_MULTIPLE_PREFIX = " " + "q/This is an invalid q/question q/";
-    public static String INVALID_ANSWER_MULTIPLE_PREFIX = " " + "a/This is an invalid a/answer a/";
+    private static final String INVALID_QUESTION_MULTIPLE_PREFIX = " " + PREFIX_QUESTION + "This is an invalid "
+            + PREFIX_QUESTION + "question " + PREFIX_QUESTION;
+
+    private EditCommandParser parser = new EditCommandParser();
 
     @Test
     public void parse_missingParts_failure() {
@@ -126,21 +130,6 @@ public class EditCommandParserTest {
     }
 
     @Test
-    public void parse_multipleRepeatedFields_acceptsLast() {
-        Index targetIndex = INDEX_FIRST_QANDA;
-        String userInput = targetIndex.getOneBased() + ANSWER_DESC_A
-                + TAG_DESC_TAG1 + ANSWER_DESC_A + TAG_DESC_TAG1
-                + ANSWER_DESC_B + TAG_DESC_TAG2;
-
-        EditCommand.EditQAndADescriptor descriptor = new EditQAndADescriptorBuilder().withAnswer(VALID_ANSWER_B)
-                .withTags(VALID_TAG_TAG1, VALID_TAG_TAG2)
-                .build();
-        EditCommand expectedCommand = new EditCommand(targetIndex, descriptor);
-
-        assertParseSuccess(parser, userInput, expectedCommand);
-    }
-
-    @Test
     public void parse_resetTags_success() {
         Index targetIndex = INDEX_THIRD_QANDA;
         String userInput = targetIndex.getOneBased() + TAG_EMPTY;
@@ -155,17 +144,30 @@ public class EditCommandParserTest {
     public void parse_multipleQuestionPrefix_failure() {
         Index targetIndex = INDEX_FIRST_QANDA;
         String userInput = targetIndex.getOneBased() + INVALID_QUESTION_MULTIPLE_PREFIX;
+        String userInput1 = targetIndex.getOneBased() + INVALID_QUESTION_MULTIPLE_PREFIX + ANSWER_DESC_B;
 
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_ONE_PREFIX);
+
+        // edit question only
         assertParseFailure(parser, userInput, expectedMessage);
+
+        // edit question and answer
+        assertParseFailure(parser, userInput1, expectedMessage);
+
     }
 
     @Test
     public void parse_multipleAnswerPrefix_failure() {
         Index targetIndex = INDEX_FIRST_QANDA;
         String userInput = targetIndex.getOneBased() + INVALID_ANSWER_MULTIPLE_PREFIX;
+        String userInput1 = targetIndex.getOneBased() + QUESTION_DESC_A + INVALID_ANSWER_MULTIPLE_PREFIX;
 
         String expectedMessage = String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_ONE_PREFIX);
+
+        // edit answer only
         assertParseFailure(parser, userInput, expectedMessage);
+
+        // edit question and answer
+        assertParseFailure(parser, userInput1, expectedMessage);
     }
 }

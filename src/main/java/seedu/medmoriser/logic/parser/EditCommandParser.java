@@ -42,7 +42,7 @@ public class EditCommandParser implements Parser<EditCommand> {
         try {
             index = ParserUtil.parseIndex(argMultimap.getPreamble());
         } catch (ParseException pe) {
-                throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, EditCommand.MESSAGE_USAGE), pe);
         }
 
         EditCommand.EditQAndADescriptor editQAndADescriptor = new EditCommand.EditQAndADescriptor();
@@ -86,7 +86,7 @@ public class EditCommandParser implements Parser<EditCommand> {
     private boolean containsOnce(String s, Prefix prefix) {
         String prefixString = prefix.toString();
         int i = s.indexOf(prefixString);
-        return i != s.lastIndexOf(prefixString) && i != 0;
+        return i == s.lastIndexOf(prefixString);
     }
 
 }

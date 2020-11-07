@@ -64,7 +64,7 @@ public class AddCommandParser implements Parser<AddCommand> {
     private boolean containsOnce(String s, Prefix prefix) {
         String prefixString = prefix.toString();
         int i = s.indexOf(prefixString);
-        return i != s.lastIndexOf(prefixString) && i != 0;
+        return i == s.lastIndexOf(prefixString) && i != -1;
     }
 
 }
