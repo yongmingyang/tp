@@ -52,12 +52,14 @@ public class AnswerCommandTest {
         QuizCommand.setIsQuiz(true, model);
         AnswerCommand.setBeenAnswered(false, model);
         QAndA qAndA = TypicalQAndA.QUESTION1;
-        //model.updateFilteredQAndAList(x -> x.equals(qAndA));
+        model.updateFilteredQAndAList(x -> x.equals(qAndA));
 
         // because model not supposed to change after answer command execution
         Model expectedModel = model;
 
         AnswerCommand answerCommand = new AnswerCommand(USER_ANSWER_1);
         assertCommandSuccess(answerCommand, model, MESSAGE_USER_ANSWER + USER_ANSWER_1, expectedModel);
+
+        QuizCommand.setIsQuiz(false, model);
     }
 }
