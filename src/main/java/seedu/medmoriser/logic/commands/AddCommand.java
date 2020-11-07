@@ -28,7 +28,12 @@ public class AddCommand extends Command {
             + PREFIX_TAG + "Human Anatomy";
 
     public static final String MESSAGE_SUCCESS = "New QAndA added: %1$s";
+
     public static final String MESSAGE_DUPLICATE_QANDA = "This QAndA already exists in the answer book";
+
+    public static final String MESSAGE_ONE_PREFIX = "There are multiple prefixes present. Ensure that q/ is before the"
+            + " question that you intend to add and a/ is before the answer to the question. There can only "
+            + "be one instance of q/ and a/ .";
 
     private final QAndA toAdd;
 

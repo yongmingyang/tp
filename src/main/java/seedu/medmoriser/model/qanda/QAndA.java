@@ -19,6 +19,7 @@ public class QAndA {
     private final Question question;
     private boolean isQuiz = false;
     private boolean isQuizAnswer = false;
+    private boolean beenAnswered = false;
 
     // Data fields
     private final Answer answer;
@@ -47,7 +48,7 @@ public class QAndA {
         return this.isQuiz;
     }
 
-    public Boolean getIsQuizAnwer() {
+    public Boolean getIsQuizAnswer() {
         return this.isQuizAnswer;
     }
 
@@ -62,6 +63,14 @@ public class QAndA {
     public void setNotQuiz() {
         this.isQuiz = false;
         this.isQuizAnswer = false;
+    }
+
+    public void setBeenAnswered() {
+        beenAnswered = true;
+    }
+
+    public void setNotBeenAnswered() {
+        beenAnswered = false;
     }
 
     /**
