@@ -60,6 +60,7 @@ public class AnswerCommandTest {
         AnswerCommand answerCommand = new AnswerCommand(USER_ANSWER_1);
         assertCommandSuccess(answerCommand, model, MESSAGE_USER_ANSWER + USER_ANSWER_1, expectedModel);
 
+        // end the quiz
         QuizCommand.setIsQuiz(false, model);
     }
 }
