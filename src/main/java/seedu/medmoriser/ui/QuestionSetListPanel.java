@@ -65,7 +65,7 @@ public class QuestionSetListPanel extends UiPart<Region> {
                 setText(null);
             } else {
                 if (qAndA.getIsQuiz()) {
-                    if (qAndA.getIsQuizAnwer()) {
+                    if (qAndA.getIsQuizAnswer()) {
                         setGraphic(new QuizCard(qAndA, getIndex() + 1, true).getRoot());
                     } else {
                         setGraphic(new QuizCard(qAndA, getIndex() + 1, false).getRoot());
