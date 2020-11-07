@@ -52,8 +52,8 @@ public class QuestionSetCard extends UiPart<Region> {
                     Label tagName = new Label(tag.tagName);
                     tagName.setMaxWidth(680);
                     tagName.setWrapText(true);
-                    tags.getChildren().add(tagName);}
-                );
+                    tags.getChildren().add(tagName); }
+                    );
         if (!isAnswerDisplayed) {
             hideAnswer();
         }
