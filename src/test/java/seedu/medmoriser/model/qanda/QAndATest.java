@@ -35,10 +35,10 @@ public class QAndATest {
         editedQuestion1 = new QAndABuilder(QUESTION1).withQuestion(VALID_QUESTION_B).build();
         assertFalse(QUESTION1.isSameQAndA(editedQuestion1));
 
-        // same question, different answer -> returns false
+        // same question, different answer -> returns true
         editedQuestion1 = new QAndABuilder(QUESTION1).withAnswer(VALID_ANSWER_B)
                 .withTags(VALID_TAG_TAG2).build();
-        assertFalse(QUESTION1.isSameQAndA(editedQuestion1));
+        assertTrue(QUESTION1.isSameQAndA(editedQuestion1));
 
         // same question, same answer, different tag -> returns true
         editedQuestion1 = new QAndABuilder(QUESTION1).withTags(VALID_TAG_TAG2).build();
