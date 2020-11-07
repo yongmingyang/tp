@@ -63,4 +63,8 @@ public class AnswerCommand extends Command {
             model.getFilteredQAndAList().get(0).setBeenAnswered();
         }
     }
+
+    public static void setCurrCommandResult(String msg) {
+        currCommandResult = new CommandResult(msg);
+    }
 }
