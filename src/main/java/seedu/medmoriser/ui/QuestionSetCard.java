@@ -48,7 +48,12 @@ public class QuestionSetCard extends UiPart<Region> {
         answer.setText(qAndA.getAnswer().answer);
         qAndA.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagName = new Label(tag.tagName);
+                    tagName.setMaxWidth(680);
+                    tagName.setWrapText(true);
+                    tags.getChildren().add(tagName);}
+                );
         if (!isAnswerDisplayed) {
             hideAnswer();
         }

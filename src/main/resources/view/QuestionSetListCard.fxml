@@ -9,7 +9,7 @@
     <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
     </columnConstraints>
-    <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="105" style="-fx-background-radius: 5px;" GridPane.columnIndex="0">
+    <VBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="600" minHeight="105" style="-fx-background-radius: 5px;" GridPane.columnIndex="0">
       <padding>
         <Insets bottom="5" left="15" right="5" top="5" />
       </padding>
@@ -22,7 +22,7 @@
         </Label>
         <Label fx:id="question" maxHeight="-Infinity" maxWidth="600" minHeight="-Infinity" styleClass="cell_big_label" text="\$question" wrapText="true" />
       </HBox>
-      <FlowPane fx:id="tags" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" />
+      <FlowPane fx:id="tags" orientation="HORIZONTAL" prefWrapLength="680.0" />
       <Label fx:id="answer" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="cell_small_label" text="\$answer" wrapText="true" />
     </VBox>
       <rowConstraints>
