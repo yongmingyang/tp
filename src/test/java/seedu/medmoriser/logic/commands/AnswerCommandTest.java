@@ -1,9 +1,9 @@
 package seedu.medmoriser.logic.commands;
 
-import static seedu.medmoriser.logic.commands.AnswerCommand.MESSAGE_ALREADY_ANSWERED;
+//import static seedu.medmoriser.logic.commands.AnswerCommand.MESSAGE_ALREADY_ANSWERED;
 import static seedu.medmoriser.logic.commands.AnswerCommand.MESSAGE_NOT_QUIZ;
 import static seedu.medmoriser.logic.commands.AnswerCommand.MESSAGE_USER_ANSWER;
-import static seedu.medmoriser.logic.commands.AnswerCommand.setCurrCommandResult;
+//import static seedu.medmoriser.logic.commands.AnswerCommand.setCurrCommandResult;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandSuccess;
 import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
@@ -36,19 +36,6 @@ public class AnswerCommandTest {
         AnswerCommand answerCommand = new AnswerCommand(USER_ANSWER_1);
         assertCommandSuccess(answerCommand, model, MESSAGE_USER_ANSWER + USER_ANSWER_1, expectedModel);
     }
-
-//    @Test
-//    public void execute_answerOngoingQuizHasBeenAnswered_failure() {
-//        QuizCommand.setIsQuiz(true, model);
-//        setCurrCommandResult(USER_ANSWER_2);
-//        AnswerCommand answerCommand = new AnswerCommand(USER_ANSWER_1);
-//
-//        AnswerCommand.setBeenAnswered(true, model);
-//        model.getFilteredQAndAList().get(0).setQuizAnswer();
-//
-//        String repeatedAnswerMessage = USER_ANSWER_2 + "\n" + MESSAGE_ALREADY_ANSWERED;
-//        assertCommandFailure(answerCommand, model, repeatedAnswerMessage);
-//    }
 
     @Test
     public void execute_answerNoOngoingQuiz_failure() {
