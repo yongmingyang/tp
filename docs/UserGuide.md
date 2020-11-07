@@ -29,6 +29,7 @@ The explanation for each feature follows the template:
 > * are in the bulletpoints
 >
 > Examples:
+>
 > * example of the command usage
 
 <div markdown="block" class="alert alert-info">
@@ -144,7 +145,7 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-info">
 
-**::bulb: Tip:**<br>
+**:bulb: Tip:**<br>
 
 You can remove all the QAndA's tags by typing `t/` without specifying any tags after it.
 
@@ -249,6 +250,26 @@ Format: `answer YOUR_ANSWER`
 Example:
 * `answer This is my answer to the quiz question`
 
+### Moving to next quiz question: `next` (by: Teng Jian Ling)
+You will be able to continue testing yourself without ending the current quiz. Medmoriser will randomly select a different quiz question based on the same keywords you provided previously.
+
+Format: `next`
+
+Example:
+
+<div markdown="block" class="alert alert-info">
+**:bulb: Tip:**<br>
+If you want to skip the current quiz question, you can enter `next` without answering first.
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the edit command:**<br>
+
+* You can only use the `next` command when you are in an ongoing quiz.
+* When there are no more questions with the specified keywords, you will not be able to use `next` to retrieve another quiz question.
+
+</div>
+
 ### Ending a quiz: `endquiz` (by: Joshua Tan)
 Once you are done with a quiz and have finished comparing your input answer with the answer in the question, you have to end the quiz to run other commands.
 If you want to run other commands in the midst of a quiz(ie. if you have not answered the question) you have to end the quiz first:
@@ -292,6 +313,7 @@ Action | Format, Examples
 **Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system, or find a/answer1, answer 2`
 **Quiz** | `quiz [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz t/Immune System or quiz q/blood`
 **Answer** | `answer YOUR_ANSWER` <br> e.g. `answer This is my answer`
+**Next** | `next`
 **End Quiz** | `endquiz`
 **Clear** | `clear`
 **Help** | `help`
