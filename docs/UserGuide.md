@@ -24,10 +24,10 @@ The explanation for each feature follows the template:
 > Introduction of feature
 >
 > Format of command
-> 
+>
 > * Details about behaviour of the command
 > * are in the bulletpoints
-> 
+>
 > Examples:
 > * example of the command usage
 
@@ -51,7 +51,7 @@ The explanation for each feature follows the template:
 
 ## Features
 
-This section will bring you through various features of Medmoriser. After this section, you will know how to use most of the commands available. 
+This section will bring you through various features of Medmoriser. After this section, you will know how to use most of the commands available.
 
 You can follow the instructions one by one, or simply jump to the feature of insterest. For a summary of all commands, please refer to section `Command Summary` at the end of this guide.
 
@@ -129,7 +129,7 @@ You can make changes to an existing QAndA with this command.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 
-* This allows you to edit the QAndA at the specified `INDEX`. The index refers to the index number shown in the displayed question list. 
+* This allows you to edit the QAndA at the specified `INDEX`. The index refers to the index number shown in the displayed question list.
 * Existing values will be updated to the input values.
 
 
@@ -288,7 +288,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g. `edit 1 a/Maintain blood pressure t/cardiology`
 **Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system, or find a/answer1, answer 2`
 **Quiz** | `quiz [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz t/Immune System or quiz q/blood`
-**Answer** | `answer YOUR_ANSWER` 
+**Answer** | `answer YOUR_ANSWER`
 **End Quiz** | `endquiz`
 **Clear** | `clear`
 **Help** | `help`

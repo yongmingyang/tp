@@ -26,13 +26,13 @@ public class QuestionSetListPanel extends UiPart<Region> {
     public QuestionSetListPanel(ObservableList<QAndA> qAndAList) {
         super(FXML);
         questionSetListView.setItems(qAndAList);
-        questionSetListView.setCellFactory(listView -> new QuestionSetListViewCell());
+        questionSetListView.setCellFactory(listView -> new QAndAListViewCell());
     }
 
     public void setAnswerView(boolean isAnswerDisplayed) {
         assert questionSetListView != null;
         questionSetListView.setCellFactory(listView -> {
-            QuestionSetListViewCell temp = new QuestionSetListViewCell();
+            QAndAListViewCell temp = new QAndAListViewCell();
             temp.setAnswerDisplayed(isAnswerDisplayed);
             return temp;
         });
@@ -41,13 +41,13 @@ public class QuestionSetListPanel extends UiPart<Region> {
     /**
      * Custom {@code ListCell} that displays the graphics of a {@code QuestionSet} using a {@code QuestionSetCard}.
      */
-    public class QuestionSetListViewCell extends ListCell<QAndA> {
+    public class QAndAListViewCell extends ListCell<QAndA> {
         private boolean isAnswerDisplayed;
 
         /**
          * Constructor
          */
-        public QuestionSetListViewCell() {
+        public QAndAListViewCell() {
             super();
             this.isAnswerDisplayed = true;
         }

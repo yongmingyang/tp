@@ -4,6 +4,7 @@ import static java.util.Objects.requireNonNull;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_QUESTION;
 import static seedu.medmoriser.logic.parser.CliSyntax.PREFIX_TAG;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Predicate;
@@ -35,6 +36,8 @@ public class QuizCommand extends Command {
 
     private static boolean isQuiz = false;
 
+    private static List<QAndA> currentList = new ArrayList<>();
+
     private final Predicate<QAndA> predicate;
 
     public QuizCommand(TagContainsKeywordsPredicate predicate) {
@@ -45,7 +48,7 @@ public class QuizCommand extends Command {
         this.predicate = predicate;
     }
 
-    public QAndA getRandomQuestion(List<QAndA> list) {
+    public static QAndA getRandomQuestion(List<QAndA> list) {
         Random rand = new Random();
         return list.get(rand.nextInt(list.size()));
     }
@@ -53,6 +56,7 @@ public class QuizCommand extends Command {
     public static boolean getIsQuiz() {
         return isQuiz;
     }
+
 
     public static void setIsQuiz(boolean ongoingQuiz, Model model) {
         isQuiz = ongoingQuiz;
@@ -65,14 +69,27 @@ public class QuizCommand extends Command {
         }
     }
 
+    public static List<QAndA> getCurrentList() {
+        return currentList;
+    }
+
     @Override
     public CommandResult execute(Model model) throws CommandException {
         requireNonNull(model);
         model.updateFilteredQAndAList(predicate);
         ObservableList<QAndA> filteredList = model.getFilteredQAndAList();
 
+        //CURRENT_LIST = filteredList;
+
+        for (QAndA q : filteredList) {
+            currentList.add(q);
+        }
+
         if (filteredList.size() > 0) {
-            QAndA question = getRandomQuestion(filteredList);
+            QAndA question = getRandomQuestion(currentList);
+
+            currentList.remove(question);
+
             model.updateFilteredQAndAList(x -> x.equals(question));
             setIsQuiz(true, model);
 
