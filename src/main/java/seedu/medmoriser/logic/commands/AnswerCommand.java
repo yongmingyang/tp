@@ -67,4 +67,11 @@ public class AnswerCommand extends Command {
     public static void setCurrCommandResult(String msg) {
         currCommandResult = new CommandResult(msg);
     }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AnswerCommand // instanceof handles nulls
+                && userAnswer.equals(((AnswerCommand) other).userAnswer)); // state check
+    }
 }
