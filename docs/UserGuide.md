@@ -82,18 +82,17 @@ Format: `delete INDEX`
 * This allows you to delete the QAndA at the specified `INDEX`.
 * The index refers to the index number shown in the displayed question list.
 
+Examples:
+
+* `list` followed by `delete 2` deletes the 2nd QAndA in the question book.
+* `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Note about the delete command:**<br>
 
 The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
 
 </div>
-
-
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd QAndA in the question book.
-* `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
 
 How it should look in the application:
 
@@ -133,6 +132,10 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 * This allows you to edit the QAndA at the specified `INDEX`. The index refers to the index number shown in the displayed question list.
 * Existing values will be updated to the input values.
 
+Examples:
+
+*  `edit 1 a/To pump blood` - Edits the answer the 1st question to be `To pump blood`.
+*  `edit 2 q/how many bones are there in an ADULT human skeleton? t/` - Edits the question of the 2nd QAndA to be `how many bones are there in an ADULT human skeleton?` and clears all existing tags.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the edit command:**<br>
@@ -150,11 +153,6 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 You can remove all the QAndA's tags by typing `t/` without specifying any tags after it.
 
 </div>
-
-Examples:
-
-*  `edit 1 a/To pump blood` - Edits the answer the 1st question to be `To pump blood`.
-*  `edit 2 q/how many bones are there in an ADULT human skeleton? t/` - Edits the question of the 2nd QAndA to be `how many bones are there in an ADULT human skeleton?` and clears all existing tags.
 
 How it should look in the application:
 
@@ -256,6 +254,7 @@ You will be able to continue testing yourself without ending the current quiz. M
 Format: `next`
 
 Example:
+* `next` - will show you the next question in this quiz
 
 <div markdown="block" class="alert alert-info">
 **:bulb: Tip:**<br>
