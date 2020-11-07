@@ -75,13 +75,17 @@ Examples:
 
 How it should look in the application
 
-Add with tag![Add With Tag](images/AddCommandEg1.png)
+Add with tag:
+![Add With Tag](images/AddCommandEg1.png)
 
-Expected result:![Add With Tag](images/AddCommandEg2.png)
+Expected result:
+![Add With Tag](images/AddCommandEg2.png)
                     
-Add with tag:![Add With Tag](images/AddCommandEg3.png)
+Add with tag:
+![Add With Tag](images/AddCommandEg3.png)
 
-Expected result:![Add With Tag](images/AddCommandEg4.png)
+Expected result:
+![Add With Tag](images/AddCommandEg4.png)
 
 ### Deleting a QAndA: `delete` (by: Teng Jian Ling)
 
