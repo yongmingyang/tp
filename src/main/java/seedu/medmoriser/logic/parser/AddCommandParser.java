@@ -34,6 +34,10 @@ public class AddCommandParser implements Parser<AddCommand> {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_USAGE));
         }
 
+        if (!containsOnce(args, PREFIX_ANSWER) || !containsOnce(args, PREFIX_QUESTION)) {
+            throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, AddCommand.MESSAGE_ONE_PREFIX));
+        }
+
         Question question = ParserUtil.parseQuestion(argMultimap.getValue(PREFIX_QUESTION).get());
         Answer answer = ParserUtil.parseAnswer(argMultimap.getValue(PREFIX_ANSWER).get());
         Set<Tag> tagList = ParserUtil.parseTags(argMultimap.getAllValues(PREFIX_TAG));
@@ -49,6 +53,18 @@ public class AddCommandParser implements Parser<AddCommand> {
      */
     private static boolean arePrefixesPresent(ArgumentMultimap argumentMultimap, Prefix... prefixes) {
         return Stream.of(prefixes).allMatch(prefix -> argumentMultimap.getValue(prefix).isPresent());
+    }
+
+    /**
+     * Returns true if prefix only appears once in the string
+     * @param s The string to compare with.
+     * @param prefix The prefix to compare with.
+     * @return a boolean to indicate if prefix only appears in s once.
+     */
+    private boolean containsOnce(String s, Prefix prefix) {
+        String prefixString = prefix.toString();
+        int i = s.indexOf(prefixString);
+        return i == s.lastIndexOf(prefixString) && i != -1;
     }
 
 }
