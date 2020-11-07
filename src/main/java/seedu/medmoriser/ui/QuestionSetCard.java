@@ -53,7 +53,7 @@ public class QuestionSetCard extends UiPart<Region> {
                     tagName.setMaxWidth(680);
                     tagName.setWrapText(true);
                     tags.getChildren().add(tagName); }
-                    );
+        );
         if (!isAnswerDisplayed) {
             hideAnswer();
         }
