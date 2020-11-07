@@ -69,8 +69,8 @@ You can add a question and answer pair to the database. You can tag this pair wi
 Format: `add q/QUESTION a/ANSWER [t/TAG]…​`
 
 Examples:
-* `add q/what organ system is the lungs part of? a/respiratory system?`
-* `add q/what organ system is the lungs part of? a/respiratory system? t/Body systems t/Respiratory system`
+* `add q/what organ system is the lungs part of? a/respiratory system.`
+* `add q/what organ system is the lungs part of? a/respiratory system? t/Body systems t/Respiratory system.`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
 ### Deleting a QAndA: `delete` (by: Teng Jian Ling)
