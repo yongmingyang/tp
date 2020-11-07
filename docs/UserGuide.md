@@ -242,9 +242,12 @@ Expected Result:
 ![QuizResult](images/QuizResult.png)
 
 ### Answering a quiz question: `answer` (by: Joshua Tan)
-You will be able to key in your answer for a quiz question:
+You will be able to key in your answer for a quiz question. After your answer is submitted, Medmoriser will flash the correct answer to the question and you will be able to check your answer:
 
 Format: `answer YOUR_ANSWER`
+
+Example:
+* `answer This is my answer to the quiz question`
 
 ### Ending a quiz: `endquiz` (by: Joshua Tan)
 Once you are done with a quiz and have finished comparing your input answer with the answer in the question, you have to end the quiz to run other commands.
@@ -288,7 +291,7 @@ Action | Format, Examples
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g. `edit 1 a/Maintain blood pressure t/cardiology`
 **Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system, or find a/answer1, answer 2`
 **Quiz** | `quiz [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz t/Immune System or quiz q/blood`
-**Answer** | `answer YOUR_ANSWER`
+**Answer** | `answer YOUR_ANSWER` <br> e.g. `answer This is my answer`
 **End Quiz** | `endquiz`
 **Clear** | `clear`
 **Help** | `help`
