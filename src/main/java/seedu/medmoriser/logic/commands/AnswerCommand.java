@@ -42,11 +42,11 @@ public class AnswerCommand extends Command {
         if (!QuizCommand.getIsQuiz()) {
             throw new CommandException(MESSAGE_NOT_QUIZ);
         } else {
+            model.getFilteredQAndAList().get(0).setQuizAnswer();
             if (beenAnswered) {
                 throw new CommandException(currCommandResult.getFeedbackToUser() + "\n" + MESSAGE_ALREADY_ANSWERED);
             } else {
                 setBeenAnswered(true, model);
-                model.getFilteredQAndAList().get(0).setQuizAnswer();
                 currCommandResult = new CommandResult(MESSAGE_USER_ANSWER + userAnswer);
                 return currCommandResult;
             }
@@ -62,5 +62,16 @@ public class AnswerCommand extends Command {
         } else {
             model.getFilteredQAndAList().get(0).setBeenAnswered();
         }
+    }
+
+    public static void setCurrCommandResult(String msg) {
+        currCommandResult = new CommandResult(msg);
+    }
+
+    @Override
+    public boolean equals(Object other) {
+        return other == this // short circuit if same object
+                || (other instanceof AnswerCommand // instanceof handles nulls
+                && userAnswer.equals(((AnswerCommand) other).userAnswer)); // state check
     }
 }
