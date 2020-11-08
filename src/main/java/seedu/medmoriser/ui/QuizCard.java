@@ -44,14 +44,25 @@ public class QuizCard extends UiPart<Region> {
         answer.setText(qAndA.getAnswer().answer);
         qAndA.getTags().stream()
                 .sorted(Comparator.comparing(tag -> tag.tagName))
-                .forEach(tag -> tags.getChildren().add(new Label(tag.tagName)));
+                .forEach(tag -> {
+                    Label tagName = new Label(tag.tagName);
+                    tagName.setMaxWidth(680);
+                    tagName.setMaxHeight(Double.NEGATIVE_INFINITY);
+                    tagName.setMinHeight(Double.NEGATIVE_INFINITY);
+                    tagName.setWrapText(true);
+                    tags.getChildren().add(tagName); }
+        );
         if (!isAnswerDisplayed) {
             hideAnswer();
         }
     }
 
+    /***
+     * Hide answer for Quiz Card
+     */
     public void hideAnswer() {
         this.answer.setVisible(false);
+        answer.setPrefSize(0, 0);
     }
 
     @Override

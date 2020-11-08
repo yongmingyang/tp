@@ -42,11 +42,11 @@ public class AnswerCommand extends Command {
         if (!QuizCommand.getIsQuiz()) {
             throw new CommandException(MESSAGE_NOT_QUIZ);
         } else {
+            model.getFilteredQAndAList().get(0).setQuizAnswer();
             if (beenAnswered) {
                 throw new CommandException(currCommandResult.getFeedbackToUser() + "\n" + MESSAGE_ALREADY_ANSWERED);
             } else {
                 setBeenAnswered(true, model);
-                model.getFilteredQAndAList().get(0).setQuizAnswer();
                 currCommandResult = new CommandResult(MESSAGE_USER_ANSWER + userAnswer);
                 return currCommandResult;
             }
