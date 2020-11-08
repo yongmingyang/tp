@@ -48,7 +48,7 @@ public class QAndA {
         return this.isQuiz;
     }
 
-    public Boolean getIsQuizAnwer() {
+    public Boolean getIsQuizAnswer() {
         return this.isQuizAnswer;
     }
 

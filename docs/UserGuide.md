@@ -29,6 +29,7 @@ The explanation for each feature follows the template:
 > * are in the bulletpoints
 >
 > Examples:
+>
 > * example of the command usage
 
 <div markdown="block" class="alert alert-info">
@@ -68,9 +69,23 @@ You can add a question and answer pair to the database. You can tag this pair wi
 Format: `add q/QUESTION a/ANSWER [t/TAG]…​`
 
 Examples:
-* `add q/what organ system is the lungs part of? a/respiratory system?`
-* `add q/what organ system is the lungs part of? a/respiratory system? t/Body systems t/Respiratory system`
+* `add q/what organ system is the lungs part of? a/respiratory system.`
+* `add q/what organ system is the lungs part of? a/respiratory system? t/Body systems t/Respiratory system.`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
+
+How it should look in the application
+
+Add with tag:
+![Add With Tag](images/AddCommandEg1.png)
+
+Expected result:
+![Add With Tag](images/AddCommandEg2.png)
+                    
+Add with tag:
+![Add With Tag](images/AddCommandEg3.png)
+
+Expected result:
+![Add With Tag](images/AddCommandEg4.png)
 
 ### Deleting a QAndA: `delete` (by: Teng Jian Ling)
 
@@ -81,18 +96,17 @@ Format: `delete INDEX`
 * This allows you to delete the QAndA at the specified `INDEX`.
 * The index refers to the index number shown in the displayed question list.
 
+Examples:
+
+* `list` followed by `delete 2` deletes the 2nd QAndA in the question book.
+* `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
+
 <div markdown="block" class="alert alert-info">
 **:information_source: Note about the delete command:**<br>
 
 The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
 
 </div>
-
-
-Examples:
-
-* `list` followed by `delete 2` deletes the 2nd QAndA in the question book.
-* `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
 
 How it should look in the application:
 
@@ -132,6 +146,10 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 * This allows you to edit the QAndA at the specified `INDEX`. The index refers to the index number shown in the displayed question list.
 * Existing values will be updated to the input values.
 
+Examples:
+
+*  `edit 1 a/To pump blood` - Edits the answer the 1st question to be `To pump blood`.
+*  `edit 2 q/how many bones are there in an ADULT human skeleton? t/` - Edits the question of the 2nd QAndA to be `how many bones are there in an ADULT human skeleton?` and clears all existing tags.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Notes about the edit command:**<br>
@@ -144,16 +162,11 @@ Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 
 <div markdown="block" class="alert alert-info">
 
-**::bulb: Tip:**<br>
+**:bulb: Tip:**<br>
 
 You can remove all the QAndA's tags by typing `t/` without specifying any tags after it.
 
 </div>
-
-Examples:
-
-*  `edit 1 a/To pump blood` - Edits the answer the 1st question to be `To pump blood`.
-*  `edit 2 q/how many bones are there in an ADULT human skeleton? t/` - Edits the question of the 2nd QAndA to be `how many bones are there in an ADULT human skeleton?` and clears all existing tags.
 
 How it should look in the application:
 
@@ -242,9 +255,33 @@ Expected Result:
 ![QuizResult](images/QuizResult.png)
 
 ### Answering a quiz question: `answer` (by: Joshua Tan)
-You will be able to key in your answer for a quiz question:
+You will be able to key in your answer for a quiz question. After your answer is submitted, Medmoriser will flash the correct answer to the question and you will be able to check your answer:
 
 Format: `answer YOUR_ANSWER`
+
+Example:
+* `answer This is my answer to the quiz question`
+
+### Moving to next quiz question: `next` (by: Teng Jian Ling)
+You will be able to continue testing yourself without ending the current quiz. Medmoriser will randomly select a different quiz question based on the same keywords you provided previously.
+
+Format: `next`
+
+Example:
+* `next` - will show you the next question in this quiz
+
+<div markdown="block" class="alert alert-info">
+**:bulb: Tip:**<br>
+If you want to skip the current quiz question, you can enter `next` without answering first.
+</div>
+
+<div markdown="block" class="alert alert-info">
+**:information_source: Notes about the edit command:**<br>
+
+* You can only use the `next` command when you are in an ongoing quiz.
+* When there are no more questions with the specified keywords, you will not be able to use `next` to retrieve another quiz question.
+
+</div>
 
 ### Ending a quiz: `endquiz` (by: Joshua Tan)
 Once you are done with a quiz and have finished comparing your input answer with the answer in the question, you have to end the quiz to run other commands.
@@ -288,7 +325,8 @@ Action | Format, Examples
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g. `edit 1 a/Maintain blood pressure t/cardiology`
 **Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system, or find a/answer1, answer 2`
 **Quiz** | `quiz [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz t/Immune System or quiz q/blood`
-**Answer** | `answer YOUR_ANSWER`
+**Answer** | `answer YOUR_ANSWER` <br> e.g. `answer This is my answer`
+**Next** | `next`
 **End Quiz** | `endquiz`
 **Clear** | `clear`
 **Help** | `help`
