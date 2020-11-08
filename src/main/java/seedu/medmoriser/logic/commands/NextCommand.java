@@ -26,6 +26,7 @@ public class NextCommand extends Command {
                 AnswerCommand.setBeenAnswered(false, model);
                 QAndA qAndA = QuizCommand.getRandomQuestion(QuizCommand.getCurrentList());
                 model.updateFilteredQAndAList(x -> x.equals(qAndA));
+                QuizCommand.setIsQuiz(true, model);
                 QuizCommand.getCurrentList().remove(qAndA);
                 return new CommandResult(MESSAGE_SUCCESS);
             } else {
