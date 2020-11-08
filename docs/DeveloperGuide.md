@@ -137,7 +137,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This portion describes the implementation of the find featur which allows the user to find QAndA sets based on the question, answer or tags.
+This portion describes the implementation of the find feature which allows the user to find QAndA sets based on the question, answer or tags.
 
 Explanation of the diagrams:
 1. As the user parses the find command through the `UI`, the `MedmoriserParser` identifies this as a `FindCommand` and passes the user input to the `FindCommandParser`.
