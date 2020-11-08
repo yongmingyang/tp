@@ -8,7 +8,7 @@ import seedu.medmoriser.logic.parser.exceptions.ParseException;
 /**
  * Parses input arguments and creates a new AnswerCommand object
  */
-public class AnswerCommandParser {
+public class AnswerCommandParser implements Parser<AnswerCommand> {
 
     /**
      * Parses the given {@code String} of arguments in the context of the AnswerCommand

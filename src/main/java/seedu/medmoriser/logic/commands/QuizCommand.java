@@ -79,8 +79,6 @@ public class QuizCommand extends Command {
         model.updateFilteredQAndAList(predicate);
         ObservableList<QAndA> filteredList = model.getFilteredQAndAList();
 
-        //CURRENT_LIST = filteredList;
-
         for (QAndA q : filteredList) {
             currentList.add(q);
         }
