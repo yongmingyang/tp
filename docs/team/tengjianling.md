@@ -25,7 +25,7 @@ Given below are my contributions to the project.
 - **New feature:** Added the feature to allow user to be quized on the next question in the quiz.
   - What it does: allows you to be tested on another question based on the same keywords you provided for the quiz, without having to end the quiz first.
   - Justification: It may be troublesome for the user to have to go through the process of ending the quiz and typing the whole quiz command again if he wants to quiz himself with the same keywords, and he may get the same exact same question as before even if it is randomised. This `next` command provides a convenient way for users to continually quiz themselves.
-  - Highlights: The implementation of this enhancement was challenging as additional fields have to be created to keep track of which questions to randomise from, since we do not want the `qAndA` obtained from the `next` command to be the same as the current `qAndA` that the user is seeing.
+  - Highlights: The implementation of this enhancement was challenging as additional fields have to be created to keep track of which questions to randomise from, since we do not want the `QAndA` obtained from the `next` command to be the same as the current `QAndA` that the user is seeing.
 
 - **Enhancements to Existing features:**
   - Changed the usage message in `edit` command to the context of questions and answers: [#41](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/41)
