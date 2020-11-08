@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static seedu.medmoriser.logic.commands.CommandTestUtil.assertCommandFailure;
 import static seedu.medmoriser.logic.commands.NextCommand.MESSAGE_NOT_QUIZ;
-import static seedu.medmoriser.logic.commands.NextCommand.MESSAGE_NO_MORE_QUESTIONS;
 import static seedu.medmoriser.logic.commands.NextCommand.MESSAGE_SUCCESS;
 import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION3;
 import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION5;
@@ -13,7 +12,6 @@ import static seedu.medmoriser.testutil.TypicalQAndA.QUESTION6;
 import static seedu.medmoriser.testutil.TypicalQAndA.getTypicalMedmoriser;
 
 import java.util.Arrays;
-import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 
@@ -54,34 +52,6 @@ public class NextCommandTest {
         NextCommand command = new NextCommand();
 
         assertCommandFailure(command, model, expectedMessage);
-    }
-
-    @Test
-    public void execute_noNextQuestion_failure() {
-        String expectedMessage = MESSAGE_NO_MORE_QUESTIONS;
-        NextCommand nextCommand = new NextCommand();
-
-        QuestionContainsKeywordsPredicate predicate =
-                new QuestionContainsKeywordsPredicate(Collections.singletonList("Three"));
-        QuizCommand command = new QuizCommand(predicate);
-        expectedModel.updateFilteredQAndAList(predicate);
-
-        ObservableList<QAndA> filteredList = expectedModel.getFilteredQAndAList();
-
-        assertTrue(filteredList.size() == 1);
-        assertEquals(Arrays.asList(QUESTION3), expectedModel.getFilteredQAndAList());
-
-        CommandResult expectedCommandResult = new CommandResult(expectedMessage);
-
-        try {
-            command.execute(model);
-            nextCommand.execute(model);
-            EndQuizCommand exitQuizCommand = new EndQuizCommand();
-            exitQuizCommand.execute(model);
-        } catch (CommandException e) {
-            CommandResult result = new CommandResult(e.getMessage());
-            assertEquals(expectedCommandResult, result);
-        }
     }
 
     @Test
