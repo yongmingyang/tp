@@ -178,17 +178,10 @@ Expected Result:![EditResult](images/EditResult.png)
 
 The `edit 2 q/how many bones are there in an ADULT human skeleton? t/ ` input will edit the QAndA at index 2 and remove all tags as shown.
 
-### Locating questions/answers/tags by keywords: `find` (by: Yong Ming Yang)
+### Finding QAndA by keywords: `find` (by: Yong Ming Yang)
+The `find` function allows you to find existing QAndA based keywords and phrases.
 
-
-<div markdown="block" class="alert alert-info">
-
-**:bulb: Tip:**<br>
-`PHRASE` refers to words with spaces in between, for example: "nervous system"
-
-</div>
-
-If you would like to search the database based on keywords or phrases, you can do so in a few ways:
+If you would like to search the database based on keywords or phrases, you can do so in a few ways by following the respective format:
 
 1. Find QAndA with **questions** containing any of the given keywords.
 
@@ -212,6 +205,13 @@ Examples:
 * `find a/vessels, chronic disease` - finds answers containing the word vessels, and/or the phrase "chronic disease".
 * `find t/anatomy, Nervous System` - finds question sets tagged with the word "anatomy" and/or "Nervous System" (can be both), requires exact match of words (case-insensitive).
 * `find infection, nervous system` - finds question and/or answers containing the word "infection", and/or the phrase "nervous system"
+
+<div markdown="block" class="alert alert-info">
+
+**:bulb: Tip:**<br>
+`PHRASE` refers to words with spaces in between, for example: "nervous system"
+
+</div>
 
 How it should look like in the application:
 
