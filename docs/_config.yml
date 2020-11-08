@@ -1,5 +1,5 @@
 title: "Medmoriser"
-theme: jekyll-theme-cayman
+theme: minima
 
 header_pages:
   - UserGuide.md
