@@ -512,3 +512,23 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## Appendix: Effort
+
+This section explains the difficulty level, challenges faced, effort required, and achievements of Medmoriser.
+
+```
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The examples used below are explained in comparison to AB3.
+
+</div>
+```
+
+Making Medmoriser wa particularly difficult as there were many challenges we faces along the way, as explained below:
+
+1. There was a need to change a large portion of the AB3 code, as we had a completely different set of variables for Medmoriser. We had to do a lot of refactoring in the form of renaming class and attributes. The restrictions on fields in AB3 were also different from those in Medmoriser (eg. Person in AB3 cannot have special characters, but Question in Medmoriser can), and we had to edit those restrictions respectively.
+2. Implementing a quizzing feature required a deep understanding of the design of AB3. Merely manipulating variables in existing code was not sufficient here, and we had to create many new classes such as `QuizCommand`, `AnswerCommand`, `NextCommand`and `EndQuizCommand`. We also had to come up with ways to keep track of the state of the application, such as whether the user is in an ongoing quiz, whether the user has entered an answer for a quiz question, and whether a quiz question has been asked before when choosing the next question to show the user in a quiz. There was not a need for this in AB3.
+3. The large amount of new classes created and enhancements to existing commands means that a lot more effort is needed when testing Medmoriser. This is evident in the fact that we had to implement new test classes (eg. `QuizCommandTest`, `QuizCommandParserTest`, `AnswerCommandTest`, `EndQuizTest` , etc) and additional test cases in existing test classes (eg `FindCommandTest`, `ListCommandTest`, etc).
+
+
+
+Despite the difficulties mentioned above, we managed to overcome them and come up with a fully functional product that we are proud of.
