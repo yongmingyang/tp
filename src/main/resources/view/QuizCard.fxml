@@ -22,7 +22,7 @@
                 </Label>
                 <Label fx:id="question" maxHeight="-Infinity" minHeight="-Infinity" styleClass="quiz_big_label" text="\$question" wrapText="true" />
             </HBox>
-            <FlowPane fx:id="tags" orientation="HORIZONTAL" />
+            <FlowPane fx:id="tags" orientation="HORIZONTAL" alignment="CENTER"/>
             <Label fx:id="answer" maxHeight="-Infinity" minHeight="-Infinity" styleClass="quiz_small_label" text="\$answer" wrapText="true" />
         </VBox>
         <rowConstraints>
