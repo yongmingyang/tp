@@ -80,7 +80,7 @@ public class NextCommandTest {
             exitQuizCommand.execute(model);
         } catch (CommandException e) {
             CommandResult result = new CommandResult(e.getMessage());
-            assertEquals(expectedCommandResult, result );
+            assertEquals(expectedCommandResult, result);
         }
     }
 
