@@ -57,9 +57,12 @@ public class QuizCard extends UiPart<Region> {
         }
     }
 
+    /***
+     * Hide answer for Quiz Card
+     */
     public void hideAnswer() {
         this.answer.setVisible(false);
-        answer.setPrefSize(0,0);
+        answer.setPrefSize(0, 0);
     }
 
     @Override
