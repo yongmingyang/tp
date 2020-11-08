@@ -179,7 +179,7 @@ Expected Result:![EditResult](images/EditResult.png)
 The `edit 2 q/how many bones are there in an ADULT human skeleton? t/ ` input will edit the QAndA at index 2 and remove all tags as shown.
 
 ### Locating questions/answers/tags by keywords: `find` (by: Yong Ming Yang)
-
+The `find` function allows you to find existing QAndA based on question, answer or tags.
 
 <div markdown="block" class="alert alert-info">
 

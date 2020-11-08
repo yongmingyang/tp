@@ -137,15 +137,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This portion describes the implementation of the find feature.
-
-The diagram below shows the activity flow of the find feature.
-
-![FindActivityDiagram](images/FindActivityDiagram.png)
-
-The following sequence diagram shows how the find operation works:
-
-![UndoSequenceDiagram](images/FindSequenceDiagram.png)
+This portion describes the implementation of the find featur which allows the user to find QAndA sets based on the question, answer or tags.
 
 Explanation of the diagrams:
 1. As the user parses the find command through the `UI`, the `MedmoriserParser` identifies this as a `FindCommand` and passes the user input to the `FindCommandParser`.
@@ -153,15 +145,21 @@ Explanation of the diagrams:
 3. A `FindCommand` with the respective predicate such as `TagContainsKeywordPredicate` is created and returned to the `LogicManager`.
 4. The filtered list of question will be displayed on the `UI`.
 
+The following sequence diagram, Fig 1.1, shows how the find operation works:
+
+(Figure 1.1: Find Command Sequence Diagram)
+![UndoSequenceDiagram](images/FindSequenceDiagram.png)
+
+The activity diagram below, Fig 1.2, shows the activity flow of the find feature.
+
+(Figure 1.2: Find Command Activity Diagram)
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
 ### Quiz Feature (Joshua Tan)
 
 #### Implementation
 
 This feature allows the user to quiz himself/herself.
-
-The sequence diagram below shows the interactions between the Logic and model components for the quiz command.
-
-![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
 The flow of the execution is as follows:
 
@@ -176,9 +174,16 @@ identified as a `QuizCommand`. The command is then parsed by `QuizCommandParser`
 
 5. The `QuizCard` will be displayed on the `UI`.
 
-The diagram below shows the activity diagram flow for the quiz command
+The sequence diagram below, Fig 1.3, shows the interactions between the Logic and model components for the quiz command.
 
+(Figure 1.3: Quiz Command Sequence Diagram)
+![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
+
+The diagram below, Fig 1.4 shows the activity diagram flow for the quiz command
+
+(Figure 1.4: Quiz Command Activity Diagram)
 ![QuizActivityDiagram](images/QuizActivityDiagram.png)
+
 
 ### Delete Feature (Jian Ling)
 
@@ -197,15 +202,15 @@ This feature allows the user to delete a QAndA from the answer book. The flow of
 
    If any of the scenarios above occur, a `CommandException` will be thrown with their respective error messages. Othewise, a new `CommandResult` is returned, along with a success message that the specified QAndA has been successfully deleted
 
-The sequence diagram (Fig. 1.1) below shows the flow of the delete  feature.
+The sequence diagram (Fig. 1.5) below shows the flow of the delete  feature.
 
-(Figure 1.1: Delete command sequence diagram)
+(Figure 1.5: Delete Command Sequence Diagram)
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-The activity diagram (Fig 1.2) below further shows the flow of the delete feature.
+The activity diagram (Fig 1.6) below further shows the flow of the delete feature.
 
-(Figure 1.2: Delete command activity diagram)
+(Figure 1.6: Delete Command Activity Diagram)
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
@@ -215,10 +220,6 @@ The activity diagram (Fig 1.2) below further shows the flow of the delete featur
 #### Implementation
 
 This section elaborates on the implementation of the list feature.
-
-The sequence diagram below shows the interactions between the Ui and Logic components for the list command.
-
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 1. The user enters input to list all QAndAs.
 
@@ -230,8 +231,14 @@ The sequence diagram below shows the interactions between the Ui and Logic compo
 
 5. `Ui` checks the `CommandResult` object and modifies the visibility of the `Answer` label. In this case, the visibilty is set to `hidden`
 
-The following activity diagram summarises what happens when a user executes the `list` command.
+The sequence diagram below, Fig 1.7 shows the interactions between the Ui and Logic components for the list command.
 
+(Figure 1.7: List Command Sequence Diagram)
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+The following activity diagram, Fig 1.8 summarises what happens when a user executes the `list` command.
+
+(Figure 1.6: List Command Activity Diagram)
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
 #### Design considerations:
