@@ -1,6 +1,6 @@
 ---
 layout: page
-title: Medmoriser Developer Guide
+title: Developer Guide
 ---
 * Table of Contents
 {:toc}
@@ -23,11 +23,11 @@ The ***Architecture Diagram*** given above explains the high-level design of the
 
 <div markdown="span" class="alert alert-primary">
 
-:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/se-edu/addressbook-level3/tree/master/docs/diagrams/) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
+:bulb: **Tip:** The `.puml` files used to create diagrams in this document can be found in the [diagrams](https://github.com/AY2021S1-CS2103T-W15-1/tp/tree/master/docs/diagrams) folder. Refer to the [_PlantUML Tutorial_ at se-edu/guides](https://se-education.org/guides/tutorials/plantUml.html) to learn how to create and edit diagrams.
 
 </div>
 
-**`Main`** has two classes called [`Main`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/answer/Main.java) and [`MainApp`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/answer/MainApp.java). It is responsible for,
+**`Main`** has two classes called [`Main`](https://github.com/AY2021S1-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/medmoriser/Main.java) and [`MainApp`](https://github.com/AY2021S1-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/medmoriser/MainApp.java). It is responsible for:
 * At app launch: Initializes the components in the correct sequence, and connects them up with each other.
 * At shut down: Shuts down the components and invokes cleanup methods where necessary.
 
@@ -62,11 +62,11 @@ The sections below give more details of each component.
 ![Structure of the UI Component](images/UiClassDiagram.png)
 
 **API** :
-[`Ui.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/answer/ui/Ui.java)
+[`Ui.java`](https://github.com/AY2021S1-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/medmoriser/ui/Ui.java)
 
-The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `PersonListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
+The UI consists of a `MainWindow` that is made up of parts e.g.`CommandBox`, `ResultDisplay`, `QAndAListPanel`, `StatusBarFooter` etc. All these, including the `MainWindow`, inherit from the abstract `UiPart` class.
 
-The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/answer/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/resources/view/MainWindow.fxml)
+The `UI` component uses JavaFx UI framework. The layout of these UI parts are defined in matching `.fxml` files that are in the `src/main/resources/view` folder. For example, the layout of the [`MainWindow`](https://github.com/AY2021S1-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/medmoriser/ui/MainWindow.java) is specified in [`MainWindow.fxml`](https://github.com/AY2021S1-CS2103T-W15-1/tp/blob/master/src/main/resources/view/MainWindow.fxml)
 
 The `UI` component,
 
@@ -78,9 +78,9 @@ The `UI` component,
 ![Structure of the Logic Component](images/LogicClassDiagram.png)
 
 **API** :
-[`Logic.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/answer/logic/Logic.java)
+[`Logic.java`](https://github.com/AY2021S1-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/medmoriser/logic/Logic.java)
 
-1. `Logic` uses the `AddressBookParser` class to parse the user command.
+1. `Logic` uses the `MedmoriserParser` class to parse the user command.
 1. This results in a `Command` object which is executed by the `LogicManager`.
 1. The command execution can affect the `Model` (e.g. adding a qAndA).
 1. The result of the command execution is encapsulated as a `CommandResult` object which is passed back to the `Ui`.
@@ -97,7 +97,7 @@ Given below is the Sequence Diagram for interactions within the `Logic` componen
 
 ![Structure of the Model Component](images/ModelClassDiagram.png)
 
-**API** : [`Model.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/answer/model/Model.java)
+**API** : [`Model.java`](https://github.com/AY2021S1-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/medmoriser/model/Model.java)
 
 The `Model`,
 
@@ -107,7 +107,7 @@ The `Model`,
 * does not depend on any of the other three components.
 
 
-<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `AddressBook`, which `Person` references. This allows `AddressBook` to only require one `Tag` object per unique `Tag`, instead of each `Person` needing their own `Tag` object.<br>
+<div markdown="span" class="alert alert-info">:information_source: **Note:** An alternative (arguably, a more OOP) model is given below. It has a `Tag` list in the `Medmoriser`, which `QAndA` references. This allows `Medmoriser` to only require one `Tag` object per unique `Tag`, instead of each `QAndA` needing their own `Tag` object.<br>
 ![BetterModelClassDiagram](images/BetterModelClassDiagram.png)
 
 </div>
@@ -117,7 +117,7 @@ The `Model`,
 
 ![Structure of the Storage Component](images/StorageClassDiagram.png)
 
-**API** : [`Storage.java`](https://github.com/se-edu/addressbook-level3/tree/master/src/main/java/seedu/answer/storage/Storage.java)
+**API** : [`Storage.java`](https://github.com/AY2021S1-CS2103T-W15-1/tp/blob/master/src/main/java/seedu/medmoriser/storage/Storage.java)
 
 The `Storage` component,
 * can save `UserPref` objects in json format and read it back.
@@ -125,7 +125,7 @@ The `Storage` component,
 
 ### Common classes
 
-Classes used by multiple components are in the `seedu.addressbook.commons` package.
+Classes used by multiple components are in the `seedu.medmoriser.commons` package.
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -145,12 +145,12 @@ Explanation of the diagrams:
 3. A `FindCommand` with the respective predicate such as `TagContainsKeywordPredicate` is created and returned to the `LogicManager`.
 4. The filtered list of question will be displayed on the `UI`.
 
-The following sequence diagram, Fig 1.1, shows how the find operation works:
+The following sequence diagram (Fig 1.1) shows how the find operation works:
 
 (Figure 1.1: Find Command Sequence Diagram)
 ![UndoSequenceDiagram](images/FindSequenceDiagram.png)
 
-The activity diagram below, Fig 1.2, shows the activity flow of the find feature.
+The activity diagram below (Fig 1.2) shows the activity flow of the find feature.
 
 (Figure 1.2: Find Command Activity Diagram)
 ![FindActivityDiagram](images/FindActivityDiagram.png)
@@ -174,12 +174,12 @@ identified as a `QuizCommand`. The command is then parsed by `QuizCommandParser`
 
 5. The `QuizCard` will be displayed on the `UI`.
 
-The sequence diagram below, Fig 1.3, shows the interactions between the Logic and model components for the quiz command.
+The sequence diagram below (Fig 1.3) shows the interactions between the Logic and model components for the quiz command.
 
 (Figure 1.3: Quiz Command Sequence Diagram)
 ![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
 
-The diagram below, Fig 1.4 shows the activity diagram flow for the quiz command
+The diagram below (Fig 1.4) shows the activity diagram flow for the quiz command
 
 (Figure 1.4: Quiz Command Activity Diagram)
 ![QuizActivityDiagram](images/QuizActivityDiagram.png)
@@ -202,7 +202,7 @@ This feature allows the user to delete a QAndA from the answer book. The flow of
 
    If any of the scenarios above occur, a `CommandException` will be thrown with their respective error messages. Othewise, a new `CommandResult` is returned, along with a success message that the specified QAndA has been successfully deleted
 
-The sequence diagram (Fig. 1.5) below shows the flow of the delete  feature.
+The sequence diagram (Fig. 1.5) below shows the flow of the delete feature.
 
 (Figure 1.5: Delete Command Sequence Diagram)
 
@@ -231,12 +231,12 @@ This section elaborates on the implementation of the list feature.
 
 5. `Ui` checks the `CommandResult` object and modifies the visibility of the `Answer` label. In this case, the visibilty is set to `hidden`
 
-The sequence diagram below, Fig 1.7 shows the interactions between the Ui and Logic components for the list command.
+The sequence diagram below (Fig 1.7) shows the interactions between the Ui and Logic components for the list command.
 
 (Figure 1.7: List Command Sequence Diagram)
 ![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
-The following activity diagram, Fig 1.8 summarises what happens when a user executes the `list` command.
+The following activity diagram (Fig 1.8) summarises what happens when a user executes the `list` command.
 
 (Figure 1.6: List Command Activity Diagram)
 ![ListActivityDiagram](images/ListActivityDiagram.png)
@@ -306,9 +306,9 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 **MSS**
 
-1. User adds a new Q&A into the database
+1. User adds a new QAndA into the database
 
-2. Medmoriser adds the new Q&A and displays a success message
+2. Medmoriser adds the new QAndA and displays a success message
 
    Use case ends.
 
@@ -322,27 +322,27 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 
 
-**Use case: UC02 - View all Q&As**
+**Use case: UC02 - View all QAndAs**
 
 **MSS**
 
-1. User requests to view all Q&As
+1. User requests to view all QAndAs
 
-2. Medmoriser shows a list of Q&As in the database
+2. Medmoriser shows a list of QAndAs in the database
 
    Use case ends.
 
 
 
-**Use case: UC03 - Delete a Q&A**
+**Use case: UC03 - Delete a QAndA**
 
 **MSS**
 
-1. User requests to view all Q&As
+1. User requests to view all QAndAs
 
-2. Medmoriser shows a list of Q&As in the database
+2. Medmoriser shows a list of QAndAs in the database
 
-3. User requests to delete a Q&A at a specific index on the list
+3. User requests to delete a QAndA at a specific index in the list
 
 4. Medmoriser deletes the Q&A and displays success message
 
@@ -360,17 +360,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: UC04 - Add a tag to a Q&A**
+**Use case: UC04 - Add a tag to a QAndA**
 
 **MSS**
 
-1. User requests to view all Q&As
+1. User requests to view all QAndAs
 
-2. Medmoriser shows a list of Q&As in the database
+2. Medmoriser shows a list of QAndAs in the database
 
-3. User requests to add a tag to a Q&A at a specific index on the list
+3. User requests to add a tag to a QAndA at a specific index in the list
 
-4. Medmoriser adds the specified tag to the Q&A and displays success message
+4. Medmoriser adds the specified tag to the QAndA and displays success message
 
    Use case ends.
 
@@ -392,17 +392,17 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: UC05 - Edit a Q&A**
+**Use case: UC05 - Edit a QAndA**
 
 **MSS**
 
-1. User requests to view all Q&As
+1. User requests to view all QAndAs
 
-2. Medmoriser shows a list of Q&As in the database
+2. Medmoriser shows a list of QAndAs in the database
 
-3. User requests to edit a Q&A at a specific index on the list
+3. User requests to edit a QAndA at a specific index in the list
 
-4. Medmoriser edits the Q&A at the specified index according to the user's new input and displays success message
+4. Medmoriser edits the QAndA at the specified index according to the user's new input and displays success message
 
    Use case ends
 
@@ -424,21 +424,21 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
     Use case resumes at step 2.
 
-**Use case: UC06 - Find a Q&A**
+**Use case: UC06 - Find a QAndA**
 
 **MSS**
 
 1. User searches for a key word or phrase
 
-2. Medmoriser shows a list of Q&As with that specified word or phrase
+2. Medmoriser shows a list of QAndAs with that specified word or phrase
 
    Use case ends
 
 **Extensions**
 
-- 2a. There are no Q&As that contain the specified word or phrase
+- 2a. There are no QAndAs that contain the specified word or phrase
 
-  - 2a1. Medmoriser displays message that no Q&As found
+  - 2a1. Medmoriser displays message that no QAndAs found
 
     Use case ends
 
@@ -446,19 +446,19 @@ Priorities: High (must have) - `* * *`, Medium (nice to have) - `* *`, Low (unli
 
 ### Non-Functional Requirements
 
-1.  Data bank should be able to hold large number (500+) pairs of question and answers without any sluggish performance
+1.  Data bank should be able to hold large number (500+) pairs of QAndAs without any sluggish performance
     for typical usage.
 2.  Users should be able to retrieve answers to a question with a single command
-3.  User should be able to add a set of question and answers easily and efficiently through a user-friendly GUI
+3.  User should be able to add a QAndA easily and efficiently through a user-friendly GUI
 4.  Have a clean user interface when it comes to reviewing questions and answers
 
 *{More to be added}*
 
 ### Glossary
 
-* **Question Set**: A set containing a question and answer(s)
-* **Question**: A question, which may have one or more answers
-* **Answer**: An answer to a question
+* **QAndA**: A set containing a question and answer
+* **Question**: A question belonging to a QAndA
+* **Answer**: An answer to a question, both of which belong to the same QAndA
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -477,7 +477,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample QAndAs. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -486,49 +486,127 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Finding a QAndA
 
-### Deleting a qAndA
+1. Find QAndAs based on keywords in the question
 
-1. Deleting a qAndA while all qAndAs are being shown
+    1. Prerequisites: QAndA(s) with the word `heart` in the question
 
-   1. Prerequisites: List all qAndAs using the `list` command. Multiple qAndAs in the list.
+    1. Test case: `find q/heart`
+       Expected: QAndA(s) with `heart` in the question are shown.
+   
+1. Find QAndAs based on keywords in the answer
+    
+    1. Prerequisites: 2 different QAndAs, 1 with the word `blood` in the answer
+        and the other with `respiratory function` in the answer
+    
+    1. Test case: `find a/blood, respiratory function`<br>
+       Expected: Both QAndAs with the corresponding keywords are shown. 
+       (i.e. the QAndA with `blood` in the answer and the QAndA with `respiratory function` in the answer are both shown)
+
+1. Find QAndAs based on keywords in the tag
+
+    1. Prerequisites: QAndA(s) with the tag `immune system`
+    
+    1. Test case: `find t/immune system`<br>
+       Expected: QAndA(s) with the tag `immune system` are shown.
+       
+### Deleting a QAndA
+
+1. Deleting a QAndA while all QAndAs are being shown
+
+   1. Prerequisites: List all QAndAs using the `list` command. Multiple QAndAs in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First contact is deleted from the list. Details of the deleted contact shown in the status message. Timestamp in the status bar is updated.
+      Expected: First QAndA is deleted from the list. Details of the deleted QAndA shown in the result box.
 
    1. Test case: `delete 0`<br>
-      Expected: No qAndA is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No QAndA is deleted. Error details shown in the result box.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting QAndA while only certain QAndAs are being shown
+
+    1. Prerequisites: Multiple QAndAs with the word `heart` in the question. Find all QAndAs with `heart` in the 
+        question using the `find q/heart` command.
+        
+    1. Test case: `delete 2`<br>
+       Expected: Second QAndA is deleted from the list. Details of the deleted QAndA shown in the result box.
+       The window continues to display the remaining QAndAs with `heart` in the question.
+       
+### Quizzing
+
+1. Starting a quiz
+
+    1. Prerequisites: QAndA(s) with the `heart` tag. **No** QAndA with the `missing` tag.
+    
+    1. Test case: `quiz t/heart`<br>
+       Expected: A card showing a QAndA with the `heart` tag appears.
+       
+    1. Test case: `quiz t/missing`<br>
+       Expected: No QAndA is shown. Error message shown in the result box.
+       
+1. Attempting a quiz
+
+    1. Prerequisites: QAndA(s) with the `immune system` tag. Start the quiz by following step 2 in the previous
+        test case (i.e. `quiz t/immune system`)
+    
+    1. Test case: `answer white blood cell`<br>
+       Expected: The card displaying the quizzed QAndA now shows the correct answer to the question.
+                 The input answer is displayed in the result box.
+                 
+    1. End the quiz with `endquiz`. Repeat step 1. Test case: `white blood cell`<br>
+       Expected: The card displaying the quizzed QAndA remains unchanged. Error message shown in result box.
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Remember to `endquiz` and achieve the prerequisites when starting a new test case.
+</div>
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Initial setup of data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Download the jar file and move it into an empty folder
 
-1. _{ more test cases …​ }_
+   1. Double-click the jar file.<br>
+   Expected: Shows the GUI with a set of sample QAndAs.
+   
+   1. Exit the app with the `exit` command.
+
+1. Simulating a missing data file
+
+   1. Locate the `data` folder and delete the `medmoriser.json` file
+
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The app shows the GUI with the same set of sample QAndAs. A new `medmoriser.json` file is created in
+                the `data` folder.
+
+1. Simulating a corrupted data file
+
+   1. Locate the `data` folder and open the `medmoriser.json` file with an editor of your choice. Delete all the data
+      and replace it with random characters (e.g. `abcdef123456`), then save the file.
+
+   1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: Shows the GUI with no QAndAs.
+       
+   1. Add a QAndA into the app. Exit the app with the `exit` command.
+      Expected: The random characters in `medmoriser.json`  are replaced with the json data of the new QAndA.
 
 ## Appendix: Effort
 
 This section explains the difficulty level, challenges faced, effort required, and achievements of Medmoriser.
 
-```
-<div markdown="span" class="alert alert-info">:information_source: **Note:** The examples used below are explained in comparison to AB3.
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** The examples used below are explained in comparison to AB3.
 
 </div>
-```
 
-Making Medmoriser wa particularly difficult as there were many challenges we faces along the way, as explained below:
+
+Making Medmoriser was particularly difficult as there were many challenges we faced along the way:
 
 1. There was a need to change a large portion of the AB3 code, as we had a completely different set of variables for Medmoriser. We had to do a lot of refactoring in the form of renaming class and attributes. The restrictions on fields in AB3 were also different from those in Medmoriser (eg. Person in AB3 cannot have special characters, but Question in Medmoriser can), and we had to edit those restrictions respectively.
 2. Implementing a quizzing feature required a deep understanding of the design of AB3. Merely manipulating variables in existing code was not sufficient here, and we had to create many new classes such as `QuizCommand`, `AnswerCommand`, `NextCommand`and `EndQuizCommand`. We also had to come up with ways to keep track of the state of the application, such as whether the user is in an ongoing quiz, whether the user has entered an answer for a quiz question, and whether a quiz question has been asked before when choosing the next question to show the user in a quiz. There was not a need for this in AB3.
-3. The large amount of new classes created and enhancements to existing commands means that a lot more effort is needed when testing Medmoriser. This is evident in the fact that we had to implement new test classes (eg. `QuizCommandTest`, `QuizCommandParserTest`, `AnswerCommandTest`, `EndQuizTest` , etc) and additional test cases in existing test classes (eg `FindCommandTest`, `ListCommandTest`, etc).
-
-
+3. The numerous new classes created and enhancements to existing commands meant that a lot more effort was required to implement testing for Medmoriser. This is evident in our implementation of new test classes (eg. `QuizCommandTest`, `QuizCommandParserTest`, `AnswerCommandTest`, `EndQuizTest` , etc) and additional test cases in existing test classes (eg `FindCommandTest`, `ListCommandTest`, etc).
 
 Despite the difficulties mentioned above, we managed to overcome them and come up with a fully functional product that we are proud of.
