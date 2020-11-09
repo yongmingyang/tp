@@ -477,7 +477,7 @@ testers are expected to do more *exploratory* testing.
 
    1. Download the jar file and copy into an empty folder
 
-   1. Double-click the jar file Expected: Shows the GUI with a set of sample contacts. The window size may not be optimum.
+   1. Double-click the jar file Expected: Shows the GUI with a set of sample QAndAs. The window size may not be optimum.
 
 1. Saving window preferences
 
@@ -486,32 +486,112 @@ testers are expected to do more *exploratory* testing.
    1. Re-launch the app by double-clicking the jar file.<br>
        Expected: The most recent window size and location is retained.
 
-1. _{ more test cases …​ }_
+### Finding a QAndA
 
-### Deleting a qAndA
+1. Find QAndAs based on keywords in the question
 
-1. Deleting a QAndA while all qAndAs are being shown
+    1. Prerequisites: QAndA(s) with the word `heart` in the question
+
+    1. Test case: `find q/heart`
+       Expected: QAndA(s) with `heart` in the question are shown.
+   
+1. Find QAndAs based on keywords in the answer
+    
+    1. Prerequisites: 2 different QAndAs, 1 with the word `blood` in the answer
+        and the other with `respiratory function` in the answer
+    
+    1. Test case: `find a/blood, respiratory function`<br>
+       Expected: Both QAndAs with the corresponding keywords are shown. 
+       (i.e. the QAndA with `blood` in the answer and the QAndA with `respiratory function` in the answer are both shown)
+
+1. Find QAndAs based on keywords in the tag
+
+    1. Prerequisites: QAndA(s) with the tag `immune system`
+    
+    1. Test case: `find t/immune system`<br>
+       Expected: QAndA(s) with the tag `immune system` are shown.
+       
+### Deleting a QAndA
+
+1. Deleting a QAndA while all QAndAs are being shown
 
    1. Prerequisites: List all QAndAs using the `list` command. Multiple QAndAs in the list.
 
    1. Test case: `delete 1`<br>
-      Expected: First QAndA is deleted from the list. Details of the deleted QAndA shown in the status message.
+      Expected: First QAndA is deleted from the list. Details of the deleted QAndA shown in the result box.
 
    1. Test case: `delete 0`<br>
-      Expected: No QAndA is deleted. Error details shown in the status message. Status bar remains the same.
+      Expected: No QAndA is deleted. Error details shown in the result box.
 
    1. Other incorrect delete commands to try: `delete`, `delete x`, `...` (where x is larger than the list size)<br>
       Expected: Similar to previous.
 
-1. _{ more test cases …​ }_
+1. Deleting QAndA while only certain QAndAs are being shown
+
+    1. Prerequisites: Multiple QAndAs with the word `heart` in the question. Find all QAndAs with `heart` in the 
+        question using the `find q/heart` command.
+        
+    1. Test case: `delete 2`<br>
+       Expected: Second QAndA is deleted from the list. Details of the deleted QAndA shown in the result box.
+       The window continues to display the remaining QAndAs with `heart` in the question.
+       
+### Quizzing
+
+1. Starting a quiz
+
+    1. Prerequisites: QAndA(s) with the `heart` tag. **No** QAndA with the `missing` tag.
+    
+    1. Test case: `quiz t/heart`<br>
+       Expected: A card showing a QAndA with the `heart` tag appears.
+       
+    1. Test case: `quiz t/missing`<br>
+       Expected: No QAndA is shown. Error message shown in the result box.
+       
+1. Attempting a quiz
+
+    1. Prerequisites: QAndA(s) with the `immune system` tag. Start the quiz by following step 2 in the previous
+        test case (i.e. `quiz t/immune system`)
+    
+    1. Test case: `answer white blood cell`<br>
+       Expected: The card displaying the quizzed QAndA now shows the correct answer to the question.
+                 The input answer is displayed in the result box.
+                 
+    1. End the quiz with `endquiz`. Repeat step 1. Test case: `white blood cell`<br>
+       Expected: The card displaying the quizzed QAndA remains unchanged. Error message shown in result box.
+
+<div markdown="span" class="alert alert-info">:information_source: 
+**Note:** Remember to `endquiz` and achieve the prerequisites when starting a new test case.
+</div>
 
 ### Saving data
 
-1. Dealing with missing/corrupted data files
+1. Initial setup of data files
 
-   1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
+   1. Download the jar file and move it into an empty folder
 
-1. _{ more test cases …​ }_
+   1. Double-click the jar file.<br>
+   Expected: Shows the GUI with a set of sample QAndAs.
+   
+   1. Exit the app with the `exit` command.
+
+1. Simulating a missing data file
+
+   1. Locate the `data` folder and delete the `medmoriser.json` file
+
+   1. Re-launch the app by double-clicking the jar file.<br>
+      Expected: The app shows the GUI with the same set of sample QAndAs. A new `medmoriser.json` file is created in
+                the `data` folder.
+
+1. Simulating a corrupted data file
+
+   1. Locate the `data` folder and open the `medmoriser.json` file with an editor of your choice. Delete all the data
+      and replace it with random characters (e.g. `abcdef123456`), then save the file.
+
+   1. Re-launch the app by double-clicking the jar file.<br>
+       Expected: Shows the GUI with no QAndAs.
+       
+   1. Add a QAndA into the app. Exit the app with the `exit` command.
+      Expected: The random characters in `medmoriser.json`  are replaced with the json data of the new QAndA.
 
 ## Appendix: Effort
 
