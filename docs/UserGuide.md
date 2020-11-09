@@ -12,8 +12,26 @@ Hi Medical Student! Welcome to the User Guide for **Medmoriser**!
 This guide aims to orientate you to the features of **Medmoriser**. If you're looking for a quiz
 management system, this guide will give you all the information you need to get started with **Medmoriser**.
 
-* Table of Contents
-{:toc}
+Table of Contents:
+* [How to use this guide](#how-to-use-this-guide)
+* [Features](#features)
+    * [Help](#viewing-help-help)
+    * [Adding a QAndA](#adding-a-qanda-add-by-cheng-jiyuqing)
+    * [Delete a QAndA](#deleting-a-qanda-delete-by-teng-jian-ling)
+    * [List all QAndAs](#listing-all-qandas-list-by-jonathan-foo)
+    * [Edit a QAndA](#editing-a-qanda-edit-by-teng-jian-ling)
+    * [Find QAndAs](#finding-qanda-by-keywords-find-by-yong-ming-yang)
+    * [Clear all entries](#clearing-all-entries-clear)
+    * [Start a Quiz](#starting-a-quiz-quiz-by-joshua-tan)
+    * [Answering a Quiz Question](#answering-a-quiz-question-answer-by-joshua-tan)
+    * [Next Quiz question](#moving-to-next-quiz-question-next-by-teng-jian-ling)
+    * [End a Quiz](#ending-a-quiz-endquiz-by-joshua-tan)
+    * [Exit the Application](#exiting-the-program-exit)
+    * [Saving data](#saving-the-data)
+    * [Archive (Coming soon)](#archiving-data-files-coming-soon)
+* [FAQ](#faq)
+* [Command Summary](#command-summary)
+
 
 --------------------------------------------------------------------------------------------------------------------
 
@@ -62,7 +80,7 @@ If you need to view the help page, this command shows a message explaining how t
 
 Format: `help`
 
-### Adding a qAndA: `add` (by: Cheng Jiyuqing)
+### Adding a QAndA: `add` (by: Cheng Jiyuqing)
 
 You can add a question and answer pair to the database. You can tag this pair with a tag / tags of your choice. It is also okay to not tag the question at all.
 
@@ -73,19 +91,15 @@ Examples:
 * `add q/what organ system is the lungs part of? a/respiratory system? t/Body systems t/Respiratory system.`
 * `add q/what is the function of the heart? a/It's the muscle at the centre of your circulation system, pumping blood around your body as your heart beats. This blood sends oxygen and nutrients to all parts of your body, and carries away unwanted carbon dioxide and waste products.`
 
-How it should look in the application
+How it should look in the application:
 
 Add with tag:
+
 ![Add With Tag](images/AddCommandEg1.png)
 
 Expected result:
-![Add With Tag](images/AddCommandEg2.png)
-                    
-Add with tag:
-![Add With Tag](images/AddCommandEg3.png)
 
-Expected result:
-![Add With Tag](images/AddCommandEg4.png)
+![Add With Tag](images/AddCommandEg2.png)
 
 ### Deleting a QAndA: `delete` (by: Teng Jian Ling)
 
@@ -110,17 +124,17 @@ The index **must be a positive integer** (1, 2, 3, ...) within the range of the 
 
 How it should look in the application:
 
-Entering the command:![DeleteContext](images/DeleteContext.png)
+Entering the command:
 
+![DeleteContext](images/DeleteContext.png)
 
+Expected Result:
 
-Expected Result:![DeleteResult](images/DeleteResult.png)
+![DeleteResult](images/DeleteResult.png)
 
 The `delete 2 ` command deletes the 2nd QAndA in the database, as shown above.
 
-
-
-### Listing all Questions & Answers: `list` (by: Jonathan Foo)
+### Listing all QAndAs: `list` (by: Jonathan Foo)
 
 You can use this command to view all the QAndAs you have added.
 
@@ -170,11 +184,13 @@ You can remove all the QAndA's tags by typing `t/` without specifying any tags a
 
 How it should look in the application:
 
-Entering the edit command:![EditContext](images/EditContext.png)
+Entering the edit command:
 
+![EditContext](images/EditContext.png)
 
+Expected Result:
 
-Expected Result:![EditResult](images/EditResult.png)
+![EditResult](images/EditResult.png)
 
 The `edit 2 q/how many bones are there in an ADULT human skeleton? t/ ` input will edit the QAndA at index 2 and remove all tags as shown.
 
@@ -223,16 +239,17 @@ Expected Result:
 
 The input `find t/Chronic diseases, Diagnosis` will return the questions with the tag "Chronic Diseases" and/or "Diagnosis"
 as shown.
+
 ### Clearing all entries: `clear`
 
 If you want to reset your question book, this command clears all existing entries.
 
 Format: `clear`
 
-### Quiz yourself on a question: `quiz` (by: Joshua Tan)
+### Starting a quiz: `quiz` (by: Joshua Tan)
 
 You will be able to test yourself on your knowledge from the questions that you added into the application.
-Medmoriser will then randomly select a question to quiz you based on the keywords you provided.
+Medmoriser will randomly select a question to quiz you based on the keywords you provided.
 
 1. Quiz a QAndA with **questions** containing any of the given keywords.
 
@@ -245,6 +262,13 @@ Medmoriser will then randomly select a question to quiz you based on the keyword
 Examples:
 * `quiz q/immunology` - randomly quizzes a question containing the word "immunology".
 * `quiz t/surgery, injuries` - randomly quizzes a question that was tagged with the word "surgery" and/or "injuries" (can be both), requires exact match of words (case-insensitive).
+
+<div markdown="block" class="alert alert-info">
+
+**:bulb: Tip:**<br>
+To run other commands other than `next` or `answer`, you have to first `endquiz`.
+
+</div>
 
 How it should look like in the application:
 
