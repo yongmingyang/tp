@@ -30,7 +30,7 @@ Given below are my contributions to the project.
     * Credits: The find functionality makes use of code from the following links:
         1. https://stackoverflow.com/questions/36793397/check-if-string-contains-word-not-substring.
   * Refactoring instances of `Address` to `Answer`, `UniquePersonList` to `UniqueQuestionSetList`, `AddressBook` to `Medmoriser` and `Person` to `QuestionSet` (later changed to QAndA by Jian Ling): [#36](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/36)
-  * Updated GUI, for quizing part in particular: [#165](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/165), [#172](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/172), [#46](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/46)
+  * Updated GUI, for quizing part in particular: [#46](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/46), [#165](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/165), [#172](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/172)
     
 * **Documentation**:
   * User Guide:
@@ -44,6 +44,7 @@ Given below are my contributions to the project.
 
 * **Community**:
   * PRs reviewed (with non-trivial review comments): [#38](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/38), [#62](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/62)
-  * Contributed to forum discussions (examples: [#127](https://github.com/nus-cs2103-AY2021S1/forum/issues/127), [#349](https://github.com/nus-cs2103-AY2021S1/forum/issues/349), [#128](https://github.com/nus-cs2103-AY2021S1/forum/issues/128)
+  * Contributed to forum discussions (examples: [#127](https://github.com/nus-cs2103-AY2021S1/forum/issues/127), [#128](https://github.com/nus-cs2103-AY2021S1/forum/issues/128), [#349](https://github.com/nus-cs2103-AY2021S1/forum/issues/349)
   * Reported bugs for other teams: [#232](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/232), [#234](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/234), [#233](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/233), [#235](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/235), [#236](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/236), [#237](https://github.com/AY2021S1-CS2103T-T12-3/tp/issues/237)    
+  
   
