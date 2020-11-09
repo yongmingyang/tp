@@ -32,6 +32,13 @@ public class FindCommandParser implements Parser<FindCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
         }
 
+        if (args.contains("q/") && args.contains("t/") && args.contains("a/")
+                || args.contains("q/") && args.contains("a/") || args.contains("q/") && args.contains("t/")
+                || args.contains("t/") && args.contains("a/")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+        }
+
         if (!containsMaximumOnce(args, PREFIX_QUESTION)) {
             throw new ParseException(String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_ONE_PREFIX));
         }

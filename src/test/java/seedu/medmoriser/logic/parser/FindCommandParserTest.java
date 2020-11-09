@@ -14,6 +14,8 @@ import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
+import javax.print.attribute.standard.Fidelity;
+
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
@@ -77,5 +79,26 @@ public class FindCommandParserTest {
 
         // multiple whitespaces after t/
         assertParseSuccess(parser, "t/  ", expectedFindCommand);
+    }
+
+    @Test
+    public void parse_multipleDifferentArgs_throwsParseException() {
+        assertParseFailure(parser, "q/heart a/blood t/body",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_USAGE));
+    }
+
+    @Test
+    public void parse_multipleSameArgs_throwsParseException() {
+        // multiple q/
+        assertParseFailure(parser, "q/heart q/blood",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_ONE_PREFIX));
+
+        // multiple a/
+        assertParseFailure(parser, "a/pump blood a/breathe",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_ONE_PREFIX));
+
+        // multiple t/
+        assertParseFailure(parser, "t/immune system t/cardiovascular t/skeleton",
+                String.format(MESSAGE_INVALID_COMMAND_FORMAT, FindCommand.MESSAGE_ONE_PREFIX));
     }
 }
