@@ -28,6 +28,7 @@ Given below are my contributions to the project.
     * Added introduction to each section [\#95](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/95)
     * Added details and photos to `Add` feature. [\#158](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/158)
   * Developer Guide:
+    * Addded architecture diagram [\#182](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/182)
     * Added implementation details of the `Add` feature. [\#182](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/182)
     * Added sequence diagram for `Add` Feature (Figure 1.1) [\#182](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/182)
     * Added User Stories, Value Props and target audience. [\#33](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/33)
