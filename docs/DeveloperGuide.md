@@ -137,7 +137,7 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This portion describes the implementation of the add feature which allows the user to add new QAndA sets with the question, answer and/or tags.
+This portion describes the implementation of the add feature which allows the user to add new QAndAs with the question, answer and tags(optional).
 
 Explanation of the diagrams:
 
