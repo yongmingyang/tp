@@ -9,7 +9,7 @@
         <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10" prefWidth="150" />
         </columnConstraints>
-        <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" minHeight="105" style="-fx-background-radius: 5px;" GridPane.columnIndex="0">
+        <VBox alignment="CENTER" maxHeight="Infinity" minHeight="425" style="-fx-background-radius: 5px;" GridPane.columnIndex="0">
             <padding>
                 <Insets bottom="5" left="15" right="5" top="5" />
             </padding>
@@ -31,7 +31,10 @@
                 </Label>
                 <Label fx:id="answer" maxHeight="-Infinity" minHeight="-Infinity" styleClass="quiz_small_label" text="\$answer" wrapText="true" />
             </HBox>
-            <FlowPane fx:id="tags" orientation="HORIZONTAL" alignment="BOTTOM_RIGHT" style="-fx-padding: 10; -fx-translate-y: 5px"/>
+            <padding>
+                <Insets bottom="15" left="10" right="10" top="20" />
+            </padding>
+            <FlowPane fx:id="tags" orientation="HORIZONTAL" alignment="BOTTOM_RIGHT" style="-fx-padding: 10, 20, 10, 10; -fx-translate-y: 20px;"/>
         </VBox>
         <rowConstraints>
             <RowConstraints />

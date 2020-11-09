@@ -10,7 +10,7 @@
 
 <fx:root minHeight="600" minWidth="450" onCloseRequest="#handleExit" title="Medmoriser" type="javafx.stage.Stage" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1">
   <icons>
-    <Image url="@/images/address_book_32.png" />
+    <Image url="@/images/HealthEmoticon.PNG"/>
   </icons>
   <scene>
     <Scene fill="#2c2d33">
@@ -29,19 +29,18 @@
           </Menu>
         </MenuBar>
 
-
-        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: #78797d; -fx-background-radius: 5px; -fx-border-radius: 5px;" styleClass="pane-with-border" VBox.vgrow="NEVER">
-          <padding>
-            <Insets bottom="5" left="10" right="10" top="5" />
-          </padding>
-        </StackPane>
-
         <VBox fx:id="qAndAList" minWidth="340" prefWidth="340" style="-fx-background-color: #78797d;" styleClass="pane-with-border" VBox.vgrow="ALWAYS">
           <padding>
             <Insets bottom="10" left="10" right="10" top="10" />
           </padding>
           <StackPane fx:id="questionSetListPanelPlaceholder" style="-fx-background-color: #78797d; -fx-background-radius: 5px;" VBox.vgrow="ALWAYS" />
         </VBox>
+
+        <StackPane fx:id="resultDisplayPlaceholder" maxHeight="100" minHeight="100" prefHeight="100" style="-fx-background-color: #78797d;"  styleClass="pane-with-border" VBox.vgrow="NEVER">
+          <padding>
+            <Insets bottom="10" left="10" right="10" top="5" />
+          </padding>
+        </StackPane>
 
         <StackPane fx:id="commandBoxPlaceholder" style="-fx-background-color: #78797d; -fx-background-radius: 5px;" styleClass="pane-with-border" VBox.vgrow="NEVER">
           <padding>
