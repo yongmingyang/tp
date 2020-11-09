@@ -2,34 +2,8 @@
 layout: page
 title: Developer Guide
 ---
-Table of Contents:
-  * [Setting up, getting started](#setting-up-getting-started)
-  * [Design](#design)
-    * [Architecture](#architecture)
-    * [UI Component](#ui-component)
-    * [Logic Component](#logic-component)
-    * [Model Component](#model-component)
-    * [Storage Component](#storage-component)
-    * [Common classes](#common-classes)
-  * [Implementation](#implementation)
-    * [Find Feature (Ming Yang)](#find-feature-ming-yang)
-    * [Quiz Feature (Joshua Tan)](#quiz-feature-joshua-tan)
-    * [Delete Feature (Jian Ling)](#delete-feature-jian-ling)
-    * [List Feature (Jonathan Foo)](#list-feature-jonathan-foo)
-  * [Documentation, logging, testing, configuration, dev-ops](#documentation-logging-testing-configuration-dev-ops)
-  * [Appendix: Requirements](#appendix-requirements)
-    * [Product scope](#product-scope)
-    * [User Stories](#user-stories)
-    * [Use Cases](#use-cases)
-    * [Non-Functional Requirements](#non-functional-requirements)
-    * [Glossary](#glossary)
-  * [Appendix: Instructions for manual testing](#appendix-instructions-for-manual-testing)
-    * [Launch and shutdown](#launch-and-shutdown)
-    * [Finding a QAndA](#finding-a-qanda)
-    * [Quizzing](#quizzing)
-    * [Deleting a QAndA](#deleting-a-qanda)
-    * [Saving Data](#saving-data)
-  * [Appendix: Effort](#appendix-effort)
+* Table of Contents:
+{:toc}
   
 --------------------------------------------------------------------------------------------------------------------
 
