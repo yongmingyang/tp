@@ -139,12 +139,17 @@
     -fx-font-family: "Segoe UI Semibold";
     -fx-font-size: 30px;
     -fx-text-fill: #bbbcbe;
+    -fx-translate-y: 5px;
 }
 
 .quiz_small_label {
     -fx-font-family: "Segoe UI";
     -fx-font-size: 25px;
-    -fx-text-fill: #bbbcbe;
+    -fx-text-fill: black;
+    -fx-padding: 10px;
+    -fx-background-color: #7bded3;
+    -fx-background-radius: 15px;
+    -fx-translate-y: 10px;
 }
 
 .stack-pane {

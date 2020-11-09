@@ -23,7 +23,7 @@
                 <Label fx:id="question" maxHeight="-Infinity" minHeight="-Infinity" styleClass="quiz_big_label" text="\$question" wrapText="true" />
             </HBox>
             <HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" maxWidth="1100" spacing="5">
-                <Label fx:id="answerbox" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="quiz_big_label">
+                <Label fx:id="answerbox" alignment="TOP_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
                     <minWidth>
                         <!-- Ensures that the label text is never truncated -->
                         <Region fx:constant="USE_PREF_SIZE" />
@@ -31,7 +31,7 @@
                 </Label>
                 <Label fx:id="answer" maxHeight="-Infinity" minHeight="-Infinity" styleClass="quiz_small_label" text="\$answer" wrapText="true" />
             </HBox>
-            <FlowPane fx:id="tags" orientation="HORIZONTAL" alignment="BOTTOM_RIGHT" style="-fx-padding: 10"/>
+            <FlowPane fx:id="tags" orientation="HORIZONTAL" alignment="BOTTOM_RIGHT" style="-fx-padding: 10; -fx-translate-y: 5px"/>
         </VBox>
         <rowConstraints>
             <RowConstraints />
