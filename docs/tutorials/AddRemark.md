@@ -292,7 +292,7 @@ While the changes to code may be minimal, the test data will have to be updated 
 
 <div markdown="span" class="alert alert-warning">
 
-:exclamation: You must delete AddressBook’s storage file located at `/data/medmoriser.json` before running it! Not doing so will cause AddressBook to default to an empty answer book!
+:exclamation: You must delete Medmoriser’s storage file located at `/data/medmoriser.json` before running it! Not doing so will cause Medmoriser to default to an empty question bank!
 
 </div>
 
