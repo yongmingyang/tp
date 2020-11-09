@@ -12,32 +12,32 @@ import seedu.medmoriser.model.qanda.Question;
 import seedu.medmoriser.model.tag.Tag;
 
 /**
- * Contains utility methods for populating {@code AddressBook} with sample data.
+ * Contains utility methods for populating {@code Medmoriser} with sample data.
  */
 public class SampleDataUtil {
     public static QAndA[] getSampleQuestionSets() {
         return new QAndA[] {
-            new QAndA(new Question("Alex Yeoh"), new Answer("Blk 30 Geylang Street 29, #06-40"),
-                getTagSet("friends")),
-            new QAndA(new Question("Bernice Yu"), new Answer("Blk 30 Lorong 3 Serangoon Gardens, #07-18"),
-                getTagSet("colleagues", "friends")),
-            new QAndA(new Question("Charlotte Oliveiro"), new Answer("Blk 11 Ang Mo Kio Street 74, #11-04"),
-                getTagSet("neighbours")),
-            new QAndA(new Question("David Li"), new Answer("Blk 436 Serangoon Gardens Street 26, #16-43"),
-                getTagSet("family")),
-            new QAndA(new Question("Irfan Ibrahim"), new Answer("Blk 47 Tampines Street 20, #17-35"),
-                getTagSet("classmates")),
-            new QAndA(new Question("Roy Balakrishnan"), new Answer("Blk 45 Aljunied Street 85, #11-31"),
-                getTagSet("colleagues"))
+            new QAndA(new Question("What is the largest organ in the human body?"), new Answer("Skin"),
+                getTagSet("anatomy")),
+            new QAndA(new Question("What is the largest bone in the body?"), new Answer("Femur"),
+                getTagSet("anatomy", "skeletal system")),
+            new QAndA(new Question("Which type of cell is found in the brain?"), new Answer("Neurons"),
+                getTagSet("neurology")),
+            new QAndA(new Question("People with diabetes are unable to produce or use ______ properly"),
+                    new Answer("Insulin"), getTagSet("disease")),
+            new QAndA(new Question("_________ is a rare disorder in which the blood does not clot properly"),
+                    new Answer("Hemophilia"), getTagSet("cardiology")),
+            new QAndA(new Question("Encephalitis refers to inflammation of which organ in the body?"),
+                    new Answer("Brain"), getTagSet("neurology"))
         };
     }
 
     public static ReadOnlyMedmoriser getSampleMedmoriser() {
-        Medmoriser sampleAb = new Medmoriser();
+        Medmoriser sampleMedmoriser = new Medmoriser();
         for (QAndA sampleQAndA : getSampleQuestionSets()) {
-            sampleAb.addQAndA(sampleQAndA);
+            sampleMedmoriser.addQAndA(sampleQAndA);
         }
-        return sampleAb;
+        return sampleMedmoriser;
     }
 
     /**

@@ -93,8 +93,8 @@ public class QuizCommandTest {
         CommandResult expectedCommandResult = new CommandResult(expectedMessage);
         try {
             CommandResult result = command.execute(model);
-            ExitQuizCommand exitQuizCommand = new ExitQuizCommand();
-            exitQuizCommand.execute(model);
+            EndQuizCommand endQuizCommand = new EndQuizCommand();
+            endQuizCommand.execute(model);
             assertEquals(expectedCommandResult, result);
         } catch (CommandException ce) {
             throw new AssertionError("Execution of command should not fail.", ce);

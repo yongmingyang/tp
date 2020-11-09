@@ -137,21 +137,53 @@ This section describes some noteworthy details on how certain features are imple
 
 #### Implementation
 
-This portion describes the implementation of the find feature.
-
-The diagram below shows the activity flow of the find feature.
-
-![FindActivityDiagram](images/FindActivityDiagram.png)
-
-The following sequence diagram shows how the find operation works:
-
-![UndoSequenceDiagram](images/FindSequenceDiagram.png)
+This portion describes the implementation of the find feature which allows the user to find QAndA sets based on the question, answer or tags.
 
 Explanation of the diagrams:
 1. As the user parses the find command through the `UI`, the `MedmoriserParser` identifies this as a `FindCommand` and passes the user input to the `FindCommandParser`.
 2. The `FindCommandParser` identifies the type of find command, such as find tag/question/answer.
 3. A `FindCommand` with the respective predicate such as `TagContainsKeywordPredicate` is created and returned to the `LogicManager`.
 4. The filtered list of question will be displayed on the `UI`.
+
+The following sequence diagram, Fig 1.1, shows how the find operation works:
+
+(Figure 1.1: Find Command Sequence Diagram)
+![UndoSequenceDiagram](images/FindSequenceDiagram.png)
+
+The activity diagram below, Fig 1.2, shows the activity flow of the find feature.
+
+(Figure 1.2: Find Command Activity Diagram)
+![FindActivityDiagram](images/FindActivityDiagram.png)
+
+### Quiz Feature (Joshua Tan)
+
+#### Implementation
+
+This feature allows the user to quiz himself/herself.
+
+The flow of the execution is as follows:
+
+1. User enters the input for quiz (eg. `quiz t/Immune System`)
+
+2. The `LogicManager` executes the command, the command is then parsed by `MedmoriserParser` and the command is
+identified as a `QuizCommand`. The command is then parsed by `QuizCommandParser`.
+
+3. `QuizCommandParser` identifies the type of quiz command. (eg. quiz t/)
+
+4. A `QuizCommand` with the respective predicate, in this case `TagContainsKeywordPredicate` is created and returned to `LogicManager`
+
+5. The `QuizCard` will be displayed on the `UI`.
+
+The sequence diagram below, Fig 1.3, shows the interactions between the Logic and model components for the quiz command.
+
+(Figure 1.3: Quiz Command Sequence Diagram)
+![QuizSequenceDiagram](images/QuizSequenceDiagram.png)
+
+The diagram below, Fig 1.4 shows the activity diagram flow for the quiz command
+
+(Figure 1.4: Quiz Command Activity Diagram)
+![QuizActivityDiagram](images/QuizActivityDiagram.png)
+
 
 ### Delete Feature (Jian Ling)
 
@@ -170,15 +202,15 @@ This feature allows the user to delete a QAndA from the answer book. The flow of
 
    If any of the scenarios above occur, a `CommandException` will be thrown with their respective error messages. Othewise, a new `CommandResult` is returned, along with a success message that the specified QAndA has been successfully deleted
 
-The sequence diagram (Fig. 1.1) below shows the flow of the delete  feature.
+The sequence diagram (Fig. 1.5) below shows the flow of the delete  feature.
 
-(Figure 1.1: Delete command sequence diagram)
+(Figure 1.5: Delete Command Sequence Diagram)
 
 ![DeleteSequenceDiagram](images/DeleteSequenceDiagram.png)
 
-The activity diagram (Fig 1.2) below further shows the flow of the delete feature.
+The activity diagram (Fig 1.6) below further shows the flow of the delete feature.
 
-(Figure 1.2: Delete command activity diagram)
+(Figure 1.6: Delete Command Activity Diagram)
 
 ![DeleteActivityDiagram](images/DeleteActivityDiagram.png)
 
@@ -188,10 +220,6 @@ The activity diagram (Fig 1.2) below further shows the flow of the delete featur
 #### Implementation
 
 This section elaborates on the implementation of the list feature.
-
-The sequence diagram below shows the interactions between the Ui and Logic components for the list command.
-
-![ListSequenceDiagram](images/ListSequenceDiagram.png)
 
 1. The user enters input to list all QAndAs.
 
@@ -203,8 +231,14 @@ The sequence diagram below shows the interactions between the Ui and Logic compo
 
 5. `Ui` checks the `CommandResult` object and modifies the visibility of the `Answer` label. In this case, the visibilty is set to `hidden`
 
-The following activity diagram summarises what happens when a user executes the `list` command.
+The sequence diagram below, Fig 1.7 shows the interactions between the Ui and Logic components for the list command.
 
+(Figure 1.7: List Command Sequence Diagram)
+![ListSequenceDiagram](images/ListSequenceDiagram.png)
+
+The following activity diagram, Fig 1.8 summarises what happens when a user executes the `list` command.
+
+(Figure 1.6: List Command Activity Diagram)
 ![ListActivityDiagram](images/ListActivityDiagram.png)
 
 #### Design considerations:
@@ -478,3 +512,23 @@ testers are expected to do more *exploratory* testing.
    1. _{explain how to simulate a missing/corrupted file, and the expected behavior}_
 
 1. _{ more test cases …​ }_
+
+## Appendix: Effort
+
+This section explains the difficulty level, challenges faced, effort required, and achievements of Medmoriser.
+
+```
+<div markdown="span" class="alert alert-info">:information_source: **Note:** The examples used below are explained in comparison to AB3.
+
+</div>
+```
+
+Making Medmoriser wa particularly difficult as there were many challenges we faces along the way, as explained below:
+
+1. There was a need to change a large portion of the AB3 code, as we had a completely different set of variables for Medmoriser. We had to do a lot of refactoring in the form of renaming class and attributes. The restrictions on fields in AB3 were also different from those in Medmoriser (eg. Person in AB3 cannot have special characters, but Question in Medmoriser can), and we had to edit those restrictions respectively.
+2. Implementing a quizzing feature required a deep understanding of the design of AB3. Merely manipulating variables in existing code was not sufficient here, and we had to create many new classes such as `QuizCommand`, `AnswerCommand`, `NextCommand`and `EndQuizCommand`. We also had to come up with ways to keep track of the state of the application, such as whether the user is in an ongoing quiz, whether the user has entered an answer for a quiz question, and whether a quiz question has been asked before when choosing the next question to show the user in a quiz. There was not a need for this in AB3.
+3. The large amount of new classes created and enhancements to existing commands means that a lot more effort is needed when testing Medmoriser. This is evident in the fact that we had to implement new test classes (eg. `QuizCommandTest`, `QuizCommandParserTest`, `AnswerCommandTest`, `EndQuizTest` , etc) and additional test cases in existing test classes (eg `FindCommandTest`, `ListCommandTest`, etc).
+
+
+
+Despite the difficulties mentioned above, we managed to overcome them and come up with a fully functional product that we are proud of.

@@ -76,7 +76,7 @@ public class ModelManager implements Model {
         userPrefs.setMedmoriserFilePath(medmoriserFilePath);
     }
 
-    //=========== AddressBook ================================================================================
+    //=========== medmoriser ================================================================================
 
     @Override
     public void setMedmoriser(ReadOnlyMedmoriser medmoriser) {
@@ -116,7 +116,7 @@ public class ModelManager implements Model {
 
     /**
      * Returns an unmodifiable view of the list of {@code QAndA} backed by the internal list of
-     * {@code versionedAddressBook}
+     * {@code versionedMedmoriser}
      */
     @Override
     public ObservableList<QAndA> getFilteredQAndAList() {

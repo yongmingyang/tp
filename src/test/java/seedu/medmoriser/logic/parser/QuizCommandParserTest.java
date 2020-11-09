@@ -9,7 +9,6 @@ import java.util.Arrays;
 import org.junit.jupiter.api.Test;
 
 import seedu.medmoriser.logic.commands.QuizCommand;
-import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
@@ -24,21 +23,10 @@ public class QuizCommandParserTest {
     }
 
     @Test
-    public void parse_validArgsQAndAContainsKeywordsPredicate_returnsQuizCommand() {
-        // no leading and trailing whitespaces
-        QuizCommand expectedQuizCommand =
-                new QuizCommand(new QAndAContainsKeywordsPredicate(Arrays.asList("digestive", "skeletal")));
-        assertParseSuccess(parser, "digestive, skeletal", expectedQuizCommand);
-
-        // multiple whitespaces between keywords
-        assertParseSuccess(parser, " \n digestive, \n skeletal ", expectedQuizCommand);
-    }
-
-    @Test
     public void parse_validArgsQuestionContainsKeywordsPredicate_returnsQuizCommand() {
         // no leading and trailing whitespaces
         QuizCommand expectedQuizCommand =
-                new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList("q", "digestive system",
+                new QuizCommand(new QuestionContainsKeywordsPredicate(Arrays.asList("digestive system",
                         "skeletal system")));
         assertParseSuccess(parser, "q/digestive system, skeletal system", expectedQuizCommand);
 
@@ -50,7 +38,7 @@ public class QuizCommandParserTest {
     public void parse_validArgsTagContainsKeywordsPredicate_returnsQuizCommand() {
         // no leading and trailing whitespaces
         QuizCommand expectedQuizCommand =
-                new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList("t", "digestive system",
+                new QuizCommand(new TagContainsKeywordsPredicate(Arrays.asList("digestive system",
                         "skeletal system")));
         assertParseSuccess(parser, "t/digestive system, skeletal system", expectedQuizCommand);
 

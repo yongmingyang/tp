@@ -9,7 +9,7 @@ import seedu.medmoriser.model.qanda.QAndA;
 import seedu.medmoriser.model.qanda.UniqueQAndAList;
 
 /**
- * Wraps all data at the address-book level
+ * Wraps all data at the medmoriser level
  * Duplicates are not allowed (by .isSameQAndA comparison)
  */
 public class Medmoriser implements ReadOnlyMedmoriser {
@@ -30,7 +30,7 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     public Medmoriser() {}
 
     /**
-     * Creates an AddressBook using the QAndAs in the {@code toBeCopied}
+     * Creates a Medmoriser using the QAndAs in the {@code toBeCopied}
      */
     public Medmoriser(ReadOnlyMedmoriser toBeCopied) {
         this();
@@ -48,7 +48,7 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     }
 
     /**
-     * Resets the existing data of this {@code AddressBook} with {@code newData}.
+     * Resets the existing data of this {@code Medmoriser} with {@code newData}.
      */
     public void resetData(ReadOnlyMedmoriser newData) {
         requireNonNull(newData);
@@ -59,7 +59,7 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     //// qAndA-level operations
 
     /**
-     * Returns true if a qAndA with the same identity as {@code qAndA} exists in the address book.
+     * Returns true if a qAndA with the same identity as {@code qAndA} exists in the medmoriser.
      */
     public boolean hasQAndA(QAndA qAndA) {
         requireNonNull(qAndA);
@@ -67,8 +67,8 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     }
 
     /**
-     * Adds a qAndA to the address book.
-     * The qAndA must not already exist in the address book.
+     * Adds a qAndA to the medmoriser.
+     * The qAndA must not already exist in the medmoriser.
      */
     public void addQAndA(QAndA p) {
         qAndAs.add(p);
@@ -76,9 +76,9 @@ public class Medmoriser implements ReadOnlyMedmoriser {
 
     /**
      * Replaces the given qAndA {@code target} in the list with {@code editedQAndA}.
-     * {@code target} must exist in the address book.
+     * {@code target} must exist in the medmoriser.
      * The qAndA identity of {@code editedQAndA} must
-     * not be the same as another existing qAndA in the address book.
+     * not be the same as another existing qAndA in the medmoriser.
      */
     public void setQAndA(QAndA target, QAndA editedQAndA) {
         requireNonNull(editedQAndA);
@@ -87,8 +87,8 @@ public class Medmoriser implements ReadOnlyMedmoriser {
     }
 
     /**
-     * Removes {@code key} from this {@code AddressBook}.
-     * {@code key} must exist in the address book.
+     * Removes {@code key} from this {@code Medmoriser}.
+     * {@code key} must exist in the medmoriser.
      */
     public void removeQAndA(QAndA key) {
         qAndAs.remove(key);

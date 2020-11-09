@@ -66,8 +66,12 @@ public class TagContainsKeywordPredicateTest {
 
     @Test
     public void test_tagDoesNotContainKeywords_returnsFalse() {
-        // Zero keywords
+        // Zero keywords (should not be possible for user to end up in this test case)
         TagContainsKeywordsPredicate predicate = new TagContainsKeywordsPredicate(Collections.emptyList());
+        assertFalse(predicate.test(new QAndABuilder().withTags("Alice").build()));
+
+        // Zero keywords entered
+        predicate = new TagContainsKeywordsPredicate(Arrays.asList("t"));
         assertFalse(predicate.test(new QAndABuilder().withTags("Alice").build()));
 
         // Non-matching keyword
