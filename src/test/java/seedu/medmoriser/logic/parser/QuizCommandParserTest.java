@@ -45,4 +45,16 @@ public class QuizCommandParserTest {
         // multiple whitespaces between keywords
         assertParseSuccess(parser, "t/ \n digestive system, \n \t skeletal system  \t", expectedQuizCommand);
     }
+
+    @Test
+    public void parse_invalidArgsMultiplePrefixes_throwsParseException() {
+        String userInput = "q/digestive system t/Human Anatomy";
+        String userInput2 = "q/digestive system t/Human Anatomy a/answer";
+
+        assertParseFailure(parser, userInput, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                QuizCommand.MESSAGE_USAGE));
+
+        assertParseFailure(parser, userInput2, String.format(MESSAGE_INVALID_COMMAND_FORMAT,
+                QuizCommand.MESSAGE_USAGE));
+    }
 }
