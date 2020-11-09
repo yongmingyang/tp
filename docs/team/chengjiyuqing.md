@@ -14,6 +14,9 @@ Given below are my contributions to the project.
 * **Project management**:
   * Managed releases `v1.2` - `v1.4` (3 releases) on GitHub
 
+<div style="page-break-after: always;"></div>
+
+
 * **Enhancements to existing features**:
   * Created new GUI component QuizCard to acommodate Quiz command, Answer command, Endquiz command and Next command
     (Pull request [\#77](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/77) [\#161](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/161))
