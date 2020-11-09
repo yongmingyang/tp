@@ -135,7 +135,7 @@ This section describes some noteworthy details on how certain features are imple
 
 ### Add Feature (Cheng Jiyuqing)
 
-### Implementation
+#### Implementation
 
 This portion describes the implementation of the add feature which allows the user to add new QAndA sets with the question, answer and/or tags.
 
