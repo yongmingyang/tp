@@ -14,8 +14,6 @@ import seedu.medmoriser.model.qanda.QAndAContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.QuestionContainsKeywordsPredicate;
 import seedu.medmoriser.model.qanda.TagContainsKeywordsPredicate;
 
-import javax.print.attribute.standard.Fidelity;
-
 public class FindCommandParserTest {
 
     private FindCommandParser parser = new FindCommandParser();
