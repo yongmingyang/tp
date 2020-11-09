@@ -34,6 +34,9 @@ public class QuizCommand extends Command {
 
     public static final String MESSAGE_NO_QUESTION_WITH_KEYWORD = "No question with this tag/keyword";
 
+    public static final String MESSAGE_ONE_PREFIX = "There are multiple prefixes present. Ensure that q/ is before the"
+            + "question keyword or t/ is before the tag keyword";
+
     private static boolean isQuiz = false;
 
     private static List<QAndA> currentList = new ArrayList<>();
@@ -56,7 +59,6 @@ public class QuizCommand extends Command {
     public static boolean getIsQuiz() {
         return isQuiz;
     }
-
 
     public static void setIsQuiz(boolean ongoingQuiz, Model model) {
         isQuiz = ongoingQuiz;

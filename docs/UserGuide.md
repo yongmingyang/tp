@@ -233,6 +233,8 @@ Format: `clear`
 You will be able to test yourself on your knowledge from the questions that you added into the application.
 Medmoriser will randomly select a question to quiz you based on the keywords you provide.
 
+There are 2 ways that you can quiz yourself. By question keywords or by tag keywords. If multiple keywords are given, you will be quizzed on a question that has any of the keywords, or all of the keywords.
+
 1. Quiz a QAndA with **questions** containing any of the given keywords.
 
     Format: `quiz q/KEYWORD`, for 2 or more words: `quiz q/PHRASE 1, KEYWORD 1`
