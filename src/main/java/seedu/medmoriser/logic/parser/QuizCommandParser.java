@@ -27,6 +27,13 @@ public class QuizCommandParser implements Parser<QuizCommand> {
                     String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_USAGE));
         }
 
+        if (args.contains("q/") && args.contains("t/") && args.contains("a/")
+                || args.contains("q/") && args.contains("a/") || args.contains("q/") && args.contains("t/")
+                || args.contains("t/") && args.contains("a/")) {
+            throw new ParseException(
+                    String.format(MESSAGE_INVALID_COMMAND_FORMAT, QuizCommand.MESSAGE_USAGE));
+        }
+
         String[] keywordsArray = trimmedArgs.split("/|, ");
         String[] excludeType = keywordsArray;
 
@@ -55,5 +62,17 @@ public class QuizCommandParser implements Parser<QuizCommand> {
             toReturn[i] = args[i].trim();
         }
         return toReturn;
+    }
+
+    /**
+     * Returns true if prefix only appears once in the string
+     * @param s The string to compare with.
+     * @param prefix The prefix to compare with.
+     * @return a boolean to indicate if prefix only appears in s once.
+     */
+    private boolean containsOnce(String s, Prefix prefix) {
+        String prefixString = prefix.toString();
+        int i = s.indexOf(prefixString);
+        return i == s.lastIndexOf(prefixString) && i != -1;
     }
 }
