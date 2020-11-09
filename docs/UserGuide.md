@@ -58,7 +58,7 @@ The explanation for each feature follows the template:
   e.g. in `add q/QUESTION`, `QUESTION` is a parameter which can be used as `add q/What is the heart responsible for?`.
 
 * Items in square brackets are optional.<br>
-  e.g. `q/QUESTION [t/TAG]` can be used as `q/What is the heart responsible for t/cardiology` or as `q/What is the heart responsible for`.
+  e.g. `q/QUESTION [t/TAG]` can be used as `q/What is the heart responsible for? t/cardiology` or as `q/What is the heart responsible for?`
 
 * Items with `…`​ after them can be used multiple times including zero times.<br>
   e.g. `[t/TAG]…​` can be used as ` ` (i.e. 0 times), `t/heart`, `t/heart t/cardiology` etc.
@@ -72,7 +72,7 @@ The explanation for each feature follows the template:
 
 This section will bring you through various features of Medmoriser. After this section, you will know how to use most of the commands available.
 
-You can follow the instructions one by one, or simply jump to the feature of insterest. For a summary of all commands, please refer to section `Command Summary` at the end of this guide.
+You can follow the instructions one by one, or jump to your feature of interest. For a summary of all commands, please refer to the [Command Summary](#command-summary) section at the end of this guide.
 
 ### Viewing help: `help`
 
@@ -82,7 +82,7 @@ Format: `help`
 
 ### Adding a QAndA: `add` (by: Cheng Jiyuqing)
 
-You can add a question and answer pair to the database. You can tag this pair with a tag / tags of your choice. It is also okay to not tag the question at all.
+You can add a QAndA to the database. You can tag this pair with tag(s) of your choice. It is also okay to not tag the question at all.
 
 Format: `add q/QUESTION a/ANSWER [t/TAG]…​`
 
@@ -108,17 +108,17 @@ You can delete a specified QAndA from the database.
 Format: `delete INDEX`
 
 * This allows you to delete the QAndA at the specified `INDEX`.
-* The index refers to the index number shown in the displayed question list.
+* The index refers to the index number shown in the displayed QAndA list.
 
 Examples:
 
-* `list` followed by `delete 2` deletes the 2nd QAndA in the question book.
-* `find disease` followed by `delete 1` deletes the 1st question in the results of the `find` command.
+* `list` followed by `delete 2` deletes the 2nd QAndA in the list.
+* `find disease` followed by `delete 1` deletes the 1st QAndA in the results of the `find` command.
 
 <div markdown="block" class="alert alert-info">
 **:information_source: Note about the delete command:**<br>
 
-The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
+The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the displayed list.
 
 </div>
 
@@ -140,12 +140,12 @@ You can use this command to view all the QAndAs you have added.
 
 Format: `list [questions]`
 
-* Entering `list` will list all questions and answers
-* Adding the `questions` parameter will list only the questions (i.e. hide the answers)
+* Entering `list` will list all QAndAs, with both questions and answers displayed.
+* Adding the `questions` parameter will list all QAndAs, with only the questions displayed (i.e. hide the answers)
 
 Examples:
-* `list` will show all questions and answers
-* `list questions` will only show all questions
+* `list` - show all questions and answers
+* `list questions` - show all questions
 
 The expected behaviour of `list` (left) vs `list questions` (right) is shown below:
 
@@ -157,7 +157,7 @@ You can make changes to an existing QAndA with this command.
 
 Format: `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​`
 
-* This allows you to edit the QAndA at the specified `INDEX`. The index refers to the index number shown in the displayed question list.
+* This allows you to edit the QAndA at the specified `INDEX`. The index refers to the index number shown in the displayed QAndA list.
 * Existing values will be updated to the input values.
 
 Examples:
@@ -170,7 +170,7 @@ Examples:
 
 * When you edit the tags, the existing tags of the QAndA will be removed i.e adding of tags is not cumulative.
 * You must provide at least one of the optional fields.
-* The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the database.
+* The index **must be a positive integer** (1, 2, 3, ...) within the range of the number of QAndAs in the displayed list.
 
 </div>
 
@@ -195,9 +195,9 @@ Expected Result:
 The `edit 2 q/how many bones are there in an ADULT human skeleton? t/ ` input will edit the QAndA at index 2 and remove all tags as shown.
 
 ### Finding QAndA by keywords: `find` (by: Yong Ming Yang)
-The `find` function allows you to find existing QAndA based keywords and phrases.
+The `find` function allows you to find existing QAndA based on keywords and phrases.
 
-If you would like to search the database based on keywords or phrases, you can do so in a few ways by following the respective format:
+If you would like to search the database based on keywords or phrases, you can do so in a few ways by following the respective formats:
 
 1. Find QAndA with **questions** containing any of the given keywords.
 
@@ -219,7 +219,7 @@ If you would like to search the database based on keywords or phrases, you can d
 Examples:
 * `find q/system, disease` - finds questions containing the word "system" and/or "disease".
 * `find a/vessels, chronic disease` - finds answers containing the word vessels, and/or the phrase "chronic disease".
-* `find t/anatomy, Nervous System` - finds question sets tagged with the word "anatomy" and/or "Nervous System" (can be both), requires exact match of words (case-insensitive).
+* `find t/anatomy, Nervous System` - finds QAndAs tagged with the word "anatomy" and/or "Nervous System" (can be both), requires exact match of words (case-insensitive).
 * `find infection, nervous system` - finds question and/or answers containing the word "infection", and/or the phrase "nervous system"
 
 <div markdown="block" class="alert alert-info">
@@ -249,7 +249,7 @@ Format: `clear`
 ### Starting a quiz: `quiz` (by: Joshua Tan)
 
 You will be able to test yourself on your knowledge from the questions that you added into the application.
-Medmoriser will randomly select a question to quiz you based on the keywords you provided.
+Medmoriser will randomly select a question to quiz you based on the keywords you provide.
 
 1. Quiz a QAndA with **questions** containing any of the given keywords.
 
@@ -339,16 +339,17 @@ Commonly asked questions and answers.
 
 
 ## Command summary
-A brief summary of all the commands available. For details of when and how each command should be used, please refer to section `Features`.
+A brief summary of all the commands available. For details of when and how each command should be used, please refer to 
+the [Features](#features) section.
 
 Action | Format, Examples
 --------|------------------
-**Add** | `add q/QUESTION a/ANSWER [t/TAG]…​` <br> e.g. `add q/What does the heart do a/Pump blood t/heart t/cardiology`
+**Add** | `add q/QUESTION a/ANSWER [t/TAG]…​` <br> e.g. `add q/What does the heart do? a/Pump blood t/heart t/cardiology`
 **Delete** | `delete INDEX`<br> e.g. `delete 3`
 **List** | `list [questions]`
 **Edit** | `edit INDEX [q/QUESTION] [a/ANSWER] [t/TAG]…​` <br> e.g. `edit 1 a/Maintain blood pressure t/cardiology`
-**Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system, or find a/answer1, answer 2`
-**Quiz** | `quiz [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz t/Immune System or quiz q/blood`
+**Find** | `find KEYWORD or [q/QUESTION_KEYWORD] or [a/ANSWER_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `find system` or `find a/answer1, answer 2`
+**Quiz** | `quiz [q/QUESTION_KEYWORD] or [t/TAG_KEYWORD]` <br> e.g. `quiz q/blood` or `quiz t/Immune System`
 **Answer** | `answer YOUR_ANSWER` <br> e.g. `answer This is my answer`
 **Next** | `next`
 **End Quiz** | `endquiz`
