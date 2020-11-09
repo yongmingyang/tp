@@ -5,12 +5,10 @@ start
 
 if () then ([valid command])
   : Identify command type;
-    if () then ([quiz tags])
+    if () then ([quiz by tags])
       :retrieve tag predicate;
-    elseif () then ([quiz questions])
+    else ([quiz by questions])
       :retrieve question predicate;
-    else
-      :retrieve QAndA predicate;
     endif
    :Randomly select a question based on predicate;
 
