@@ -3,7 +3,7 @@ layout: page
 title: Cheng Jiyuqing's Project Portfolio Page
 ---
 
-## Project: AddressBook Level 3
+## Project: Medmoriser
 
 Medmoriser is a desktop app to help medical students organise, memorise and revise their content. The user interacts with it using a CLI, and it has a GUI created with JavaFX and is written in Java.
 
@@ -26,10 +26,12 @@ Given below are my contributions to the project.
 * **Documentation**:
   * User Guide:
     * Added introduction to each section [\#95](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/95)
-    * Added details and photos to `add` feature. [\#158](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/158)
+    * Added details and photos to `Add` feature. [\#158](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/158)
   * Developer Guide:
-    * Added implementation details of the `add` feature. []()
+    * Added implementation details of the `Add` feature. [\#182](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/182)
+    * Added sequence diagram for `Add` Feature (Figure 1.1) [\#182](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/182)
     * Added User Stories, Value Props and target audience. [\#33](https://github.com/AY2021S1-CS2103T-W15-1/tp/pull/33)
+    
 
 * **Community**:
   * Contributed to forum discussions (examples: [1](https://github.com/nus-cs2103-AY2021S1/forum/issues/36))
