@@ -143,7 +143,7 @@ Explanation of the diagrams:
 
 1. As the user parses the add command through the `UI`, the `MedmoriserParser` identifies this as a `AddCommand` and passes the user input to the `AddCommandParser`.
 2. The `AddCommandParser` ensures the input is of correct format and identifies the input for question, answer and tag(s).
-3. The `AddCommandParser` then creates a new QAndA set object, and passes it to a new `AddCommand` object to handle the rest of the job.
+3. The `AddCommandParser` then creates a new QAndA object, and passes it to a new `AddCommand` object to handle the rest of the job.
 4. The `AddCommand` object will then add the new QAndA to model, and return a `CommandResult` containing a message to users indicating success in adding a new QAndA.
 5. `UI` will also be updated accordingly.
 
